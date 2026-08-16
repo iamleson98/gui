@@ -1,7 +1,6 @@
 pub mod widgets;
-use crate::core::{Id, Rect, Vec2};
+use crate::core::{Id, Rect};
 use crate::event::{Event, EventCtx, EventResult};
-use crate::layout::Constraints;
 use crate::render::Painter;
 use crate::style::ResolvedStyle;
 

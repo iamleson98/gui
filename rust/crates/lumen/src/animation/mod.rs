@@ -191,7 +191,10 @@ impl ColorAnimation {
 #[cfg(test)]
     use crate::core::Color;
 mod tests {
+    #[allow(unused_imports)]
     use super::*;
+    
+    
 
     #[test]
     fn easing_linear() {

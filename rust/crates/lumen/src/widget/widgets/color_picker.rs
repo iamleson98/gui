@@ -1,6 +1,5 @@
 //! Color picker widget.
 use crate::core::{Color, Rect};
-use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{PaintCtx, Widget};
 

@@ -1,4 +1,5 @@
 #![cfg_attr(not(feature = "std"), no_std)]
+#![allow(dead_code)]
 #![allow(clippy::type_complexity)]
 extern crate alloc;
 pub mod core;
@@ -26,3 +27,5 @@ pub mod prelude {
     pub use crate::widget::{Element, Ui, Widget};
     pub use crate::widget::widgets::*;
 }
+
+

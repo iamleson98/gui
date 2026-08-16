@@ -1,5 +1,5 @@
 use crate::core::Color;
-use crate::style::{Align, Corners, Cursor, Display, Edges, FlexDirection, Overflow, ResolvedStyle, Style, TextAlign, TrackSize};
+use crate::style::{Align, Corners, Cursor, Display, Edges, FlexDirection, Overflow, Style, TextAlign, TrackSize};
 
 pub trait Tw: Sized {
     fn p(self, v: f32) -> Self; fn px(self, v: f32) -> Self; fn py(self, v: f32) -> Self;

@@ -1,5 +1,5 @@
 //! Tab view widget.
-use crate::core::{Color, Id, Rect};
+use crate::core::{Color, Rect};
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{Element, PaintCtx, Widget};

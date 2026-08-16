@@ -1,7 +1,6 @@
-use crate::core::{Color, Id, Rect, Vec2};
-use crate::event::{Event, EventCtx, EventResult};
+use crate::core::{Color, Rect};
 use crate::style::{ResolvedStyle, Style, Tw};
-use crate::widget::{Element, PaintCtx, Widget};
+use crate::widget::{PaintCtx, Widget};
 use smol_str::SmolStr;
 
 pub struct Badge { style: ResolvedStyle, color: Color }

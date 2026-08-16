@@ -1,6 +1,5 @@
 //! Data table widget.
 use crate::core::{Color, Rect};
-use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{PaintCtx, Widget};
 use smol_str::SmolStr;

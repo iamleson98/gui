@@ -3,11 +3,8 @@
 //! If a widget panics during paint or event handling, the error boundary
 //! catches it and displays a fallback instead of crashing the entire app.
 
-use crate::core::Id;
 use std::any::Any;
-use std::cell::RefCell;
-use std::panic::{self, AssertUnwindSafe, UnwindSafe};
-use std::rc::Rc;
+use std::panic::{self, UnwindSafe};
 
 /// Result of running a fallible operation.
 pub type FallibleResult<T> = Result<T, Box<dyn Any + Send>>;

@@ -302,8 +302,8 @@ mod tests {
     #[test]
     fn tree_focusable_widgets() {
         let mut tree = AccessibilityTree::new();
-        let mut info1 = AccessibilityBuilder::new().role(Role::Button).build();
-        let mut info2 = AccessibilityBuilder::new().role(Role::Button).disabled().build();
+        let info1 = AccessibilityBuilder::new().role(Role::Button).build();
+        let info2 = AccessibilityBuilder::new().role(Role::Button).disabled().build();
         let info3 = AccessibilityBuilder::new().role(Role::Heading).build();
         tree.set(Id::new("a"), info1);
         tree.set(Id::new("b"), info2);

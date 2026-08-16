@@ -1,6 +1,6 @@
 //! Virtualized list — only renders visible rows, supports millions of items.
 
-use crate::core::{Color, Id, Rect, Vec2};
+use crate::core::{Color, Rect};
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{PaintCtx, Widget};
@@ -85,7 +85,7 @@ impl Widget for VirtualList {
         ctx.painter.fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
         ctx.painter.push_clip(*rect);
 
-        let (_, end) = self.visible_range(rect.height());
+        let (_, _end) = self.visible_range(rect.height());
         let (start, end) = self.visible_range(rect.height());
 
         for i in start..end {

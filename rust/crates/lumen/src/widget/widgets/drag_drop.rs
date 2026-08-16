@@ -1,12 +1,9 @@
 //! Drag and drop framework — drag sources, drop targets, data transfer.
 
 use crate::core::{Id, Rect, Vec2};
-use crate::event::{Event, EventCtx, EventResult};
-use crate::core::Color;
-use crate::widget::{PaintCtx, Widget};
 use std::any::Any;
 use std::collections::HashMap;
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 
 /// Type-erased drag data.
 pub type DragData = Arc<dyn Any + Send + Sync>;

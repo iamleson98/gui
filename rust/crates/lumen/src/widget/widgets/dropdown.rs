@@ -1,5 +1,5 @@
 //! Simple dropdown widget.
-use crate::core::{Color, Rect};
+use crate::core::Rect;
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{PaintCtx, Widget};

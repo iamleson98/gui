@@ -1,6 +1,5 @@
 //! Date picker widget.
-use crate::core::{Color, Rect};
-use crate::event::{Event, EventCtx, EventResult};
+use crate::core::Rect;
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{PaintCtx, Widget};
 

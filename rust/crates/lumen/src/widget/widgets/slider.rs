@@ -1,8 +1,7 @@
-use crate::core::{Color, Id, Rect, Vec2};
+use crate::core::{Color, Rect};
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
-use crate::widget::{Element, PaintCtx, Widget};
-use smol_str::SmolStr;
+use crate::widget::{PaintCtx, Widget};
 
 pub struct Slider { style: ResolvedStyle, min: f32, max: f32, value: f32, dragging: bool }
 impl Slider {

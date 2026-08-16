@@ -1,8 +1,6 @@
 //! Pagination widget.
-use crate::core::Rect;
-use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
-use crate::widget::{PaintCtx, Widget};
+use crate::widget::Widget;
 
 pub struct Pagination { style: ResolvedStyle, total: usize, current: usize }
 impl Pagination {

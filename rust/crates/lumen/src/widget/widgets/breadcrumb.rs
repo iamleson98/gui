@@ -1,8 +1,6 @@
 //! Breadcrumb navigation widget.
-use crate::core::Rect;
-use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
-use crate::widget::{PaintCtx, Widget};
+use crate::widget::Widget;
 use smol_str::SmolStr;
 
 pub struct Crumb { pub label: SmolStr, pub clickable: bool }

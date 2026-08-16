@@ -1,8 +1,7 @@
-use crate::core::{Color, Id, Rect, Vec2};
+use crate::core::{Color, Rect};
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
-use crate::widget::{Element, PaintCtx, Widget};
-use smol_str::SmolStr;
+use crate::widget::{PaintCtx, Widget};
 
 pub struct Toggle { style: ResolvedStyle, on: bool }
 impl Toggle { pub fn new(on: bool) -> Self { Self { style: Style::new().w(44.0).h(24.0).rounded_full().bg(Color::rgb(203,213,225)).cursor_pointer().build(), on } } pub fn is_on(&self) -> bool { self.on } }

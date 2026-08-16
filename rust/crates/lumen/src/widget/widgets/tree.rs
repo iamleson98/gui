@@ -1,8 +1,6 @@
 //! Tree view widget.
-use crate::core::{Color, Rect};
-use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
-use crate::widget::{PaintCtx, Widget};
+use crate::widget::Widget;
 use smol_str::SmolStr;
 
 pub struct TreeNode { pub label: SmolStr, pub children: Vec<TreeNode>, pub expanded: bool, pub disabled: bool }

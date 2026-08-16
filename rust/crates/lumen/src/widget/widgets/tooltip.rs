@@ -1,8 +1,8 @@
 //! Tooltip widget.
-use crate::core::{Color, Id, Rect};
+use crate::core::Id;
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style};
-use crate::widget::{Element, PaintCtx, Widget};
+use crate::widget::{Element, Widget};
 use smol_str::SmolStr;
 
 pub struct Tooltip { style: ResolvedStyle, child: Box<Element>, text: SmolStr, visible: bool, hover_ms: u32 }

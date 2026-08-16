@@ -1,8 +1,6 @@
-use crate::core::{Color, Id, Rect, Vec2};
-use crate::event::{Event, EventCtx, EventResult};
+use crate::core::Rect;
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{Element, PaintCtx, Widget};
-use smol_str::SmolStr;
 
 pub struct Card { style: ResolvedStyle, body: Vec<Element> }
 impl Card { pub fn new(body: Vec<Element>) -> Self { Self { style: Style::new().p_4().rounded_lg().bg_white().shadow_md().flex_col().gap_2().build(), body } } }
