@@ -157,7 +157,9 @@ mod tests {
         let mut tm = ThemeManager::new(Theme::light());
         let called = Rc::new(RefCell::new(false));
         let c = called.clone();
-        tm.on_change(move |_| { *c.borrow_mut() = true; });
+        tm.on_change(move |_| {
+            *c.borrow_mut() = true;
+        });
         tm.set_theme(Theme::dark());
         assert!(*called.borrow());
     }

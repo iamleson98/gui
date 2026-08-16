@@ -11,5 +11,7 @@ pub use rect::Rect;
 pub struct ScaleFactor(pub f32);
 impl ScaleFactor {
     pub const IDENT: Self = Self(1.0);
-    pub fn as_f32(self) -> f32 { self.0 }
+    pub fn as_f32(self) -> f32 {
+        self.0
+    }
 }

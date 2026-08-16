@@ -35,7 +35,9 @@ impl Default for DragDropManager {
 }
 
 impl DragDropManager {
-    pub fn new() -> Self { Self::default() }
+    pub fn new() -> Self {
+        Self::default()
+    }
 
     /// Start a drag operation.
     pub fn start_drag(&mut self, source: Id, data: DragData, pos: Vec2) {
@@ -47,7 +49,9 @@ impl DragDropManager {
     /// Update drag position.
     pub fn update_drag(&mut self, pos: Vec2) {
         self.drag_pos = pos;
-        self.hover_target = self.drop_targets.iter()
+        self.hover_target = self
+            .drop_targets
+            .iter()
             .find(|(_, rect)| rect.contains(pos))
             .map(|(id, _)| *id);
     }
@@ -93,7 +97,11 @@ pub struct Draggable {
 
 impl Draggable {
     pub fn new(data: DragData) -> Self {
-        Self { data: Some(data), dragging: false, on_drag_start: None }
+        Self {
+            data: Some(data),
+            dragging: false,
+            on_drag_start: None,
+        }
     }
 
     pub fn on_drag_start<F: Fn() + Send + Sync + 'static>(mut self, f: F) -> Self {
@@ -112,7 +120,10 @@ pub struct DropTarget {
 
 impl DropTarget {
     pub fn new() -> Self {
-        Self { hovered: false, on_drop: None }
+        Self {
+            hovered: false,
+            on_drop: None,
+        }
     }
 
     pub fn on_drop<F: Fn(&DragData) + Send + Sync + 'static>(mut self, f: F) -> Self {
@@ -120,11 +131,15 @@ impl DropTarget {
         self
     }
 
-    pub fn is_hovered(&self) -> bool { self.hovered }
+    pub fn is_hovered(&self) -> bool {
+        self.hovered
+    }
 }
 
 impl Default for DropTarget {
-    fn default() -> Self { Self::new() }
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 #[cfg(test)]

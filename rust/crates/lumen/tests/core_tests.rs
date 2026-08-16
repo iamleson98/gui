@@ -1,4 +1,4 @@
-use lumen::core::{Color, Vec2, Rect, Id};
+use lumen::core::{Color, Id, Rect, Vec2};
 
 #[test]
 fn color_rgb_preserves_channels() {
@@ -10,7 +10,10 @@ fn color_rgb_preserves_channels() {
 fn color_hex_parsing() {
     assert_eq!(Color::from_hex("#ff8800"), Some(Color::rgb(255, 136, 0)));
     assert_eq!(Color::from_hex("#FF8800"), Some(Color::rgb(255, 136, 0)));
-    assert_eq!(Color::from_hex("#ff880080"), Some(Color::rgba(255, 136, 0, 128)));
+    assert_eq!(
+        Color::from_hex("#ff880080"),
+        Some(Color::rgba(255, 136, 0, 128))
+    );
     assert_eq!(Color::from_hex("ff8800"), None);
     assert_eq!(Color::from_hex("#gg8800"), None);
 }
@@ -19,16 +22,27 @@ fn color_hex_parsing() {
 fn color_lerp() {
     assert_eq!(Color::BLACK.lerp(Color::WHITE, 0.0), Color::BLACK);
     assert_eq!(Color::BLACK.lerp(Color::WHITE, 1.0), Color::WHITE);
-    assert_eq!(Color::BLACK.lerp(Color::WHITE, 0.5), Color::rgb(128, 128, 128));
+    assert_eq!(
+        Color::BLACK.lerp(Color::WHITE, 0.5),
+        Color::rgb(128, 128, 128)
+    );
 }
 
 #[test]
-fn color_with_alpha() { assert_eq!(Color::WHITE.with_alpha(50).a, 50); }
+fn color_with_alpha() {
+    assert_eq!(Color::WHITE.with_alpha(50).a, 50);
+}
 
 #[test]
 fn vec2_arithmetic() {
-    assert_eq!(Vec2::new(1.0, 2.0) + Vec2::new(3.0, 4.0), Vec2::new(4.0, 6.0));
-    assert_eq!(Vec2::new(5.0, 6.0) - Vec2::new(2.0, 1.0), Vec2::new(3.0, 5.0));
+    assert_eq!(
+        Vec2::new(1.0, 2.0) + Vec2::new(3.0, 4.0),
+        Vec2::new(4.0, 6.0)
+    );
+    assert_eq!(
+        Vec2::new(5.0, 6.0) - Vec2::new(2.0, 1.0),
+        Vec2::new(3.0, 5.0)
+    );
     assert_eq!(Vec2::new(2.0, 3.0) * 2.0, Vec2::new(4.0, 6.0));
 }
 
@@ -67,6 +81,7 @@ fn id_derive() {
 
 #[test]
 fn id_unique() {
-    let a = Id::unique(); let b = Id::unique();
+    let a = Id::unique();
+    let b = Id::unique();
     assert_ne!(a, b);
 }

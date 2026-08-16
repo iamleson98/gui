@@ -42,7 +42,8 @@ impl Clipboard {
 }
 
 /// Global clipboard instance.
-static GLOBAL_CLIPBOARD: once_cell::sync::Lazy<Clipboard> = once_cell::sync::Lazy::new(Clipboard::default);
+static GLOBAL_CLIPBOARD: once_cell::sync::Lazy<Clipboard> =
+    once_cell::sync::Lazy::new(Clipboard::default);
 
 /// Copy text to the global clipboard.
 pub fn copy(text: &str) {

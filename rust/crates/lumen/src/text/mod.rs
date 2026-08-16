@@ -94,7 +94,11 @@ impl TextEngine {
                     let image_data: Option<(u32, u32, Vec<u8>)> = {
                         let img_ref = self.swash_cache.get_image(&mut self.font_system, cache_key);
                         match img_ref {
-                            Some(ref i) => Some((i.placement.width as u32, i.placement.height as u32, i.data.clone())),
+                            Some(ref i) => Some((
+                                i.placement.width as u32,
+                                i.placement.height as u32,
+                                i.data.clone(),
+                            )),
                             None => None,
                         }
                     };

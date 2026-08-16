@@ -32,26 +32,27 @@ impl Label {
 }
 
 impl Widget for Label {
-    fn style(&self) -> &ResolvedStyle { &self.style }
-    fn debug_name(&self) -> &'static str { "Label" }
-    fn as_any_mut(&mut self) -> &mut dyn std::any::Any { self }
+    fn style(&self) -> &ResolvedStyle {
+        &self.style
+    }
+    fn debug_name(&self) -> &'static str {
+        "Label"
+    }
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
         if self.style.background.a > 0 {
-            ctx.painter.fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
+            ctx.painter
+                .fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
         }
 
         // Render text using cosmic-text
-        let origin = Vec2::new(
-            rect.min.x,
-            rect.center().y - self.style.font_size * 0.5,
-        );
-        let glyphs = ctx.text.layout_text(
-            &self.text,
-            self.style.font_size,
-            self.style.color,
-            origin,
-        );
+        let origin = Vec2::new(rect.min.x, rect.center().y - self.style.font_size * 0.5);
+        let glyphs =
+            ctx.text
+                .layout_text(&self.text, self.style.font_size, self.style.color, origin);
         for g in &glyphs {
             ctx.painter.push_glyph(g.rect, g.uv, g.color);
         }

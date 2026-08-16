@@ -50,11 +50,7 @@ impl LifecycleManager {
     }
 
     /// Register a lifecycle callback for a widget.
-    pub fn on_lifecycle<F: Fn(LifecycleEvent) + Send + Sync + 'static>(
-        &mut self,
-        id: Id,
-        f: F,
-    ) {
+    pub fn on_lifecycle<F: Fn(LifecycleEvent) + Send + Sync + 'static>(&mut self, id: Id, f: F) {
         self.callbacks.entry(id).or_default().push(Box::new(f));
     }
 
@@ -89,7 +85,14 @@ impl LifecycleManager {
         let was_visible = self.visible.get(&id).copied().unwrap_or(false);
         if was_visible != visible {
             self.visible.insert(id, visible);
-            self.fire(id, if visible { LifecycleEvent::BecameVisible } else { LifecycleEvent::BecameHidden });
+            self.fire(
+                id,
+                if visible {
+                    LifecycleEvent::BecameVisible
+                } else {
+                    LifecycleEvent::BecameHidden
+                },
+            );
         }
     }
 

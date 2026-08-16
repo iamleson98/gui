@@ -5,10 +5,14 @@ use crate::widget::{PaintCtx, Widget};
 use smol_str::SmolStr;
 
 /// Emitted when the text content changes.
-pub struct TextChanged { pub text: SmolStr }
+pub struct TextChanged {
+    pub text: SmolStr,
+}
 
 /// Emitted when Enter is pressed.
-pub struct TextSubmitted { pub text: SmolStr }
+pub struct TextSubmitted {
+    pub text: SmolStr,
+}
 
 /// A single-line editable text field with cosmic-text rendering.
 pub struct TextInput {
@@ -21,19 +25,36 @@ pub struct TextInput {
 impl TextInput {
     pub fn new(placeholder: impl Into<SmolStr>) -> Self {
         Self {
-            style: Style::new().px_3().py_2().rounded_md().bg_white().border(1.0).border_color(Color::rgb(203,213,225)).text_sm().build(),
+            style: Style::new()
+                .px_3()
+                .py_2()
+                .rounded_md()
+                .bg_white()
+                .border(1.0)
+                .border_color(Color::rgb(203, 213, 225))
+                .text_sm()
+                .build(),
             text: SmolStr::new(""),
             placeholder: placeholder.into(),
             focused: false,
         }
     }
 
-    pub fn with_style(mut self, s: ResolvedStyle) -> Self { self.style = s; self }
-    pub fn text(&self) -> &str { &self.text }
-    pub fn set_text(&mut self, t: impl Into<SmolStr>) { self.text = t.into(); }
+    pub fn with_style(mut self, s: ResolvedStyle) -> Self {
+        self.style = s;
+        self
+    }
+    pub fn text(&self) -> &str {
+        &self.text
+    }
+    pub fn set_text(&mut self, t: impl Into<SmolStr>) {
+        self.text = t.into();
+    }
 
     fn render_text(&self, ctx: &mut PaintCtx<'_>, text: &str, origin: Vec2, color: Color) {
-        let glyphs = ctx.text.layout_text(text, self.style.font_size, color, origin);
+        let glyphs = ctx
+            .text
+            .layout_text(text, self.style.font_size, color, origin);
         for g in &glyphs {
             ctx.painter.push_glyph(g.rect, g.uv, g.color);
         }
@@ -41,16 +62,30 @@ impl TextInput {
 }
 
 impl Widget for TextInput {
-    fn style(&self) -> &ResolvedStyle { &self.style }
-    fn debug_name(&self) -> &'static str { "TextInput" }
-    fn as_any_mut(&mut self) -> &mut dyn std::any::Any { self }
+    fn style(&self) -> &ResolvedStyle {
+        &self.style
+    }
+    fn debug_name(&self) -> &'static str {
+        "TextInput"
+    }
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
-        ctx.painter.fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
-        let border = if self.focused { Color::TW_INDIGO_500 } else { self.style.border_color };
+        ctx.painter
+            .fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
+        let border = if self.focused {
+            Color::TW_INDIGO_500
+        } else {
+            self.style.border_color
+        };
         ctx.painter.stroke_rect(*rect, border, 1.0);
 
-        let origin = Vec2::new(rect.min.x + 8.0, rect.center().y - self.style.font_size * 0.5);
+        let origin = Vec2::new(
+            rect.min.x + 8.0,
+            rect.center().y - self.style.font_size * 0.5,
+        );
 
         if !self.text.is_empty() {
             self.render_text(ctx, &self.text, origin, self.style.color);
@@ -91,7 +126,9 @@ impl Widget for TextInput {
                     let mut s = self.text.to_string();
                     s.push(*c);
                     self.text = SmolStr::new(&s);
-                    ctx.state.emit(TextChanged { text: self.text.clone() });
+                    ctx.state.emit(TextChanged {
+                        text: self.text.clone(),
+                    });
                     ctx.state.request_redraw();
                     EventResult::Handled
                 } else {
@@ -99,21 +136,27 @@ impl Widget for TextInput {
                 }
             }
             Event::KeyDown { code, .. } => {
-                if !self.focused { return EventResult::Ignored; }
+                if !self.focused {
+                    return EventResult::Ignored;
+                }
                 match code {
                     crate::input::KeyCode::Backspace => {
                         if !self.text.is_empty() {
                             let mut s = self.text.to_string();
-                            let nl = s.char_indices().last().map(|(i,_)| i).unwrap_or(0);
+                            let nl = s.char_indices().last().map(|(i, _)| i).unwrap_or(0);
                             s.truncate(nl);
                             self.text = SmolStr::new(&s);
-                            ctx.state.emit(TextChanged { text: self.text.clone() });
+                            ctx.state.emit(TextChanged {
+                                text: self.text.clone(),
+                            });
                             ctx.state.request_redraw();
                         }
                         EventResult::Handled
                     }
                     crate::input::KeyCode::Enter => {
-                        ctx.state.emit(TextSubmitted { text: self.text.clone() });
+                        ctx.state.emit(TextSubmitted {
+                            text: self.text.clone(),
+                        });
                         EventResult::Handled
                     }
                     crate::input::KeyCode::Escape => {

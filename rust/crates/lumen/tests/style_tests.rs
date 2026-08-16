@@ -1,4 +1,4 @@
-use lumen::style::{Style, Tw, Theme, Display, FlexDirection, Align};
+use lumen::style::{Align, Display, FlexDirection, Style, Theme, Tw};
 
 #[test]
 fn style_builder_padding() {
@@ -9,7 +9,12 @@ fn style_builder_padding() {
 
 #[test]
 fn style_builder_flex() {
-    let s = Style::new().flex().flex_col().items_center().justify_center().build();
+    let s = Style::new()
+        .flex()
+        .flex_col()
+        .items_center()
+        .justify_center()
+        .build();
     assert_eq!(s.display, Display::Flex);
     assert_eq!(s.flex_direction, FlexDirection::Column);
     assert_eq!(s.align_items, Align::Center);

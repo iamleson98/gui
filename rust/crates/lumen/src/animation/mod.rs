@@ -159,8 +159,20 @@ pub struct ColorAnimation {
 }
 
 impl ColorAnimation {
-    pub fn new(from: crate::core::Color, to: crate::core::Color, duration: Duration, easing: Easing) -> Self {
-        Self { from, to, duration, easing, elapsed: 0.0, running: false }
+    pub fn new(
+        from: crate::core::Color,
+        to: crate::core::Color,
+        duration: Duration,
+        easing: Easing,
+    ) -> Self {
+        Self {
+            from,
+            to,
+            duration,
+            easing,
+            elapsed: 0.0,
+            running: false,
+        }
     }
 
     pub fn start(&mut self) {
@@ -169,7 +181,9 @@ impl ColorAnimation {
     }
 
     pub fn tick(&mut self, dt: f32) {
-        if !self.running { return; }
+        if !self.running {
+            return;
+        }
         self.elapsed += dt;
         let total = self.duration.as_secs_f32();
         if self.elapsed >= total {
@@ -185,16 +199,16 @@ impl ColorAnimation {
         self.from.lerp(self.to, eased)
     }
 
-    pub fn is_running(&self) -> bool { self.running }
+    pub fn is_running(&self) -> bool {
+        self.running
+    }
 }
 
 #[cfg(test)]
-    use crate::core::Color;
+use crate::core::Color;
 mod tests {
     #[allow(unused_imports)]
     use super::*;
-    
-    
 
     #[test]
     fn easing_linear() {
@@ -239,7 +253,9 @@ mod tests {
         let called = Rc::new(RefCell::new(false));
         let c = called.clone();
         let mut a = Animation::new(0.0, 1.0, Duration::from_millis(10), Easing::Linear);
-        a.on_complete(move || { *c.borrow_mut() = true; });
+        a.on_complete(move || {
+            *c.borrow_mut() = true;
+        });
         a.start();
         a.tick(0.1);
         assert!(*called.borrow());
@@ -247,7 +263,12 @@ mod tests {
 
     #[test]
     fn color_animation() {
-        let mut a = ColorAnimation::new(Color::BLACK, Color::WHITE, Duration::from_secs(1), Easing::Linear);
+        let mut a = ColorAnimation::new(
+            Color::BLACK,
+            Color::WHITE,
+            Duration::from_secs(1),
+            Easing::Linear,
+        );
         a.start();
         a.tick(0.5);
         let c = a.value();

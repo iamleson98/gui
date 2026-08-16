@@ -17,7 +17,8 @@ impl Button {
     pub fn new(label: impl Into<SmolStr>) -> Self {
         Self {
             style: Style::new()
-                .px_4().py_2()
+                .px_4()
+                .py_2()
                 .rounded_md()
                 .bg_primary()
                 .text_white()
@@ -42,9 +43,15 @@ impl Button {
 }
 
 impl Widget for Button {
-    fn style(&self) -> &ResolvedStyle { &self.style }
-    fn debug_name(&self) -> &'static str { "Button" }
-    fn as_any_mut(&mut self) -> &mut dyn std::any::Any { self }
+    fn style(&self) -> &ResolvedStyle {
+        &self.style
+    }
+    fn debug_name(&self) -> &'static str {
+        "Button"
+    }
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
         let mut bg = self.style.background;
@@ -53,7 +60,8 @@ impl Widget for Button {
         } else if self.hovered {
             bg = bg.lerp(Color::WHITE, 0.10);
         }
-        ctx.painter.fill_rounded_rect(*rect, bg, self.style.border_radius);
+        ctx.painter
+            .fill_rounded_rect(*rect, bg, self.style.border_radius);
 
         // Render text using cosmic-text
         let char_count = self.label.chars().count() as f32;
@@ -62,12 +70,9 @@ impl Widget for Button {
             rect.center().x - approx_width * 0.5,
             rect.center().y - self.style.font_size * 0.5,
         );
-        let glyphs = ctx.text.layout_text(
-            &self.label,
-            self.style.font_size,
-            self.style.color,
-            origin,
-        );
+        let glyphs =
+            ctx.text
+                .layout_text(&self.label, self.style.font_size, self.style.color, origin);
         for g in &glyphs {
             ctx.painter.push_glyph(g.rect, g.uv, g.color);
         }

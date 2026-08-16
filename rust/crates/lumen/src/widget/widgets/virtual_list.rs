@@ -39,9 +39,15 @@ impl VirtualList {
         }
     }
 
-    pub fn total_items(&self) -> usize { self.total_items }
-    pub fn selected(&self) -> Option<usize> { self.selected }
-    pub fn scroll_offset(&self) -> f32 { self.scroll_offset }
+    pub fn total_items(&self) -> usize {
+        self.total_items
+    }
+    pub fn selected(&self) -> Option<usize> {
+        self.selected
+    }
+    pub fn scroll_offset(&self) -> f32 {
+        self.scroll_offset
+    }
 
     /// Returns the range of visible item indices.
     pub fn visible_range(&self, viewport_height: f32) -> (usize, usize) {
@@ -77,12 +83,19 @@ impl VirtualList {
 }
 
 impl Widget for VirtualList {
-    fn style(&self) -> &ResolvedStyle { &self.style }
-    fn debug_name(&self) -> &'static str { "VirtualList" }
-    fn as_any_mut(&mut self) -> &mut dyn std::any::Any { self }
+    fn style(&self) -> &ResolvedStyle {
+        &self.style
+    }
+    fn debug_name(&self) -> &'static str {
+        "VirtualList"
+    }
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
-        ctx.painter.fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
+        ctx.painter
+            .fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
         ctx.painter.push_clip(*rect);
 
         let (_, _end) = self.visible_range(rect.height());
@@ -106,7 +119,6 @@ impl Widget for VirtualList {
             }
         }
         ctx.painter.pop_clip();
-
     }
 
     fn on_event(&mut self, ctx: &mut EventCtx<'_>, event: &Event) -> EventResult {
@@ -122,7 +134,11 @@ impl Widget for VirtualList {
             Event::PointerMove { pos, .. } => {
                 let rel_y = pos.y - ctx.current_rect.min.y + self.scroll_offset;
                 let idx = (rel_y / self.row_height) as usize;
-                let new_hover = if idx < self.total_items { Some(idx) } else { None };
+                let new_hover = if idx < self.total_items {
+                    Some(idx)
+                } else {
+                    None
+                };
                 if new_hover != self.hovered {
                     self.hovered = new_hover;
                     if self.hovered.is_some() {

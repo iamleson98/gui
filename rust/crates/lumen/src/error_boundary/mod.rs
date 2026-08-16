@@ -141,7 +141,9 @@ mod tests {
         let called = Arc::new(AtomicBool::new(false));
         let c = called.clone();
         let mut eb = ErrorBoundary::new();
-        eb.on_error(move |_| { c.store(true, Ordering::Relaxed); });
+        eb.on_error(move |_| {
+            c.store(true, Ordering::Relaxed);
+        });
         let _ = eb.try_run(|| panic!("test"));
         assert!(called.load(Ordering::Relaxed));
     }

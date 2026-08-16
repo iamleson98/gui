@@ -53,7 +53,11 @@ impl FocusManager {
 
     /// Set focus to a specific widget.
     pub fn set_focus(&mut self, id: Id) {
-        if self.focus_trap.as_ref().map_or(true, |trap| trap.contains(&id)) {
+        if self
+            .focus_trap
+            .as_ref()
+            .map_or(true, |trap| trap.contains(&id))
+        {
             self.focused = Some(id);
         }
     }
@@ -63,9 +67,16 @@ impl FocusManager {
         if self.focus_order.is_empty() {
             return;
         }
-        let visible: Vec<Id> = self.focus_order.iter().filter(|id| {
-            self.focus_trap.as_ref().map_or(true, |trap| trap.contains(id))
-        }).copied().collect();
+        let visible: Vec<Id> = self
+            .focus_order
+            .iter()
+            .filter(|id| {
+                self.focus_trap
+                    .as_ref()
+                    .map_or(true, |trap| trap.contains(id))
+            })
+            .copied()
+            .collect();
         if visible.is_empty() {
             return;
         }
@@ -84,9 +95,16 @@ impl FocusManager {
         if self.focus_order.is_empty() {
             return;
         }
-        let visible: Vec<Id> = self.focus_order.iter().filter(|id| {
-            self.focus_trap.as_ref().map_or(true, |trap| trap.contains(id))
-        }).copied().collect();
+        let visible: Vec<Id> = self
+            .focus_order
+            .iter()
+            .filter(|id| {
+                self.focus_trap
+                    .as_ref()
+                    .map_or(true, |trap| trap.contains(id))
+            })
+            .copied()
+            .collect();
         if visible.is_empty() {
             return;
         }

@@ -40,19 +40,28 @@ pub enum Role {
 impl Role {
     /// Whether this role is interactive (can receive focus).
     pub fn is_interactive(self) -> bool {
-        matches!(self,
-            Role::Button | Role::Checkbox | Role::Slider | Role::TextBox |
-            Role::Tab | Role::MenuItem | Role::Link |
-            Role::SpinButton | Role::TreeItem | Role::ComboBox |
-            Role::Option | Role::Radio
+        matches!(
+            self,
+            Role::Button
+                | Role::Checkbox
+                | Role::Slider
+                | Role::TextBox
+                | Role::Tab
+                | Role::MenuItem
+                | Role::Link
+                | Role::SpinButton
+                | Role::TreeItem
+                | Role::ComboBox
+                | Role::Option
+                | Role::Radio
         )
     }
 
     /// Whether this role represents a container.
     pub fn is_container(self) -> bool {
-        matches!(self,
-            Role::List | Role::TabPanel | Role::Menu | Role::Dialog |
-            Role::Tree | Role::RadioGroup
+        matches!(
+            self,
+            Role::List | Role::TabPanel | Role::Menu | Role::Dialog | Role::Tree | Role::RadioGroup
         )
     }
 }
@@ -191,7 +200,9 @@ pub struct AccessibilityBuilder {
 
 impl AccessibilityBuilder {
     pub fn new() -> Self {
-        Self { info: AccessibilityInfo::default() }
+        Self {
+            info: AccessibilityInfo::default(),
+        }
     }
 
     pub fn role(mut self, role: Role) -> Self {
@@ -303,7 +314,10 @@ mod tests {
     fn tree_focusable_widgets() {
         let mut tree = AccessibilityTree::new();
         let info1 = AccessibilityBuilder::new().role(Role::Button).build();
-        let info2 = AccessibilityBuilder::new().role(Role::Button).disabled().build();
+        let info2 = AccessibilityBuilder::new()
+            .role(Role::Button)
+            .disabled()
+            .build();
         let info3 = AccessibilityBuilder::new().role(Role::Heading).build();
         tree.set(Id::new("a"), info1);
         tree.set(Id::new("b"), info2);
