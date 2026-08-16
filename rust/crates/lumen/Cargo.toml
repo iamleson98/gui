@@ -57,3 +57,6 @@ path = "../../examples/stress.rs"
 [[example]]
 name = "themes"
 path = "../../examples/themes.rs"
+[[example]]
+name = "icons"
+path = "../../examples/icons.rs"

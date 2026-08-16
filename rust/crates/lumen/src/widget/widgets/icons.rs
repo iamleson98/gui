@@ -1,0 +1,73 @@
+//! Built-in icon path constants (Heroicons / Lucide style, 24×24 viewBox).
+
+/// A built-in icon path string. Use `Icon::new(IconKind::Check, 24.0)`.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum IconKind {
+    Check, CheckCircle, X, XCircle, Plus, Minus,
+    ChevronDown, ChevronUp, ChevronLeft, ChevronRight,
+    ArrowRight, ArrowLeft, ArrowUp, ArrowDown,
+    Heart, Star, Search, Settings, Home, User, Bell, Mail, Calendar, Clock,
+    Trash, Edit, Save, Download, Upload, Eye, EyeOff, Lock, Unlock,
+    Menu, Close, Info, Warning, Error, Sun, Moon, Cloud, Folder, File,
+    Refresh, Spinner, Play, Pause, Stop, SkipForward, SkipBack,
+    Volume, VolumeMute,
+}
+
+impl IconKind {
+    pub fn path(self) -> &'static str {
+        match self {
+            IconKind::Check => "M 5 13 L 9 17 L 19 7 L 17 5 L 9 13 L 7 11 Z",
+            IconKind::CheckCircle => "M 12 2 A 10 10 0 1 0 12 22 A 10 10 0 1 0 12 2 Z M 10 14 L 7 11 L 5 13 L 10 18 L 19 9 L 17 7 Z",
+            IconKind::X => "M 6 6 L 18 18 M 18 6 L 6 18",
+            IconKind::XCircle => "M 12 2 A 10 10 0 1 0 12 22 A 10 10 0 1 0 12 2 Z M 8 8 L 16 16 M 16 8 L 8 16",
+            IconKind::Plus => "M 11 5 L 13 5 L 13 11 L 19 11 L 19 13 L 13 13 L 13 19 L 11 19 L 11 13 L 5 13 L 5 11 L 11 11 Z",
+            IconKind::Minus => "M 5 11 L 19 11 L 19 13 L 5 13 Z",
+            IconKind::ChevronDown => "M 6 9 L 12 15 L 18 9 L 16 7 L 12 11 L 8 7 Z",
+            IconKind::ChevronUp => "M 6 15 L 12 9 L 18 15 L 16 17 L 12 13 L 8 17 Z",
+            IconKind::ChevronLeft => "M 15 6 L 9 12 L 15 18 L 17 16 L 13 12 L 17 8 Z",
+            IconKind::ChevronRight => "M 9 6 L 15 12 L 9 18 L 7 16 L 11 12 L 7 8 Z",
+            IconKind::ArrowRight => "M 4 11 L 16 11 L 16 7 L 22 12 L 16 17 L 16 13 L 4 13 Z",
+            IconKind::ArrowLeft => "M 20 11 L 8 11 L 8 7 L 2 12 L 8 17 L 8 13 L 20 13 Z",
+            IconKind::ArrowUp => "M 11 20 L 11 8 L 7 8 L 12 2 L 17 8 L 13 8 L 13 20 Z",
+            IconKind::ArrowDown => "M 11 4 L 11 16 L 7 16 L 12 22 L 17 16 L 13 16 L 13 4 Z",
+            IconKind::Heart => "M 12 21 L 10 19 C 4 14 2 11 2 8 C 2 5 4 3 7 3 C 9 3 11 4 12 6 C 13 4 15 3 17 3 C 20 3 22 5 22 8 C 22 11 20 14 14 19 Z",
+            IconKind::Star => "M 12 2 L 15 9 L 22 10 L 17 15 L 18 22 L 12 19 L 6 22 L 7 15 L 2 10 L 9 9 Z",
+            IconKind::Search => "M 10 2 A 8 8 0 1 0 10 18 A 8 8 0 1 0 10 2 Z M 16 16 L 22 22 L 20 22 L 14 16 Z",
+            IconKind::Settings => "M 12 8 A 4 4 0 1 0 12 16 A 4 4 0 1 0 12 8 Z M 19 12 C 19 13 21 14 21 16 L 19 19 L 17 18 C 16 19 15 19 14 20 L 13 22 L 11 22 L 10 20 C 9 19 8 19 7 18 L 5 19 L 3 16 C 3 14 5 13 5 12 C 5 11 3 10 3 8 L 5 5 L 7 6 C 8 5 9 5 10 4 L 11 2 L 13 2 L 14 4 C 15 5 16 5 17 6 L 19 5 L 21 8 C 21 10 19 11 19 12 Z",
+            IconKind::Home => "M 3 12 L 12 3 L 21 12 L 19 12 L 19 21 L 14 21 L 14 14 L 10 14 L 10 21 L 5 21 L 5 12 Z",
+            IconKind::User => "M 12 2 A 5 5 0 1 0 12 12 A 5 5 0 1 0 12 2 Z M 4 22 C 4 17 7 14 12 14 C 17 14 20 17 20 22 Z",
+            IconKind::Bell => "M 12 2 C 8 2 6 5 6 9 C 6 13 4 15 4 15 L 20 15 C 20 15 18 13 18 9 C 18 5 16 2 12 2 Z M 10 18 C 10 20 11 21 12 21 C 13 21 14 20 14 18 Z",
+            IconKind::Mail => "M 2 5 L 22 5 L 22 19 L 2 19 Z M 2 6 L 12 13 L 22 6",
+            IconKind::Calendar => "M 3 5 L 21 5 L 21 21 L 3 21 Z M 3 9 L 21 9 M 8 3 L 8 7 M 16 3 L 16 7",
+            IconKind::Clock => "M 12 2 A 10 10 0 1 0 12 22 A 10 10 0 1 0 12 2 Z M 12 6 L 12 12 L 16 14",
+            IconKind::Trash => "M 4 7 L 20 7 L 18 21 L 6 21 Z M 9 4 L 15 4 L 15 6 L 9 6 Z M 10 10 L 10 18 M 14 10 L 14 18",
+            IconKind::Edit => "M 3 17 L 3 21 L 7 21 L 19 9 L 15 5 L 3 17 Z M 14 6 L 18 10",
+            IconKind::Save => "M 5 3 L 19 3 L 21 5 L 21 21 L 3 21 L 3 5 Z M 8 3 L 16 3 L 16 9 L 8 9 Z M 8 14 L 16 14 L 16 21 L 8 21 Z",
+            IconKind::Download => "M 12 2 L 12 16 M 6 10 L 12 16 L 18 10 M 4 20 L 20 20",
+            IconKind::Upload => "M 12 22 L 12 8 M 6 14 L 12 8 L 18 14 M 4 4 L 20 4",
+            IconKind::Eye => "M 2 12 C 6 5 18 5 22 12 C 18 19 6 19 2 12 Z M 12 8 A 4 4 0 1 0 12 16 A 4 4 0 1 0 12 8 Z",
+            IconKind::EyeOff => "M 3 3 L 21 21 M 10 6 C 14 5 18 7 22 12 C 20 15 17 17 14 18 M 6 6 C 4 8 2 10 2 12 C 6 19 18 19 22 12 M 9 9 C 8 10 8 11 8 12 A 4 4 0 0 0 12 16 C 13 16 14 16 15 15",
+            IconKind::Lock => "M 5 10 L 19 10 L 19 21 L 5 21 Z M 8 10 L 8 6 A 4 4 0 1 1 16 6 L 16 10",
+            IconKind::Unlock => "M 5 10 L 19 10 L 19 21 L 5 21 Z M 8 10 L 8 6 A 4 4 0 0 1 16 6 L 16 8",
+            IconKind::Menu => "M 3 6 L 21 6 M 3 12 L 21 12 M 3 18 L 21 18",
+            IconKind::Close => "M 6 6 L 18 18 M 18 6 L 6 18",
+            IconKind::Info => "M 12 2 A 10 10 0 1 0 12 22 A 10 10 0 1 0 12 2 Z M 11 11 L 13 11 L 13 17 L 11 17 Z M 11 7 L 13 7 L 13 9 L 11 9 Z",
+            IconKind::Warning => "M 12 2 L 22 20 L 2 20 Z M 11 9 L 13 9 L 13 15 L 11 15 Z M 11 16 L 13 16 L 13 18 L 11 18 Z",
+            IconKind::Error => "M 12 2 A 10 10 0 1 0 12 22 A 10 10 0 1 0 12 2 Z M 11 7 L 13 7 L 13 13 L 11 13 Z M 11 15 L 13 15 L 13 17 L 11 17 Z",
+            IconKind::Sun => "M 12 7 A 5 5 0 1 0 12 17 A 5 5 0 1 0 12 7 Z M 12 1 L 12 4 M 12 20 L 12 23 M 1 12 L 4 12 M 20 12 L 23 12 M 4 4 L 6 6 M 18 18 L 20 20 M 4 20 L 6 18 M 18 6 L 20 4",
+            IconKind::Moon => "M 21 13 A 9 9 0 0 1 11 3 A 9 9 0 1 0 21 13 Z",
+            IconKind::Cloud => "M 7 18 C 4 18 2 16 2 13 C 2 10 4 8 7 8 C 8 5 11 3 14 3 C 18 3 21 6 21 10 C 23 10 24 12 24 14 C 24 16 22 18 20 18 Z",
+            IconKind::Folder => "M 3 5 L 10 5 L 12 7 L 21 7 L 21 20 L 3 20 Z",
+            IconKind::File => "M 6 2 L 14 2 L 20 8 L 20 22 L 6 22 Z M 14 2 L 14 8 L 20 8",
+            IconKind::Refresh => "M 20 12 A 8 8 0 1 1 12 4 L 12 2 L 16 5 L 12 8 L 12 6 A 6 6 0 1 0 18 12 Z",
+            IconKind::Spinner => "M 12 2 A 10 10 0 1 0 12 22 A 10 10 0 1 0 12 2 Z M 12 4 A 8 8 0 1 1 12 20",
+            IconKind::Play => "M 5 3 L 20 12 L 5 21 Z",
+            IconKind::Pause => "M 6 4 L 10 4 L 10 20 L 6 20 Z M 14 4 L 18 4 L 18 20 L 14 20 Z",
+            IconKind::Stop => "M 5 5 L 19 5 L 19 19 L 5 19 Z",
+            IconKind::SkipForward => "M 4 5 L 14 12 L 4 19 Z M 16 5 L 20 5 L 20 19 L 16 19 Z",
+            IconKind::SkipBack => "M 20 5 L 10 12 L 20 19 Z M 4 5 L 8 5 L 8 19 L 4 19 Z",
+            IconKind::Volume => "M 4 9 L 4 15 L 9 15 L 14 19 L 14 5 L 9 9 Z M 16 8 C 18 9 19 11 19 12 C 19 13 18 15 16 16",
+            IconKind::VolumeMute => "M 4 9 L 4 15 L 9 15 L 14 19 L 14 5 L 9 9 Z M 16 9 L 20 15 M 20 9 L 16 15",
+        }
+    }
+}

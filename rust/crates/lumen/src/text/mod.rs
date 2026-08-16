@@ -60,6 +60,43 @@ impl TextEngine {
         }
     }
 
+    /// Load a custom font from raw font data (TTF / OTF / WOFF). The font
+    /// becomes available to all subsequent text layout calls. Use this to
+    /// embed an application-specific font with `include_bytes!`.
+    ///
+    /// After loading, the glyph cache is cleared so that previously-laid-out
+    /// text re-rasterises against the new font set.
+    pub fn add_font_bytes(&mut self, data: Vec<u8>) {
+        self.font_system.db_mut().load_font_data(data);
+        // Invalidate the layout caches by clearing the glyph atlas.
+        self.clear_atlas();
+    }
+
+    /// Set the default sans-serif family name. Must match a family that has
+    /// been loaded (system or via `add_font_bytes`).
+    pub fn set_sans_serif_family(&mut self, name: &str) {
+        self.font_system.db_mut().set_sans_serif_family(name);
+        self.clear_atlas();
+    }
+
+    /// Set the default monospace family name.
+    pub fn set_monospace_family(&mut self, name: &str) {
+        self.font_system.db_mut().set_monospace_family(name);
+        self.clear_atlas();
+    }
+
+    /// Set the default serif family name.
+    pub fn set_serif_family(&mut self, name: &str) {
+        self.font_system.db_mut().set_serif_family(name);
+        self.clear_atlas();
+    }
+
+    /// Load all fonts from a directory at runtime (e.g. user-supplied fonts).
+    pub fn load_fonts_dir<P: AsRef<std::path::Path>>(&mut self, dir: P) {
+        self.font_system.db_mut().load_fonts_dir(dir);
+        self.clear_atlas();
+    }
+
     /// Lay out a single line of text and return positioned glyphs.
     /// Returns a list of (screen_rect, uv, color) tuples.
     pub fn layout_text(
@@ -251,5 +288,20 @@ mod tests {
         te.atlas_pixels[0] = 255;
         te.clear_atlas();
         assert_eq!(te.atlas_pixels[0], 0);
+    }
+
+    #[test]
+    fn add_font_bytes_does_not_panic() {
+        // Empty font data is a no-op for cosmic-text/fontdb
+        let mut te = TextEngine::new();
+        te.add_font_bytes(Vec::new());
+    }
+
+    #[test]
+    fn set_sans_serif_family_works() {
+        let mut te = TextEngine::new();
+        te.set_sans_serif_family("DejaVu Sans");
+        te.set_monospace_family("DejaVu Sans Mono");
+        te.set_serif_family("DejaVu Serif");
     }
 }

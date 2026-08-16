@@ -1,6 +1,8 @@
 pub mod mesh;
+pub mod svg;
 pub mod wgpu_backend;
 pub use mesh::{Mesh, Vertex};
+pub use svg::{fill_svg_path, SvgPath};
 pub use wgpu_backend::{SurfaceConfig, WgpuRenderer};
 pub type Index = u32;
 
@@ -96,6 +98,13 @@ impl Painter {
     pub fn push_glyph(&mut self, pos: Rect, uv: [u16; 4], color: Color) {
         let r = pos.translate(self.offset);
         self.mesh.add_glyph(r, uv, color, self.z);
+        self.z += 1.0 / 65536.0;
+    }
+    /// Fill an SVG path inside `dst_rect`. The path is interpreted in the
+    /// coordinate space defined by `src_rect` (typically a 24×24 viewBox).
+    pub fn fill_svg(&mut self, d: &str, dst_rect: Rect, src_rect: Rect, color: Color) {
+        let r = dst_rect.translate(self.offset);
+        svg::fill_svg_path(&mut self.mesh, d, r, src_rect, color, self.z);
         self.z += 1.0 / 65536.0;
     }
 }

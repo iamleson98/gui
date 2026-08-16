@@ -8,11 +8,18 @@ impl App for Gallery {
         Gallery
     }
     fn view(_s: &Self::State, ui: &mut Ui) {
-        // Title
+        // Title with a star icon
         ui.push(
             Label::new("lumen Widget Gallery")
                 .with_style(Style::new().text_xl().font_bold().px_4().py_2().build()),
         );
+
+        // A row of icons to demonstrate SVG rendering
+        ui.push(Icon::new(IconKind::Star, 32.0).with_color(Color::TW_AMBER_500));
+        ui.push(Icon::new(IconKind::Heart, 32.0).with_color(Color::TW_ROSE_500));
+        ui.push(Icon::new(IconKind::Check, 32.0).with_color(Color::TW_EMERALD_500));
+        ui.push(Icon::new(IconKind::Search, 32.0).with_color(Color::TW_INDIGO_500));
+        ui.push(Icon::new(IconKind::Settings, 32.0).with_color(Color::TW_SLATE_900));
 
         // Buttons
         ui.push(Button::new("Click Me"));
@@ -78,5 +85,5 @@ impl App for Gallery {
     fn update(_s: &mut Self::State, _m: Self::Message) {}
 }
 fn main() {
-    lumen::platform::run::<Gallery>(AppBuilder::new().title("Gallery").size(800, 600));
+    lumen::platform::run::<Gallery>(AppBuilder::new().title("Gallery").size(800, 700));
 }
