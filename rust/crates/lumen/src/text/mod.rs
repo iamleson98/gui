@@ -97,6 +97,32 @@ impl TextEngine {
         self.clear_atlas();
     }
 
+    /// Measure the width and height of a single line of text without
+    /// rasterizing any glyphs. The returned size is in logical pixels
+    /// and can be used as a layout intrinsic.
+    pub fn measure_text(&mut self, text: &str, font_size: f32) -> Vec2 {
+        if text.is_empty() {
+            return Vec2::new(0.0, font_size * 1.4);
+        }
+        let metrics = Metrics::new(font_size, font_size * 1.4);
+        let mut buffer = Buffer::new(&mut self.font_system, metrics);
+        let attrs = Attrs::new().family(Family::SansSerif);
+        buffer.set_text(&mut self.font_system, text, attrs, Shaping::Advanced);
+        buffer.shape_until_scroll(&mut self.font_system, false);
+
+        let mut max_w = 0.0f32;
+        let mut max_h = 0.0f32;
+        for run in buffer.layout_runs() {
+            let run_w: f32 = run.glyphs.iter().map(|g| g.w).sum();
+            max_w = max_w.max(run_w);
+            max_h = run.line_y.max(max_h);
+        }
+        if max_h == 0.0 {
+            max_h = font_size * 1.4;
+        }
+        Vec2::new(max_w.ceil(), max_h.ceil())
+    }
+
     /// Lay out a single line of text and return positioned glyphs.
     /// Returns a list of (screen_rect, uv, color) tuples.
     pub fn layout_text(
@@ -303,5 +329,34 @@ mod tests {
         te.set_sans_serif_family("DejaVu Sans");
         te.set_monospace_family("DejaVu Sans Mono");
         te.set_serif_family("DejaVu Serif");
+    }
+
+    #[test]
+    fn measure_text_returns_positive_size_for_nonempty() {
+        let mut te = TextEngine::new();
+        let size = te.measure_text("Hello, world!", 16.0);
+        // We can't assert exact dimensions (depends on bundled fonts), but
+        // a non-empty string at a non-zero font size should produce a
+        // positive height (at least the line height) and a non-negative width.
+        assert!(size.y > 0.0, "measured height should be > 0, got {}", size.y);
+        assert!(size.x >= 0.0, "measured width should be >= 0, got {}", size.x);
+    }
+
+    #[test]
+    fn measure_text_empty_returns_line_height() {
+        let mut te = TextEngine::new();
+        let size = te.measure_text("", 16.0);
+        assert_eq!(size.x, 0.0);
+        // Empty text should still report a line-height-sized y.
+        assert!((size.y - 16.0 * 1.4).abs() < 0.01);
+    }
+
+    #[test]
+    fn measure_text_larger_font_is_larger_or_equal() {
+        let mut te = TextEngine::new();
+        let small = te.measure_text("Test", 10.0);
+        let large = te.measure_text("Test", 20.0);
+        // A larger font should produce a larger (or equal, if no glyphs) height.
+        assert!(large.y >= small.y, "larger font should have >= height");
     }
 }

@@ -393,7 +393,7 @@ fn redraw<A: App>(
     A::view(state, &mut ui);
     *last_tree = ui.into_children();
     let viewport = Vec2::new(renderer.config.width as f32, renderer.config.height as f32);
-    let layout_node = build_layout_node_recursive(last_tree);
+    let layout_node = build_layout_node_recursive(last_tree, text);
     let layout = arrange(&layout_node, viewport);
     *last_layout = Some(layout.clone());
     let mut painter = Painter::new();
@@ -410,7 +410,7 @@ fn redraw<A: App>(
     Ok(())
 }
 
-fn build_layout_node_recursive<'a>(tree: &'a [Element]) -> LayoutNode<'a> {
+fn build_layout_node_recursive<'a>(tree: &'a [Element], text: &mut TextEngine) -> LayoutNode<'a> {
     let root_style = Box::leak(Box::new(
         Style::new()
             .flex()
@@ -422,26 +422,38 @@ fn build_layout_node_recursive<'a>(tree: &'a [Element]) -> LayoutNode<'a> {
             .h_full()
             .build(),
     ));
-    let children: Vec<LayoutNode<'a>> = tree.iter().map(build_layout_node_for_element).collect();
+    let children: Vec<LayoutNode<'a>> = tree
+        .iter()
+        .map(|el| build_layout_node_for_element(el, text))
+        .collect();
     LayoutNode {
         id: Id::new("root"),
         style: root_style,
         measure: None,
         children,
+        intrinsic_size: None,
     }
 }
-fn build_layout_node_for_element<'a>(el: &'a Element) -> LayoutNode<'a> {
+fn build_layout_node_for_element<'a>(el: &'a Element, text: &mut TextEngine) -> LayoutNode<'a> {
+    // Measure this widget's own text first (if any). Must happen before the
+    // recursive call so the mutable borrow of `text` ends before we recurse.
+    let intrinsic_size = el
+        .inner
+        .text_measure()
+        .map(|(t, fs)| text.measure_text(t, fs));
+
     let children: Vec<LayoutNode<'a>> = el
         .inner
         .children()
         .iter()
-        .map(build_layout_node_for_element)
+        .map(|c| build_layout_node_for_element(c, text))
         .collect();
     LayoutNode {
         id: el.id,
         style: el.inner.style(),
         measure: None,
         children,
+        intrinsic_size,
     }
 }
 fn paint_tree_recursive(

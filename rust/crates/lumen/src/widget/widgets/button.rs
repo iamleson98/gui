@@ -52,6 +52,9 @@ impl Widget for Button {
     fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
         self
     }
+    fn text_measure(&self) -> Option<(&str, f32)> {
+        Some((&self.label, self.style.font_size))
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
         let mut bg = self.style.background;
@@ -63,12 +66,11 @@ impl Widget for Button {
         ctx.painter
             .fill_rounded_rect(*rect, bg, self.style.border_radius);
 
-        // Render text using cosmic-text
-        let char_count = self.label.chars().count() as f32;
-        let approx_width = char_count * self.style.font_size * 0.55;
+        // Measure the actual text width so we can center it precisely.
+        let text_size = ctx.text.measure_text(&self.label, self.style.font_size);
         let origin = Vec2::new(
-            rect.center().x - approx_width * 0.5,
-            rect.center().y - self.style.font_size * 0.5,
+            rect.center().x - text_size.x * 0.5,
+            rect.center().y - text_size.y * 0.5,
         );
         let glyphs =
             ctx.text

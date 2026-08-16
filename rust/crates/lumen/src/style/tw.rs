@@ -50,6 +50,8 @@ pub trait Tw: Sized {
     fn text_center(self) -> Self;
     fn w(self, v: f32) -> Self;
     fn h(self, v: f32) -> Self;
+    fn min_w(self, v: f32) -> Self;
+    fn min_h(self, v: f32) -> Self;
     fn w_full(self) -> Self;
     fn h_full(self) -> Self;
     fn border(self, w: f32) -> Self;
@@ -230,6 +232,14 @@ macro_rules! impl_tw {
         }
         fn h(mut self, v: f32) -> Self {
             self.0.height = Some(v);
+            self
+        }
+        fn min_w(mut self, v: f32) -> Self {
+            self.0.min_width = Some(v);
+            self
+        }
+        fn min_h(mut self, v: f32) -> Self {
+            self.0.min_height = Some(v);
             self
         }
         fn w_full(mut self) -> Self {

@@ -41,6 +41,9 @@ impl Widget for Label {
     fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
         self
     }
+    fn text_measure(&self) -> Option<(&str, f32)> {
+        Some((&self.text, self.style.font_size))
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
         if self.style.background.a > 0 {
@@ -48,8 +51,9 @@ impl Widget for Label {
                 .fill_rounded_rect(*rect, self.style.background, self.style.border_radius);
         }
 
-        // Render text using cosmic-text
-        let origin = Vec2::new(rect.min.x, rect.center().y - self.style.font_size * 0.5);
+        // Vertically center the text inside the rect.
+        let text_size = ctx.text.measure_text(&self.text, self.style.font_size);
+        let origin = Vec2::new(rect.min.x, rect.center().y - text_size.y * 0.5);
         let glyphs =
             ctx.text
                 .layout_text(&self.text, self.style.font_size, self.style.color, origin);

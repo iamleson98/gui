@@ -71,6 +71,15 @@ impl Widget for TextInput {
     fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
         self
     }
+    fn text_measure(&self) -> Option<(&str, f32)> {
+        // Measure the placeholder when empty so the input still has a size.
+        let text = if self.text.is_empty() {
+            &self.placeholder
+        } else {
+            &self.text
+        };
+        Some((text, self.style.font_size))
+    }
 
     fn paint(&self, ctx: &mut PaintCtx<'_>, rect: &Rect) {
         ctx.painter
@@ -82,9 +91,12 @@ impl Widget for TextInput {
         };
         ctx.painter.stroke_rect(*rect, border, 1.0);
 
+        let text_size = ctx
+            .text
+            .measure_text(&self.text, self.style.font_size);
         let origin = Vec2::new(
             rect.min.x + 8.0,
-            rect.center().y - self.style.font_size * 0.5,
+            rect.center().y - text_size.y * 0.5,
         );
 
         if !self.text.is_empty() {
@@ -95,8 +107,9 @@ impl Widget for TextInput {
 
         // Render caret when focused
         if self.focused {
-            let char_count = self.text.chars().count() as f32;
-            let caret_x = rect.min.x + 8.0 + char_count * self.style.font_size * 0.55;
+            // Use the measured text width so the caret sits right after
+            // the last typed character.
+            let caret_x = rect.min.x + 8.0 + text_size.x;
             ctx.painter.fill_rect(
                 Rect::from_xywh(caret_x, rect.min.y + 6.0, 2.0, rect.height() - 12.0),
                 Color::TW_INDIGO_500,

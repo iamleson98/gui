@@ -38,6 +38,10 @@ pub struct LayoutNode<'a> {
     pub style: &'a ResolvedStyle,
     pub children: Vec<LayoutNode<'a>>,
     pub measure: Option<&'a MeasureFn>,
+    /// Measured intrinsic content size (text, icon, etc.). Used when the
+    /// node has no children to derive its natural size before applying
+    /// width/height/min_width/min_height from the style.
+    pub intrinsic_size: Option<Vec2>,
 }
 
 #[derive(Clone, Debug)]
@@ -77,7 +81,8 @@ fn measure_and_arrange(node: &LayoutNode<'_>, c: Constraints) -> (Vec2, Vec<Layo
         max: Vec2::new((c.max.x - outer.x).max(0.0), (c.max.y - outer.y).max(0.0)),
     };
     if node.children.is_empty() {
-        let size = apply_sizing(s, Vec2::ZERO, inner_c);
+        let intrinsic = node.intrinsic_size.unwrap_or(Vec2::ZERO);
+        let size = apply_sizing(s, intrinsic, inner_c);
         return (c.constrain(size + outer), Vec::new());
     }
     match s.display {
@@ -98,6 +103,12 @@ fn apply_sizing(s: &ResolvedStyle, intrinsic: Vec2, c: Constraints) -> Vec2 {
         if !h.is_infinite() {
             size.y = h;
         }
+    }
+    if let Some(mw) = s.min_width {
+        size.x = size.x.max(mw);
+    }
+    if let Some(mh) = s.min_height {
+        size.y = size.y.max(mh);
     }
     c.constrain(size)
 }

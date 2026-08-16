@@ -296,8 +296,8 @@ impl WgpuRenderer {
         let uniforms: [f32; 8] = [
             self.config.width as f32,
             self.config.height as f32,
-            1.0,
-            1.0,
+            1024.0, // atlas width
+            1024.0, // atlas height
             0.0,
             0.0,
             0.0,
@@ -372,12 +372,28 @@ impl WgpuRenderer {
 }
 
 const SHADER_SRC: &str = r#"
-struct Uniforms { viewport: vec2<f32>, scale: vec2<f32>, _pad: vec4<f32> };
+struct Uniforms { viewport: vec2<f32>, atlas_size: vec2<f32>, _pad: vec4<f32> };
 @group(0) @binding(0) var<uniform> u: Uniforms;
 @group(0) @binding(1) var glyph_atlas: texture_2d<f32>;
 @group(0) @binding(2) var glyph_sampler: sampler;
 struct VsIn { @location(0) pos: vec2<f32>, @location(1) color: vec4<f32>, @location(2) uv: vec4<u32>, @location(3) z: f32, @location(4) kind: u32 };
 struct VsOut { @builtin(position) clip: vec4<f32>, @location(0) color: vec4<f32>, @location(1) uv: vec2<f32>, @location(2) kind: u32 };
-@vertex fn vs_main(in: VsIn) -> VsOut { let h = u.viewport * 0.5; let ndc = vec2<f32>((in.pos.x - h.x) / h.x, (h.y - in.pos.y) / h.y); var out: VsOut; out.clip = vec4<f32>(ndc, 0.0, 1.0); out.color = in.color; out.uv = vec2<f32>(f32(in.uv.x), f32(in.uv.y)); out.kind = in.kind; return out; }
-@fragment fn fs_main(in: VsOut) -> @location(0) vec4<f32> { if (in.kind == 1u) { let a = textureSample(glyph_atlas, glyph_sampler, in.uv).r; return vec4<f32>(in.color.rgb, in.color.a * a); } return in.color; }
+@vertex fn vs_main(in: VsIn) -> VsOut {
+    let h = u.viewport * 0.5;
+    let ndc = vec2<f32>((in.pos.x - h.x) / h.x, (h.y - in.pos.y) / h.y);
+    var out: VsOut;
+    out.clip = vec4<f32>(ndc, 0.0, 1.0);
+    out.color = in.color;
+    // UV is in atlas pixels — normalize to [0, 1] for textureSample.
+    out.uv = vec2<f32>(f32(in.uv.x) / u.atlas_size.x, f32(in.uv.y) / u.atlas_size.y);
+    out.kind = in.kind;
+    return out;
+}
+@fragment fn fs_main(in: VsOut) -> @location(0) vec4<f32> {
+    if (in.kind == 1u) {
+        let a = textureSample(glyph_atlas, glyph_sampler, in.uv).r;
+        return vec4<f32>(in.color.rgb, in.color.a * a);
+    }
+    return in.color;
+}
 "#;

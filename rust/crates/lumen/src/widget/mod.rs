@@ -28,6 +28,12 @@ pub trait Widget: Send + Sync {
     fn debug_name(&self) -> &'static str {
         "Widget"
     }
+    /// If this widget renders text, return `Some((text, font_size))` so the
+    /// layout engine can measure it and use the result as the widget's
+    /// intrinsic content size. Default is `None`.
+    fn text_measure(&self) -> Option<(&str, f32)> {
+        None
+    }
     fn as_any_mut(&mut self) -> &mut dyn std::any::Any;
 }
 
