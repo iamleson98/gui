@@ -1,0 +1,11 @@
+target/
+*.o
+*.a
+counter
+gallery
+stress
+themes
+test_*
+__pycache__/
+*.pyc
+.DS_Store

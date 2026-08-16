@@ -1,0 +1,1 @@
+#include "lumen/event/event.hpp"\nnamespace lumen {}\n
