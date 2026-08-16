@@ -1,10 +1,10 @@
-use crate::core::{Color, Id, Rect};
+use crate::core::{Color, Id, Rect, Vec2};
 use crate::event::{Event, EventCtx, EventResult};
 use crate::style::{ResolvedStyle, Style, Tw};
 use crate::widget::{PaintCtx, Widget};
 use smol_str::SmolStr;
 
-/// A push button with a text label.
+/// A push button with a text label rendered using cosmic-text.
 pub struct Button {
     style: ResolvedStyle,
     label: SmolStr,
@@ -55,21 +55,21 @@ impl Widget for Button {
         }
         ctx.painter.fill_rounded_rect(*rect, bg, self.style.border_radius);
 
-        // Render text as character blocks
-        let char_w = self.style.font_size * 0.6;
-        let char_h = self.style.font_size;
-        let total_w = self.label.chars().count() as f32 * char_w;
-        let start_x = rect.center().x - total_w * 0.5;
-        let start_y = rect.center().y - char_h * 0.5;
-        let text_color = self.style.color;
-        for (i, _ch) in self.label.chars().enumerate() {
-            let char_rect = Rect::from_xywh(
-                start_x + i as f32 * char_w,
-                start_y,
-                char_w * 0.8,
-                char_h,
-            );
-            ctx.painter.fill_rounded_rect(char_rect, text_color, crate::style::Corners::all(1.0));
+        // Render text using cosmic-text
+        let char_count = self.label.chars().count() as f32;
+        let approx_width = char_count * self.style.font_size * 0.55;
+        let origin = Vec2::new(
+            rect.center().x - approx_width * 0.5,
+            rect.center().y - self.style.font_size * 0.5,
+        );
+        let glyphs = ctx.text.layout_text(
+            &self.label,
+            self.style.font_size,
+            self.style.color,
+            origin,
+        );
+        for g in &glyphs {
+            ctx.painter.push_glyph(g.rect, g.uv, g.color);
         }
     }
 

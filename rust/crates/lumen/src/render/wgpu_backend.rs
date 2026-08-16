@@ -9,7 +9,7 @@ impl Default for SurfaceConfig { fn default() -> Self { Self { width: 1280, heig
 pub struct WgpuRenderer {
     pub device: wgpu::Device, pub queue: wgpu::Queue, pub surface: wgpu::Surface<'static>, pub config: SurfaceConfig,
     pipeline: wgpu::RenderPipeline, bind_group_layout: wgpu::BindGroupLayout,
-    uniform_buffer: wgpu::Buffer, glyph_view: wgpu::TextureView, glyph_sampler: wgpu::Sampler,
+    uniform_buffer: wgpu::Buffer, glyph_texture: wgpu::Texture, glyph_view: wgpu::TextureView, glyph_sampler: wgpu::Sampler,
     vertex_buffer: wgpu::Buffer, index_buffer: wgpu::Buffer,
 }
 
@@ -38,10 +38,29 @@ impl WgpuRenderer {
         let pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor { label: Some("lumen pipe"), layout: Some(&pll), vertex: wgpu::VertexState { module: &shader, entry_point: "vs_main", compilation_options: wgpu::PipelineCompilationOptions::default(), buffers: &[wgpu::VertexBufferLayout { array_stride: 40, step_mode: wgpu::VertexStepMode::Vertex, attributes: attrs }] }, fragment: Some(wgpu::FragmentState { module: &shader, entry_point: "fs_main", compilation_options: wgpu::PipelineCompilationOptions::default(), targets: &[Some(wgpu::ColorTargetState { format: config.format, blend: Some(wgpu::BlendState::ALPHA_BLENDING), write_mask: wgpu::ColorWrites::ALL })] }), primitive: wgpu::PrimitiveState::default(), depth_stencil: None, multisample: wgpu::MultisampleState::default(), multiview: None, cache: None });
         let vb = device.create_buffer(&wgpu::BufferDescriptor { label: Some("lumen vb"), size: 4*1024*1024, usage: wgpu::BufferUsages::VERTEX | wgpu::BufferUsages::COPY_DST, mapped_at_creation: false });
         let ib = device.create_buffer(&wgpu::BufferDescriptor { label: Some("lumen ib"), size: 8*1024*1024, usage: wgpu::BufferUsages::INDEX | wgpu::BufferUsages::COPY_DST, mapped_at_creation: false });
-        Ok(Self { device, queue, surface, config, pipeline, bind_group_layout: bgl, uniform_buffer, glyph_view, glyph_sampler, vertex_buffer: vb, index_buffer: ib })
+        Ok(Self { device, queue, surface, config, pipeline, bind_group_layout: bgl, uniform_buffer, glyph_texture: gt, glyph_view, glyph_sampler, vertex_buffer: vb, index_buffer: ib })
     }
 
     pub fn resize(&mut self, w: u32, h: u32) { if w == 0 || h == 0 { return; } self.config.width = w; self.config.height = h; self.surface.configure(&self.device, &wgpu::SurfaceConfiguration { usage: wgpu::TextureUsages::RENDER_ATTACHMENT, format: self.config.format, width: w, height: h, present_mode: self.config.present_mode, alpha_mode: self.config.alpha_mode, view_formats: vec![], desired_maximum_frame_latency: 2 }); }
+
+    /// Upload the glyph atlas texture to the GPU.
+    pub fn upload_glyph_atlas(&mut self, pixels: &[u8], width: u32, height: u32) {
+        self.queue.write_texture(
+            wgpu::ImageCopyTexture {
+                texture: &self.glyph_texture,
+                mip_level: 0,
+                origin: wgpu::Origin3d { x: 0, y: 0, z: 0 },
+                aspect: wgpu::TextureAspect::All,
+            },
+            pixels,
+            wgpu::ImageDataLayout {
+                offset: 0,
+                bytes_per_row: Some(width),
+                rows_per_image: Some(height),
+            },
+            wgpu::Extent3d { width, height, depth_or_array_layers: 1 },
+        );
+    }
 
     pub fn render(&mut self, mesh: &Mesh, clear: Color) -> Result<(), wgpu::SurfaceError> {
         let frame = self.surface.get_current_texture()?;

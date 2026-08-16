@@ -77,7 +77,13 @@ impl<A: App> winit::application::ApplicationHandler for AppState<A> {
 
     fn about_to_wait(&mut self, _el: &winit::event_loop::ActiveEventLoop) {
         if self.needs_redraw {
-            if let Some(r) = self.renderer.as_mut() { let _ = redraw::<A>(&mut self.state, &self.theme, &mut self.last_tree, &mut self.last_layout, r, &mut self.text); }
+            if let Some(r) = self.renderer.as_mut() {
+                if let Err(e) = redraw::<A>(&mut self.state, &self.theme, &mut self.last_tree, &mut self.last_layout, r, &mut self.text) {
+                    if !matches!(e, wgpu::SurfaceError::Lost | wgpu::SurfaceError::Outdated) {
+                        eprintln!("lumen: render error: {e}");
+                    }
+                }
+            }
             self.needs_redraw = false;
         }
     }
@@ -116,11 +122,20 @@ fn dispatch_to_all(tree: &mut [Element], event: &LumenEvent, state: &mut EventSt
     for el in tree.iter_mut() { let mut ctx = crate::event::EventCtx { current_id: el.id, current_rect: Rect::ZERO, state }; el.inner.on_event(&mut ctx, event); dispatch_to_all(el.inner.children_mut(), event, state); }
 }
 
-fn redraw<A: App>(state: &mut A::State, theme: &Theme, last_tree: &mut Vec<Element>, last_layout: &mut Option<LayoutRect>, renderer: &mut WgpuRenderer, _text: &mut TextEngine) -> Result<(), wgpu::SurfaceError> {
+fn redraw<A: App>(state: &mut A::State, theme: &Theme, last_tree: &mut Vec<Element>, last_layout: &mut Option<LayoutRect>, renderer: &mut WgpuRenderer, text: &mut TextEngine) -> Result<(), wgpu::SurfaceError> {
     let mut ui = Ui::new(Id::new("root")); A::view(state, &mut ui); *last_tree = ui.into_children();
     let viewport = Vec2::new(renderer.config.width as f32, renderer.config.height as f32);
     let layout_node = build_layout_node_recursive(last_tree); let layout = arrange(&layout_node, viewport); *last_layout = Some(layout.clone());
-    let mut painter = Painter::new(); paint_tree_recursive(last_tree, &layout, theme, &mut painter);
+    let mut painter = Painter::new();
+    paint_tree_recursive(last_tree, &layout, theme, &mut painter, text);
+
+    // Upload glyph atlas to GPU if it changed
+    if text.atlas_dirty {
+        let (aw, ah) = text.atlas_size();
+        renderer.upload_glyph_atlas(text.atlas_pixels(), aw, ah);
+        text.atlas_dirty = false;
+    }
+
     renderer.render(painter.mesh(), theme.palette.bg)?;
     Ok(())
 }
@@ -134,10 +149,10 @@ fn build_layout_node_for_element<'a>(el: &'a Element) -> LayoutNode<'a> {
     let children: Vec<LayoutNode<'a>> = el.inner.children().iter().map(build_layout_node_for_element).collect();
     LayoutNode { id: el.id, style: el.inner.style(), measure: None, children }
 }
-fn paint_tree_recursive(tree: &[Element], layout: &LayoutRect, theme: &Theme, painter: &mut Painter) {
+fn paint_tree_recursive(tree: &[Element], layout: &LayoutRect, theme: &Theme, painter: &mut Painter, text: &mut TextEngine) {
     for (el, child_layout) in tree.iter().zip(layout.children.iter()) {
-        let mut ctx = PaintCtx { painter, theme, layout: child_layout, scale: ScaleFactor::IDENT };
+        let mut ctx = PaintCtx { painter, theme, layout: child_layout, scale: ScaleFactor::IDENT, text };
         el.inner.paint(&mut ctx, &child_layout.rect);
-        paint_tree_recursive(el.inner.children(), child_layout, theme, painter);
+        paint_tree_recursive(el.inner.children(), child_layout, theme, ctx.painter, ctx.text);
     }
 }

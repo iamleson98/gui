@@ -3,12 +3,14 @@ use crate::core::{Id, Rect};
 use crate::event::{Event, EventCtx, EventResult};
 use crate::render::Painter;
 use crate::style::ResolvedStyle;
+use crate::text::TextEngine;
 
 pub struct PaintCtx<'a> {
     pub painter: &'a mut Painter,
     pub theme: &'a crate::style::Theme,
     pub layout: &'a crate::layout::LayoutRect,
     pub scale: crate::core::ScaleFactor,
+    pub text: &'a mut TextEngine,
 }
 
 pub trait Widget: Send + Sync {
