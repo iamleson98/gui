@@ -10,6 +10,9 @@ pub mod render;
 pub mod style;
 pub mod text;
 pub mod widget;
+pub mod state;
+pub mod animation;
+pub mod focus;
 pub mod prelude {
     pub use crate::core::{Color, Id, Rect, ScaleFactor, Vec2};
     pub use crate::event::{Event, EventCtx, EventResult, Message};

@@ -37,6 +37,7 @@ mod skeleton;
 mod sparkline;
 mod gauge;
 mod breadcrumb;
+mod virtual_list;
 
 // Re-exports
 pub use button::Button;
@@ -76,3 +77,4 @@ pub use skeleton::Skeleton;
 pub use sparkline::Sparkline;
 pub use gauge::Gauge;
 pub use breadcrumb::{Breadcrumb, Crumb};
+pub use virtual_list::VirtualList;
