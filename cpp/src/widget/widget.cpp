@@ -1,1 +1,2 @@
-#include "lumen/widget/widget.hpp"\nnamespace lumen {}\n
+#include "lumen/widget/widget.hpp"
+namespace lumen {}

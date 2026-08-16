@@ -13,6 +13,8 @@
 #include "lumen/widget/widgets/scroll.hpp"
 #include "lumen/widget/widgets/card.hpp"
 #include "lumen/widget/widgets/canvas.hpp"
+#include "lumen/widget/widgets/icon.hpp"
+#include "lumen/widget/widgets/icons.hpp"
 
 // Advanced widgets
 #include "lumen/widget/widgets/text_input.hpp"

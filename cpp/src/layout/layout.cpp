@@ -3,7 +3,15 @@
 #include <cmath>
 namespace lumen {
 static std::pair<Vec2, std::vector<LayoutRect>> measure_and_arrange(const LayoutNode& node, Constraints c);
-static Vec2 apply_sizing(const ResolvedStyle& s, Vec2 intrinsic, Constraints c) { Vec2 sz=intrinsic; if(s.width && !std::isinf(*s.width)) sz.x=*s.width; if(s.height && !std::isinf(*s.height)) sz.y=*s.height; return c.constrain(sz); }
+
+static Vec2 apply_sizing(const ResolvedStyle& s, Vec2 intrinsic, Constraints c) {
+    Vec2 sz = intrinsic;
+    if (s.width && !std::isinf(*s.width)) sz.x = *s.width;
+    if (s.height && !std::isinf(*s.height)) sz.y = *s.height;
+    if (s.min_width) sz.x = std::max(sz.x, *s.min_width);
+    if (s.min_height) sz.y = std::max(sz.y, *s.min_height);
+    return c.constrain(sz);
+}
 
 static std::pair<Vec2, std::vector<LayoutRect>> measure_and_arrange(const LayoutNode& node, Constraints c) {
     const ResolvedStyle& s = *node.style;
@@ -24,6 +32,7 @@ static std::pair<Vec2, std::vector<LayoutRect>> measure_and_arrange(const Layout
     std::vector<float> fm(entries.size());
     for(size_t i=0; i<entries.size(); ++i) fm[i] = total_grow > 0 ? entries[i].basis + free*(node.children[i].style->flex_grow/gs) : entries[i].basis;
     float max_cross = 0; for(auto& e : entries) max_cross = std::max(max_cross, e.cross);
+    max_cross = std::min(max_cross, horiz ? inner_c.max.y : inner_c.max.x);
     Align align = s.align_items;
     std::vector<LayoutRect> layouts; float pos = 0;
     for(size_t i=0; i<entries.size(); ++i) {

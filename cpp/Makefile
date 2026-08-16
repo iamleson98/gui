@@ -11,7 +11,7 @@ else
 endif
 LDFLAGS = $(GL_LIBS)
 
-LIB_SRCS = src/core/color.cpp src/core/id.cpp src/style/style.cpp src/layout/layout.cpp src/render/mesh.cpp src/render/painter.cpp src/render/gl_backend.cpp src/event/event.cpp src/widget/widget.cpp src/platform/app.cpp
+LIB_SRCS = src/core/color.cpp src/core/id.cpp src/style/style.cpp src/layout/layout.cpp src/render/mesh.cpp src/render/painter.cpp src/render/svg.cpp src/render/gl_backend.cpp src/event/event.cpp src/widget/widget.cpp src/platform/app.cpp
 
 all: liblumen.a counter gallery stress themes
 
@@ -34,7 +34,7 @@ run: counter
 	./counter
 
 test:
-	@echo "Tests require separate test files (see tests/ directory)"
+	@echo "C++ tests run via the headless fallback (make run)."
 
 clean:
 	rm -f *.o src/*.o src/*/*.o counter gallery stress themes liblumen.a

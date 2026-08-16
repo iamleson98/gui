@@ -1,3 +1,4 @@
+// Counter example — minimal app showing the redesigned button + card.
 #include "lumen/widget/widgets/widgets.hpp"
 #include "lumen/platform/app.hpp"
 #include <atomic>
@@ -9,10 +10,20 @@ struct CounterApp : App {
     std::atomic<int> value{0};
     void init() override { std::cout << "lumen counter\n"; }
     void view(Ui& ui) override {
-        ui.push<Button>("+").on_click([this](Id){ value.fetch_add(1); });
-        ui.push<Label>(std::string("Count: ") + std::to_string(value.load()))
-            .with_style(Style().text_2xl().font_bold().text_center().px_4().py_2().build());
-        ui.push<Button>("-").on_click([this](Id){ value.fetch_sub(1); });
+        ui.push<Label>(Label::heading("Counter"));
+
+        std::vector<Element> body;
+        body.push_back(Element(Id::from_str("counter-label"),
+            std::make_shared<Label>(Label::heading(std::to_string(value.load())))));
+        body.push_back(Element(Id::from_str("dec"),
+            std::make_shared<Button>(Button::secondary("-"))));
+        body.push_back(Element(Id::from_str("inc"),
+            std::make_shared<Button>(Button::primary("+"))));
+        ui.push<Card>(std::move(body));
     }
 };
-int main() { CounterApp app; return run(app, AppBuilder().title_("Counter").size_(480, 240)); }
+
+int main() {
+    CounterApp app;
+    return run(app, AppBuilder().title_("Counter").size_(480, 360));
+}

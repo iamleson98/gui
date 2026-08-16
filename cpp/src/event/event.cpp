@@ -1,1 +1,2 @@
-#include "lumen/event/event.hpp"\nnamespace lumen {}\n
+#include "lumen/event/event.hpp"
+namespace lumen {}
