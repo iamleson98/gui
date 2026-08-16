@@ -34,6 +34,8 @@ pub struct ResolvedStyle {
     pub flex_grow: f32, pub flex_shrink: f32, pub flex_basis: Option<f32>, pub gap: f32,
     pub width: Option<f32>, pub height: Option<f32>,
     pub opacity: f32, pub cursor: Cursor, pub overflow: Overflow,
+    pub text_align: TextAlign,
+    pub grid_template_columns: Vec<TrackSize>,
 }
 impl Default for ResolvedStyle {
     fn default() -> Self { Self {
@@ -42,6 +44,7 @@ impl Default for ResolvedStyle {
         display: Display::Block, flex_direction: FlexDirection::Row, justify_content: Align::Start, align_items: Align::Stretch,
         flex_grow: 0.0, flex_shrink: 1.0, flex_basis: None, gap: 0.0, width: None, height: None,
         opacity: 1.0, cursor: Cursor::Default, overflow: Overflow::Visible,
+        text_align: TextAlign::Left, grid_template_columns: Vec::new(),
     }}
 }
 #[derive(Default, Clone, Debug)]

@@ -1,2 +1,25 @@
-mod all_widgets;
-pub use all_widgets::*;
+mod button;
+mod label;
+mod container;
+mod checkbox;
+mod slider;
+mod progress;
+mod toggle;
+mod badge;
+mod avatar;
+mod scroll;
+mod card;
+mod canvas;
+
+pub use button::Button;
+pub use label::Label;
+pub use container::Container;
+pub use checkbox::Checkbox;
+pub use slider::Slider;
+pub use progress::Progress;
+pub use toggle::Toggle;
+pub use badge::Badge;
+pub use avatar::Avatar;
+pub use scroll::Scroll;
+pub use card::Card;
+pub use canvas::Canvas;

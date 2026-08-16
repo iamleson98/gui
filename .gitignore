@@ -9,3 +9,6 @@ test_*
 __pycache__/
 *.pyc
 .DS_Store
+
+# Credentials (DO NOT push to public repos)
+.github/credentials.json
