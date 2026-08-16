@@ -1,6 +1,6 @@
 #pragma once
 
-// Auto-generated aggregator — includes all individual widget headers.
+// Core widgets
 #include "lumen/widget/widgets/button.hpp"
 #include "lumen/widget/widgets/label.hpp"
 #include "lumen/widget/widgets/container.hpp"
@@ -13,3 +13,29 @@
 #include "lumen/widget/widgets/scroll.hpp"
 #include "lumen/widget/widgets/card.hpp"
 #include "lumen/widget/widgets/canvas.hpp"
+
+// Advanced widgets
+#include "lumen/widget/widgets/text_input.hpp"
+#include "lumen/widget/widgets/select.hpp"
+#include "lumen/widget/widgets/dropdown.hpp"
+#include "lumen/widget/widgets/radio_group.hpp"
+#include "lumen/widget/widgets/tabs.hpp"
+#include "lumen/widget/widgets/accordion.hpp"
+#include "lumen/widget/widgets/tooltip.hpp"
+#include "lumen/widget/widgets/dialog.hpp"
+#include "lumen/widget/widgets/number_input.hpp"
+#include "lumen/widget/widgets/table.hpp"
+#include "lumen/widget/widgets/tree.hpp"
+#include "lumen/widget/widgets/date_picker.hpp"
+#include "lumen/widget/widgets/color_picker.hpp"
+#include "lumen/widget/widgets/stepper.hpp"
+#include "lumen/widget/widgets/range_slider.hpp"
+#include "lumen/widget/widgets/rating.hpp"
+#include "lumen/widget/widgets/pagination.hpp"
+#include "lumen/widget/widgets/alert.hpp"
+#include "lumen/widget/widgets/chip.hpp"
+#include "lumen/widget/widgets/spinner.hpp"
+#include "lumen/widget/widgets/skeleton.hpp"
+#include "lumen/widget/widgets/sparkline.hpp"
+#include "lumen/widget/widgets/gauge.hpp"
+#include "lumen/widget/widgets/breadcrumb.hpp"

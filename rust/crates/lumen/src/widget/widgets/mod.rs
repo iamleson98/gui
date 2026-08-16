@@ -1,3 +1,4 @@
+// Core widgets
 mod button;
 mod label;
 mod container;
@@ -11,6 +12,33 @@ mod scroll;
 mod card;
 mod canvas;
 
+// Advanced widgets
+mod text_input;
+mod select;
+mod dropdown;
+mod radio_group;
+mod tabs;
+mod accordion;
+mod tooltip;
+mod dialog;
+mod number_input;
+mod table;
+mod tree;
+mod date_picker;
+mod color_picker;
+mod stepper;
+mod range_slider;
+mod rating;
+mod pagination;
+mod alert;
+mod chip;
+mod spinner;
+mod skeleton;
+mod sparkline;
+mod gauge;
+mod breadcrumb;
+
+// Re-exports
 pub use button::Button;
 pub use label::Label;
 pub use container::Container;
@@ -23,3 +51,28 @@ pub use avatar::Avatar;
 pub use scroll::Scroll;
 pub use card::Card;
 pub use canvas::Canvas;
+
+pub use text_input::TextInput;
+pub use select::{Select, SelectOption};
+pub use dropdown::Dropdown;
+pub use radio_group::RadioGroup;
+pub use tabs::Tabs;
+pub use accordion::{Accordion, AccordionSection};
+pub use tooltip::Tooltip;
+pub use dialog::Dialog;
+pub use number_input::NumberInput;
+pub use table::{Table, TableColumn, TableRow};
+pub use tree::{Tree, TreeNode};
+pub use date_picker::{Date, DatePicker};
+pub use color_picker::ColorPicker;
+pub use stepper::{Step, Stepper};
+pub use range_slider::RangeSlider;
+pub use rating::Rating;
+pub use pagination::Pagination;
+pub use alert::{Alert, AlertKind};
+pub use chip::Chip;
+pub use spinner::Spinner;
+pub use skeleton::Skeleton;
+pub use sparkline::Sparkline;
+pub use gauge::Gauge;
+pub use breadcrumb::{Breadcrumb, Crumb};

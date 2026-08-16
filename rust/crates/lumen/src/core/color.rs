@@ -31,3 +31,15 @@ impl Color {
         Self::rgba(l(self.r,o.r), l(self.g,o.g), l(self.b,o.b), l(self.a,o.a))
     }
 }
+
+impl Color {
+    pub fn from_hex(hex: &str) -> Option<Self> {
+        let b = hex.as_bytes();
+        if b.len() < 7 || b[0] != b'#' { return None; }
+        let hp = |i: usize| -> Option<u8> {
+            let d = |c: u8| match c { b'0'..=b'9'=>Some(c-b'0'), b'a'..=b'f'=>Some(c-b'a'+10), b'A'..=b'F'=>Some(c-b'A'+10), _=>None };
+            Some((d(b[i])? << 4) | d(b[i+1])?)
+        };
+        match b.len() { 7 => Some(Self::rgba(hp(1)?,hp(3)?,hp(5)?,255)), 9 => Some(Self::rgba(hp(1)?,hp(3)?,hp(5)?,hp(7)?)), _ => None }
+    }
+}

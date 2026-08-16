@@ -8,6 +8,7 @@ struct Rect {
     constexpr Rect() = default;
     constexpr Rect(Vec2 a, Vec2 b) : min(a), max(b) {}
     static Rect from_xywh(float x, float y, float w, float h) { return Rect(Vec2(x, y), Vec2(x + w, y + h)); }
+    static Rect from_corners(Vec2 a, Vec2 b) { return Rect(a, b); }
     static Rect from_min_size(Vec2 min, Vec2 size) { return Rect(min, Vec2(min.x + size.x, min.y + size.y)); }
     float width() const { return max.x - min.x; }
     float height() const { return max.y - min.y; }
