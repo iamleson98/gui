@@ -15,12 +15,29 @@ impl Color {
     pub const BLUE: Self = Self::rgb(0, 90, 220);
     pub const YELLOW: Self = Self::rgb(255, 220, 0);
     pub const GRAY: Self = Self::rgb(128, 128, 128);
+    pub const TW_INDIGO_400: Self = Self::rgb(129, 140, 248);
     pub const TW_INDIGO_500: Self = Self::rgb(99, 102, 241);
+    pub const TW_INDIGO_600: Self = Self::rgb(79, 70, 229);
+    pub const TW_INDIGO_700: Self = Self::rgb(67, 56, 202);
+    pub const TW_EMERALD_400: Self = Self::rgb(52, 211, 153);
     pub const TW_EMERALD_500: Self = Self::rgb(16, 185, 129);
+    pub const TW_EMERALD_600: Self = Self::rgb(5, 150, 105);
+    pub const TW_ROSE_400: Self = Self::rgb(251, 113, 133);
     pub const TW_ROSE_500: Self = Self::rgb(244, 63, 94);
+    pub const TW_ROSE_600: Self = Self::rgb(225, 29, 72);
+    pub const TW_AMBER_400: Self = Self::rgb(251, 191, 36);
     pub const TW_AMBER_500: Self = Self::rgb(245, 158, 11);
-    pub const TW_SLATE_900: Self = Self::rgb(15, 23, 42);
+    pub const TW_AMBER_600: Self = Self::rgb(217, 119, 6);
+    pub const TW_SLATE_50: Self = Self::rgb(248, 250, 252);
     pub const TW_SLATE_100: Self = Self::rgb(241, 245, 249);
+    pub const TW_SLATE_200: Self = Self::rgb(226, 232, 240);
+    pub const TW_SLATE_300: Self = Self::rgb(203, 213, 225);
+    pub const TW_SLATE_400: Self = Self::rgb(148, 163, 184);
+    pub const TW_SLATE_500: Self = Self::rgb(100, 116, 139);
+    pub const TW_SLATE_600: Self = Self::rgb(71, 85, 105);
+    pub const TW_SLATE_700: Self = Self::rgb(51, 65, 85);
+    pub const TW_SLATE_800: Self = Self::rgb(30, 41, 59);
+    pub const TW_SLATE_900: Self = Self::rgb(15, 23, 42);
     pub const fn rgb(r: u8, g: u8, b: u8) -> Self {
         Self::rgba(r, g, b, 255)
     }

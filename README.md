@@ -8,8 +8,9 @@ Cross-platform GPU-accelerated GUI libraries in **Rust** and **C++**.
 - **Real text rendering** — Rust uses cosmic-text for font shaping + swash for rasterization, uploaded to a GPU glyph atlas (R8 texture). System fonts are loaded automatically.
 - **Custom font loading** — `text.add_font_bytes(include_bytes!("...") .to_vec())` embeds TTF/OTF/WOFF fonts; `set_sans_serif_family(...)` / `set_monospace_family(...)` / `set_serif_family(...)` configure defaults.
 - **SVG icon support** — built-in `Icon` widget renders SVG path data (`M`/`L`/`H`/`V`/`C`/`Q`/`A`/`Z`, absolute and relative) directly into the GPU mesh as filled triangles. Ships with 50+ built-in icons via `IconKind`.
-- **Tailwind-style styling** — `Style::new().px_4().py_2().rounded_md().bg_primary().text_white()`
-- **Flex + Grid layout engine** — two-pass measure/arrange
+- **Refined visual design** — soft drop shadows, rounded-xl corners, indigo-600 primary color, slate scale for text/borders, 3 button variants (Primary / Secondary / Ghost), 4 label variants (Heading / Subheading / Body / Caption), Card widget with border + shadow.
+- **Tailwind-style styling** — `Style::new().px_6().py_3().rounded_lg().bg_primary().text_white().font_medium()`
+- **Flex + Grid layout engine** — two-pass measure/arrange with text measurement via cosmic-text
 - **GPU rendering** — Rust uses wgpu (Vulkan/Metal/DX12), C++ uses OpenGL 3.3
 - **Cross-platform** — Linux, macOS, Windows
 - **Each widget has its own file** — clean, maintainable structure

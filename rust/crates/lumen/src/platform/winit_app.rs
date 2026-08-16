@@ -411,13 +411,17 @@ fn redraw<A: App>(
 }
 
 fn build_layout_node_recursive<'a>(tree: &'a [Element], text: &mut TextEngine) -> LayoutNode<'a> {
+    // Root layout: top-aligned, full-width, padded. Content starts at the
+    // top of the window with a generous gap between items — this is what
+    // most real apps want. Center-align horizontally for a narrow column.
     let root_style = Box::leak(Box::new(
         Style::new()
             .flex()
             .flex_col()
             .items_center()
-            .justify_center()
+            .justify_start()
             .gap_4()
+            .p_8()
             .w_full()
             .h_full()
             .build(),

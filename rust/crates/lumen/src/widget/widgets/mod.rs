@@ -46,14 +46,14 @@ mod virtual_list;
 // Re-exports
 pub use avatar::Avatar;
 pub use badge::Badge;
-pub use button::Button;
+pub use button::{Button, ButtonVariant};
 pub use canvas::Canvas;
 pub use card::Card;
 pub use checkbox::Checkbox;
 pub use container::Container;
 pub use icon::{Icon, ICON_VIEWBOX};
 pub use icons::IconKind;
-pub use label::Label;
+pub use label::{Label, LabelVariant};
 pub use progress::Progress;
 pub use scroll::Scroll;
 pub use slider::Slider;

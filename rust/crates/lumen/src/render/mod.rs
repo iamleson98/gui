@@ -74,6 +74,18 @@ impl Painter {
         self.mesh.add_rounded_rect(r, color, radius, self.z);
         self.z += 1.0 / 65536.0;
     }
+    /// Draw a simple drop shadow: a semi-transparent dark rounded rect
+    /// offset below and slightly larger than the given rect. Call this
+    /// *before* filling the actual rect so the shadow is drawn underneath.
+    pub fn fill_shadow(&mut self, rect: Rect, radius: Corners, offset: Vec2, blur: f32, color: Color) {
+        let shadow_rect = Rect::from_xywh(
+            rect.min.x + offset.x - blur,
+            rect.min.y + offset.y - blur,
+            rect.width() + blur * 2.0,
+            rect.height() + blur * 2.0,
+        );
+        self.fill_rounded_rect(shadow_rect, color, radius);
+    }
     pub fn stroke_rect(&mut self, rect: Rect, color: Color, width: f32) {
         let r = rect.translate(self.offset);
         self.fill_rect(Rect::from_xywh(r.min.x, r.min.y, r.width(), width), color);
