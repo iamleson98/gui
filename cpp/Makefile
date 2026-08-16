@@ -5,13 +5,13 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
     GL_LIBS = -l:libGL.so.1 -l:libX11.so.6 -ldl
 else ifeq ($(UNAME_S),Darwin)
-    GL_LIBS = -framework OpenGL -framework Cocoa
+    GL_LIBS =
 else
     GL_LIBS = -lopengl32 -lgdi32
 endif
 LDFLAGS = $(GL_LIBS)
 
-LIB_SRCS = src/core/color.cpp src/core/id.cpp src/style/style.cpp src/layout/layout.cpp src/render/mesh.cpp src/render/painter.cpp src/render/svg.cpp src/render/gl_backend.cpp src/event/event.cpp src/widget/widget.cpp src/platform/app.cpp
+LIB_SRCS = src/core/color.cpp src/core/id.cpp src/style/style.cpp src/layout/layout.cpp src/render/mesh.cpp src/render/painter.cpp src/render/svg.cpp src/render/software.cpp src/render/gl_backend.cpp src/event/event.cpp src/widget/widget.cpp src/platform/app.cpp
 
 all: liblumen.a counter gallery stress themes
 
@@ -34,9 +34,9 @@ run: counter
 	./counter
 
 test:
-	@echo "C++ tests run via the headless fallback (make run)."
+	@echo "C++ tests: run 'make' then './counter' to produce lumen_output.png"
 
 clean:
-	rm -f *.o src/*.o src/*/*.o counter gallery stress themes liblumen.a
+	rm -f *.o src/*.o src/*/*.o counter gallery stress themes liblumen.a lumen_output.png
 
 .PHONY: all run test clean

@@ -2,6 +2,7 @@
 #include "lumen/layout/layout.hpp"
 #include "lumen/render/painter.hpp"
 #include "lumen/render/gl_backend.hpp"
+#include "lumen/render/software.hpp"
 #include <iostream>
 
 namespace lumen {
@@ -41,25 +42,62 @@ static void paint_tree(const std::vector<Element>& tree, const LayoutRect& layou
 
 int run(App& app, const AppBuilder& builder) {
     app.init();
+
+    // Build the view tree once (used by both GPU and software paths).
+    Ui ui(Id::from_str("root"));
+    app.view(ui);
+    auto tree = ui.take_children();
+
+    Vec2 vp(builder.width, builder.height);
+    auto node = build_node(tree);
+    auto layout = arrange(node, vp);
+
+    // Paint into a CPU mesh (same for both paths).
+    Painter painter;
+    paint_tree(tree, layout, builder.theme, painter);
+    const Mesh& mesh = painter.mesh();
+
+    // Try the GPU window first. If it fails (no X server, no GLX, macOS,
+    // Windows, etc.), fall back to the software renderer which outputs a
+    // PNG file.
     GLWindow win;
-    GLWindowConfig cfg; cfg.title=builder.title; cfg.width=builder.width; cfg.height=builder.height; cfg.vsync=builder.vsync;
-    if(!win.init(cfg)) {
-        std::cerr << "lumen: falling back to headless mode.\n"
-                  << "lumen: the app will render one frame to the CPU mesh and exit.\n"
-                  << "lumen: to get a real GPU window, run inside an X session or use:\n"
-                  << "lumen:   Xvfb :99 -screen 0 1024x768x24 +extension GLX & DISPLAY=:99 ./counter\n";
-        Ui ui(Id::from_str("root")); app.view(ui); auto tree=ui.take_children();
-        Vec2 vp(builder.width, builder.height); auto node=build_node(tree); auto layout=arrange(node, vp);
-        Painter p; paint_tree(tree, layout, builder.theme, p);
-        std::cout << "lumen: headless - " << p.mesh().vertex_count() << " vertices, "
-                  << p.mesh().index_count() << " indices\n";
-        return 1;
+    GLWindowConfig cfg;
+    cfg.title = builder.title;
+    cfg.width = builder.width;
+    cfg.height = builder.height;
+    cfg.vsync = builder.vsync;
+
+    if (win.init(cfg)) {
+        // GPU path: re-paint every frame inside the event loop.
+        win.run([&](Painter& frame_painter) {
+            Ui frame_ui(Id::from_str("root"));
+            app.view(frame_ui);
+            auto frame_tree = frame_ui.take_children();
+            Vec2 frame_vp(win.width(), win.height());
+            auto frame_node = build_node(frame_tree);
+            auto frame_layout = arrange(frame_node, frame_vp);
+            frame_painter.clear();
+            paint_tree(frame_tree, frame_layout, builder.theme, frame_painter);
+        });
+        return 0;
     }
-    win.run([&](Painter& painter) {
-        Ui ui(Id::from_str("root")); app.view(ui); auto tree=ui.take_children();
-        Vec2 vp(win.width(), win.height()); auto node=build_node(tree); auto layout=arrange(node, vp);
-        painter.clear(); paint_tree(tree, layout, builder.theme, painter);
-    });
+
+    // Software fallback: rasterize the mesh to a PNG file.
+    std::cerr << "lumen: GPU window unavailable, using software renderer.\n";
+    SoftwareRendererConfig sw_cfg;
+    sw_cfg.width = builder.width;
+    sw_cfg.height = builder.height;
+    sw_cfg.output_path = "lumen_output.png";
+    SoftwareRenderer sw;
+    sw.init(sw_cfg);
+    sw.render(mesh, builder.theme.palette.bg);
+
+    std::cout << "lumen: rendered " << mesh.vertex_count() << " vertices ("
+              << mesh.index_count() / 3 << " triangles) to "
+              << sw_cfg.output_path << " (" << sw_cfg.width << "x"
+              << sw_cfg.height << ")\n";
+    std::cout << "lumen: open " << sw_cfg.output_path
+              << " to view the rendered UI.\n";
     return 0;
 }
 } // namespace lumen

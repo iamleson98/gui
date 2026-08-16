@@ -461,10 +461,14 @@ GLWindow::~GLWindow() { cleanup(); }
 
 } // namespace lumen
 
-#else // Non-Linux
+#else // Non-Linux (macOS, Windows)
 
 namespace lumen {
-bool GLWindow::init(const GLWindowConfig& c) { std::cerr << "lumen: GPU backend not implemented on this platform.\n"; width_ = c.width; height_ = c.height; return false; }
+// On non-Linux platforms, the GL/X11 GPU backend is not available.
+// The software renderer (render/software.cpp) handles output instead,
+// rasterizing the mesh to a PNG file. This stub just returns false so
+// that app.cpp falls through to the software path.
+bool GLWindow::init(const GLWindowConfig& c) { width_ = c.width; height_ = c.height; return false; }
 void GLWindow::run(std::function<void(Painter&)> f, std::function<void(uint32_t,uint32_t)> r) { (void)f; (void)r; }
 GLWindow::~GLWindow() {}
 void GLWindow::cleanup() {}
