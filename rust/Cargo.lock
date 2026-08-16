@@ -1176,6 +1176,7 @@ dependencies = [
  "hashbrown 0.14.5",
  "log",
  "mint",
+ "once_cell",
  "pollster",
  "rustc-hash 2.1.3",
  "smallvec",

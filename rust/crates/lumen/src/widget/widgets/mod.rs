@@ -37,6 +37,8 @@ mod skeleton;
 mod sparkline;
 mod gauge;
 mod breadcrumb;
+mod context_menu;
+mod drag_drop;
 mod virtual_list;
 
 // Re-exports
@@ -77,4 +79,6 @@ pub use skeleton::Skeleton;
 pub use sparkline::Sparkline;
 pub use gauge::Gauge;
 pub use breadcrumb::{Breadcrumb, Crumb};
+pub use context_menu::{ContextMenu, ContextMenuItem, ContextMenuSelected};
+pub use drag_drop::{DragDropManager, Draggable, DropTarget};
 pub use virtual_list::VirtualList;

@@ -13,6 +13,11 @@ pub mod widget;
 pub mod state;
 pub mod animation;
 pub mod focus;
+pub mod accessibility;
+pub mod theme_observer;
+pub mod lifecycle;
+pub mod error_boundary;
+pub mod clipboard;
 pub mod prelude {
     pub use crate::core::{Color, Id, Rect, ScaleFactor, Vec2};
     pub use crate::event::{Event, EventCtx, EventResult, Message};
