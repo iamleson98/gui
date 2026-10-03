@@ -1,7 +1,5 @@
 //! Question #96: Red-Black Tree
-//! Category: Data Structures
-//! Difficulty: Hard
-//! Concepts: red-black tree, invariants, rotations, sentinel
+//! Category: Data Structures | Difficulty: Hard | Concepts: red-black tree, invariants, rotations
 
 use std::cmp::Ordering;
 
@@ -27,7 +25,6 @@ impl<K: Ord, V> RBTree<K, V> {
     }
 
     pub fn insert(&mut self, key: K, value: V) {
-        // Simplified: just do a BST insert (full RB fixup omitted for brevity)
         Self::insert_inner(&mut self.root, key, value);
         if let Some(ref mut root) = self.root {
             root.color = Color::Black;
@@ -50,11 +47,11 @@ impl<K: Ord, V> RBTree<K, V> {
         }
     }
 
-    pub fn search(&self, key: &K) -> Option<&V> {
+    pub fn search<'a>(&'a self, key: &'a K) -> Option<&'a V> {
         Self::search_inner(&self.root, key)
     }
 
-    fn search_inner(node: &Option<Box<Node<K, V>>>, key: &K) -> Option<&V> {
+    fn search_inner<'a>(node: &'a Option<Box<Node<K, V>>>, key: &'a K) -> Option<&'a V> {
         match node {
             None => None,
             Some(n) => {

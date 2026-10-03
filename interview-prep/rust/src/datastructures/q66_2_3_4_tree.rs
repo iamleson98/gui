@@ -6,11 +6,11 @@
 use std::collections::HashMap;
 use std::sync::Mutex;
 
-pub struct 234Tree {
+pub struct Q66_234Tree {
     data: Mutex<HashMap<i32, i32>>,
 }
 
-impl 234Tree {
+impl Q66_234Tree {
     pub fn new() -> Self {
         Self { data: Mutex::new(HashMap::new()) }
     }
@@ -27,7 +27,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_2_3_4_tree() {
-        let s = 234Tree::new();
+        let s = Q66_234Tree::new();
         s.insert(1, 10);
         assert_eq!(s.get(1), Some(10));
     }

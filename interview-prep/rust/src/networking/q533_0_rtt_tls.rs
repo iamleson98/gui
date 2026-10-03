@@ -6,11 +6,11 @@
 use std::collections::HashMap;
 use std::sync::Mutex;
 
-pub struct 0RttTls {
+pub struct Q533_0RttTls {
     inner: Mutex<HashMap<String, String>>,
 }
 
-impl 0RttTls {
+impl Q533_0RttTls {
     pub fn new() -> Self {
         Self { inner: Mutex::new(HashMap::new()) }
     }
@@ -27,7 +27,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_0_rtt_tls() {
-        let s = 0RttTls::new();
+        let s = Q533_0RttTls::new();
         s.set("key", "value");
         assert_eq!(s.get("key"), Some("value".to_string()));
     }

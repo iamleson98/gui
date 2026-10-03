@@ -1,8 +1,4 @@
-//! Question #21: Chase-Lev Work-Stealing Deque
-//! Category: Concurrency
-//! Difficulty: Hard
-//! Concepts: Chase-Lev deque, work stealing, top/bottom indices, resize
-
+//! Chase-Lev Work-Stealing Deque.
 use std::sync::atomic::{AtomicI64, Ordering};
 use std::cell::UnsafeCell;
 
@@ -30,7 +26,8 @@ impl<T: Clone + Default> WSDeque<T> {
     pub fn push(&self, v: T) {
         let b = self.bottom.load(Ordering::Relaxed);
         unsafe {
-            (*self.buf.get())[((b & self.mask) as usize)] = v;
+            let buf = &mut *self.buf.get();
+            buf[(b & self.mask) as usize] = v;
         }
         self.bottom.store(b + 1, Ordering::Release);
     }
@@ -43,7 +40,10 @@ impl<T: Clone + Default> WSDeque<T> {
             self.bottom.store(t, Ordering::Relaxed);
             return None;
         }
-        let v = unsafe { (*self.buf.get())[((b & self.mask) as usize)].clone() };
+        let v = unsafe {
+            let buf = &*self.buf.get();
+            buf[(b & self.mask) as usize].clone()
+        };
         if t < b {
             return Some(v);
         }
@@ -61,7 +61,10 @@ impl<T: Clone + Default> WSDeque<T> {
         if t >= b {
             return None;
         }
-        let v = unsafe { (*self.buf.get())[((t & self.mask) as usize)].clone() };
+        let v = unsafe {
+            let buf = &*self.buf.get();
+            buf[(t & self.mask) as usize].clone()
+        };
         if self.top.compare_exchange(t, t + 1, Ordering::AcqRel, Ordering::Relaxed).is_ok() {
             Some(v)
         } else {

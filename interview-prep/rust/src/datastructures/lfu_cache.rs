@@ -1,8 +1,5 @@
 //! Question #102: LFU Cache
-//! Category: Data Structures
-//! Difficulty: Hard
-//! Concepts: LFU, frequency buckets, ties
-
+//! Category: Data Structures | Difficulty: Hard | Concepts: LFU, frequency buckets
 use std::collections::{HashMap, VecDeque};
 use std::cell::RefCell;
 use std::rc::Rc;
@@ -34,23 +31,20 @@ impl LFUCache {
 
     pub fn get(&mut self, key: i32) -> Option<i32> {
         let entry = self.cache.get(&key)?.clone();
+        let val = entry.borrow().value;
         self.increment(&entry);
-        Some(entry.borrow().value)
+        Some(val)
     }
 
     pub fn put(&mut self, key: i32, value: i32) {
-        if self.capacity == 0 {
-            return;
-        }
+        if self.capacity == 0 { return; }
         if let Some(entry) = self.cache.get(&key) {
             entry.borrow_mut().value = value;
             let entry = entry.clone();
             self.increment(&entry);
             return;
         }
-        if self.cache.len() >= self.capacity {
-            self.evict();
-        }
+        if self.cache.len() >= self.capacity { self.evict(); }
         let entry = Rc::new(RefCell::new(Entry { key, value, freq: 1 }));
         self.min_freq = 1;
         self.freqs.entry(1).or_default().push_back(entry.clone());
@@ -63,9 +57,7 @@ impl LFUCache {
             if let Some(pos) = list.iter().position(|e| Rc::ptr_eq(e, entry)) {
                 list.remove(pos);
             }
-            if freq == self.min_freq && list.is_empty() {
-                self.min_freq += 1;
-            }
+            if freq == self.min_freq && list.is_empty() { self.min_freq += 1; }
         }
         entry.borrow_mut().freq = freq + 1;
         self.freqs.entry(freq + 1).or_default().push_back(entry.clone());

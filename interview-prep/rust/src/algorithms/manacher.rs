@@ -21,13 +21,14 @@ pub fn longest_palindrome(s: &str) -> &str {
     let mut max_len = 0;
     let mut center = 0;
     for i in 1..n-1 {
-        let mirror = 2 * c - i;
+        let mirror = (2 * c) as isize - i as isize;
         if (r as i32) > i as i32 {
-            p[i] = (r - i).min(p[mirror] as usize) as i32;
+            let mval = if mirror >= 0 { p[mirror as usize] } else { 0 };
+            p[i] = (r - i).min(mval as usize) as i32;
         }
         // Expand
-        while i + p[i] as usize + 1 < n && i >= p[i] as usize + 1
-            && t[i + p[i] as usize + 1] == t[i - p[i] as usize - 1] {
+        while i + (p[i] as usize) + 1 < n && i >= (p[i] as usize) + 1
+            && t[i + (p[i] as usize) + 1] == t[i - (p[i] as usize) - 1] {
             p[i] += 1;
         }
         if i + p[i] as usize > r {

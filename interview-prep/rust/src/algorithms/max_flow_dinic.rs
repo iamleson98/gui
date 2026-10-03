@@ -18,7 +18,7 @@ pub struct MaxFlow {
 
 impl MaxFlow {
     pub fn new(n: usize) -> Self {
-        Self { n, graph: vec![Vec::new(); n] }
+        Self { n, graph: (0..n).map(|_| Vec::new()).collect() }
     }
 
     pub fn add_edge(&mut self, from: usize, to: usize, cap: i64) {

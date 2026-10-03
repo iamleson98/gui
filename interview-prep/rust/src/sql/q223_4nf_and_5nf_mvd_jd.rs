@@ -6,11 +6,11 @@
 use std::collections::HashMap;
 use std::sync::Mutex;
 
-pub struct 4NfAnd5NfMvdJd {
+pub struct Q223_4NfAnd5NfMvdJd {
     inner: Mutex<HashMap<String, String>>,
 }
 
-impl 4NfAnd5NfMvdJd {
+impl Q223_4NfAnd5NfMvdJd {
     pub fn new() -> Self {
         Self { inner: Mutex::new(HashMap::new()) }
     }
@@ -27,7 +27,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_4nf_and_5nf_mvd_jd() {
-        let s = 4NfAnd5NfMvdJd::new();
+        let s = Q223_4NfAnd5NfMvdJd::new();
         s.set("key", "value");
         assert_eq!(s.get("key"), Some("value".to_string()));
     }
