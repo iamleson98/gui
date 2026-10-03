@@ -8,22 +8,22 @@ import "sync"
 
 // Stack (Linear) Allocator
 // Implements a memory management technique for question #367.
-type StackLinearAllocator struct {
+type Q367_StackLinearAllocator struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewStackLinearAllocator creates a memory manager with the given capacity.
-func NewStackLinearAllocator(capacity int) *StackLinearAllocator {
-        return &StackLinearAllocator{
-                pool: make([]interface{}, 0, capacity),
+// NewQ367_StackLinearAllocator creates a memory manager with the given capacity.
+func NewQ367_StackLinearAllocator(capacity int) *Q367_StackLinearAllocator {
+        return &Q367_StackLinearAllocator{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *StackLinearAllocator) Allocate() interface{ {
+func (m *Q367_StackLinearAllocator) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *StackLinearAllocator) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *StackLinearAllocator) Release(obj interface{) {
+func (m *Q367_StackLinearAllocator) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

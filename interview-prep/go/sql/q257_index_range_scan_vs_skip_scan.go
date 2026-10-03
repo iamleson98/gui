@@ -4,17 +4,16 @@
 // Description: Contrast range scans with skip scans that handle leading-column equality filters.
 package sql
 
-import "fmt"
 
 // Index Range Scan vs Skip Scan
 // Implements a database design pattern for question #257.
 
-// IndexRangeScanVsSkipScan represents the database schema/concept.
-type IndexRangeScanVsSkipScan struct {
+// Q257_IndexRangeScanVsSkipScan represents the database schema/concept.
+type Q257_IndexRangeScanVsSkipScan struct {
         tables map[string][]string
 }
 
-// NewIndexRangeScanVsSkipScan initializes the schema.
-func NewIndexRangeScanVsSkipScan() *IndexRangeScanVsSkipScan {
-        return &IndexRangeScanVsSkipScan{tables: make(map[string][]string)}
+// NewQ257_IndexRangeScanVsSkipScan initializes the schema.
+func NewQ257_IndexRangeScanVsSkipScan() *Q257_IndexRangeScanVsSkipScan {
+        return &Q257_IndexRangeScanVsSkipScan{tables: make(map[string][]string)}
 }

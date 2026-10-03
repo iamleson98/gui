@@ -38,7 +38,7 @@ func (m *ConcurrentMap[K, V]) idx(key K) int {
 	return int(h.Sum32()) & (m.n - 1)
 }
 
-func toString(v interface{}) string {
+func toString(v any) string {
 	if v == nil {
 		return ""
 	}

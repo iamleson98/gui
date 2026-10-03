@@ -11,22 +11,22 @@ import (
 
 // Wait-Free vs Lock-Free Progress
 // Implements a concurrent primitive for question #29.
-type WaitFreeVsLockFreeProgress struct {
+type Q29_WaitFreeVsLockFreeProgress struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewWaitFreeVsLockFreeProgress creates a new instance.
-func NewWaitFreeVsLockFreeProgress() *WaitFreeVsLockFreeProgress {
-        x := &WaitFreeVsLockFreeProgress{notify: make(chan struct{}, 1)}
+// NewQ29_WaitFreeVsLockFreeProgress creates a new instance.
+func NewQ29_WaitFreeVsLockFreeProgress() *Q29_WaitFreeVsLockFreeProgress {
+        x := &Q29_WaitFreeVsLockFreeProgress{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *WaitFreeVsLockFreeProgress) Execute() {
+func (x *Q29_WaitFreeVsLockFreeProgress) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *WaitFreeVsLockFreeProgress) Execute() {
 }
 
 // Result returns the current state.
-func (x *WaitFreeVsLockFreeProgress) Result() int64 {
+func (x *Q29_WaitFreeVsLockFreeProgress) Result() int64 {
         return x.state.Load()
 }

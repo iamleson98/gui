@@ -12,36 +12,36 @@ import (
 
 // Nagle's Algorithm
 // Implements a networking concept for question #516.
-type NagleSAlgorithm struct {
+type Q516_NagleSAlgorithm struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewNagleSAlgorithm creates a new network handler.
-func NewNagleSAlgorithm(timeout time.Duration) *NagleSAlgorithm {
-        return &NagleSAlgorithm{
+// NewQ516_NagleSAlgorithm creates a new network handler.
+func NewQ516_NagleSAlgorithm(timeout time.Duration) *Q516_NagleSAlgorithm {
+        return &Q516_NagleSAlgorithm{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *NagleSAlgorithm) AddConnection(id string, conn net.Conn) {
+func (n *Q516_NagleSAlgorithm) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *NagleSAlgorithm) RemoveConnection(id string) {
+func (n *Q516_NagleSAlgorithm) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *NagleSAlgorithm) Send(id string, data []byte) error {
+func (n *Q516_NagleSAlgorithm) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

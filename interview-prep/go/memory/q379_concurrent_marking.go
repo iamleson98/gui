@@ -8,22 +8,22 @@ import "sync"
 
 // Concurrent Marking
 // Implements a memory management technique for question #379.
-type ConcurrentMarking struct {
+type Q379_ConcurrentMarking struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewConcurrentMarking creates a memory manager with the given capacity.
-func NewConcurrentMarking(capacity int) *ConcurrentMarking {
-        return &ConcurrentMarking{
-                pool: make([]interface{}, 0, capacity),
+// NewQ379_ConcurrentMarking creates a memory manager with the given capacity.
+func NewQ379_ConcurrentMarking(capacity int) *Q379_ConcurrentMarking {
+        return &Q379_ConcurrentMarking{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ConcurrentMarking) Allocate() interface{ {
+func (m *Q379_ConcurrentMarking) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ConcurrentMarking) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ConcurrentMarking) Release(obj interface{) {
+func (m *Q379_ConcurrentMarking) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

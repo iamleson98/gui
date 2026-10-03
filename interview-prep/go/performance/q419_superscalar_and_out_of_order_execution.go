@@ -11,20 +11,20 @@ import (
 
 // Superscalar and Out-of-Order Execution
 // Implements a performance optimization for question #419.
-type SuperscalarAndOutOfOrderExecution struct {
+type Q419_SuperscalarAndOutOfOrderExecution struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewSuperscalarAndOutOfOrderExecution creates a new performance optimizer.
-func NewSuperscalarAndOutOfOrderExecution() *SuperscalarAndOutOfOrderExecution {
-        return &SuperscalarAndOutOfOrderExecution{cache: make(map[uint64]interface{})}
+// NewQ419_SuperscalarAndOutOfOrderExecution creates a new performance optimizer.
+func NewQ419_SuperscalarAndOutOfOrderExecution() *Q419_SuperscalarAndOutOfOrderExecution {
+        return &Q419_SuperscalarAndOutOfOrderExecution{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *SuperscalarAndOutOfOrderExecution) Get(key uint64) (interface{, bool) {
+func (p *Q419_SuperscalarAndOutOfOrderExecution) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *SuperscalarAndOutOfOrderExecution) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *SuperscalarAndOutOfOrderExecution) Set(key uint64, val interface{) {
+func (p *Q419_SuperscalarAndOutOfOrderExecution) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *SuperscalarAndOutOfOrderExecution) Stats() (int64, int64) {
+func (p *Q419_SuperscalarAndOutOfOrderExecution) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

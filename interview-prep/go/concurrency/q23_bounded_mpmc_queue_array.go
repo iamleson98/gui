@@ -11,22 +11,22 @@ import (
 
 // Bounded MPMC Queue (Array)
 // Implements a concurrent primitive for question #23.
-type BoundedMpmcQueueArray struct {
+type Q23_BoundedMpmcQueueArray struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewBoundedMpmcQueueArray creates a new instance.
-func NewBoundedMpmcQueueArray() *BoundedMpmcQueueArray {
-        x := &BoundedMpmcQueueArray{notify: make(chan struct{}, 1)}
+// NewQ23_BoundedMpmcQueueArray creates a new instance.
+func NewQ23_BoundedMpmcQueueArray() *Q23_BoundedMpmcQueueArray {
+        x := &Q23_BoundedMpmcQueueArray{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *BoundedMpmcQueueArray) Execute() {
+func (x *Q23_BoundedMpmcQueueArray) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *BoundedMpmcQueueArray) Execute() {
 }
 
 // Result returns the current state.
-func (x *BoundedMpmcQueueArray) Result() int64 {
+func (x *Q23_BoundedMpmcQueueArray) Result() int64 {
         return x.state.Load()
 }

@@ -13,28 +13,28 @@ import (
 
 // Merkle Tree for Integrity
 // Implements a security primitive for question #492.
-type MerkleTreeForIntegrity struct {
+type Q492_MerkleTreeForIntegrity struct {
         key []byte
 }
 
-// NewMerkleTreeForIntegrity creates a new security handler with the given key.
-func NewMerkleTreeForIntegrity(key []byte) *MerkleTreeForIntegrity {
-        return &MerkleTreeForIntegrity{key: key}
+// NewQ492_MerkleTreeForIntegrity creates a new security handler with the given key.
+func NewQ492_MerkleTreeForIntegrity(key []byte) *Q492_MerkleTreeForIntegrity {
+        return &Q492_MerkleTreeForIntegrity{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *MerkleTreeForIntegrity) Hash(data []byte) string {
+func (s *Q492_MerkleTreeForIntegrity) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *MerkleTreeForIntegrity) Verify(a, b []byte) bool {
+func (s *Q492_MerkleTreeForIntegrity) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *MerkleTreeForIntegrity) HMAC(data []byte) []byte {
+func (s *Q492_MerkleTreeForIntegrity) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

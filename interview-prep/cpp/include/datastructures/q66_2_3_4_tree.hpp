@@ -14,7 +14,7 @@ namespace interview_prep {
 
 // 2-3-4 Tree
 // Question ID: 66
-class 234Tree {
+class Q_234Tree {
 private:
     std::unordered_map<int,int> data_;
 public:

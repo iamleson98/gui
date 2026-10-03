@@ -4,17 +4,16 @@
 // Description: Implement Raft leader election, log replication, and safety via term-based commit indices.
 package sql
 
-import "fmt"
 
 // Raft Consensus
 // Implements a database design pattern for question #267.
 
-// RaftConsensus represents the database schema/concept.
-type RaftConsensus struct {
+// Q267_RaftConsensus represents the database schema/concept.
+type Q267_RaftConsensus struct {
         tables map[string][]string
 }
 
-// NewRaftConsensus initializes the schema.
-func NewRaftConsensus() *RaftConsensus {
-        return &RaftConsensus{tables: make(map[string][]string)}
+// NewQ267_RaftConsensus initializes the schema.
+func NewQ267_RaftConsensus() *Q267_RaftConsensus {
+        return &Q267_RaftConsensus{tables: make(map[string][]string)}
 }

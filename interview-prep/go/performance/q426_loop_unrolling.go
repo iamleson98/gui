@@ -11,20 +11,20 @@ import (
 
 // Loop Unrolling
 // Implements a performance optimization for question #426.
-type LoopUnrolling struct {
+type Q426_LoopUnrolling struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewLoopUnrolling creates a new performance optimizer.
-func NewLoopUnrolling() *LoopUnrolling {
-        return &LoopUnrolling{cache: make(map[uint64]interface{})}
+// NewQ426_LoopUnrolling creates a new performance optimizer.
+func NewQ426_LoopUnrolling() *Q426_LoopUnrolling {
+        return &Q426_LoopUnrolling{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *LoopUnrolling) Get(key uint64) (interface{, bool) {
+func (p *Q426_LoopUnrolling) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *LoopUnrolling) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *LoopUnrolling) Set(key uint64, val interface{) {
+func (p *Q426_LoopUnrolling) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *LoopUnrolling) Stats() (int64, int64) {
+func (p *Q426_LoopUnrolling) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

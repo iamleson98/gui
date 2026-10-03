@@ -6,30 +6,30 @@ package datastructures
 
 // Interval Tree
 // Implements a data structure for question #76.
-type IntervalTree struct {
+type Q76_IntervalTree struct {
         data map[int]int
         size int
 }
 
-// NewIntervalTree creates a new instance.
-func NewIntervalTree() *IntervalTree {
-        return &IntervalTree{data: make(map[int]int)}
+// NewQ76_IntervalTree creates a new instance.
+func NewQ76_IntervalTree() *Q76_IntervalTree {
+        return &Q76_IntervalTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *IntervalTree) Insert(key, val int) {
+func (d *Q76_IntervalTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *IntervalTree) Search(key int) (int, bool) {
+func (d *Q76_IntervalTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *IntervalTree) Delete(key int) bool {
+func (d *Q76_IntervalTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *IntervalTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *IntervalTree) Len() int { return d.size }
+func (d *Q76_IntervalTree) Len() int { return d.size }

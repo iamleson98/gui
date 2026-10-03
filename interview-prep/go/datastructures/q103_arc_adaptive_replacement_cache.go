@@ -6,30 +6,30 @@ package datastructures
 
 // ARC (Adaptive Replacement Cache)
 // Implements a data structure for question #103.
-type ArcAdaptiveReplacementCache struct {
+type Q103_ArcAdaptiveReplacementCache struct {
         data map[int]int
         size int
 }
 
-// NewArcAdaptiveReplacementCache creates a new instance.
-func NewArcAdaptiveReplacementCache() *ArcAdaptiveReplacementCache {
-        return &ArcAdaptiveReplacementCache{data: make(map[int]int)}
+// NewQ103_ArcAdaptiveReplacementCache creates a new instance.
+func NewQ103_ArcAdaptiveReplacementCache() *Q103_ArcAdaptiveReplacementCache {
+        return &Q103_ArcAdaptiveReplacementCache{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *ArcAdaptiveReplacementCache) Insert(key, val int) {
+func (d *Q103_ArcAdaptiveReplacementCache) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *ArcAdaptiveReplacementCache) Search(key int) (int, bool) {
+func (d *Q103_ArcAdaptiveReplacementCache) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *ArcAdaptiveReplacementCache) Delete(key int) bool {
+func (d *Q103_ArcAdaptiveReplacementCache) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *ArcAdaptiveReplacementCache) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *ArcAdaptiveReplacementCache) Len() int { return d.size }
+func (d *Q103_ArcAdaptiveReplacementCache) Len() int { return d.size }

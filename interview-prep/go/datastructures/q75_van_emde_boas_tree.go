@@ -6,30 +6,30 @@ package datastructures
 
 // Van Emde Boas Tree
 // Implements a data structure for question #75.
-type VanEmdeBoasTree struct {
+type Q75_VanEmdeBoasTree struct {
         data map[int]int
         size int
 }
 
-// NewVanEmdeBoasTree creates a new instance.
-func NewVanEmdeBoasTree() *VanEmdeBoasTree {
-        return &VanEmdeBoasTree{data: make(map[int]int)}
+// NewQ75_VanEmdeBoasTree creates a new instance.
+func NewQ75_VanEmdeBoasTree() *Q75_VanEmdeBoasTree {
+        return &Q75_VanEmdeBoasTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *VanEmdeBoasTree) Insert(key, val int) {
+func (d *Q75_VanEmdeBoasTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *VanEmdeBoasTree) Search(key int) (int, bool) {
+func (d *Q75_VanEmdeBoasTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *VanEmdeBoasTree) Delete(key int) bool {
+func (d *Q75_VanEmdeBoasTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *VanEmdeBoasTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *VanEmdeBoasTree) Len() int { return d.size }
+func (d *Q75_VanEmdeBoasTree) Len() int { return d.size }

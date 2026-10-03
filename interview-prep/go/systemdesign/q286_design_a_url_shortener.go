@@ -8,29 +8,29 @@ import "sync"
 
 // Design a URL Shortener
 // Implements a system design component for question #286.
-type DesignAUrlShortener struct {
+type Q286_DesignAUrlShortener struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAUrlShortener creates a new system component.
-func NewDesignAUrlShortener() *DesignAUrlShortener {
-        return &DesignAUrlShortener{
+// NewQ286_DesignAUrlShortener creates a new system component.
+func NewQ286_DesignAUrlShortener() *Q286_DesignAUrlShortener {
+        return &Q286_DesignAUrlShortener{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAUrlShortener) SetConfig(key, val string) {
+func (s *Q286_DesignAUrlShortener) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAUrlShortener) GetConfig(key string) (string, bool) {
+func (s *Q286_DesignAUrlShortener) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAUrlShortener) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAUrlShortener) IncrementMetric(key string) {
+func (s *Q286_DesignAUrlShortener) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

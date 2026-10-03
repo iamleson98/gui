@@ -8,22 +8,22 @@ import "sync"
 
 // Shenandoah GC
 // Implements a memory management technique for question #378.
-type ShenandoahGc struct {
+type Q378_ShenandoahGc struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewShenandoahGc creates a memory manager with the given capacity.
-func NewShenandoahGc(capacity int) *ShenandoahGc {
-        return &ShenandoahGc{
-                pool: make([]interface{}, 0, capacity),
+// NewQ378_ShenandoahGc creates a memory manager with the given capacity.
+func NewQ378_ShenandoahGc(capacity int) *Q378_ShenandoahGc {
+        return &Q378_ShenandoahGc{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ShenandoahGc) Allocate() interface{ {
+func (m *Q378_ShenandoahGc) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ShenandoahGc) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ShenandoahGc) Release(obj interface{) {
+func (m *Q378_ShenandoahGc) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

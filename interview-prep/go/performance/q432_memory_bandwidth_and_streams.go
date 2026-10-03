@@ -11,20 +11,20 @@ import (
 
 // Memory Bandwidth and Streams
 // Implements a performance optimization for question #432.
-type MemoryBandwidthAndStreams struct {
+type Q432_MemoryBandwidthAndStreams struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewMemoryBandwidthAndStreams creates a new performance optimizer.
-func NewMemoryBandwidthAndStreams() *MemoryBandwidthAndStreams {
-        return &MemoryBandwidthAndStreams{cache: make(map[uint64]interface{})}
+// NewQ432_MemoryBandwidthAndStreams creates a new performance optimizer.
+func NewQ432_MemoryBandwidthAndStreams() *Q432_MemoryBandwidthAndStreams {
+        return &Q432_MemoryBandwidthAndStreams{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *MemoryBandwidthAndStreams) Get(key uint64) (interface{, bool) {
+func (p *Q432_MemoryBandwidthAndStreams) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *MemoryBandwidthAndStreams) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *MemoryBandwidthAndStreams) Set(key uint64, val interface{) {
+func (p *Q432_MemoryBandwidthAndStreams) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *MemoryBandwidthAndStreams) Stats() (int64, int64) {
+func (p *Q432_MemoryBandwidthAndStreams) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

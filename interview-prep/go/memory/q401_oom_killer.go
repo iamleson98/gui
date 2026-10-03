@@ -8,22 +8,22 @@ import "sync"
 
 // OOM Killer
 // Implements a memory management technique for question #401.
-type OomKiller struct {
+type Q401_OomKiller struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewOomKiller creates a memory manager with the given capacity.
-func NewOomKiller(capacity int) *OomKiller {
-        return &OomKiller{
-                pool: make([]interface{}, 0, capacity),
+// NewQ401_OomKiller creates a memory manager with the given capacity.
+func NewQ401_OomKiller(capacity int) *Q401_OomKiller {
+        return &Q401_OomKiller{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *OomKiller) Allocate() interface{ {
+func (m *Q401_OomKiller) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *OomKiller) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *OomKiller) Release(obj interface{) {
+func (m *Q401_OomKiller) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

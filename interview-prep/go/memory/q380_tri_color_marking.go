@@ -8,22 +8,22 @@ import "sync"
 
 // Tri-Color Marking
 // Implements a memory management technique for question #380.
-type TriColorMarking struct {
+type Q380_TriColorMarking struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewTriColorMarking creates a memory manager with the given capacity.
-func NewTriColorMarking(capacity int) *TriColorMarking {
-        return &TriColorMarking{
-                pool: make([]interface{}, 0, capacity),
+// NewQ380_TriColorMarking creates a memory manager with the given capacity.
+func NewQ380_TriColorMarking(capacity int) *Q380_TriColorMarking {
+        return &Q380_TriColorMarking{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *TriColorMarking) Allocate() interface{ {
+func (m *Q380_TriColorMarking) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *TriColorMarking) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *TriColorMarking) Release(obj interface{) {
+func (m *Q380_TriColorMarking) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

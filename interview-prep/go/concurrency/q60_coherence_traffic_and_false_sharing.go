@@ -11,22 +11,22 @@ import (
 
 // Coherence Traffic and False Sharing
 // Implements a concurrent primitive for question #60.
-type CoherenceTrafficAndFalseSharing struct {
+type Q60_CoherenceTrafficAndFalseSharing struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewCoherenceTrafficAndFalseSharing creates a new instance.
-func NewCoherenceTrafficAndFalseSharing() *CoherenceTrafficAndFalseSharing {
-        x := &CoherenceTrafficAndFalseSharing{notify: make(chan struct{}, 1)}
+// NewQ60_CoherenceTrafficAndFalseSharing creates a new instance.
+func NewQ60_CoherenceTrafficAndFalseSharing() *Q60_CoherenceTrafficAndFalseSharing {
+        x := &Q60_CoherenceTrafficAndFalseSharing{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *CoherenceTrafficAndFalseSharing) Execute() {
+func (x *Q60_CoherenceTrafficAndFalseSharing) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *CoherenceTrafficAndFalseSharing) Execute() {
 }
 
 // Result returns the current state.
-func (x *CoherenceTrafficAndFalseSharing) Result() int64 {
+func (x *Q60_CoherenceTrafficAndFalseSharing) Result() int64 {
         return x.state.Load()
 }

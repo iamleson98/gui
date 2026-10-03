@@ -4,17 +4,16 @@
 // Description: Use declarative partitioning to prune scans and co-locate partitions for joins.
 package sql
 
-import "fmt"
 
 // Partition Pruning and Partition-Wise Join
 // Implements a database design pattern for question #285.
 
-// PartitionPruningAndPartitionWiseJoin represents the database schema/concept.
-type PartitionPruningAndPartitionWiseJoin struct {
+// Q285_PartitionPruningAndPartitionWiseJoin represents the database schema/concept.
+type Q285_PartitionPruningAndPartitionWiseJoin struct {
         tables map[string][]string
 }
 
-// NewPartitionPruningAndPartitionWiseJoin initializes the schema.
-func NewPartitionPruningAndPartitionWiseJoin() *PartitionPruningAndPartitionWiseJoin {
-        return &PartitionPruningAndPartitionWiseJoin{tables: make(map[string][]string)}
+// NewQ285_PartitionPruningAndPartitionWiseJoin initializes the schema.
+func NewQ285_PartitionPruningAndPartitionWiseJoin() *Q285_PartitionPruningAndPartitionWiseJoin {
+        return &Q285_PartitionPruningAndPartitionWiseJoin{tables: make(map[string][]string)}
 }

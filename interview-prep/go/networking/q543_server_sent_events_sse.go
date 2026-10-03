@@ -12,36 +12,36 @@ import (
 
 // Server-Sent Events (SSE)
 // Implements a networking concept for question #543.
-type ServerSentEventsSse struct {
+type Q543_ServerSentEventsSse struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewServerSentEventsSse creates a new network handler.
-func NewServerSentEventsSse(timeout time.Duration) *ServerSentEventsSse {
-        return &ServerSentEventsSse{
+// NewQ543_ServerSentEventsSse creates a new network handler.
+func NewQ543_ServerSentEventsSse(timeout time.Duration) *Q543_ServerSentEventsSse {
+        return &Q543_ServerSentEventsSse{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *ServerSentEventsSse) AddConnection(id string, conn net.Conn) {
+func (n *Q543_ServerSentEventsSse) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *ServerSentEventsSse) RemoveConnection(id string) {
+func (n *Q543_ServerSentEventsSse) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *ServerSentEventsSse) Send(id string, data []byte) error {
+func (n *Q543_ServerSentEventsSse) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

@@ -32,13 +32,13 @@ type priorityQueue []*pqItem
 func (pq priorityQueue) Len() int            { return len(pq) }
 func (pq priorityQueue) Less(i, j int) bool  { return pq[i].dist < pq[j].dist }
 func (pq priorityQueue) Swap(i, j int)       { pq[i], pq[j] = pq[j], pq[i]; pq[i].idx = i; pq[j].idx = j }
-func (pq *priorityQueue) Push(x interface{}) {
+func (pq *priorityQueue) Push(x any) {
 	n := len(*pq)
 	item := x.(*pqItem)
 	item.idx = n
 	*pq = append(*pq, item)
 }
-func (pq *priorityQueue) Pop() interface{} {
+func (pq *priorityQueue) Pop() any {
 	old := *pq
 	n := len(old)
 	item := old[n-1]

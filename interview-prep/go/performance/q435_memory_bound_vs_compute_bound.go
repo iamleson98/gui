@@ -11,20 +11,20 @@ import (
 
 // Memory-Bound vs Compute-Bound
 // Implements a performance optimization for question #435.
-type MemoryBoundVsComputeBound struct {
+type Q435_MemoryBoundVsComputeBound struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewMemoryBoundVsComputeBound creates a new performance optimizer.
-func NewMemoryBoundVsComputeBound() *MemoryBoundVsComputeBound {
-        return &MemoryBoundVsComputeBound{cache: make(map[uint64]interface{})}
+// NewQ435_MemoryBoundVsComputeBound creates a new performance optimizer.
+func NewQ435_MemoryBoundVsComputeBound() *Q435_MemoryBoundVsComputeBound {
+        return &Q435_MemoryBoundVsComputeBound{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *MemoryBoundVsComputeBound) Get(key uint64) (interface{, bool) {
+func (p *Q435_MemoryBoundVsComputeBound) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *MemoryBoundVsComputeBound) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *MemoryBoundVsComputeBound) Set(key uint64, val interface{) {
+func (p *Q435_MemoryBoundVsComputeBound) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *MemoryBoundVsComputeBound) Stats() (int64, int64) {
+func (p *Q435_MemoryBoundVsComputeBound) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

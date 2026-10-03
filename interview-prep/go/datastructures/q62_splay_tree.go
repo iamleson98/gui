@@ -6,30 +6,30 @@ package datastructures
 
 // Splay Tree
 // Implements a data structure for question #62.
-type SplayTree struct {
+type Q62_SplayTree struct {
         data map[int]int
         size int
 }
 
-// NewSplayTree creates a new instance.
-func NewSplayTree() *SplayTree {
-        return &SplayTree{data: make(map[int]int)}
+// NewQ62_SplayTree creates a new instance.
+func NewQ62_SplayTree() *Q62_SplayTree {
+        return &Q62_SplayTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *SplayTree) Insert(key, val int) {
+func (d *Q62_SplayTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *SplayTree) Search(key int) (int, bool) {
+func (d *Q62_SplayTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *SplayTree) Delete(key int) bool {
+func (d *Q62_SplayTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *SplayTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *SplayTree) Len() int { return d.size }
+func (d *Q62_SplayTree) Len() int { return d.size }

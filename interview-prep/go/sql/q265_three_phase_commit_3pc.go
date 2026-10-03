@@ -4,17 +4,16 @@
 // Description: Add a pre-commit phase to 2PC to reduce blocking on coordinator failure under assumptions.
 package sql
 
-import "fmt"
 
 // Three-Phase Commit (3PC)
 // Implements a database design pattern for question #265.
 
-// ThreePhaseCommit3Pc represents the database schema/concept.
-type ThreePhaseCommit3Pc struct {
+// Q265_ThreePhaseCommit3Pc represents the database schema/concept.
+type Q265_ThreePhaseCommit3Pc struct {
         tables map[string][]string
 }
 
-// NewThreePhaseCommit3Pc initializes the schema.
-func NewThreePhaseCommit3Pc() *ThreePhaseCommit3Pc {
-        return &ThreePhaseCommit3Pc{tables: make(map[string][]string)}
+// NewQ265_ThreePhaseCommit3Pc initializes the schema.
+func NewQ265_ThreePhaseCommit3Pc() *Q265_ThreePhaseCommit3Pc {
+        return &Q265_ThreePhaseCommit3Pc{tables: make(map[string][]string)}
 }

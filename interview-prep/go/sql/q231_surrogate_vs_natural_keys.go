@@ -4,17 +4,16 @@
 // Description: Choose between surrogate and natural keys, weighing stability, size, and join performance.
 package sql
 
-import "fmt"
 
 // Surrogate vs Natural Keys
 // Implements a database design pattern for question #231.
 
-// SurrogateVsNaturalKeys represents the database schema/concept.
-type SurrogateVsNaturalKeys struct {
+// Q231_SurrogateVsNaturalKeys represents the database schema/concept.
+type Q231_SurrogateVsNaturalKeys struct {
         tables map[string][]string
 }
 
-// NewSurrogateVsNaturalKeys initializes the schema.
-func NewSurrogateVsNaturalKeys() *SurrogateVsNaturalKeys {
-        return &SurrogateVsNaturalKeys{tables: make(map[string][]string)}
+// NewQ231_SurrogateVsNaturalKeys initializes the schema.
+func NewQ231_SurrogateVsNaturalKeys() *Q231_SurrogateVsNaturalKeys {
+        return &Q231_SurrogateVsNaturalKeys{tables: make(map[string][]string)}
 }

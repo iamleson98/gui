@@ -8,22 +8,22 @@ import "sync"
 
 // Slab Allocator
 // Implements a memory management technique for question #361.
-type SlabAllocator struct {
+type Q361_SlabAllocator struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewSlabAllocator creates a memory manager with the given capacity.
-func NewSlabAllocator(capacity int) *SlabAllocator {
-        return &SlabAllocator{
-                pool: make([]interface{}, 0, capacity),
+// NewQ361_SlabAllocator creates a memory manager with the given capacity.
+func NewQ361_SlabAllocator(capacity int) *Q361_SlabAllocator {
+        return &Q361_SlabAllocator{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *SlabAllocator) Allocate() interface{ {
+func (m *Q361_SlabAllocator) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *SlabAllocator) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *SlabAllocator) Release(obj interface{) {
+func (m *Q361_SlabAllocator) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

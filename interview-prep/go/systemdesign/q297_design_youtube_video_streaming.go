@@ -8,29 +8,29 @@ import "sync"
 
 // Design YouTube / Video Streaming
 // Implements a system design component for question #297.
-type DesignYoutubeVideoStreaming struct {
+type Q297_DesignYoutubeVideoStreaming struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignYoutubeVideoStreaming creates a new system component.
-func NewDesignYoutubeVideoStreaming() *DesignYoutubeVideoStreaming {
-        return &DesignYoutubeVideoStreaming{
+// NewQ297_DesignYoutubeVideoStreaming creates a new system component.
+func NewQ297_DesignYoutubeVideoStreaming() *Q297_DesignYoutubeVideoStreaming {
+        return &Q297_DesignYoutubeVideoStreaming{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignYoutubeVideoStreaming) SetConfig(key, val string) {
+func (s *Q297_DesignYoutubeVideoStreaming) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignYoutubeVideoStreaming) GetConfig(key string) (string, bool) {
+func (s *Q297_DesignYoutubeVideoStreaming) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignYoutubeVideoStreaming) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignYoutubeVideoStreaming) IncrementMetric(key string) {
+func (s *Q297_DesignYoutubeVideoStreaming) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

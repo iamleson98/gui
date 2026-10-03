@@ -12,36 +12,36 @@ import (
 
 // Fast Retransmit and Fast Recovery
 // Implements a networking concept for question #515.
-type FastRetransmitAndFastRecovery struct {
+type Q515_FastRetransmitAndFastRecovery struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewFastRetransmitAndFastRecovery creates a new network handler.
-func NewFastRetransmitAndFastRecovery(timeout time.Duration) *FastRetransmitAndFastRecovery {
-        return &FastRetransmitAndFastRecovery{
+// NewQ515_FastRetransmitAndFastRecovery creates a new network handler.
+func NewQ515_FastRetransmitAndFastRecovery(timeout time.Duration) *Q515_FastRetransmitAndFastRecovery {
+        return &Q515_FastRetransmitAndFastRecovery{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *FastRetransmitAndFastRecovery) AddConnection(id string, conn net.Conn) {
+func (n *Q515_FastRetransmitAndFastRecovery) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *FastRetransmitAndFastRecovery) RemoveConnection(id string) {
+func (n *Q515_FastRetransmitAndFastRecovery) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *FastRetransmitAndFastRecovery) Send(id string, data []byte) error {
+func (n *Q515_FastRetransmitAndFastRecovery) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

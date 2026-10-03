@@ -11,20 +11,20 @@ import (
 
 // perf / perf_events
 // Implements a performance optimization for question #413.
-type PerfPerfEvents struct {
+type Q413_PerfPerfEvents struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewPerfPerfEvents creates a new performance optimizer.
-func NewPerfPerfEvents() *PerfPerfEvents {
-        return &PerfPerfEvents{cache: make(map[uint64]interface{})}
+// NewQ413_PerfPerfEvents creates a new performance optimizer.
+func NewQ413_PerfPerfEvents() *Q413_PerfPerfEvents {
+        return &Q413_PerfPerfEvents{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *PerfPerfEvents) Get(key uint64) (interface{, bool) {
+func (p *Q413_PerfPerfEvents) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *PerfPerfEvents) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *PerfPerfEvents) Set(key uint64, val interface{) {
+func (p *Q413_PerfPerfEvents) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *PerfPerfEvents) Stats() (int64, int64) {
+func (p *Q413_PerfPerfEvents) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

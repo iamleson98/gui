@@ -8,22 +8,22 @@ import "sync"
 
 // Hazard Pointers for Reclamation
 // Implements a memory management technique for question #385.
-type HazardPointersForReclamation struct {
+type Q385_HazardPointersForReclamation struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewHazardPointersForReclamation creates a memory manager with the given capacity.
-func NewHazardPointersForReclamation(capacity int) *HazardPointersForReclamation {
-        return &HazardPointersForReclamation{
-                pool: make([]interface{}, 0, capacity),
+// NewQ385_HazardPointersForReclamation creates a memory manager with the given capacity.
+func NewQ385_HazardPointersForReclamation(capacity int) *Q385_HazardPointersForReclamation {
+        return &Q385_HazardPointersForReclamation{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *HazardPointersForReclamation) Allocate() interface{ {
+func (m *Q385_HazardPointersForReclamation) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *HazardPointersForReclamation) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *HazardPointersForReclamation) Release(obj interface{) {
+func (m *Q385_HazardPointersForReclamation) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

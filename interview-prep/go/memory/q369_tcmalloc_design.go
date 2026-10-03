@@ -8,22 +8,22 @@ import "sync"
 
 // tcmalloc Design
 // Implements a memory management technique for question #369.
-type TcmallocDesign struct {
+type Q369_TcmallocDesign struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewTcmallocDesign creates a memory manager with the given capacity.
-func NewTcmallocDesign(capacity int) *TcmallocDesign {
-        return &TcmallocDesign{
-                pool: make([]interface{}, 0, capacity),
+// NewQ369_TcmallocDesign creates a memory manager with the given capacity.
+func NewQ369_TcmallocDesign(capacity int) *Q369_TcmallocDesign {
+        return &Q369_TcmallocDesign{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *TcmallocDesign) Allocate() interface{ {
+func (m *Q369_TcmallocDesign) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *TcmallocDesign) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *TcmallocDesign) Release(obj interface{) {
+func (m *Q369_TcmallocDesign) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

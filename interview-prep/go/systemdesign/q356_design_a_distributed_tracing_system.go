@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Distributed Tracing System
 // Implements a system design component for question #356.
-type DesignADistributedTracingSystem struct {
+type Q356_DesignADistributedTracingSystem struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignADistributedTracingSystem creates a new system component.
-func NewDesignADistributedTracingSystem() *DesignADistributedTracingSystem {
-        return &DesignADistributedTracingSystem{
+// NewQ356_DesignADistributedTracingSystem creates a new system component.
+func NewQ356_DesignADistributedTracingSystem() *Q356_DesignADistributedTracingSystem {
+        return &Q356_DesignADistributedTracingSystem{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignADistributedTracingSystem) SetConfig(key, val string) {
+func (s *Q356_DesignADistributedTracingSystem) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignADistributedTracingSystem) GetConfig(key string) (string, bool) {
+func (s *Q356_DesignADistributedTracingSystem) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignADistributedTracingSystem) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignADistributedTracingSystem) IncrementMetric(key string) {
+func (s *Q356_DesignADistributedTracingSystem) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

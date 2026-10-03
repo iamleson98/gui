@@ -6,30 +6,30 @@ package datastructures
 
 // HyperLogLog
 // Implements a data structure for question #100.
-type Hyperloglog struct {
+type Q100_Hyperloglog struct {
         data map[int]int
         size int
 }
 
-// NewHyperloglog creates a new instance.
-func NewHyperloglog() *Hyperloglog {
-        return &Hyperloglog{data: make(map[int]int)}
+// NewQ100_Hyperloglog creates a new instance.
+func NewQ100_Hyperloglog() *Q100_Hyperloglog {
+        return &Q100_Hyperloglog{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *Hyperloglog) Insert(key, val int) {
+func (d *Q100_Hyperloglog) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *Hyperloglog) Search(key int) (int, bool) {
+func (d *Q100_Hyperloglog) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *Hyperloglog) Delete(key int) bool {
+func (d *Q100_Hyperloglog) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *Hyperloglog) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *Hyperloglog) Len() int { return d.size }
+func (d *Q100_Hyperloglog) Len() int { return d.size }

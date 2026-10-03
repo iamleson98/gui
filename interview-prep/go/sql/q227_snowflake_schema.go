@@ -4,17 +4,16 @@
 // Description: Normalize dimensions in a star schema to form a snowflake and weigh query vs storage tradeoffs.
 package sql
 
-import "fmt"
 
 // Snowflake Schema
 // Implements a database design pattern for question #227.
 
-// SnowflakeSchema represents the database schema/concept.
-type SnowflakeSchema struct {
+// Q227_SnowflakeSchema represents the database schema/concept.
+type Q227_SnowflakeSchema struct {
         tables map[string][]string
 }
 
-// NewSnowflakeSchema initializes the schema.
-func NewSnowflakeSchema() *SnowflakeSchema {
-        return &SnowflakeSchema{tables: make(map[string][]string)}
+// NewQ227_SnowflakeSchema initializes the schema.
+func NewQ227_SnowflakeSchema() *Q227_SnowflakeSchema {
+        return &Q227_SnowflakeSchema{tables: make(map[string][]string)}
 }

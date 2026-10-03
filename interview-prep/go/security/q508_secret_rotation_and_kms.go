@@ -13,28 +13,28 @@ import (
 
 // Secret Rotation and KMS
 // Implements a security primitive for question #508.
-type SecretRotationAndKms struct {
+type Q508_SecretRotationAndKms struct {
         key []byte
 }
 
-// NewSecretRotationAndKms creates a new security handler with the given key.
-func NewSecretRotationAndKms(key []byte) *SecretRotationAndKms {
-        return &SecretRotationAndKms{key: key}
+// NewQ508_SecretRotationAndKms creates a new security handler with the given key.
+func NewQ508_SecretRotationAndKms(key []byte) *Q508_SecretRotationAndKms {
+        return &Q508_SecretRotationAndKms{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *SecretRotationAndKms) Hash(data []byte) string {
+func (s *Q508_SecretRotationAndKms) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *SecretRotationAndKms) Verify(a, b []byte) bool {
+func (s *Q508_SecretRotationAndKms) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *SecretRotationAndKms) HMAC(data []byte) []byte {
+func (s *Q508_SecretRotationAndKms) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

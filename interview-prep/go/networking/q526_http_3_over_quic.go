@@ -12,36 +12,36 @@ import (
 
 // HTTP/3 over QUIC
 // Implements a networking concept for question #526.
-type Http3OverQuic struct {
+type Q526_Http3OverQuic struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewHttp3OverQuic creates a new network handler.
-func NewHttp3OverQuic(timeout time.Duration) *Http3OverQuic {
-        return &Http3OverQuic{
+// NewQ526_Http3OverQuic creates a new network handler.
+func NewQ526_Http3OverQuic(timeout time.Duration) *Q526_Http3OverQuic {
+        return &Q526_Http3OverQuic{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *Http3OverQuic) AddConnection(id string, conn net.Conn) {
+func (n *Q526_Http3OverQuic) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *Http3OverQuic) RemoveConnection(id string) {
+func (n *Q526_Http3OverQuic) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *Http3OverQuic) Send(id string, data []byte) error {
+func (n *Q526_Http3OverQuic) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

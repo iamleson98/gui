@@ -11,22 +11,22 @@ import (
 
 // NUMA-Aware Synchronization
 // Implements a concurrent primitive for question #59.
-type NumaAwareSynchronization struct {
+type Q59_NumaAwareSynchronization struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewNumaAwareSynchronization creates a new instance.
-func NewNumaAwareSynchronization() *NumaAwareSynchronization {
-        x := &NumaAwareSynchronization{notify: make(chan struct{}, 1)}
+// NewQ59_NumaAwareSynchronization creates a new instance.
+func NewQ59_NumaAwareSynchronization() *Q59_NumaAwareSynchronization {
+        x := &Q59_NumaAwareSynchronization{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *NumaAwareSynchronization) Execute() {
+func (x *Q59_NumaAwareSynchronization) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *NumaAwareSynchronization) Execute() {
 }
 
 // Result returns the current state.
-func (x *NumaAwareSynchronization) Result() int64 {
+func (x *Q59_NumaAwareSynchronization) Result() int64 {
         return x.state.Load()
 }

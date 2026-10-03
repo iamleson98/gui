@@ -12,36 +12,36 @@ import (
 
 // TCP Keepalive
 // Implements a networking concept for question #518.
-type TcpKeepalive struct {
+type Q518_TcpKeepalive struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewTcpKeepalive creates a new network handler.
-func NewTcpKeepalive(timeout time.Duration) *TcpKeepalive {
-        return &TcpKeepalive{
+// NewQ518_TcpKeepalive creates a new network handler.
+func NewQ518_TcpKeepalive(timeout time.Duration) *Q518_TcpKeepalive {
+        return &Q518_TcpKeepalive{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *TcpKeepalive) AddConnection(id string, conn net.Conn) {
+func (n *Q518_TcpKeepalive) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *TcpKeepalive) RemoveConnection(id string) {
+func (n *Q518_TcpKeepalive) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *TcpKeepalive) Send(id string, data []byte) error {
+func (n *Q518_TcpKeepalive) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

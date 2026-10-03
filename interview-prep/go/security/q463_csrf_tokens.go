@@ -13,28 +13,28 @@ import (
 
 // CSRF Tokens
 // Implements a security primitive for question #463.
-type CsrfTokens struct {
+type Q463_CsrfTokens struct {
         key []byte
 }
 
-// NewCsrfTokens creates a new security handler with the given key.
-func NewCsrfTokens(key []byte) *CsrfTokens {
-        return &CsrfTokens{key: key}
+// NewQ463_CsrfTokens creates a new security handler with the given key.
+func NewQ463_CsrfTokens(key []byte) *Q463_CsrfTokens {
+        return &Q463_CsrfTokens{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *CsrfTokens) Hash(data []byte) string {
+func (s *Q463_CsrfTokens) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *CsrfTokens) Verify(a, b []byte) bool {
+func (s *Q463_CsrfTokens) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *CsrfTokens) HMAC(data []byte) []byte {
+func (s *Q463_CsrfTokens) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

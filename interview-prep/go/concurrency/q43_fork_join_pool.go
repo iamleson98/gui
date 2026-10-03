@@ -11,22 +11,22 @@ import (
 
 // Fork-Join Pool
 // Implements a concurrent primitive for question #43.
-type ForkJoinPool struct {
+type Q43_ForkJoinPool struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewForkJoinPool creates a new instance.
-func NewForkJoinPool() *ForkJoinPool {
-        x := &ForkJoinPool{notify: make(chan struct{}, 1)}
+// NewQ43_ForkJoinPool creates a new instance.
+func NewQ43_ForkJoinPool() *Q43_ForkJoinPool {
+        x := &Q43_ForkJoinPool{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ForkJoinPool) Execute() {
+func (x *Q43_ForkJoinPool) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ForkJoinPool) Execute() {
 }
 
 // Result returns the current state.
-func (x *ForkJoinPool) Result() int64 {
+func (x *Q43_ForkJoinPool) Result() int64 {
         return x.state.Load()
 }

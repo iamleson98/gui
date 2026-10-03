@@ -6,30 +6,30 @@ package datastructures
 
 // Implicit Treap (Split/Merge)
 // Implements a data structure for question #118.
-type ImplicitTreapSplitMerge struct {
+type Q118_ImplicitTreapSplitMerge struct {
         data map[int]int
         size int
 }
 
-// NewImplicitTreapSplitMerge creates a new instance.
-func NewImplicitTreapSplitMerge() *ImplicitTreapSplitMerge {
-        return &ImplicitTreapSplitMerge{data: make(map[int]int)}
+// NewQ118_ImplicitTreapSplitMerge creates a new instance.
+func NewQ118_ImplicitTreapSplitMerge() *Q118_ImplicitTreapSplitMerge {
+        return &Q118_ImplicitTreapSplitMerge{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *ImplicitTreapSplitMerge) Insert(key, val int) {
+func (d *Q118_ImplicitTreapSplitMerge) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *ImplicitTreapSplitMerge) Search(key int) (int, bool) {
+func (d *Q118_ImplicitTreapSplitMerge) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *ImplicitTreapSplitMerge) Delete(key int) bool {
+func (d *Q118_ImplicitTreapSplitMerge) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *ImplicitTreapSplitMerge) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *ImplicitTreapSplitMerge) Len() int { return d.size }
+func (d *Q118_ImplicitTreapSplitMerge) Len() int { return d.size }

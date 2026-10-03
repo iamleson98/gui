@@ -11,20 +11,20 @@ import (
 
 // Escape Analysis and Stack Allocation
 // Implements a performance optimization for question #459.
-type EscapeAnalysisAndStackAllocation struct {
+type Q459_EscapeAnalysisAndStackAllocation struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewEscapeAnalysisAndStackAllocation creates a new performance optimizer.
-func NewEscapeAnalysisAndStackAllocation() *EscapeAnalysisAndStackAllocation {
-        return &EscapeAnalysisAndStackAllocation{cache: make(map[uint64]interface{})}
+// NewQ459_EscapeAnalysisAndStackAllocation creates a new performance optimizer.
+func NewQ459_EscapeAnalysisAndStackAllocation() *Q459_EscapeAnalysisAndStackAllocation {
+        return &Q459_EscapeAnalysisAndStackAllocation{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *EscapeAnalysisAndStackAllocation) Get(key uint64) (interface{, bool) {
+func (p *Q459_EscapeAnalysisAndStackAllocation) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *EscapeAnalysisAndStackAllocation) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *EscapeAnalysisAndStackAllocation) Set(key uint64, val interface{) {
+func (p *Q459_EscapeAnalysisAndStackAllocation) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *EscapeAnalysisAndStackAllocation) Stats() (int64, int64) {
+func (p *Q459_EscapeAnalysisAndStackAllocation) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

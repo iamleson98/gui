@@ -4,17 +4,16 @@
 // Description: Design fuzzy checkpointing to bound recovery time while minimizing foreground pauses.
 package sql
 
-import "fmt"
 
 // Checkpointing Strategies
 // Implements a database design pattern for question #263.
 
-// CheckpointingStrategies represents the database schema/concept.
-type CheckpointingStrategies struct {
+// Q263_CheckpointingStrategies represents the database schema/concept.
+type Q263_CheckpointingStrategies struct {
         tables map[string][]string
 }
 
-// NewCheckpointingStrategies initializes the schema.
-func NewCheckpointingStrategies() *CheckpointingStrategies {
-        return &CheckpointingStrategies{tables: make(map[string][]string)}
+// NewQ263_CheckpointingStrategies initializes the schema.
+func NewQ263_CheckpointingStrategies() *Q263_CheckpointingStrategies {
+        return &Q263_CheckpointingStrategies{tables: make(map[string][]string)}
 }

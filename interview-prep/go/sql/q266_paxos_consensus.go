@@ -4,17 +4,16 @@
 // Description: Implement single-decree Paxos with proposers, acceptors, and learners achieving safety under quorum.
 package sql
 
-import "fmt"
 
 // Paxos Consensus
 // Implements a database design pattern for question #266.
 
-// PaxosConsensus represents the database schema/concept.
-type PaxosConsensus struct {
+// Q266_PaxosConsensus represents the database schema/concept.
+type Q266_PaxosConsensus struct {
         tables map[string][]string
 }
 
-// NewPaxosConsensus initializes the schema.
-func NewPaxosConsensus() *PaxosConsensus {
-        return &PaxosConsensus{tables: make(map[string][]string)}
+// NewQ266_PaxosConsensus initializes the schema.
+func NewQ266_PaxosConsensus() *Q266_PaxosConsensus {
+        return &Q266_PaxosConsensus{tables: make(map[string][]string)}
 }

@@ -12,36 +12,36 @@ import (
 
 // TCP Congestion Control (BBR)
 // Implements a networking concept for question #512.
-type TcpCongestionControlBbr struct {
+type Q512_TcpCongestionControlBbr struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewTcpCongestionControlBbr creates a new network handler.
-func NewTcpCongestionControlBbr(timeout time.Duration) *TcpCongestionControlBbr {
-        return &TcpCongestionControlBbr{
+// NewQ512_TcpCongestionControlBbr creates a new network handler.
+func NewQ512_TcpCongestionControlBbr(timeout time.Duration) *Q512_TcpCongestionControlBbr {
+        return &Q512_TcpCongestionControlBbr{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *TcpCongestionControlBbr) AddConnection(id string, conn net.Conn) {
+func (n *Q512_TcpCongestionControlBbr) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *TcpCongestionControlBbr) RemoveConnection(id string) {
+func (n *Q512_TcpCongestionControlBbr) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *TcpCongestionControlBbr) Send(id string, data []byte) error {
+func (n *Q512_TcpCongestionControlBbr) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

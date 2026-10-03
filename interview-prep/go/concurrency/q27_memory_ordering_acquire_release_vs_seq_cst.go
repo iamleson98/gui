@@ -11,22 +11,22 @@ import (
 
 // Memory Ordering: Acquire/Release vs seq_cst
 // Implements a concurrent primitive for question #27.
-type MemoryOrderingAcquireReleaseVsSeqCst struct {
+type Q27_MemoryOrderingAcquireReleaseVsSeqCst struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewMemoryOrderingAcquireReleaseVsSeqCst creates a new instance.
-func NewMemoryOrderingAcquireReleaseVsSeqCst() *MemoryOrderingAcquireReleaseVsSeqCst {
-        x := &MemoryOrderingAcquireReleaseVsSeqCst{notify: make(chan struct{}, 1)}
+// NewQ27_MemoryOrderingAcquireReleaseVsSeqCst creates a new instance.
+func NewQ27_MemoryOrderingAcquireReleaseVsSeqCst() *Q27_MemoryOrderingAcquireReleaseVsSeqCst {
+        x := &Q27_MemoryOrderingAcquireReleaseVsSeqCst{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *MemoryOrderingAcquireReleaseVsSeqCst) Execute() {
+func (x *Q27_MemoryOrderingAcquireReleaseVsSeqCst) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *MemoryOrderingAcquireReleaseVsSeqCst) Execute() {
 }
 
 // Result returns the current state.
-func (x *MemoryOrderingAcquireReleaseVsSeqCst) Result() int64 {
+func (x *Q27_MemoryOrderingAcquireReleaseVsSeqCst) Result() int64 {
         return x.state.Load()
 }

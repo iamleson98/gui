@@ -4,17 +4,16 @@
 // Description: Index the result of an expression or function to accelerate transformed predicates.
 package sql
 
-import "fmt"
 
 // Functional/Expression Index
 // Implements a database design pattern for question #255.
 
-// FunctionalExpressionIndex represents the database schema/concept.
-type FunctionalExpressionIndex struct {
+// Q255_FunctionalExpressionIndex represents the database schema/concept.
+type Q255_FunctionalExpressionIndex struct {
         tables map[string][]string
 }
 
-// NewFunctionalExpressionIndex initializes the schema.
-func NewFunctionalExpressionIndex() *FunctionalExpressionIndex {
-        return &FunctionalExpressionIndex{tables: make(map[string][]string)}
+// NewQ255_FunctionalExpressionIndex initializes the schema.
+func NewQ255_FunctionalExpressionIndex() *Q255_FunctionalExpressionIndex {
+        return &Q255_FunctionalExpressionIndex{tables: make(map[string][]string)}
 }

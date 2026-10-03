@@ -11,22 +11,22 @@ import (
 
 // Queue Spinlock (Linux qspinlock)
 // Implements a concurrent primitive for question #12.
-type QueueSpinlockLinuxQspinlock struct {
+type Q12_QueueSpinlockLinuxQspinlock struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewQueueSpinlockLinuxQspinlock creates a new instance.
-func NewQueueSpinlockLinuxQspinlock() *QueueSpinlockLinuxQspinlock {
-        x := &QueueSpinlockLinuxQspinlock{notify: make(chan struct{}, 1)}
+// NewQ12_QueueSpinlockLinuxQspinlock creates a new instance.
+func NewQ12_QueueSpinlockLinuxQspinlock() *Q12_QueueSpinlockLinuxQspinlock {
+        x := &Q12_QueueSpinlockLinuxQspinlock{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *QueueSpinlockLinuxQspinlock) Execute() {
+func (x *Q12_QueueSpinlockLinuxQspinlock) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *QueueSpinlockLinuxQspinlock) Execute() {
 }
 
 // Result returns the current state.
-func (x *QueueSpinlockLinuxQspinlock) Result() int64 {
+func (x *Q12_QueueSpinlockLinuxQspinlock) Result() int64 {
         return x.state.Load()
 }

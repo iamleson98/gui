@@ -11,20 +11,20 @@ import (
 
 // Cache Miss Profiling
 // Implements a performance optimization for question #456.
-type CacheMissProfiling struct {
+type Q456_CacheMissProfiling struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCacheMissProfiling creates a new performance optimizer.
-func NewCacheMissProfiling() *CacheMissProfiling {
-        return &CacheMissProfiling{cache: make(map[uint64]interface{})}
+// NewQ456_CacheMissProfiling creates a new performance optimizer.
+func NewQ456_CacheMissProfiling() *Q456_CacheMissProfiling {
+        return &Q456_CacheMissProfiling{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CacheMissProfiling) Get(key uint64) (interface{, bool) {
+func (p *Q456_CacheMissProfiling) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CacheMissProfiling) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *CacheMissProfiling) Set(key uint64, val interface{) {
+func (p *Q456_CacheMissProfiling) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CacheMissProfiling) Stats() (int64, int64) {
+func (p *Q456_CacheMissProfiling) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

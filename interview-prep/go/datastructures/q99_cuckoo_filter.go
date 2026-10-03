@@ -6,30 +6,30 @@ package datastructures
 
 // Cuckoo Filter
 // Implements a data structure for question #99.
-type CuckooFilter struct {
+type Q99_CuckooFilter struct {
         data map[int]int
         size int
 }
 
-// NewCuckooFilter creates a new instance.
-func NewCuckooFilter() *CuckooFilter {
-        return &CuckooFilter{data: make(map[int]int)}
+// NewQ99_CuckooFilter creates a new instance.
+func NewQ99_CuckooFilter() *Q99_CuckooFilter {
+        return &Q99_CuckooFilter{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *CuckooFilter) Insert(key, val int) {
+func (d *Q99_CuckooFilter) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *CuckooFilter) Search(key int) (int, bool) {
+func (d *Q99_CuckooFilter) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *CuckooFilter) Delete(key int) bool {
+func (d *Q99_CuckooFilter) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *CuckooFilter) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *CuckooFilter) Len() int { return d.size }
+func (d *Q99_CuckooFilter) Len() int { return d.size }

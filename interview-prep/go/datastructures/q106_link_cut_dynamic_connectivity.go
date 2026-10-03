@@ -6,30 +6,30 @@ package datastructures
 
 // Link-Cut Dynamic Connectivity
 // Implements a data structure for question #106.
-type LinkCutDynamicConnectivity struct {
+type Q106_LinkCutDynamicConnectivity struct {
         data map[int]int
         size int
 }
 
-// NewLinkCutDynamicConnectivity creates a new instance.
-func NewLinkCutDynamicConnectivity() *LinkCutDynamicConnectivity {
-        return &LinkCutDynamicConnectivity{data: make(map[int]int)}
+// NewQ106_LinkCutDynamicConnectivity creates a new instance.
+func NewQ106_LinkCutDynamicConnectivity() *Q106_LinkCutDynamicConnectivity {
+        return &Q106_LinkCutDynamicConnectivity{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *LinkCutDynamicConnectivity) Insert(key, val int) {
+func (d *Q106_LinkCutDynamicConnectivity) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *LinkCutDynamicConnectivity) Search(key int) (int, bool) {
+func (d *Q106_LinkCutDynamicConnectivity) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *LinkCutDynamicConnectivity) Delete(key int) bool {
+func (d *Q106_LinkCutDynamicConnectivity) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *LinkCutDynamicConnectivity) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *LinkCutDynamicConnectivity) Len() int { return d.size }
+func (d *Q106_LinkCutDynamicConnectivity) Len() int { return d.size }

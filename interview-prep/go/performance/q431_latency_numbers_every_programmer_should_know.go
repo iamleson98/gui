@@ -11,20 +11,20 @@ import (
 
 // Latency Numbers Every Programmer Should Know
 // Implements a performance optimization for question #431.
-type LatencyNumbersEveryProgrammerShouldKnow struct {
+type Q431_LatencyNumbersEveryProgrammerShouldKnow struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewLatencyNumbersEveryProgrammerShouldKnow creates a new performance optimizer.
-func NewLatencyNumbersEveryProgrammerShouldKnow() *LatencyNumbersEveryProgrammerShouldKnow {
-        return &LatencyNumbersEveryProgrammerShouldKnow{cache: make(map[uint64]interface{})}
+// NewQ431_LatencyNumbersEveryProgrammerShouldKnow creates a new performance optimizer.
+func NewQ431_LatencyNumbersEveryProgrammerShouldKnow() *Q431_LatencyNumbersEveryProgrammerShouldKnow {
+        return &Q431_LatencyNumbersEveryProgrammerShouldKnow{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *LatencyNumbersEveryProgrammerShouldKnow) Get(key uint64) (interface{, bool) {
+func (p *Q431_LatencyNumbersEveryProgrammerShouldKnow) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *LatencyNumbersEveryProgrammerShouldKnow) Get(key uint64) (interface{, b
 }
 
 // Set stores a value in the cache.
-func (p *LatencyNumbersEveryProgrammerShouldKnow) Set(key uint64, val interface{) {
+func (p *Q431_LatencyNumbersEveryProgrammerShouldKnow) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *LatencyNumbersEveryProgrammerShouldKnow) Stats() (int64, int64) {
+func (p *Q431_LatencyNumbersEveryProgrammerShouldKnow) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

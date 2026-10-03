@@ -11,22 +11,22 @@ import (
 
 // Futex (Fast Userspace Mutex)
 // Implements a concurrent primitive for question #18.
-type FutexFastUserspaceMutex struct {
+type Q18_FutexFastUserspaceMutex struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewFutexFastUserspaceMutex creates a new instance.
-func NewFutexFastUserspaceMutex() *FutexFastUserspaceMutex {
-        x := &FutexFastUserspaceMutex{notify: make(chan struct{}, 1)}
+// NewQ18_FutexFastUserspaceMutex creates a new instance.
+func NewQ18_FutexFastUserspaceMutex() *Q18_FutexFastUserspaceMutex {
+        x := &Q18_FutexFastUserspaceMutex{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *FutexFastUserspaceMutex) Execute() {
+func (x *Q18_FutexFastUserspaceMutex) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *FutexFastUserspaceMutex) Execute() {
 }
 
 // Result returns the current state.
-func (x *FutexFastUserspaceMutex) Result() int64 {
+func (x *Q18_FutexFastUserspaceMutex) Result() int64 {
         return x.state.Load()
 }

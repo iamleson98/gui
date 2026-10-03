@@ -11,22 +11,22 @@ import (
 
 // Memory Barriers and Fences
 // Implements a concurrent primitive for question #28.
-type MemoryBarriersAndFences struct {
+type Q28_MemoryBarriersAndFences struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewMemoryBarriersAndFences creates a new instance.
-func NewMemoryBarriersAndFences() *MemoryBarriersAndFences {
-        x := &MemoryBarriersAndFences{notify: make(chan struct{}, 1)}
+// NewQ28_MemoryBarriersAndFences creates a new instance.
+func NewQ28_MemoryBarriersAndFences() *Q28_MemoryBarriersAndFences {
+        x := &Q28_MemoryBarriersAndFences{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *MemoryBarriersAndFences) Execute() {
+func (x *Q28_MemoryBarriersAndFences) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *MemoryBarriersAndFences) Execute() {
 }
 
 // Result returns the current state.
-func (x *MemoryBarriersAndFences) Result() int64 {
+func (x *Q28_MemoryBarriersAndFences) Result() int64 {
         return x.state.Load()
 }

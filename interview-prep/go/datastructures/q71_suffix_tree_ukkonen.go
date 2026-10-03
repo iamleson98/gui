@@ -6,30 +6,30 @@ package datastructures
 
 // Suffix Tree (Ukkonen)
 // Implements a data structure for question #71.
-type SuffixTreeUkkonen struct {
+type Q71_SuffixTreeUkkonen struct {
         data map[int]int
         size int
 }
 
-// NewSuffixTreeUkkonen creates a new instance.
-func NewSuffixTreeUkkonen() *SuffixTreeUkkonen {
-        return &SuffixTreeUkkonen{data: make(map[int]int)}
+// NewQ71_SuffixTreeUkkonen creates a new instance.
+func NewQ71_SuffixTreeUkkonen() *Q71_SuffixTreeUkkonen {
+        return &Q71_SuffixTreeUkkonen{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *SuffixTreeUkkonen) Insert(key, val int) {
+func (d *Q71_SuffixTreeUkkonen) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *SuffixTreeUkkonen) Search(key int) (int, bool) {
+func (d *Q71_SuffixTreeUkkonen) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *SuffixTreeUkkonen) Delete(key int) bool {
+func (d *Q71_SuffixTreeUkkonen) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *SuffixTreeUkkonen) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *SuffixTreeUkkonen) Len() int { return d.size }
+func (d *Q71_SuffixTreeUkkonen) Len() int { return d.size }

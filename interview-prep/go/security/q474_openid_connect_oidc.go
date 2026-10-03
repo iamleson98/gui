@@ -13,28 +13,28 @@ import (
 
 // OpenID Connect (OIDC)
 // Implements a security primitive for question #474.
-type OpenidConnectOidc struct {
+type Q474_OpenidConnectOidc struct {
         key []byte
 }
 
-// NewOpenidConnectOidc creates a new security handler with the given key.
-func NewOpenidConnectOidc(key []byte) *OpenidConnectOidc {
-        return &OpenidConnectOidc{key: key}
+// NewQ474_OpenidConnectOidc creates a new security handler with the given key.
+func NewQ474_OpenidConnectOidc(key []byte) *Q474_OpenidConnectOidc {
+        return &Q474_OpenidConnectOidc{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *OpenidConnectOidc) Hash(data []byte) string {
+func (s *Q474_OpenidConnectOidc) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *OpenidConnectOidc) Verify(a, b []byte) bool {
+func (s *Q474_OpenidConnectOidc) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *OpenidConnectOidc) HMAC(data []byte) []byte {
+func (s *Q474_OpenidConnectOidc) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

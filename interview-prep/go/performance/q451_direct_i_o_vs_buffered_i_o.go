@@ -11,20 +11,20 @@ import (
 
 // Direct I/O vs Buffered I/O
 // Implements a performance optimization for question #451.
-type DirectIOVsBufferedIO struct {
+type Q451_DirectIOVsBufferedIO struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewDirectIOVsBufferedIO creates a new performance optimizer.
-func NewDirectIOVsBufferedIO() *DirectIOVsBufferedIO {
-        return &DirectIOVsBufferedIO{cache: make(map[uint64]interface{})}
+// NewQ451_DirectIOVsBufferedIO creates a new performance optimizer.
+func NewQ451_DirectIOVsBufferedIO() *Q451_DirectIOVsBufferedIO {
+        return &Q451_DirectIOVsBufferedIO{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *DirectIOVsBufferedIO) Get(key uint64) (interface{, bool) {
+func (p *Q451_DirectIOVsBufferedIO) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *DirectIOVsBufferedIO) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *DirectIOVsBufferedIO) Set(key uint64, val interface{) {
+func (p *Q451_DirectIOVsBufferedIO) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *DirectIOVsBufferedIO) Stats() (int64, int64) {
+func (p *Q451_DirectIOVsBufferedIO) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

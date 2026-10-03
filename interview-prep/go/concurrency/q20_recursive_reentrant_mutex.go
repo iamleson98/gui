@@ -11,22 +11,22 @@ import (
 
 // Recursive (Reentrant) Mutex
 // Implements a concurrent primitive for question #20.
-type RecursiveReentrantMutex struct {
+type Q20_RecursiveReentrantMutex struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewRecursiveReentrantMutex creates a new instance.
-func NewRecursiveReentrantMutex() *RecursiveReentrantMutex {
-        x := &RecursiveReentrantMutex{notify: make(chan struct{}, 1)}
+// NewQ20_RecursiveReentrantMutex creates a new instance.
+func NewQ20_RecursiveReentrantMutex() *Q20_RecursiveReentrantMutex {
+        x := &Q20_RecursiveReentrantMutex{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *RecursiveReentrantMutex) Execute() {
+func (x *Q20_RecursiveReentrantMutex) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *RecursiveReentrantMutex) Execute() {
 }
 
 // Result returns the current state.
-func (x *RecursiveReentrantMutex) Result() int64 {
+func (x *Q20_RecursiveReentrantMutex) Result() int64 {
         return x.state.Load()
 }

@@ -8,22 +8,22 @@ import "sync"
 
 // Epoch-Based Reclamation (EBR)
 // Implements a memory management technique for question #386.
-type EpochBasedReclamationEbr struct {
+type Q386_EpochBasedReclamationEbr struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewEpochBasedReclamationEbr creates a memory manager with the given capacity.
-func NewEpochBasedReclamationEbr(capacity int) *EpochBasedReclamationEbr {
-        return &EpochBasedReclamationEbr{
-                pool: make([]interface{}, 0, capacity),
+// NewQ386_EpochBasedReclamationEbr creates a memory manager with the given capacity.
+func NewQ386_EpochBasedReclamationEbr(capacity int) *Q386_EpochBasedReclamationEbr {
+        return &Q386_EpochBasedReclamationEbr{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *EpochBasedReclamationEbr) Allocate() interface{ {
+func (m *Q386_EpochBasedReclamationEbr) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *EpochBasedReclamationEbr) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *EpochBasedReclamationEbr) Release(obj interface{) {
+func (m *Q386_EpochBasedReclamationEbr) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

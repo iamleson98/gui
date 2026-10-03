@@ -11,20 +11,20 @@ import (
 
 // CPU Pipeline Stalls
 // Implements a performance optimization for question #418.
-type CpuPipelineStalls struct {
+type Q418_CpuPipelineStalls struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCpuPipelineStalls creates a new performance optimizer.
-func NewCpuPipelineStalls() *CpuPipelineStalls {
-        return &CpuPipelineStalls{cache: make(map[uint64]interface{})}
+// NewQ418_CpuPipelineStalls creates a new performance optimizer.
+func NewQ418_CpuPipelineStalls() *Q418_CpuPipelineStalls {
+        return &Q418_CpuPipelineStalls{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CpuPipelineStalls) Get(key uint64) (interface{, bool) {
+func (p *Q418_CpuPipelineStalls) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CpuPipelineStalls) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *CpuPipelineStalls) Set(key uint64, val interface{) {
+func (p *Q418_CpuPipelineStalls) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CpuPipelineStalls) Stats() (int64, int64) {
+func (p *Q418_CpuPipelineStalls) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

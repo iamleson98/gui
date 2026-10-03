@@ -12,36 +12,36 @@ import (
 
 // WebRTC and ICE/STUN/TURN
 // Implements a networking concept for question #541.
-type WebrtcAndIceStunTurn struct {
+type Q541_WebrtcAndIceStunTurn struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewWebrtcAndIceStunTurn creates a new network handler.
-func NewWebrtcAndIceStunTurn(timeout time.Duration) *WebrtcAndIceStunTurn {
-        return &WebrtcAndIceStunTurn{
+// NewQ541_WebrtcAndIceStunTurn creates a new network handler.
+func NewQ541_WebrtcAndIceStunTurn(timeout time.Duration) *Q541_WebrtcAndIceStunTurn {
+        return &Q541_WebrtcAndIceStunTurn{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *WebrtcAndIceStunTurn) AddConnection(id string, conn net.Conn) {
+func (n *Q541_WebrtcAndIceStunTurn) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *WebrtcAndIceStunTurn) RemoveConnection(id string) {
+func (n *Q541_WebrtcAndIceStunTurn) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *WebrtcAndIceStunTurn) Send(id string, data []byte) error {
+func (n *Q541_WebrtcAndIceStunTurn) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

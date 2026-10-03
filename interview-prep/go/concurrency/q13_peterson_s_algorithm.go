@@ -11,22 +11,22 @@ import (
 
 // Peterson's Algorithm
 // Implements a concurrent primitive for question #13.
-type PetersonSAlgorithm struct {
+type Q13_PetersonSAlgorithm struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewPetersonSAlgorithm creates a new instance.
-func NewPetersonSAlgorithm() *PetersonSAlgorithm {
-        x := &PetersonSAlgorithm{notify: make(chan struct{}, 1)}
+// NewQ13_PetersonSAlgorithm creates a new instance.
+func NewQ13_PetersonSAlgorithm() *Q13_PetersonSAlgorithm {
+        x := &Q13_PetersonSAlgorithm{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *PetersonSAlgorithm) Execute() {
+func (x *Q13_PetersonSAlgorithm) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *PetersonSAlgorithm) Execute() {
 }
 
 // Result returns the current state.
-func (x *PetersonSAlgorithm) Result() int64 {
+func (x *Q13_PetersonSAlgorithm) Result() int64 {
         return x.state.Load()
 }

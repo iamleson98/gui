@@ -11,22 +11,22 @@ import (
 
 // Thread-Local Storage
 // Implements a concurrent primitive for question #56.
-type ThreadLocalStorage struct {
+type Q56_ThreadLocalStorage struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewThreadLocalStorage creates a new instance.
-func NewThreadLocalStorage() *ThreadLocalStorage {
-        x := &ThreadLocalStorage{notify: make(chan struct{}, 1)}
+// NewQ56_ThreadLocalStorage creates a new instance.
+func NewQ56_ThreadLocalStorage() *Q56_ThreadLocalStorage {
+        x := &Q56_ThreadLocalStorage{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ThreadLocalStorage) Execute() {
+func (x *Q56_ThreadLocalStorage) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ThreadLocalStorage) Execute() {
 }
 
 // Result returns the current state.
-func (x *ThreadLocalStorage) Result() int64 {
+func (x *Q56_ThreadLocalStorage) Result() int64 {
         return x.state.Load()
 }

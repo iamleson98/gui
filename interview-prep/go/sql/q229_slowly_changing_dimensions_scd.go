@@ -4,17 +4,16 @@
 // Description: Implement SCD Types 1-4 to track history of dimension attribute changes over time.
 package sql
 
-import "fmt"
 
 // Slowly Changing Dimensions (SCD)
 // Implements a database design pattern for question #229.
 
-// SlowlyChangingDimensionsScd represents the database schema/concept.
-type SlowlyChangingDimensionsScd struct {
+// Q229_SlowlyChangingDimensionsScd represents the database schema/concept.
+type Q229_SlowlyChangingDimensionsScd struct {
         tables map[string][]string
 }
 
-// NewSlowlyChangingDimensionsScd initializes the schema.
-func NewSlowlyChangingDimensionsScd() *SlowlyChangingDimensionsScd {
-        return &SlowlyChangingDimensionsScd{tables: make(map[string][]string)}
+// NewQ229_SlowlyChangingDimensionsScd initializes the schema.
+func NewQ229_SlowlyChangingDimensionsScd() *Q229_SlowlyChangingDimensionsScd {
+        return &Q229_SlowlyChangingDimensionsScd{tables: make(map[string][]string)}
 }

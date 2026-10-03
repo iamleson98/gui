@@ -11,22 +11,22 @@ import (
 
 // Phaser / Cyclic Barrier
 // Implements a concurrent primitive for question #50.
-type PhaserCyclicBarrier struct {
+type Q50_PhaserCyclicBarrier struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewPhaserCyclicBarrier creates a new instance.
-func NewPhaserCyclicBarrier() *PhaserCyclicBarrier {
-        x := &PhaserCyclicBarrier{notify: make(chan struct{}, 1)}
+// NewQ50_PhaserCyclicBarrier creates a new instance.
+func NewQ50_PhaserCyclicBarrier() *Q50_PhaserCyclicBarrier {
+        x := &Q50_PhaserCyclicBarrier{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *PhaserCyclicBarrier) Execute() {
+func (x *Q50_PhaserCyclicBarrier) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *PhaserCyclicBarrier) Execute() {
 }
 
 // Result returns the current state.
-func (x *PhaserCyclicBarrier) Result() int64 {
+func (x *Q50_PhaserCyclicBarrier) Result() int64 {
         return x.state.Load()
 }

@@ -8,22 +8,22 @@ import "sync"
 
 // Page Replacement (LRU/Clock)
 // Implements a memory management technique for question #397.
-type PageReplacementLruClock struct {
+type Q397_PageReplacementLruClock struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewPageReplacementLruClock creates a memory manager with the given capacity.
-func NewPageReplacementLruClock(capacity int) *PageReplacementLruClock {
-        return &PageReplacementLruClock{
-                pool: make([]interface{}, 0, capacity),
+// NewQ397_PageReplacementLruClock creates a memory manager with the given capacity.
+func NewQ397_PageReplacementLruClock(capacity int) *Q397_PageReplacementLruClock {
+        return &Q397_PageReplacementLruClock{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *PageReplacementLruClock) Allocate() interface{ {
+func (m *Q397_PageReplacementLruClock) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *PageReplacementLruClock) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *PageReplacementLruClock) Release(obj interface{) {
+func (m *Q397_PageReplacementLruClock) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

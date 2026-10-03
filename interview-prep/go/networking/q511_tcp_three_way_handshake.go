@@ -12,36 +12,36 @@ import (
 
 // TCP Three-Way Handshake
 // Implements a networking concept for question #511.
-type TcpThreeWayHandshake struct {
+type Q511_TcpThreeWayHandshake struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewTcpThreeWayHandshake creates a new network handler.
-func NewTcpThreeWayHandshake(timeout time.Duration) *TcpThreeWayHandshake {
-        return &TcpThreeWayHandshake{
+// NewQ511_TcpThreeWayHandshake creates a new network handler.
+func NewQ511_TcpThreeWayHandshake(timeout time.Duration) *Q511_TcpThreeWayHandshake {
+        return &Q511_TcpThreeWayHandshake{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *TcpThreeWayHandshake) AddConnection(id string, conn net.Conn) {
+func (n *Q511_TcpThreeWayHandshake) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *TcpThreeWayHandshake) RemoveConnection(id string) {
+func (n *Q511_TcpThreeWayHandshake) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *TcpThreeWayHandshake) Send(id string, data []byte) error {
+func (n *Q511_TcpThreeWayHandshake) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

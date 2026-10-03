@@ -13,28 +13,28 @@ import (
 
 // OAuth 2.0 Flows
 // Implements a security primitive for question #473.
-type Oauth20Flows struct {
+type Q473_Oauth20Flows struct {
         key []byte
 }
 
-// NewOauth20Flows creates a new security handler with the given key.
-func NewOauth20Flows(key []byte) *Oauth20Flows {
-        return &Oauth20Flows{key: key}
+// NewQ473_Oauth20Flows creates a new security handler with the given key.
+func NewQ473_Oauth20Flows(key []byte) *Q473_Oauth20Flows {
+        return &Q473_Oauth20Flows{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *Oauth20Flows) Hash(data []byte) string {
+func (s *Q473_Oauth20Flows) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *Oauth20Flows) Verify(a, b []byte) bool {
+func (s *Q473_Oauth20Flows) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *Oauth20Flows) HMAC(data []byte) []byte {
+func (s *Q473_Oauth20Flows) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

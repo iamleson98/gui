@@ -6,30 +6,30 @@ package datastructures
 
 // Binary Search Tree (Basic)
 // Implements a data structure for question #117.
-type BinarySearchTreeBasic struct {
+type Q117_BinarySearchTreeBasic struct {
         data map[int]int
         size int
 }
 
-// NewBinarySearchTreeBasic creates a new instance.
-func NewBinarySearchTreeBasic() *BinarySearchTreeBasic {
-        return &BinarySearchTreeBasic{data: make(map[int]int)}
+// NewQ117_BinarySearchTreeBasic creates a new instance.
+func NewQ117_BinarySearchTreeBasic() *Q117_BinarySearchTreeBasic {
+        return &Q117_BinarySearchTreeBasic{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *BinarySearchTreeBasic) Insert(key, val int) {
+func (d *Q117_BinarySearchTreeBasic) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *BinarySearchTreeBasic) Search(key int) (int, bool) {
+func (d *Q117_BinarySearchTreeBasic) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *BinarySearchTreeBasic) Delete(key int) bool {
+func (d *Q117_BinarySearchTreeBasic) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *BinarySearchTreeBasic) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *BinarySearchTreeBasic) Len() int { return d.size }
+func (d *Q117_BinarySearchTreeBasic) Len() int { return d.size }

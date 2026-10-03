@@ -8,22 +8,22 @@ import "sync"
 
 // Copying GC (Semispace)
 // Implements a memory management technique for question #374.
-type CopyingGcSemispace struct {
+type Q374_CopyingGcSemispace struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewCopyingGcSemispace creates a memory manager with the given capacity.
-func NewCopyingGcSemispace(capacity int) *CopyingGcSemispace {
-        return &CopyingGcSemispace{
-                pool: make([]interface{}, 0, capacity),
+// NewQ374_CopyingGcSemispace creates a memory manager with the given capacity.
+func NewQ374_CopyingGcSemispace(capacity int) *Q374_CopyingGcSemispace {
+        return &Q374_CopyingGcSemispace{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *CopyingGcSemispace) Allocate() interface{ {
+func (m *Q374_CopyingGcSemispace) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *CopyingGcSemispace) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *CopyingGcSemispace) Release(obj interface{) {
+func (m *Q374_CopyingGcSemispace) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

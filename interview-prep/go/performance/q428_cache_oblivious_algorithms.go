@@ -11,20 +11,20 @@ import (
 
 // Cache-Oblivious Algorithms
 // Implements a performance optimization for question #428.
-type CacheObliviousAlgorithms struct {
+type Q428_CacheObliviousAlgorithms struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCacheObliviousAlgorithms creates a new performance optimizer.
-func NewCacheObliviousAlgorithms() *CacheObliviousAlgorithms {
-        return &CacheObliviousAlgorithms{cache: make(map[uint64]interface{})}
+// NewQ428_CacheObliviousAlgorithms creates a new performance optimizer.
+func NewQ428_CacheObliviousAlgorithms() *Q428_CacheObliviousAlgorithms {
+        return &Q428_CacheObliviousAlgorithms{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CacheObliviousAlgorithms) Get(key uint64) (interface{, bool) {
+func (p *Q428_CacheObliviousAlgorithms) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CacheObliviousAlgorithms) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *CacheObliviousAlgorithms) Set(key uint64, val interface{) {
+func (p *Q428_CacheObliviousAlgorithms) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CacheObliviousAlgorithms) Stats() (int64, int64) {
+func (p *Q428_CacheObliviousAlgorithms) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

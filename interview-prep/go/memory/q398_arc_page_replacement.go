@@ -8,22 +8,22 @@ import "sync"
 
 // ARC Page Replacement
 // Implements a memory management technique for question #398.
-type ArcPageReplacement struct {
+type Q398_ArcPageReplacement struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewArcPageReplacement creates a memory manager with the given capacity.
-func NewArcPageReplacement(capacity int) *ArcPageReplacement {
-        return &ArcPageReplacement{
-                pool: make([]interface{}, 0, capacity),
+// NewQ398_ArcPageReplacement creates a memory manager with the given capacity.
+func NewQ398_ArcPageReplacement(capacity int) *Q398_ArcPageReplacement {
+        return &Q398_ArcPageReplacement{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ArcPageReplacement) Allocate() interface{ {
+func (m *Q398_ArcPageReplacement) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ArcPageReplacement) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ArcPageReplacement) Release(obj interface{) {
+func (m *Q398_ArcPageReplacement) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

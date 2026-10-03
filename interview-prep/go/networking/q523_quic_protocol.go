@@ -12,36 +12,36 @@ import (
 
 // QUIC Protocol
 // Implements a networking concept for question #523.
-type QuicProtocol struct {
+type Q523_QuicProtocol struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewQuicProtocol creates a new network handler.
-func NewQuicProtocol(timeout time.Duration) *QuicProtocol {
-        return &QuicProtocol{
+// NewQ523_QuicProtocol creates a new network handler.
+func NewQ523_QuicProtocol(timeout time.Duration) *Q523_QuicProtocol {
+        return &Q523_QuicProtocol{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *QuicProtocol) AddConnection(id string, conn net.Conn) {
+func (n *Q523_QuicProtocol) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *QuicProtocol) RemoveConnection(id string) {
+func (n *Q523_QuicProtocol) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *QuicProtocol) Send(id string, data []byte) error {
+func (n *Q523_QuicProtocol) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

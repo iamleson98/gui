@@ -4,17 +4,16 @@
 // Description: Choose GiST vs GIN for full-text and custom data types based on query and update patterns.
 package sql
 
-import "fmt"
 
 // GiST and GIN Indexes
 // Implements a database design pattern for question #251.
 
-// GistAndGinIndexes represents the database schema/concept.
-type GistAndGinIndexes struct {
+// Q251_GistAndGinIndexes represents the database schema/concept.
+type Q251_GistAndGinIndexes struct {
         tables map[string][]string
 }
 
-// NewGistAndGinIndexes initializes the schema.
-func NewGistAndGinIndexes() *GistAndGinIndexes {
-        return &GistAndGinIndexes{tables: make(map[string][]string)}
+// NewQ251_GistAndGinIndexes initializes the schema.
+func NewQ251_GistAndGinIndexes() *Q251_GistAndGinIndexes {
+        return &Q251_GistAndGinIndexes{tables: make(map[string][]string)}
 }

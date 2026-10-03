@@ -14,7 +14,7 @@ namespace interview_prep {
 
 // 0-RTT TLS
 // Question ID: 533
-class 0RttTls {
+class Q_0RttTls {
 private:
     std::unordered_map<std::string, int> connections_;
     int timeout_ms_ = 5000;

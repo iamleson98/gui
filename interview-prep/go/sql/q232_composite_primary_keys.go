@@ -4,17 +4,16 @@
 // Description: Design composite primary keys and reason about their impact on indexes and foreign keys.
 package sql
 
-import "fmt"
 
 // Composite Primary Keys
 // Implements a database design pattern for question #232.
 
-// CompositePrimaryKeys represents the database schema/concept.
-type CompositePrimaryKeys struct {
+// Q232_CompositePrimaryKeys represents the database schema/concept.
+type Q232_CompositePrimaryKeys struct {
         tables map[string][]string
 }
 
-// NewCompositePrimaryKeys initializes the schema.
-func NewCompositePrimaryKeys() *CompositePrimaryKeys {
-        return &CompositePrimaryKeys{tables: make(map[string][]string)}
+// NewQ232_CompositePrimaryKeys initializes the schema.
+func NewQ232_CompositePrimaryKeys() *Q232_CompositePrimaryKeys {
+        return &Q232_CompositePrimaryKeys{tables: make(map[string][]string)}
 }

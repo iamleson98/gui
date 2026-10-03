@@ -11,20 +11,20 @@ import (
 
 // Software Prefetching
 // Implements a performance optimization for question #422.
-type SoftwarePrefetching struct {
+type Q422_SoftwarePrefetching struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewSoftwarePrefetching creates a new performance optimizer.
-func NewSoftwarePrefetching() *SoftwarePrefetching {
-        return &SoftwarePrefetching{cache: make(map[uint64]interface{})}
+// NewQ422_SoftwarePrefetching creates a new performance optimizer.
+func NewQ422_SoftwarePrefetching() *Q422_SoftwarePrefetching {
+        return &Q422_SoftwarePrefetching{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *SoftwarePrefetching) Get(key uint64) (interface{, bool) {
+func (p *Q422_SoftwarePrefetching) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *SoftwarePrefetching) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *SoftwarePrefetching) Set(key uint64, val interface{) {
+func (p *Q422_SoftwarePrefetching) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *SoftwarePrefetching) Stats() (int64, int64) {
+func (p *Q422_SoftwarePrefetching) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

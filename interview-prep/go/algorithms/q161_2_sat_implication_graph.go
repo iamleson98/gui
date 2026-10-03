@@ -6,7 +6,7 @@ package algorithms
 
 // 2-SAT (Implication Graph)
 // Implements the algorithm for question #161.
-func 2_sat_implication_graph(input []int) []int {
+func Q161_2_sat_implication_graph(input []int) []int {
         if len(input) <= 1 {
                 return input
         }

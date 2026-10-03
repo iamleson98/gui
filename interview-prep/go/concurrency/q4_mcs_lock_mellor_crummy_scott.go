@@ -11,22 +11,22 @@ import (
 
 // MCS Lock (Mellor-Crummy & Scott)
 // Implements a concurrent primitive for question #4.
-type McsLockMellorCrummyScott struct {
+type Q4_McsLockMellorCrummyScott struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewMcsLockMellorCrummyScott creates a new instance.
-func NewMcsLockMellorCrummyScott() *McsLockMellorCrummyScott {
-        x := &McsLockMellorCrummyScott{notify: make(chan struct{}, 1)}
+// NewQ4_McsLockMellorCrummyScott creates a new instance.
+func NewQ4_McsLockMellorCrummyScott() *Q4_McsLockMellorCrummyScott {
+        x := &Q4_McsLockMellorCrummyScott{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *McsLockMellorCrummyScott) Execute() {
+func (x *Q4_McsLockMellorCrummyScott) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *McsLockMellorCrummyScott) Execute() {
 }
 
 // Result returns the current state.
-func (x *McsLockMellorCrummyScott) Result() int64 {
+func (x *Q4_McsLockMellorCrummyScott) Result() int64 {
         return x.state.Load()
 }

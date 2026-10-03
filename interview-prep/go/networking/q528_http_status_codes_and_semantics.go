@@ -12,36 +12,36 @@ import (
 
 // HTTP Status Codes and Semantics
 // Implements a networking concept for question #528.
-type HttpStatusCodesAndSemantics struct {
+type Q528_HttpStatusCodesAndSemantics struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewHttpStatusCodesAndSemantics creates a new network handler.
-func NewHttpStatusCodesAndSemantics(timeout time.Duration) *HttpStatusCodesAndSemantics {
-        return &HttpStatusCodesAndSemantics{
+// NewQ528_HttpStatusCodesAndSemantics creates a new network handler.
+func NewQ528_HttpStatusCodesAndSemantics(timeout time.Duration) *Q528_HttpStatusCodesAndSemantics {
+        return &Q528_HttpStatusCodesAndSemantics{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *HttpStatusCodesAndSemantics) AddConnection(id string, conn net.Conn) {
+func (n *Q528_HttpStatusCodesAndSemantics) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *HttpStatusCodesAndSemantics) RemoveConnection(id string) {
+func (n *Q528_HttpStatusCodesAndSemantics) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *HttpStatusCodesAndSemantics) Send(id string, data []byte) error {
+func (n *Q528_HttpStatusCodesAndSemantics) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

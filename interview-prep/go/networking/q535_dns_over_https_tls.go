@@ -12,36 +12,36 @@ import (
 
 // DNS over HTTPS/TLS
 // Implements a networking concept for question #535.
-type DnsOverHttpsTls struct {
+type Q535_DnsOverHttpsTls struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewDnsOverHttpsTls creates a new network handler.
-func NewDnsOverHttpsTls(timeout time.Duration) *DnsOverHttpsTls {
-        return &DnsOverHttpsTls{
+// NewQ535_DnsOverHttpsTls creates a new network handler.
+func NewQ535_DnsOverHttpsTls(timeout time.Duration) *Q535_DnsOverHttpsTls {
+        return &Q535_DnsOverHttpsTls{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *DnsOverHttpsTls) AddConnection(id string, conn net.Conn) {
+func (n *Q535_DnsOverHttpsTls) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *DnsOverHttpsTls) RemoveConnection(id string) {
+func (n *Q535_DnsOverHttpsTls) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *DnsOverHttpsTls) Send(id string, data []byte) error {
+func (n *Q535_DnsOverHttpsTls) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

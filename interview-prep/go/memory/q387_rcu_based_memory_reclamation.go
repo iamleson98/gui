@@ -8,22 +8,22 @@ import "sync"
 
 // RCU-Based Memory Reclamation
 // Implements a memory management technique for question #387.
-type RcuBasedMemoryReclamation struct {
+type Q387_RcuBasedMemoryReclamation struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewRcuBasedMemoryReclamation creates a memory manager with the given capacity.
-func NewRcuBasedMemoryReclamation(capacity int) *RcuBasedMemoryReclamation {
-        return &RcuBasedMemoryReclamation{
-                pool: make([]interface{}, 0, capacity),
+// NewQ387_RcuBasedMemoryReclamation creates a memory manager with the given capacity.
+func NewQ387_RcuBasedMemoryReclamation(capacity int) *Q387_RcuBasedMemoryReclamation {
+        return &Q387_RcuBasedMemoryReclamation{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *RcuBasedMemoryReclamation) Allocate() interface{ {
+func (m *Q387_RcuBasedMemoryReclamation) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *RcuBasedMemoryReclamation) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *RcuBasedMemoryReclamation) Release(obj interface{) {
+func (m *Q387_RcuBasedMemoryReclamation) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

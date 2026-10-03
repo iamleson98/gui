@@ -4,17 +4,16 @@
 // Description: Add included non-key columns to make an index covering and enable index-only scans.
 package sql
 
-import "fmt"
 
 // Covering Index (INCLUDE)
 // Implements a database design pattern for question #253.
 
-// CoveringIndexInclude represents the database schema/concept.
-type CoveringIndexInclude struct {
+// Q253_CoveringIndexInclude represents the database schema/concept.
+type Q253_CoveringIndexInclude struct {
         tables map[string][]string
 }
 
-// NewCoveringIndexInclude initializes the schema.
-func NewCoveringIndexInclude() *CoveringIndexInclude {
-        return &CoveringIndexInclude{tables: make(map[string][]string)}
+// NewQ253_CoveringIndexInclude initializes the schema.
+func NewQ253_CoveringIndexInclude() *Q253_CoveringIndexInclude {
+        return &Q253_CoveringIndexInclude{tables: make(map[string][]string)}
 }

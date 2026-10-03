@@ -11,22 +11,22 @@ import (
 
 // CSP Channels (Go-style)
 // Implements a concurrent primitive for question #45.
-type CspChannelsGoStyle struct {
+type Q45_CspChannelsGoStyle struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewCspChannelsGoStyle creates a new instance.
-func NewCspChannelsGoStyle() *CspChannelsGoStyle {
-        x := &CspChannelsGoStyle{notify: make(chan struct{}, 1)}
+// NewQ45_CspChannelsGoStyle creates a new instance.
+func NewQ45_CspChannelsGoStyle() *Q45_CspChannelsGoStyle {
+        x := &Q45_CspChannelsGoStyle{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *CspChannelsGoStyle) Execute() {
+func (x *Q45_CspChannelsGoStyle) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *CspChannelsGoStyle) Execute() {
 }
 
 // Result returns the current state.
-func (x *CspChannelsGoStyle) Result() int64 {
+func (x *Q45_CspChannelsGoStyle) Result() int64 {
         return x.state.Load()
 }

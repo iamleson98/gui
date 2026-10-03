@@ -8,22 +8,22 @@ import "sync"
 
 // Overcommit and OOM
 // Implements a memory management technique for question #402.
-type OvercommitAndOom struct {
+type Q402_OvercommitAndOom struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewOvercommitAndOom creates a memory manager with the given capacity.
-func NewOvercommitAndOom(capacity int) *OvercommitAndOom {
-        return &OvercommitAndOom{
-                pool: make([]interface{}, 0, capacity),
+// NewQ402_OvercommitAndOom creates a memory manager with the given capacity.
+func NewQ402_OvercommitAndOom(capacity int) *Q402_OvercommitAndOom {
+        return &Q402_OvercommitAndOom{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *OvercommitAndOom) Allocate() interface{ {
+func (m *Q402_OvercommitAndOom) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *OvercommitAndOom) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *OvercommitAndOom) Release(obj interface{) {
+func (m *Q402_OvercommitAndOom) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

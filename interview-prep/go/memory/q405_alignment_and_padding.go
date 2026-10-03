@@ -8,22 +8,22 @@ import "sync"
 
 // Alignment and Padding
 // Implements a memory management technique for question #405.
-type AlignmentAndPadding struct {
+type Q405_AlignmentAndPadding struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewAlignmentAndPadding creates a memory manager with the given capacity.
-func NewAlignmentAndPadding(capacity int) *AlignmentAndPadding {
-        return &AlignmentAndPadding{
-                pool: make([]interface{}, 0, capacity),
+// NewQ405_AlignmentAndPadding creates a memory manager with the given capacity.
+func NewQ405_AlignmentAndPadding(capacity int) *Q405_AlignmentAndPadding {
+        return &Q405_AlignmentAndPadding{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *AlignmentAndPadding) Allocate() interface{ {
+func (m *Q405_AlignmentAndPadding) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *AlignmentAndPadding) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *AlignmentAndPadding) Release(obj interface{) {
+func (m *Q405_AlignmentAndPadding) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

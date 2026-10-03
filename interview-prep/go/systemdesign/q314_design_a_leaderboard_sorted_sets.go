@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Leaderboard (Sorted Sets)
 // Implements a system design component for question #314.
-type DesignALeaderboardSortedSets struct {
+type Q314_DesignALeaderboardSortedSets struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignALeaderboardSortedSets creates a new system component.
-func NewDesignALeaderboardSortedSets() *DesignALeaderboardSortedSets {
-        return &DesignALeaderboardSortedSets{
+// NewQ314_DesignALeaderboardSortedSets creates a new system component.
+func NewQ314_DesignALeaderboardSortedSets() *Q314_DesignALeaderboardSortedSets {
+        return &Q314_DesignALeaderboardSortedSets{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignALeaderboardSortedSets) SetConfig(key, val string) {
+func (s *Q314_DesignALeaderboardSortedSets) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignALeaderboardSortedSets) GetConfig(key string) (string, bool) {
+func (s *Q314_DesignALeaderboardSortedSets) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignALeaderboardSortedSets) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignALeaderboardSortedSets) IncrementMetric(key string) {
+func (s *Q314_DesignALeaderboardSortedSets) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

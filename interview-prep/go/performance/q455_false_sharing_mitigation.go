@@ -11,20 +11,20 @@ import (
 
 // False Sharing Mitigation
 // Implements a performance optimization for question #455.
-type FalseSharingMitigation struct {
+type Q455_FalseSharingMitigation struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewFalseSharingMitigation creates a new performance optimizer.
-func NewFalseSharingMitigation() *FalseSharingMitigation {
-        return &FalseSharingMitigation{cache: make(map[uint64]interface{})}
+// NewQ455_FalseSharingMitigation creates a new performance optimizer.
+func NewQ455_FalseSharingMitigation() *Q455_FalseSharingMitigation {
+        return &Q455_FalseSharingMitigation{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *FalseSharingMitigation) Get(key uint64) (interface{, bool) {
+func (p *Q455_FalseSharingMitigation) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *FalseSharingMitigation) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *FalseSharingMitigation) Set(key uint64, val interface{) {
+func (p *Q455_FalseSharingMitigation) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *FalseSharingMitigation) Stats() (int64, int64) {
+func (p *Q455_FalseSharingMitigation) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

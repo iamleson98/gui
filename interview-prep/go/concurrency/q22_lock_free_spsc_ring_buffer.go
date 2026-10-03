@@ -11,22 +11,22 @@ import (
 
 // Lock-Free SPSC Ring Buffer
 // Implements a concurrent primitive for question #22.
-type LockFreeSpscRingBuffer struct {
+type Q22_LockFreeSpscRingBuffer struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewLockFreeSpscRingBuffer creates a new instance.
-func NewLockFreeSpscRingBuffer() *LockFreeSpscRingBuffer {
-        x := &LockFreeSpscRingBuffer{notify: make(chan struct{}, 1)}
+// NewQ22_LockFreeSpscRingBuffer creates a new instance.
+func NewQ22_LockFreeSpscRingBuffer() *Q22_LockFreeSpscRingBuffer {
+        x := &Q22_LockFreeSpscRingBuffer{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *LockFreeSpscRingBuffer) Execute() {
+func (x *Q22_LockFreeSpscRingBuffer) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *LockFreeSpscRingBuffer) Execute() {
 }
 
 // Result returns the current state.
-func (x *LockFreeSpscRingBuffer) Result() int64 {
+func (x *Q22_LockFreeSpscRingBuffer) Result() int64 {
         return x.state.Load()
 }

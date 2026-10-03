@@ -8,29 +8,29 @@ import "sync"
 
 // Design Vector Clocks / Logical Clocks
 // Implements a system design component for question #349.
-type DesignVectorClocksLogicalClocks struct {
+type Q349_DesignVectorClocksLogicalClocks struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignVectorClocksLogicalClocks creates a new system component.
-func NewDesignVectorClocksLogicalClocks() *DesignVectorClocksLogicalClocks {
-        return &DesignVectorClocksLogicalClocks{
+// NewQ349_DesignVectorClocksLogicalClocks creates a new system component.
+func NewQ349_DesignVectorClocksLogicalClocks() *Q349_DesignVectorClocksLogicalClocks {
+        return &Q349_DesignVectorClocksLogicalClocks{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignVectorClocksLogicalClocks) SetConfig(key, val string) {
+func (s *Q349_DesignVectorClocksLogicalClocks) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignVectorClocksLogicalClocks) GetConfig(key string) (string, bool) {
+func (s *Q349_DesignVectorClocksLogicalClocks) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignVectorClocksLogicalClocks) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignVectorClocksLogicalClocks) IncrementMetric(key string) {
+func (s *Q349_DesignVectorClocksLogicalClocks) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

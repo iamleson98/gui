@@ -12,36 +12,36 @@ import (
 
 // HTTP/2 Multiplexing
 // Implements a networking concept for question #524.
-type Http2Multiplexing struct {
+type Q524_Http2Multiplexing struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewHttp2Multiplexing creates a new network handler.
-func NewHttp2Multiplexing(timeout time.Duration) *Http2Multiplexing {
-        return &Http2Multiplexing{
+// NewQ524_Http2Multiplexing creates a new network handler.
+func NewQ524_Http2Multiplexing(timeout time.Duration) *Q524_Http2Multiplexing {
+        return &Q524_Http2Multiplexing{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *Http2Multiplexing) AddConnection(id string, conn net.Conn) {
+func (n *Q524_Http2Multiplexing) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *Http2Multiplexing) RemoveConnection(id string) {
+func (n *Q524_Http2Multiplexing) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *Http2Multiplexing) Send(id string, data []byte) error {
+func (n *Q524_Http2Multiplexing) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

@@ -8,22 +8,22 @@ import "sync"
 
 // False Sharing
 // Implements a memory management technique for question #407.
-type FalseSharing struct {
+type Q407_FalseSharing struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewFalseSharing creates a memory manager with the given capacity.
-func NewFalseSharing(capacity int) *FalseSharing {
-        return &FalseSharing{
-                pool: make([]interface{}, 0, capacity),
+// NewQ407_FalseSharing creates a memory manager with the given capacity.
+func NewQ407_FalseSharing(capacity int) *Q407_FalseSharing {
+        return &Q407_FalseSharing{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *FalseSharing) Allocate() interface{ {
+func (m *Q407_FalseSharing) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *FalseSharing) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *FalseSharing) Release(obj interface{) {
+func (m *Q407_FalseSharing) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

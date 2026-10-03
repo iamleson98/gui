@@ -6,30 +6,30 @@ package datastructures
 
 // R-Tree (Spatial)
 // Implements a data structure for question #122.
-type RTreeSpatial struct {
+type Q122_RTreeSpatial struct {
         data map[int]int
         size int
 }
 
-// NewRTreeSpatial creates a new instance.
-func NewRTreeSpatial() *RTreeSpatial {
-        return &RTreeSpatial{data: make(map[int]int)}
+// NewQ122_RTreeSpatial creates a new instance.
+func NewQ122_RTreeSpatial() *Q122_RTreeSpatial {
+        return &Q122_RTreeSpatial{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *RTreeSpatial) Insert(key, val int) {
+func (d *Q122_RTreeSpatial) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *RTreeSpatial) Search(key int) (int, bool) {
+func (d *Q122_RTreeSpatial) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *RTreeSpatial) Delete(key int) bool {
+func (d *Q122_RTreeSpatial) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *RTreeSpatial) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *RTreeSpatial) Len() int { return d.size }
+func (d *Q122_RTreeSpatial) Len() int { return d.size }

@@ -8,22 +8,22 @@ import "sync"
 
 // Memory-Mapped Files
 // Implements a memory management technique for question #400.
-type MemoryMappedFiles struct {
+type Q400_MemoryMappedFiles struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMemoryMappedFiles creates a memory manager with the given capacity.
-func NewMemoryMappedFiles(capacity int) *MemoryMappedFiles {
-        return &MemoryMappedFiles{
-                pool: make([]interface{}, 0, capacity),
+// NewQ400_MemoryMappedFiles creates a memory manager with the given capacity.
+func NewQ400_MemoryMappedFiles(capacity int) *Q400_MemoryMappedFiles {
+        return &Q400_MemoryMappedFiles{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MemoryMappedFiles) Allocate() interface{ {
+func (m *Q400_MemoryMappedFiles) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MemoryMappedFiles) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MemoryMappedFiles) Release(obj interface{) {
+func (m *Q400_MemoryMappedFiles) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

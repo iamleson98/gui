@@ -4,17 +4,16 @@
 // Description: Store all ancestor-descendant pairs in a closure table for fast descendant and depth queries.
 package sql
 
-import "fmt"
 
 // Closure Table for Hierarchies
 // Implements a database design pattern for question #247.
 
-// ClosureTableForHierarchies represents the database schema/concept.
-type ClosureTableForHierarchies struct {
+// Q247_ClosureTableForHierarchies represents the database schema/concept.
+type Q247_ClosureTableForHierarchies struct {
         tables map[string][]string
 }
 
-// NewClosureTableForHierarchies initializes the schema.
-func NewClosureTableForHierarchies() *ClosureTableForHierarchies {
-        return &ClosureTableForHierarchies{tables: make(map[string][]string)}
+// NewQ247_ClosureTableForHierarchies initializes the schema.
+func NewQ247_ClosureTableForHierarchies() *Q247_ClosureTableForHierarchies {
+        return &Q247_ClosureTableForHierarchies{tables: make(map[string][]string)}
 }

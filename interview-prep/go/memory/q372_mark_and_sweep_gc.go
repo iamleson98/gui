@@ -8,22 +8,22 @@ import "sync"
 
 // Mark-and-Sweep GC
 // Implements a memory management technique for question #372.
-type MarkAndSweepGc struct {
+type Q372_MarkAndSweepGc struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMarkAndSweepGc creates a memory manager with the given capacity.
-func NewMarkAndSweepGc(capacity int) *MarkAndSweepGc {
-        return &MarkAndSweepGc{
-                pool: make([]interface{}, 0, capacity),
+// NewQ372_MarkAndSweepGc creates a memory manager with the given capacity.
+func NewQ372_MarkAndSweepGc(capacity int) *Q372_MarkAndSweepGc {
+        return &Q372_MarkAndSweepGc{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MarkAndSweepGc) Allocate() interface{ {
+func (m *Q372_MarkAndSweepGc) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MarkAndSweepGc) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MarkAndSweepGc) Release(obj interface{) {
+func (m *Q372_MarkAndSweepGc) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

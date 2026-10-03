@@ -4,17 +4,16 @@
 // Description: Implement strict two-phase locking growing then shrinking lock phases to guarantee serializability.
 package sql
 
-import "fmt"
 
 // Two-Phase Locking (2PL)
 // Implements a database design pattern for question #272.
 
-// TwoPhaseLocking2Pl represents the database schema/concept.
-type TwoPhaseLocking2Pl struct {
+// Q272_TwoPhaseLocking2Pl represents the database schema/concept.
+type Q272_TwoPhaseLocking2Pl struct {
         tables map[string][]string
 }
 
-// NewTwoPhaseLocking2Pl initializes the schema.
-func NewTwoPhaseLocking2Pl() *TwoPhaseLocking2Pl {
-        return &TwoPhaseLocking2Pl{tables: make(map[string][]string)}
+// NewQ272_TwoPhaseLocking2Pl initializes the schema.
+func NewQ272_TwoPhaseLocking2Pl() *Q272_TwoPhaseLocking2Pl {
+        return &Q272_TwoPhaseLocking2Pl{tables: make(map[string][]string)}
 }

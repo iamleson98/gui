@@ -8,22 +8,22 @@ import "sync"
 
 // Memory Pools and Object Pools
 // Implements a memory management technique for question #384.
-type MemoryPoolsAndObjectPools struct {
+type Q384_MemoryPoolsAndObjectPools struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMemoryPoolsAndObjectPools creates a memory manager with the given capacity.
-func NewMemoryPoolsAndObjectPools(capacity int) *MemoryPoolsAndObjectPools {
-        return &MemoryPoolsAndObjectPools{
-                pool: make([]interface{}, 0, capacity),
+// NewQ384_MemoryPoolsAndObjectPools creates a memory manager with the given capacity.
+func NewQ384_MemoryPoolsAndObjectPools(capacity int) *Q384_MemoryPoolsAndObjectPools {
+        return &Q384_MemoryPoolsAndObjectPools{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MemoryPoolsAndObjectPools) Allocate() interface{ {
+func (m *Q384_MemoryPoolsAndObjectPools) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MemoryPoolsAndObjectPools) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MemoryPoolsAndObjectPools) Release(obj interface{) {
+func (m *Q384_MemoryPoolsAndObjectPools) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

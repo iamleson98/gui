@@ -8,22 +8,22 @@ import "sync"
 
 // jemalloc Design
 // Implements a memory management technique for question #368.
-type JemallocDesign struct {
+type Q368_JemallocDesign struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewJemallocDesign creates a memory manager with the given capacity.
-func NewJemallocDesign(capacity int) *JemallocDesign {
-        return &JemallocDesign{
-                pool: make([]interface{}, 0, capacity),
+// NewQ368_JemallocDesign creates a memory manager with the given capacity.
+func NewQ368_JemallocDesign(capacity int) *Q368_JemallocDesign {
+        return &Q368_JemallocDesign{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *JemallocDesign) Allocate() interface{ {
+func (m *Q368_JemallocDesign) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *JemallocDesign) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *JemallocDesign) Release(obj interface{) {
+func (m *Q368_JemallocDesign) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

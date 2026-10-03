@@ -13,28 +13,28 @@ import (
 
 // Honeypots and Intrusion Detection
 // Implements a security primitive for question #510.
-type HoneypotsAndIntrusionDetection struct {
+type Q510_HoneypotsAndIntrusionDetection struct {
         key []byte
 }
 
-// NewHoneypotsAndIntrusionDetection creates a new security handler with the given key.
-func NewHoneypotsAndIntrusionDetection(key []byte) *HoneypotsAndIntrusionDetection {
-        return &HoneypotsAndIntrusionDetection{key: key}
+// NewQ510_HoneypotsAndIntrusionDetection creates a new security handler with the given key.
+func NewQ510_HoneypotsAndIntrusionDetection(key []byte) *Q510_HoneypotsAndIntrusionDetection {
+        return &Q510_HoneypotsAndIntrusionDetection{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *HoneypotsAndIntrusionDetection) Hash(data []byte) string {
+func (s *Q510_HoneypotsAndIntrusionDetection) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *HoneypotsAndIntrusionDetection) Verify(a, b []byte) bool {
+func (s *Q510_HoneypotsAndIntrusionDetection) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *HoneypotsAndIntrusionDetection) HMAC(data []byte) []byte {
+func (s *Q510_HoneypotsAndIntrusionDetection) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

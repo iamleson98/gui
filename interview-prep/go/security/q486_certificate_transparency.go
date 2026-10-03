@@ -13,28 +13,28 @@ import (
 
 // Certificate Transparency
 // Implements a security primitive for question #486.
-type CertificateTransparency struct {
+type Q486_CertificateTransparency struct {
         key []byte
 }
 
-// NewCertificateTransparency creates a new security handler with the given key.
-func NewCertificateTransparency(key []byte) *CertificateTransparency {
-        return &CertificateTransparency{key: key}
+// NewQ486_CertificateTransparency creates a new security handler with the given key.
+func NewQ486_CertificateTransparency(key []byte) *Q486_CertificateTransparency {
+        return &Q486_CertificateTransparency{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *CertificateTransparency) Hash(data []byte) string {
+func (s *Q486_CertificateTransparency) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *CertificateTransparency) Verify(a, b []byte) bool {
+func (s *Q486_CertificateTransparency) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *CertificateTransparency) HMAC(data []byte) []byte {
+func (s *Q486_CertificateTransparency) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

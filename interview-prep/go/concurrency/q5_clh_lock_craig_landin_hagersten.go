@@ -11,22 +11,22 @@ import (
 
 // CLH Lock (Craig, Landin, Hagersten)
 // Implements a concurrent primitive for question #5.
-type ClhLockCraigLandinHagersten struct {
+type Q5_ClhLockCraigLandinHagersten struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewClhLockCraigLandinHagersten creates a new instance.
-func NewClhLockCraigLandinHagersten() *ClhLockCraigLandinHagersten {
-        x := &ClhLockCraigLandinHagersten{notify: make(chan struct{}, 1)}
+// NewQ5_ClhLockCraigLandinHagersten creates a new instance.
+func NewQ5_ClhLockCraigLandinHagersten() *Q5_ClhLockCraigLandinHagersten {
+        x := &Q5_ClhLockCraigLandinHagersten{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ClhLockCraigLandinHagersten) Execute() {
+func (x *Q5_ClhLockCraigLandinHagersten) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ClhLockCraigLandinHagersten) Execute() {
 }
 
 // Result returns the current state.
-func (x *ClhLockCraigLandinHagersten) Result() int64 {
+func (x *Q5_ClhLockCraigLandinHagersten) Result() int64 {
         return x.state.Load()
 }

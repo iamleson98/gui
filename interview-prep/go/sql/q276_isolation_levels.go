@@ -4,17 +4,16 @@
 // Description: Contrast read-uncommitted, read-committed, repeatable-read, and serializable isolation.
 package sql
 
-import "fmt"
 
 // Isolation Levels
 // Implements a database design pattern for question #276.
 
-// IsolationLevels represents the database schema/concept.
-type IsolationLevels struct {
+// Q276_IsolationLevels represents the database schema/concept.
+type Q276_IsolationLevels struct {
         tables map[string][]string
 }
 
-// NewIsolationLevels initializes the schema.
-func NewIsolationLevels() *IsolationLevels {
-        return &IsolationLevels{tables: make(map[string][]string)}
+// NewQ276_IsolationLevels initializes the schema.
+func NewQ276_IsolationLevels() *Q276_IsolationLevels {
+        return &Q276_IsolationLevels{tables: make(map[string][]string)}
 }

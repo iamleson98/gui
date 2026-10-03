@@ -12,36 +12,36 @@ import (
 
 // gRPC and Protocol Buffers
 // Implements a networking concept for question #544.
-type GrpcAndProtocolBuffers struct {
+type Q544_GrpcAndProtocolBuffers struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewGrpcAndProtocolBuffers creates a new network handler.
-func NewGrpcAndProtocolBuffers(timeout time.Duration) *GrpcAndProtocolBuffers {
-        return &GrpcAndProtocolBuffers{
+// NewQ544_GrpcAndProtocolBuffers creates a new network handler.
+func NewQ544_GrpcAndProtocolBuffers(timeout time.Duration) *Q544_GrpcAndProtocolBuffers {
+        return &Q544_GrpcAndProtocolBuffers{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *GrpcAndProtocolBuffers) AddConnection(id string, conn net.Conn) {
+func (n *Q544_GrpcAndProtocolBuffers) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *GrpcAndProtocolBuffers) RemoveConnection(id string) {
+func (n *Q544_GrpcAndProtocolBuffers) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *GrpcAndProtocolBuffers) Send(id string, data []byte) error {
+func (n *Q544_GrpcAndProtocolBuffers) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

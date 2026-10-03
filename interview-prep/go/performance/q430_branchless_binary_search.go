@@ -11,20 +11,20 @@ import (
 
 // Branchless Binary Search
 // Implements a performance optimization for question #430.
-type BranchlessBinarySearch struct {
+type Q430_BranchlessBinarySearch struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewBranchlessBinarySearch creates a new performance optimizer.
-func NewBranchlessBinarySearch() *BranchlessBinarySearch {
-        return &BranchlessBinarySearch{cache: make(map[uint64]interface{})}
+// NewQ430_BranchlessBinarySearch creates a new performance optimizer.
+func NewQ430_BranchlessBinarySearch() *Q430_BranchlessBinarySearch {
+        return &Q430_BranchlessBinarySearch{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *BranchlessBinarySearch) Get(key uint64) (interface{, bool) {
+func (p *Q430_BranchlessBinarySearch) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *BranchlessBinarySearch) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *BranchlessBinarySearch) Set(key uint64, val interface{) {
+func (p *Q430_BranchlessBinarySearch) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *BranchlessBinarySearch) Stats() (int64, int64) {
+func (p *Q430_BranchlessBinarySearch) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

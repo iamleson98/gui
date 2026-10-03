@@ -11,22 +11,22 @@ import (
 
 // DCAS / Double-Width CAS
 // Implements a concurrent primitive for question #26.
-type DcasDoubleWidthCas struct {
+type Q26_DcasDoubleWidthCas struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewDcasDoubleWidthCas creates a new instance.
-func NewDcasDoubleWidthCas() *DcasDoubleWidthCas {
-        x := &DcasDoubleWidthCas{notify: make(chan struct{}, 1)}
+// NewQ26_DcasDoubleWidthCas creates a new instance.
+func NewQ26_DcasDoubleWidthCas() *Q26_DcasDoubleWidthCas {
+        x := &Q26_DcasDoubleWidthCas{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *DcasDoubleWidthCas) Execute() {
+func (x *Q26_DcasDoubleWidthCas) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *DcasDoubleWidthCas) Execute() {
 }
 
 // Result returns the current state.
-func (x *DcasDoubleWidthCas) Result() int64 {
+func (x *Q26_DcasDoubleWidthCas) Result() int64 {
         return x.state.Load()
 }

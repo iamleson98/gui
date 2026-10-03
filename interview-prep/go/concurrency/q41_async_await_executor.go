@@ -11,22 +11,22 @@ import (
 
 // Async/Await Executor
 // Implements a concurrent primitive for question #41.
-type AsyncAwaitExecutor struct {
+type Q41_AsyncAwaitExecutor struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewAsyncAwaitExecutor creates a new instance.
-func NewAsyncAwaitExecutor() *AsyncAwaitExecutor {
-        x := &AsyncAwaitExecutor{notify: make(chan struct{}, 1)}
+// NewQ41_AsyncAwaitExecutor creates a new instance.
+func NewQ41_AsyncAwaitExecutor() *Q41_AsyncAwaitExecutor {
+        x := &Q41_AsyncAwaitExecutor{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *AsyncAwaitExecutor) Execute() {
+func (x *Q41_AsyncAwaitExecutor) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *AsyncAwaitExecutor) Execute() {
 }
 
 // Result returns the current state.
-func (x *AsyncAwaitExecutor) Result() int64 {
+func (x *Q41_AsyncAwaitExecutor) Result() int64 {
         return x.state.Load()
 }

@@ -8,29 +8,29 @@ import "sync"
 
 // Design Exactly-Once Delivery Semantics
 // Implements a system design component for question #324.
-type DesignExactlyOnceDeliverySemantics struct {
+type Q324_DesignExactlyOnceDeliverySemantics struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignExactlyOnceDeliverySemantics creates a new system component.
-func NewDesignExactlyOnceDeliverySemantics() *DesignExactlyOnceDeliverySemantics {
-        return &DesignExactlyOnceDeliverySemantics{
+// NewQ324_DesignExactlyOnceDeliverySemantics creates a new system component.
+func NewQ324_DesignExactlyOnceDeliverySemantics() *Q324_DesignExactlyOnceDeliverySemantics {
+        return &Q324_DesignExactlyOnceDeliverySemantics{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignExactlyOnceDeliverySemantics) SetConfig(key, val string) {
+func (s *Q324_DesignExactlyOnceDeliverySemantics) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignExactlyOnceDeliverySemantics) GetConfig(key string) (string, bool) {
+func (s *Q324_DesignExactlyOnceDeliverySemantics) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignExactlyOnceDeliverySemantics) GetConfig(key string) (string, bool
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignExactlyOnceDeliverySemantics) IncrementMetric(key string) {
+func (s *Q324_DesignExactlyOnceDeliverySemantics) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

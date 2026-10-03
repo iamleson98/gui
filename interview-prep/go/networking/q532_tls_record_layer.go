@@ -12,36 +12,36 @@ import (
 
 // TLS Record Layer
 // Implements a networking concept for question #532.
-type TlsRecordLayer struct {
+type Q532_TlsRecordLayer struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewTlsRecordLayer creates a new network handler.
-func NewTlsRecordLayer(timeout time.Duration) *TlsRecordLayer {
-        return &TlsRecordLayer{
+// NewQ532_TlsRecordLayer creates a new network handler.
+func NewQ532_TlsRecordLayer(timeout time.Duration) *Q532_TlsRecordLayer {
+        return &Q532_TlsRecordLayer{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *TlsRecordLayer) AddConnection(id string, conn net.Conn) {
+func (n *Q532_TlsRecordLayer) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *TlsRecordLayer) RemoveConnection(id string) {
+func (n *Q532_TlsRecordLayer) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *TlsRecordLayer) Send(id string, data []byte) error {
+func (n *Q532_TlsRecordLayer) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

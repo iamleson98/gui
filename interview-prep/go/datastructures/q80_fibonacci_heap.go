@@ -6,30 +6,30 @@ package datastructures
 
 // Fibonacci Heap
 // Implements a data structure for question #80.
-type FibonacciHeap struct {
+type Q80_FibonacciHeap struct {
         data map[int]int
         size int
 }
 
-// NewFibonacciHeap creates a new instance.
-func NewFibonacciHeap() *FibonacciHeap {
-        return &FibonacciHeap{data: make(map[int]int)}
+// NewQ80_FibonacciHeap creates a new instance.
+func NewQ80_FibonacciHeap() *Q80_FibonacciHeap {
+        return &Q80_FibonacciHeap{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *FibonacciHeap) Insert(key, val int) {
+func (d *Q80_FibonacciHeap) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *FibonacciHeap) Search(key int) (int, bool) {
+func (d *Q80_FibonacciHeap) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *FibonacciHeap) Delete(key int) bool {
+func (d *Q80_FibonacciHeap) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *FibonacciHeap) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *FibonacciHeap) Len() int { return d.size }
+func (d *Q80_FibonacciHeap) Len() int { return d.size }

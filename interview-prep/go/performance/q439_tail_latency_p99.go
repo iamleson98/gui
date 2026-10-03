@@ -11,20 +11,20 @@ import (
 
 // Tail Latency (P99)
 // Implements a performance optimization for question #439.
-type TailLatencyP99 struct {
+type Q439_TailLatencyP99 struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewTailLatencyP99 creates a new performance optimizer.
-func NewTailLatencyP99() *TailLatencyP99 {
-        return &TailLatencyP99{cache: make(map[uint64]interface{})}
+// NewQ439_TailLatencyP99 creates a new performance optimizer.
+func NewQ439_TailLatencyP99() *Q439_TailLatencyP99 {
+        return &Q439_TailLatencyP99{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *TailLatencyP99) Get(key uint64) (interface{, bool) {
+func (p *Q439_TailLatencyP99) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *TailLatencyP99) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *TailLatencyP99) Set(key uint64, val interface{) {
+func (p *Q439_TailLatencyP99) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *TailLatencyP99) Stats() (int64, int64) {
+func (p *Q439_TailLatencyP99) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

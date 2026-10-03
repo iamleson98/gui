@@ -4,17 +4,16 @@
 // Description: Explain B-tree index page layout, fan-out, and how range scans traverse leaf links.
 package sql
 
-import "fmt"
 
 // B-Tree Index Internals
 // Implements a database design pattern for question #248.
 
-// BTreeIndexInternals represents the database schema/concept.
-type BTreeIndexInternals struct {
+// Q248_BTreeIndexInternals represents the database schema/concept.
+type Q248_BTreeIndexInternals struct {
         tables map[string][]string
 }
 
-// NewBTreeIndexInternals initializes the schema.
-func NewBTreeIndexInternals() *BTreeIndexInternals {
-        return &BTreeIndexInternals{tables: make(map[string][]string)}
+// NewQ248_BTreeIndexInternals initializes the schema.
+func NewQ248_BTreeIndexInternals() *Q248_BTreeIndexInternals {
+        return &Q248_BTreeIndexInternals{tables: make(map[string][]string)}
 }

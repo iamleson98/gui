@@ -13,28 +13,28 @@ import (
 
 // Constant-Time Comparison
 // Implements a security primitive for question #496.
-type ConstantTimeComparison struct {
+type Q496_ConstantTimeComparison struct {
         key []byte
 }
 
-// NewConstantTimeComparison creates a new security handler with the given key.
-func NewConstantTimeComparison(key []byte) *ConstantTimeComparison {
-        return &ConstantTimeComparison{key: key}
+// NewQ496_ConstantTimeComparison creates a new security handler with the given key.
+func NewQ496_ConstantTimeComparison(key []byte) *Q496_ConstantTimeComparison {
+        return &Q496_ConstantTimeComparison{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *ConstantTimeComparison) Hash(data []byte) string {
+func (s *Q496_ConstantTimeComparison) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *ConstantTimeComparison) Verify(a, b []byte) bool {
+func (s *Q496_ConstantTimeComparison) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *ConstantTimeComparison) HMAC(data []byte) []byte {
+func (s *Q496_ConstantTimeComparison) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

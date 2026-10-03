@@ -11,20 +11,20 @@ import (
 
 // JIT vs Interpreter Performance
 // Implements a performance optimization for question #458.
-type JitVsInterpreterPerformance struct {
+type Q458_JitVsInterpreterPerformance struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewJitVsInterpreterPerformance creates a new performance optimizer.
-func NewJitVsInterpreterPerformance() *JitVsInterpreterPerformance {
-        return &JitVsInterpreterPerformance{cache: make(map[uint64]interface{})}
+// NewQ458_JitVsInterpreterPerformance creates a new performance optimizer.
+func NewQ458_JitVsInterpreterPerformance() *Q458_JitVsInterpreterPerformance {
+        return &Q458_JitVsInterpreterPerformance{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *JitVsInterpreterPerformance) Get(key uint64) (interface{, bool) {
+func (p *Q458_JitVsInterpreterPerformance) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *JitVsInterpreterPerformance) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *JitVsInterpreterPerformance) Set(key uint64, val interface{) {
+func (p *Q458_JitVsInterpreterPerformance) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *JitVsInterpreterPerformance) Stats() (int64, int64) {
+func (p *Q458_JitVsInterpreterPerformance) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

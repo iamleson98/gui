@@ -8,22 +8,22 @@ import "sync"
 
 // TLB and TLB Shootdown
 // Implements a memory management technique for question #392.
-type TlbAndTlbShootdown struct {
+type Q392_TlbAndTlbShootdown struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewTlbAndTlbShootdown creates a memory manager with the given capacity.
-func NewTlbAndTlbShootdown(capacity int) *TlbAndTlbShootdown {
-        return &TlbAndTlbShootdown{
-                pool: make([]interface{}, 0, capacity),
+// NewQ392_TlbAndTlbShootdown creates a memory manager with the given capacity.
+func NewQ392_TlbAndTlbShootdown(capacity int) *Q392_TlbAndTlbShootdown {
+        return &Q392_TlbAndTlbShootdown{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *TlbAndTlbShootdown) Allocate() interface{ {
+func (m *Q392_TlbAndTlbShootdown) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *TlbAndTlbShootdown) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *TlbAndTlbShootdown) Release(obj interface{) {
+func (m *Q392_TlbAndTlbShootdown) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

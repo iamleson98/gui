@@ -12,36 +12,36 @@ import (
 
 // Head-of-Line Blocking
 // Implements a networking concept for question #522.
-type HeadOfLineBlocking struct {
+type Q522_HeadOfLineBlocking struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewHeadOfLineBlocking creates a new network handler.
-func NewHeadOfLineBlocking(timeout time.Duration) *HeadOfLineBlocking {
-        return &HeadOfLineBlocking{
+// NewQ522_HeadOfLineBlocking creates a new network handler.
+func NewQ522_HeadOfLineBlocking(timeout time.Duration) *Q522_HeadOfLineBlocking {
+        return &Q522_HeadOfLineBlocking{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *HeadOfLineBlocking) AddConnection(id string, conn net.Conn) {
+func (n *Q522_HeadOfLineBlocking) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *HeadOfLineBlocking) RemoveConnection(id string) {
+func (n *Q522_HeadOfLineBlocking) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *HeadOfLineBlocking) Send(id string, data []byte) error {
+func (n *Q522_HeadOfLineBlocking) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

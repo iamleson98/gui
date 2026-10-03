@@ -11,20 +11,20 @@ import (
 
 // SIMD Vectorization
 // Implements a performance optimization for question #424.
-type SimdVectorization struct {
+type Q424_SimdVectorization struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewSimdVectorization creates a new performance optimizer.
-func NewSimdVectorization() *SimdVectorization {
-        return &SimdVectorization{cache: make(map[uint64]interface{})}
+// NewQ424_SimdVectorization creates a new performance optimizer.
+func NewQ424_SimdVectorization() *Q424_SimdVectorization {
+        return &Q424_SimdVectorization{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *SimdVectorization) Get(key uint64) (interface{, bool) {
+func (p *Q424_SimdVectorization) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *SimdVectorization) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *SimdVectorization) Set(key uint64, val interface{) {
+func (p *Q424_SimdVectorization) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *SimdVectorization) Stats() (int64, int64) {
+func (p *Q424_SimdVectorization) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

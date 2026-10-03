@@ -12,36 +12,36 @@ import (
 
 // TCP Delayed ACK
 // Implements a networking concept for question #517.
-type TcpDelayedAck struct {
+type Q517_TcpDelayedAck struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewTcpDelayedAck creates a new network handler.
-func NewTcpDelayedAck(timeout time.Duration) *TcpDelayedAck {
-        return &TcpDelayedAck{
+// NewQ517_TcpDelayedAck creates a new network handler.
+func NewQ517_TcpDelayedAck(timeout time.Duration) *Q517_TcpDelayedAck {
+        return &Q517_TcpDelayedAck{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *TcpDelayedAck) AddConnection(id string, conn net.Conn) {
+func (n *Q517_TcpDelayedAck) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *TcpDelayedAck) RemoveConnection(id string) {
+func (n *Q517_TcpDelayedAck) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *TcpDelayedAck) Send(id string, data []byte) error {
+func (n *Q517_TcpDelayedAck) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

@@ -11,22 +11,22 @@ import (
 
 // Thread Pool with Work Queue
 // Implements a concurrent primitive for question #42.
-type ThreadPoolWithWorkQueue struct {
+type Q42_ThreadPoolWithWorkQueue struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewThreadPoolWithWorkQueue creates a new instance.
-func NewThreadPoolWithWorkQueue() *ThreadPoolWithWorkQueue {
-        x := &ThreadPoolWithWorkQueue{notify: make(chan struct{}, 1)}
+// NewQ42_ThreadPoolWithWorkQueue creates a new instance.
+func NewQ42_ThreadPoolWithWorkQueue() *Q42_ThreadPoolWithWorkQueue {
+        x := &Q42_ThreadPoolWithWorkQueue{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ThreadPoolWithWorkQueue) Execute() {
+func (x *Q42_ThreadPoolWithWorkQueue) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ThreadPoolWithWorkQueue) Execute() {
 }
 
 // Result returns the current state.
-func (x *ThreadPoolWithWorkQueue) Result() int64 {
+func (x *Q42_ThreadPoolWithWorkQueue) Result() int64 {
         return x.state.Load()
 }

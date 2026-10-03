@@ -11,22 +11,22 @@ import (
 
 // Readers-Writers with Writer Preference
 // Implements a concurrent primitive for question #48.
-type ReadersWritersWithWriterPreference struct {
+type Q48_ReadersWritersWithWriterPreference struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewReadersWritersWithWriterPreference creates a new instance.
-func NewReadersWritersWithWriterPreference() *ReadersWritersWithWriterPreference {
-        x := &ReadersWritersWithWriterPreference{notify: make(chan struct{}, 1)}
+// NewQ48_ReadersWritersWithWriterPreference creates a new instance.
+func NewQ48_ReadersWritersWithWriterPreference() *Q48_ReadersWritersWithWriterPreference {
+        x := &Q48_ReadersWritersWithWriterPreference{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ReadersWritersWithWriterPreference) Execute() {
+func (x *Q48_ReadersWritersWithWriterPreference) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ReadersWritersWithWriterPreference) Execute() {
 }
 
 // Result returns the current state.
-func (x *ReadersWritersWithWriterPreference) Result() int64 {
+func (x *Q48_ReadersWritersWithWriterPreference) Result() int64 {
         return x.state.Load()
 }

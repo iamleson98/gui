@@ -12,36 +12,36 @@ import (
 
 // IPv6 Addressing
 // Implements a networking concept for question #549.
-type Ipv6Addressing struct {
+type Q549_Ipv6Addressing struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewIpv6Addressing creates a new network handler.
-func NewIpv6Addressing(timeout time.Duration) *Ipv6Addressing {
-        return &Ipv6Addressing{
+// NewQ549_Ipv6Addressing creates a new network handler.
+func NewQ549_Ipv6Addressing(timeout time.Duration) *Q549_Ipv6Addressing {
+        return &Q549_Ipv6Addressing{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *Ipv6Addressing) AddConnection(id string, conn net.Conn) {
+func (n *Q549_Ipv6Addressing) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *Ipv6Addressing) RemoveConnection(id string) {
+func (n *Q549_Ipv6Addressing) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *Ipv6Addressing) Send(id string, data []byte) error {
+func (n *Q549_Ipv6Addressing) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

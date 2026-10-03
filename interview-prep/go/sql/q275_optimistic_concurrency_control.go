@@ -4,17 +4,16 @@
 // Description: Validate transactions at commit time using read and write sets instead of locks.
 package sql
 
-import "fmt"
 
 // Optimistic Concurrency Control
 // Implements a database design pattern for question #275.
 
-// OptimisticConcurrencyControl represents the database schema/concept.
-type OptimisticConcurrencyControl struct {
+// Q275_OptimisticConcurrencyControl represents the database schema/concept.
+type Q275_OptimisticConcurrencyControl struct {
         tables map[string][]string
 }
 
-// NewOptimisticConcurrencyControl initializes the schema.
-func NewOptimisticConcurrencyControl() *OptimisticConcurrencyControl {
-        return &OptimisticConcurrencyControl{tables: make(map[string][]string)}
+// NewQ275_OptimisticConcurrencyControl initializes the schema.
+func NewQ275_OptimisticConcurrencyControl() *Q275_OptimisticConcurrencyControl {
+        return &Q275_OptimisticConcurrencyControl{tables: make(map[string][]string)}
 }

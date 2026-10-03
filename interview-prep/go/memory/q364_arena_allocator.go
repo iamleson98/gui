@@ -8,22 +8,22 @@ import "sync"
 
 // Arena Allocator
 // Implements a memory management technique for question #364.
-type ArenaAllocator struct {
+type Q364_ArenaAllocator struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewArenaAllocator creates a memory manager with the given capacity.
-func NewArenaAllocator(capacity int) *ArenaAllocator {
-        return &ArenaAllocator{
-                pool: make([]interface{}, 0, capacity),
+// NewQ364_ArenaAllocator creates a memory manager with the given capacity.
+func NewQ364_ArenaAllocator(capacity int) *Q364_ArenaAllocator {
+        return &Q364_ArenaAllocator{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ArenaAllocator) Allocate() interface{ {
+func (m *Q364_ArenaAllocator) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ArenaAllocator) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ArenaAllocator) Release(obj interface{) {
+func (m *Q364_ArenaAllocator) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

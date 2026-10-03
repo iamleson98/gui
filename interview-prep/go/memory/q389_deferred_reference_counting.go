@@ -8,22 +8,22 @@ import "sync"
 
 // Deferred Reference Counting
 // Implements a memory management technique for question #389.
-type DeferredReferenceCounting struct {
+type Q389_DeferredReferenceCounting struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewDeferredReferenceCounting creates a memory manager with the given capacity.
-func NewDeferredReferenceCounting(capacity int) *DeferredReferenceCounting {
-        return &DeferredReferenceCounting{
-                pool: make([]interface{}, 0, capacity),
+// NewQ389_DeferredReferenceCounting creates a memory manager with the given capacity.
+func NewQ389_DeferredReferenceCounting(capacity int) *Q389_DeferredReferenceCounting {
+        return &Q389_DeferredReferenceCounting{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *DeferredReferenceCounting) Allocate() interface{ {
+func (m *Q389_DeferredReferenceCounting) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *DeferredReferenceCounting) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *DeferredReferenceCounting) Release(obj interface{) {
+func (m *Q389_DeferredReferenceCounting) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

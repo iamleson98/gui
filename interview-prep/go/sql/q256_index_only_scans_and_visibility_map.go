@@ -4,17 +4,16 @@
 // Description: Explain how visibility maps enable index-only scans and the cost of vacuuming to maintain them.
 package sql
 
-import "fmt"
 
 // Index-Only Scans and Visibility Map
 // Implements a database design pattern for question #256.
 
-// IndexOnlyScansAndVisibilityMap represents the database schema/concept.
-type IndexOnlyScansAndVisibilityMap struct {
+// Q256_IndexOnlyScansAndVisibilityMap represents the database schema/concept.
+type Q256_IndexOnlyScansAndVisibilityMap struct {
         tables map[string][]string
 }
 
-// NewIndexOnlyScansAndVisibilityMap initializes the schema.
-func NewIndexOnlyScansAndVisibilityMap() *IndexOnlyScansAndVisibilityMap {
-        return &IndexOnlyScansAndVisibilityMap{tables: make(map[string][]string)}
+// NewQ256_IndexOnlyScansAndVisibilityMap initializes the schema.
+func NewQ256_IndexOnlyScansAndVisibilityMap() *Q256_IndexOnlyScansAndVisibilityMap {
+        return &Q256_IndexOnlyScansAndVisibilityMap{tables: make(map[string][]string)}
 }

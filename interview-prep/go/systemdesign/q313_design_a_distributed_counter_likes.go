@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Distributed Counter (Likes)
 // Implements a system design component for question #313.
-type DesignADistributedCounterLikes struct {
+type Q313_DesignADistributedCounterLikes struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignADistributedCounterLikes creates a new system component.
-func NewDesignADistributedCounterLikes() *DesignADistributedCounterLikes {
-        return &DesignADistributedCounterLikes{
+// NewQ313_DesignADistributedCounterLikes creates a new system component.
+func NewQ313_DesignADistributedCounterLikes() *Q313_DesignADistributedCounterLikes {
+        return &Q313_DesignADistributedCounterLikes{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignADistributedCounterLikes) SetConfig(key, val string) {
+func (s *Q313_DesignADistributedCounterLikes) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignADistributedCounterLikes) GetConfig(key string) (string, bool) {
+func (s *Q313_DesignADistributedCounterLikes) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignADistributedCounterLikes) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignADistributedCounterLikes) IncrementMetric(key string) {
+func (s *Q313_DesignADistributedCounterLikes) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

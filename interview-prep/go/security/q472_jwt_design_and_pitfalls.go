@@ -13,28 +13,28 @@ import (
 
 // JWT Design and Pitfalls
 // Implements a security primitive for question #472.
-type JwtDesignAndPitfalls struct {
+type Q472_JwtDesignAndPitfalls struct {
         key []byte
 }
 
-// NewJwtDesignAndPitfalls creates a new security handler with the given key.
-func NewJwtDesignAndPitfalls(key []byte) *JwtDesignAndPitfalls {
-        return &JwtDesignAndPitfalls{key: key}
+// NewQ472_JwtDesignAndPitfalls creates a new security handler with the given key.
+func NewQ472_JwtDesignAndPitfalls(key []byte) *Q472_JwtDesignAndPitfalls {
+        return &Q472_JwtDesignAndPitfalls{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *JwtDesignAndPitfalls) Hash(data []byte) string {
+func (s *Q472_JwtDesignAndPitfalls) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *JwtDesignAndPitfalls) Verify(a, b []byte) bool {
+func (s *Q472_JwtDesignAndPitfalls) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *JwtDesignAndPitfalls) HMAC(data []byte) []byte {
+func (s *Q472_JwtDesignAndPitfalls) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

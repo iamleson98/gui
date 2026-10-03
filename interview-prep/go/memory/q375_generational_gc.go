@@ -8,22 +8,22 @@ import "sync"
 
 // Generational GC
 // Implements a memory management technique for question #375.
-type GenerationalGc struct {
+type Q375_GenerationalGc struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewGenerationalGc creates a memory manager with the given capacity.
-func NewGenerationalGc(capacity int) *GenerationalGc {
-        return &GenerationalGc{
-                pool: make([]interface{}, 0, capacity),
+// NewQ375_GenerationalGc creates a memory manager with the given capacity.
+func NewQ375_GenerationalGc(capacity int) *Q375_GenerationalGc {
+        return &Q375_GenerationalGc{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *GenerationalGc) Allocate() interface{ {
+func (m *Q375_GenerationalGc) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *GenerationalGc) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *GenerationalGc) Release(obj interface{) {
+func (m *Q375_GenerationalGc) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

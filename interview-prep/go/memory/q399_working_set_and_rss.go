@@ -8,22 +8,22 @@ import "sync"
 
 // Working Set and RSS
 // Implements a memory management technique for question #399.
-type WorkingSetAndRss struct {
+type Q399_WorkingSetAndRss struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewWorkingSetAndRss creates a memory manager with the given capacity.
-func NewWorkingSetAndRss(capacity int) *WorkingSetAndRss {
-        return &WorkingSetAndRss{
-                pool: make([]interface{}, 0, capacity),
+// NewQ399_WorkingSetAndRss creates a memory manager with the given capacity.
+func NewQ399_WorkingSetAndRss(capacity int) *Q399_WorkingSetAndRss {
+        return &Q399_WorkingSetAndRss{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *WorkingSetAndRss) Allocate() interface{ {
+func (m *Q399_WorkingSetAndRss) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *WorkingSetAndRss) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *WorkingSetAndRss) Release(obj interface{) {
+func (m *Q399_WorkingSetAndRss) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

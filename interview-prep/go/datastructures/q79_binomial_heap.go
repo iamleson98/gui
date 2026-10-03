@@ -6,30 +6,30 @@ package datastructures
 
 // Binomial Heap
 // Implements a data structure for question #79.
-type BinomialHeap struct {
+type Q79_BinomialHeap struct {
         data map[int]int
         size int
 }
 
-// NewBinomialHeap creates a new instance.
-func NewBinomialHeap() *BinomialHeap {
-        return &BinomialHeap{data: make(map[int]int)}
+// NewQ79_BinomialHeap creates a new instance.
+func NewQ79_BinomialHeap() *Q79_BinomialHeap {
+        return &Q79_BinomialHeap{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *BinomialHeap) Insert(key, val int) {
+func (d *Q79_BinomialHeap) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *BinomialHeap) Search(key int) (int, bool) {
+func (d *Q79_BinomialHeap) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *BinomialHeap) Delete(key int) bool {
+func (d *Q79_BinomialHeap) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *BinomialHeap) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *BinomialHeap) Len() int { return d.size }
+func (d *Q79_BinomialHeap) Len() int { return d.size }

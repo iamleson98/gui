@@ -6,30 +6,30 @@ package datastructures
 
 // B+ Tree
 // Implements a data structure for question #64.
-type BTree struct {
+type Q64_BTree struct {
         data map[int]int
         size int
 }
 
-// NewBTree creates a new instance.
-func NewBTree() *BTree {
-        return &BTree{data: make(map[int]int)}
+// NewQ64_BTree creates a new instance.
+func NewQ64_BTree() *Q64_BTree {
+        return &Q64_BTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *BTree) Insert(key, val int) {
+func (d *Q64_BTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *BTree) Search(key int) (int, bool) {
+func (d *Q64_BTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *BTree) Delete(key int) bool {
+func (d *Q64_BTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *BTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *BTree) Len() int { return d.size }
+func (d *Q64_BTree) Len() int { return d.size }

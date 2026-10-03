@@ -6,30 +6,30 @@ package datastructures
 
 // Skip List with Finger Search
 // Implements a data structure for question #116.
-type SkipListWithFingerSearch struct {
+type Q116_SkipListWithFingerSearch struct {
         data map[int]int
         size int
 }
 
-// NewSkipListWithFingerSearch creates a new instance.
-func NewSkipListWithFingerSearch() *SkipListWithFingerSearch {
-        return &SkipListWithFingerSearch{data: make(map[int]int)}
+// NewQ116_SkipListWithFingerSearch creates a new instance.
+func NewQ116_SkipListWithFingerSearch() *Q116_SkipListWithFingerSearch {
+        return &Q116_SkipListWithFingerSearch{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *SkipListWithFingerSearch) Insert(key, val int) {
+func (d *Q116_SkipListWithFingerSearch) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *SkipListWithFingerSearch) Search(key int) (int, bool) {
+func (d *Q116_SkipListWithFingerSearch) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *SkipListWithFingerSearch) Delete(key int) bool {
+func (d *Q116_SkipListWithFingerSearch) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *SkipListWithFingerSearch) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *SkipListWithFingerSearch) Len() int { return d.size }
+func (d *Q116_SkipListWithFingerSearch) Len() int { return d.size }

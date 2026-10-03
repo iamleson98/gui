@@ -11,20 +11,20 @@ import (
 
 // strace / ltrace
 // Implements a performance optimization for question #415.
-type StraceLtrace struct {
+type Q415_StraceLtrace struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewStraceLtrace creates a new performance optimizer.
-func NewStraceLtrace() *StraceLtrace {
-        return &StraceLtrace{cache: make(map[uint64]interface{})}
+// NewQ415_StraceLtrace creates a new performance optimizer.
+func NewQ415_StraceLtrace() *Q415_StraceLtrace {
+        return &Q415_StraceLtrace{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *StraceLtrace) Get(key uint64) (interface{, bool) {
+func (p *Q415_StraceLtrace) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *StraceLtrace) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *StraceLtrace) Set(key uint64, val interface{) {
+func (p *Q415_StraceLtrace) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *StraceLtrace) Stats() (int64, int64) {
+func (p *Q415_StraceLtrace) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

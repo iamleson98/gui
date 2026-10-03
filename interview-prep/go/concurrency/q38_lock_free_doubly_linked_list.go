@@ -11,22 +11,22 @@ import (
 
 // Lock-Free Doubly Linked List
 // Implements a concurrent primitive for question #38.
-type LockFreeDoublyLinkedList struct {
+type Q38_LockFreeDoublyLinkedList struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewLockFreeDoublyLinkedList creates a new instance.
-func NewLockFreeDoublyLinkedList() *LockFreeDoublyLinkedList {
-        x := &LockFreeDoublyLinkedList{notify: make(chan struct{}, 1)}
+// NewQ38_LockFreeDoublyLinkedList creates a new instance.
+func NewQ38_LockFreeDoublyLinkedList() *Q38_LockFreeDoublyLinkedList {
+        x := &Q38_LockFreeDoublyLinkedList{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *LockFreeDoublyLinkedList) Execute() {
+func (x *Q38_LockFreeDoublyLinkedList) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *LockFreeDoublyLinkedList) Execute() {
 }
 
 // Result returns the current state.
-func (x *LockFreeDoublyLinkedList) Result() int64 {
+func (x *Q38_LockFreeDoublyLinkedList) Result() int64 {
         return x.state.Load()
 }

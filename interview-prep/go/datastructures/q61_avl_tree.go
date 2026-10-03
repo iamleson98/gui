@@ -6,30 +6,30 @@ package datastructures
 
 // AVL Tree
 // Implements a data structure for question #61.
-type AvlTree struct {
+type Q61_AvlTree struct {
         data map[int]int
         size int
 }
 
-// NewAvlTree creates a new instance.
-func NewAvlTree() *AvlTree {
-        return &AvlTree{data: make(map[int]int)}
+// NewQ61_AvlTree creates a new instance.
+func NewQ61_AvlTree() *Q61_AvlTree {
+        return &Q61_AvlTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *AvlTree) Insert(key, val int) {
+func (d *Q61_AvlTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *AvlTree) Search(key int) (int, bool) {
+func (d *Q61_AvlTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *AvlTree) Delete(key int) bool {
+func (d *Q61_AvlTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *AvlTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *AvlTree) Len() int { return d.size }
+func (d *Q61_AvlTree) Len() int { return d.size }

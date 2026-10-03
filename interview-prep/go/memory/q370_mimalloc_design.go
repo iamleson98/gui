@@ -8,22 +8,22 @@ import "sync"
 
 // mimalloc Design
 // Implements a memory management technique for question #370.
-type MimallocDesign struct {
+type Q370_MimallocDesign struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMimallocDesign creates a memory manager with the given capacity.
-func NewMimallocDesign(capacity int) *MimallocDesign {
-        return &MimallocDesign{
-                pool: make([]interface{}, 0, capacity),
+// NewQ370_MimallocDesign creates a memory manager with the given capacity.
+func NewQ370_MimallocDesign(capacity int) *Q370_MimallocDesign {
+        return &Q370_MimallocDesign{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MimallocDesign) Allocate() interface{ {
+func (m *Q370_MimallocDesign) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MimallocDesign) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MimallocDesign) Release(obj interface{) {
+func (m *Q370_MimallocDesign) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

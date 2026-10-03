@@ -11,22 +11,22 @@ import (
 
 // RCU-Protected Linked List
 // Implements a concurrent primitive for question #37.
-type RcuProtectedLinkedList struct {
+type Q37_RcuProtectedLinkedList struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewRcuProtectedLinkedList creates a new instance.
-func NewRcuProtectedLinkedList() *RcuProtectedLinkedList {
-        x := &RcuProtectedLinkedList{notify: make(chan struct{}, 1)}
+// NewQ37_RcuProtectedLinkedList creates a new instance.
+func NewQ37_RcuProtectedLinkedList() *Q37_RcuProtectedLinkedList {
+        x := &Q37_RcuProtectedLinkedList{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *RcuProtectedLinkedList) Execute() {
+func (x *Q37_RcuProtectedLinkedList) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *RcuProtectedLinkedList) Execute() {
 }
 
 // Result returns the current state.
-func (x *RcuProtectedLinkedList) Result() int64 {
+func (x *Q37_RcuProtectedLinkedList) Result() int64 {
         return x.state.Load()
 }

@@ -4,17 +4,16 @@
 // Description: Explain ARIES analysis, redo, and undo phases for crash recovery with per-page LSNs.
 package sql
 
-import "fmt"
 
 // ARIES Recovery Algorithm
 // Implements a database design pattern for question #261.
 
-// AriesRecoveryAlgorithm represents the database schema/concept.
-type AriesRecoveryAlgorithm struct {
+// Q261_AriesRecoveryAlgorithm represents the database schema/concept.
+type Q261_AriesRecoveryAlgorithm struct {
         tables map[string][]string
 }
 
-// NewAriesRecoveryAlgorithm initializes the schema.
-func NewAriesRecoveryAlgorithm() *AriesRecoveryAlgorithm {
-        return &AriesRecoveryAlgorithm{tables: make(map[string][]string)}
+// NewQ261_AriesRecoveryAlgorithm initializes the schema.
+func NewQ261_AriesRecoveryAlgorithm() *Q261_AriesRecoveryAlgorithm {
+        return &Q261_AriesRecoveryAlgorithm{tables: make(map[string][]string)}
 }

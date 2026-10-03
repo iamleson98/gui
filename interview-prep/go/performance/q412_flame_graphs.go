@@ -11,20 +11,20 @@ import (
 
 // Flame Graphs
 // Implements a performance optimization for question #412.
-type FlameGraphs struct {
+type Q412_FlameGraphs struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewFlameGraphs creates a new performance optimizer.
-func NewFlameGraphs() *FlameGraphs {
-        return &FlameGraphs{cache: make(map[uint64]interface{})}
+// NewQ412_FlameGraphs creates a new performance optimizer.
+func NewQ412_FlameGraphs() *Q412_FlameGraphs {
+        return &Q412_FlameGraphs{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *FlameGraphs) Get(key uint64) (interface{, bool) {
+func (p *Q412_FlameGraphs) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *FlameGraphs) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *FlameGraphs) Set(key uint64, val interface{) {
+func (p *Q412_FlameGraphs) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *FlameGraphs) Stats() (int64, int64) {
+func (p *Q412_FlameGraphs) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

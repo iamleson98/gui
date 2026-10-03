@@ -8,22 +8,22 @@ import "sync"
 
 // Buddy Allocator
 // Implements a memory management technique for question #363.
-type BuddyAllocator struct {
+type Q363_BuddyAllocator struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewBuddyAllocator creates a memory manager with the given capacity.
-func NewBuddyAllocator(capacity int) *BuddyAllocator {
-        return &BuddyAllocator{
-                pool: make([]interface{}, 0, capacity),
+// NewQ363_BuddyAllocator creates a memory manager with the given capacity.
+func NewQ363_BuddyAllocator(capacity int) *Q363_BuddyAllocator {
+        return &Q363_BuddyAllocator{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *BuddyAllocator) Allocate() interface{ {
+func (m *Q363_BuddyAllocator) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *BuddyAllocator) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *BuddyAllocator) Release(obj interface{) {
+func (m *Q363_BuddyAllocator) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

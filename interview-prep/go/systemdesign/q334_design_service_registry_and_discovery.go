@@ -8,29 +8,29 @@ import "sync"
 
 // Design Service Registry and Discovery
 // Implements a system design component for question #334.
-type DesignServiceRegistryAndDiscovery struct {
+type Q334_DesignServiceRegistryAndDiscovery struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignServiceRegistryAndDiscovery creates a new system component.
-func NewDesignServiceRegistryAndDiscovery() *DesignServiceRegistryAndDiscovery {
-        return &DesignServiceRegistryAndDiscovery{
+// NewQ334_DesignServiceRegistryAndDiscovery creates a new system component.
+func NewQ334_DesignServiceRegistryAndDiscovery() *Q334_DesignServiceRegistryAndDiscovery {
+        return &Q334_DesignServiceRegistryAndDiscovery{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignServiceRegistryAndDiscovery) SetConfig(key, val string) {
+func (s *Q334_DesignServiceRegistryAndDiscovery) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignServiceRegistryAndDiscovery) GetConfig(key string) (string, bool) {
+func (s *Q334_DesignServiceRegistryAndDiscovery) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignServiceRegistryAndDiscovery) GetConfig(key string) (string, bool)
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignServiceRegistryAndDiscovery) IncrementMetric(key string) {
+func (s *Q334_DesignServiceRegistryAndDiscovery) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

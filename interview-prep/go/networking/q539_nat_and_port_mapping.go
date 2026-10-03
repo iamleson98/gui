@@ -12,36 +12,36 @@ import (
 
 // NAT and Port Mapping
 // Implements a networking concept for question #539.
-type NatAndPortMapping struct {
+type Q539_NatAndPortMapping struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewNatAndPortMapping creates a new network handler.
-func NewNatAndPortMapping(timeout time.Duration) *NatAndPortMapping {
-        return &NatAndPortMapping{
+// NewQ539_NatAndPortMapping creates a new network handler.
+func NewQ539_NatAndPortMapping(timeout time.Duration) *Q539_NatAndPortMapping {
+        return &Q539_NatAndPortMapping{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *NatAndPortMapping) AddConnection(id string, conn net.Conn) {
+func (n *Q539_NatAndPortMapping) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *NatAndPortMapping) RemoveConnection(id string) {
+func (n *Q539_NatAndPortMapping) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *NatAndPortMapping) Send(id string, data []byte) error {
+func (n *Q539_NatAndPortMapping) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

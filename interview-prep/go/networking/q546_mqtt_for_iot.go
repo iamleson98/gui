@@ -12,36 +12,36 @@ import (
 
 // MQTT for IoT
 // Implements a networking concept for question #546.
-type MqttForIot struct {
+type Q546_MqttForIot struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewMqttForIot creates a new network handler.
-func NewMqttForIot(timeout time.Duration) *MqttForIot {
-        return &MqttForIot{
+// NewQ546_MqttForIot creates a new network handler.
+func NewQ546_MqttForIot(timeout time.Duration) *Q546_MqttForIot {
+        return &Q546_MqttForIot{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *MqttForIot) AddConnection(id string, conn net.Conn) {
+func (n *Q546_MqttForIot) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *MqttForIot) RemoveConnection(id string) {
+func (n *Q546_MqttForIot) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *MqttForIot) Send(id string, data []byte) error {
+func (n *Q546_MqttForIot) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

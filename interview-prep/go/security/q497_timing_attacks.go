@@ -13,28 +13,28 @@ import (
 
 // Timing Attacks
 // Implements a security primitive for question #497.
-type TimingAttacks struct {
+type Q497_TimingAttacks struct {
         key []byte
 }
 
-// NewTimingAttacks creates a new security handler with the given key.
-func NewTimingAttacks(key []byte) *TimingAttacks {
-        return &TimingAttacks{key: key}
+// NewQ497_TimingAttacks creates a new security handler with the given key.
+func NewQ497_TimingAttacks(key []byte) *Q497_TimingAttacks {
+        return &Q497_TimingAttacks{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *TimingAttacks) Hash(data []byte) string {
+func (s *Q497_TimingAttacks) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *TimingAttacks) Verify(a, b []byte) bool {
+func (s *Q497_TimingAttacks) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *TimingAttacks) HMAC(data []byte) []byte {
+func (s *Q497_TimingAttacks) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

@@ -11,22 +11,22 @@ import (
 
 // SeqLock (Sequence Lock)
 // Implements a concurrent primitive for question #6.
-type SeqlockSequenceLock struct {
+type Q6_SeqlockSequenceLock struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewSeqlockSequenceLock creates a new instance.
-func NewSeqlockSequenceLock() *SeqlockSequenceLock {
-        x := &SeqlockSequenceLock{notify: make(chan struct{}, 1)}
+// NewQ6_SeqlockSequenceLock creates a new instance.
+func NewQ6_SeqlockSequenceLock() *Q6_SeqlockSequenceLock {
+        x := &Q6_SeqlockSequenceLock{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *SeqlockSequenceLock) Execute() {
+func (x *Q6_SeqlockSequenceLock) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *SeqlockSequenceLock) Execute() {
 }
 
 // Result returns the current state.
-func (x *SeqlockSequenceLock) Result() int64 {
+func (x *Q6_SeqlockSequenceLock) Result() int64 {
         return x.state.Load()
 }

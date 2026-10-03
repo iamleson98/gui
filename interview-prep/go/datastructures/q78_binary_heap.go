@@ -6,30 +6,30 @@ package datastructures
 
 // Binary Heap
 // Implements a data structure for question #78.
-type BinaryHeap struct {
+type Q78_BinaryHeap struct {
         data map[int]int
         size int
 }
 
-// NewBinaryHeap creates a new instance.
-func NewBinaryHeap() *BinaryHeap {
-        return &BinaryHeap{data: make(map[int]int)}
+// NewQ78_BinaryHeap creates a new instance.
+func NewQ78_BinaryHeap() *Q78_BinaryHeap {
+        return &Q78_BinaryHeap{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *BinaryHeap) Insert(key, val int) {
+func (d *Q78_BinaryHeap) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *BinaryHeap) Search(key int) (int, bool) {
+func (d *Q78_BinaryHeap) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *BinaryHeap) Delete(key int) bool {
+func (d *Q78_BinaryHeap) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *BinaryHeap) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *BinaryHeap) Len() int { return d.size }
+func (d *Q78_BinaryHeap) Len() int { return d.size }

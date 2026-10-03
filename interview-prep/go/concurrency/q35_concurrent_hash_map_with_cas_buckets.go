@@ -11,22 +11,22 @@ import (
 
 // Concurrent Hash Map with CAS Buckets
 // Implements a concurrent primitive for question #35.
-type ConcurrentHashMapWithCasBuckets struct {
+type Q35_ConcurrentHashMapWithCasBuckets struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewConcurrentHashMapWithCasBuckets creates a new instance.
-func NewConcurrentHashMapWithCasBuckets() *ConcurrentHashMapWithCasBuckets {
-        x := &ConcurrentHashMapWithCasBuckets{notify: make(chan struct{}, 1)}
+// NewQ35_ConcurrentHashMapWithCasBuckets creates a new instance.
+func NewQ35_ConcurrentHashMapWithCasBuckets() *Q35_ConcurrentHashMapWithCasBuckets {
+        x := &Q35_ConcurrentHashMapWithCasBuckets{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ConcurrentHashMapWithCasBuckets) Execute() {
+func (x *Q35_ConcurrentHashMapWithCasBuckets) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ConcurrentHashMapWithCasBuckets) Execute() {
 }
 
 // Result returns the current state.
-func (x *ConcurrentHashMapWithCasBuckets) Result() int64 {
+func (x *Q35_ConcurrentHashMapWithCasBuckets) Result() int64 {
         return x.state.Load()
 }

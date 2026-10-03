@@ -4,17 +4,16 @@
 // Description: Model many-to-many relationships with bridge tables and resolve aggregates correctly.
 package sql
 
-import "fmt"
 
 // Bridge Tables for Many-to-Many
 // Implements a database design pattern for question #230.
 
-// BridgeTablesForManyToMany represents the database schema/concept.
-type BridgeTablesForManyToMany struct {
+// Q230_BridgeTablesForManyToMany represents the database schema/concept.
+type Q230_BridgeTablesForManyToMany struct {
         tables map[string][]string
 }
 
-// NewBridgeTablesForManyToMany initializes the schema.
-func NewBridgeTablesForManyToMany() *BridgeTablesForManyToMany {
-        return &BridgeTablesForManyToMany{tables: make(map[string][]string)}
+// NewQ230_BridgeTablesForManyToMany initializes the schema.
+func NewQ230_BridgeTablesForManyToMany() *Q230_BridgeTablesForManyToMany {
+        return &Q230_BridgeTablesForManyToMany{tables: make(map[string][]string)}
 }

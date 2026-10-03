@@ -12,36 +12,36 @@ import (
 
 // HTTP/1.1 Keep-Alive and Pipelining
 // Implements a networking concept for question #527.
-type Http11KeepAliveAndPipelining struct {
+type Q527_Http11KeepAliveAndPipelining struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewHttp11KeepAliveAndPipelining creates a new network handler.
-func NewHttp11KeepAliveAndPipelining(timeout time.Duration) *Http11KeepAliveAndPipelining {
-        return &Http11KeepAliveAndPipelining{
+// NewQ527_Http11KeepAliveAndPipelining creates a new network handler.
+func NewQ527_Http11KeepAliveAndPipelining(timeout time.Duration) *Q527_Http11KeepAliveAndPipelining {
+        return &Q527_Http11KeepAliveAndPipelining{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *Http11KeepAliveAndPipelining) AddConnection(id string, conn net.Conn) {
+func (n *Q527_Http11KeepAliveAndPipelining) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *Http11KeepAliveAndPipelining) RemoveConnection(id string) {
+func (n *Q527_Http11KeepAliveAndPipelining) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *Http11KeepAliveAndPipelining) Send(id string, data []byte) error {
+func (n *Q527_Http11KeepAliveAndPipelining) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

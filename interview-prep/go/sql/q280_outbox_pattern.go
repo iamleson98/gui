@@ -4,17 +4,16 @@
 // Description: Reliably publish events to a broker by writing them transactionally to an outbox table.
 package sql
 
-import "fmt"
 
 // Outbox Pattern
 // Implements a database design pattern for question #280.
 
-// OutboxPattern represents the database schema/concept.
-type OutboxPattern struct {
+// Q280_OutboxPattern represents the database schema/concept.
+type Q280_OutboxPattern struct {
         tables map[string][]string
 }
 
-// NewOutboxPattern initializes the schema.
-func NewOutboxPattern() *OutboxPattern {
-        return &OutboxPattern{tables: make(map[string][]string)}
+// NewQ280_OutboxPattern initializes the schema.
+func NewQ280_OutboxPattern() *Q280_OutboxPattern {
+        return &Q280_OutboxPattern{tables: make(map[string][]string)}
 }

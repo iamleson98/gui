@@ -13,28 +13,28 @@ import (
 
 // mTLS (Mutual TLS)
 // Implements a security primitive for question #489.
-type MtlsMutualTls struct {
+type Q489_MtlsMutualTls struct {
         key []byte
 }
 
-// NewMtlsMutualTls creates a new security handler with the given key.
-func NewMtlsMutualTls(key []byte) *MtlsMutualTls {
-        return &MtlsMutualTls{key: key}
+// NewQ489_MtlsMutualTls creates a new security handler with the given key.
+func NewQ489_MtlsMutualTls(key []byte) *Q489_MtlsMutualTls {
+        return &Q489_MtlsMutualTls{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *MtlsMutualTls) Hash(data []byte) string {
+func (s *Q489_MtlsMutualTls) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *MtlsMutualTls) Verify(a, b []byte) bool {
+func (s *Q489_MtlsMutualTls) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *MtlsMutualTls) HMAC(data []byte) []byte {
+func (s *Q489_MtlsMutualTls) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

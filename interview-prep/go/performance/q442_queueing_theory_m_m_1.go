@@ -11,20 +11,20 @@ import (
 
 // Queueing Theory (M/M/1)
 // Implements a performance optimization for question #442.
-type QueueingTheoryMM1 struct {
+type Q442_QueueingTheoryMM1 struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewQueueingTheoryMM1 creates a new performance optimizer.
-func NewQueueingTheoryMM1() *QueueingTheoryMM1 {
-        return &QueueingTheoryMM1{cache: make(map[uint64]interface{})}
+// NewQ442_QueueingTheoryMM1 creates a new performance optimizer.
+func NewQ442_QueueingTheoryMM1() *Q442_QueueingTheoryMM1 {
+        return &Q442_QueueingTheoryMM1{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *QueueingTheoryMM1) Get(key uint64) (interface{, bool) {
+func (p *Q442_QueueingTheoryMM1) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *QueueingTheoryMM1) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *QueueingTheoryMM1) Set(key uint64, val interface{) {
+func (p *Q442_QueueingTheoryMM1) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *QueueingTheoryMM1) Stats() (int64, int64) {
+func (p *Q442_QueueingTheoryMM1) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

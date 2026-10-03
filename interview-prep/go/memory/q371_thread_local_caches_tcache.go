@@ -8,22 +8,22 @@ import "sync"
 
 // Thread-Local Caches (TCache)
 // Implements a memory management technique for question #371.
-type ThreadLocalCachesTcache struct {
+type Q371_ThreadLocalCachesTcache struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewThreadLocalCachesTcache creates a memory manager with the given capacity.
-func NewThreadLocalCachesTcache(capacity int) *ThreadLocalCachesTcache {
-        return &ThreadLocalCachesTcache{
-                pool: make([]interface{}, 0, capacity),
+// NewQ371_ThreadLocalCachesTcache creates a memory manager with the given capacity.
+func NewQ371_ThreadLocalCachesTcache(capacity int) *Q371_ThreadLocalCachesTcache {
+        return &Q371_ThreadLocalCachesTcache{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ThreadLocalCachesTcache) Allocate() interface{ {
+func (m *Q371_ThreadLocalCachesTcache) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ThreadLocalCachesTcache) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ThreadLocalCachesTcache) Release(obj interface{) {
+func (m *Q371_ThreadLocalCachesTcache) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

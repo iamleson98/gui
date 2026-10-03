@@ -11,20 +11,20 @@ import (
 
 // Amdahl's Law
 // Implements a performance optimization for question #437.
-type AmdahlSLaw struct {
+type Q437_AmdahlSLaw struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewAmdahlSLaw creates a new performance optimizer.
-func NewAmdahlSLaw() *AmdahlSLaw {
-        return &AmdahlSLaw{cache: make(map[uint64]interface{})}
+// NewQ437_AmdahlSLaw creates a new performance optimizer.
+func NewQ437_AmdahlSLaw() *Q437_AmdahlSLaw {
+        return &Q437_AmdahlSLaw{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *AmdahlSLaw) Get(key uint64) (interface{, bool) {
+func (p *Q437_AmdahlSLaw) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *AmdahlSLaw) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *AmdahlSLaw) Set(key uint64, val interface{) {
+func (p *Q437_AmdahlSLaw) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *AmdahlSLaw) Stats() (int64, int64) {
+func (p *Q437_AmdahlSLaw) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

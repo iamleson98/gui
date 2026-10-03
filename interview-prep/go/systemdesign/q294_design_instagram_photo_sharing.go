@@ -8,29 +8,29 @@ import "sync"
 
 // Design Instagram / Photo Sharing
 // Implements a system design component for question #294.
-type DesignInstagramPhotoSharing struct {
+type Q294_DesignInstagramPhotoSharing struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignInstagramPhotoSharing creates a new system component.
-func NewDesignInstagramPhotoSharing() *DesignInstagramPhotoSharing {
-        return &DesignInstagramPhotoSharing{
+// NewQ294_DesignInstagramPhotoSharing creates a new system component.
+func NewQ294_DesignInstagramPhotoSharing() *Q294_DesignInstagramPhotoSharing {
+        return &Q294_DesignInstagramPhotoSharing{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignInstagramPhotoSharing) SetConfig(key, val string) {
+func (s *Q294_DesignInstagramPhotoSharing) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignInstagramPhotoSharing) GetConfig(key string) (string, bool) {
+func (s *Q294_DesignInstagramPhotoSharing) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignInstagramPhotoSharing) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignInstagramPhotoSharing) IncrementMetric(key string) {
+func (s *Q294_DesignInstagramPhotoSharing) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

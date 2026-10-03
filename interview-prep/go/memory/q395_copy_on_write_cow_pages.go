@@ -8,22 +8,22 @@ import "sync"
 
 // Copy-on-Write (CoW) Pages
 // Implements a memory management technique for question #395.
-type CopyOnWriteCowPages struct {
+type Q395_CopyOnWriteCowPages struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewCopyOnWriteCowPages creates a memory manager with the given capacity.
-func NewCopyOnWriteCowPages(capacity int) *CopyOnWriteCowPages {
-        return &CopyOnWriteCowPages{
-                pool: make([]interface{}, 0, capacity),
+// NewQ395_CopyOnWriteCowPages creates a memory manager with the given capacity.
+func NewQ395_CopyOnWriteCowPages(capacity int) *Q395_CopyOnWriteCowPages {
+        return &Q395_CopyOnWriteCowPages{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *CopyOnWriteCowPages) Allocate() interface{ {
+func (m *Q395_CopyOnWriteCowPages) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *CopyOnWriteCowPages) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *CopyOnWriteCowPages) Release(obj interface{) {
+func (m *Q395_CopyOnWriteCowPages) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

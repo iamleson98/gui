@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Quorum System
 // Implements a system design component for question #351.
-type DesignAQuorumSystem struct {
+type Q351_DesignAQuorumSystem struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAQuorumSystem creates a new system component.
-func NewDesignAQuorumSystem() *DesignAQuorumSystem {
-        return &DesignAQuorumSystem{
+// NewQ351_DesignAQuorumSystem creates a new system component.
+func NewQ351_DesignAQuorumSystem() *Q351_DesignAQuorumSystem {
+        return &Q351_DesignAQuorumSystem{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAQuorumSystem) SetConfig(key, val string) {
+func (s *Q351_DesignAQuorumSystem) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAQuorumSystem) GetConfig(key string) (string, bool) {
+func (s *Q351_DesignAQuorumSystem) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAQuorumSystem) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAQuorumSystem) IncrementMetric(key string) {
+func (s *Q351_DesignAQuorumSystem) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

@@ -8,22 +8,22 @@ import "sync"
 
 // G1 GC
 // Implements a memory management technique for question #376.
-type G1Gc struct {
+type Q376_G1Gc struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewG1Gc creates a memory manager with the given capacity.
-func NewG1Gc(capacity int) *G1Gc {
-        return &G1Gc{
-                pool: make([]interface{}, 0, capacity),
+// NewQ376_G1Gc creates a memory manager with the given capacity.
+func NewQ376_G1Gc(capacity int) *Q376_G1Gc {
+        return &Q376_G1Gc{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *G1Gc) Allocate() interface{ {
+func (m *Q376_G1Gc) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *G1Gc) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *G1Gc) Release(obj interface{) {
+func (m *Q376_G1Gc) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

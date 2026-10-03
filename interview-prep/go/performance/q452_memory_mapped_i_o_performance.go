@@ -11,20 +11,20 @@ import (
 
 // Memory-Mapped I/O Performance
 // Implements a performance optimization for question #452.
-type MemoryMappedIOPerformance struct {
+type Q452_MemoryMappedIOPerformance struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewMemoryMappedIOPerformance creates a new performance optimizer.
-func NewMemoryMappedIOPerformance() *MemoryMappedIOPerformance {
-        return &MemoryMappedIOPerformance{cache: make(map[uint64]interface{})}
+// NewQ452_MemoryMappedIOPerformance creates a new performance optimizer.
+func NewQ452_MemoryMappedIOPerformance() *Q452_MemoryMappedIOPerformance {
+        return &Q452_MemoryMappedIOPerformance{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *MemoryMappedIOPerformance) Get(key uint64) (interface{, bool) {
+func (p *Q452_MemoryMappedIOPerformance) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *MemoryMappedIOPerformance) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *MemoryMappedIOPerformance) Set(key uint64, val interface{) {
+func (p *Q452_MemoryMappedIOPerformance) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *MemoryMappedIOPerformance) Stats() (int64, int64) {
+func (p *Q452_MemoryMappedIOPerformance) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

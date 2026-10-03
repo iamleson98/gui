@@ -12,36 +12,36 @@ import (
 
 // SYN Cookies
 // Implements a networking concept for question #520.
-type SynCookies struct {
+type Q520_SynCookies struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewSynCookies creates a new network handler.
-func NewSynCookies(timeout time.Duration) *SynCookies {
-        return &SynCookies{
+// NewQ520_SynCookies creates a new network handler.
+func NewQ520_SynCookies(timeout time.Duration) *Q520_SynCookies {
+        return &Q520_SynCookies{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *SynCookies) AddConnection(id string, conn net.Conn) {
+func (n *Q520_SynCookies) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *SynCookies) RemoveConnection(id string) {
+func (n *Q520_SynCookies) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *SynCookies) Send(id string, data []byte) error {
+func (n *Q520_SynCookies) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

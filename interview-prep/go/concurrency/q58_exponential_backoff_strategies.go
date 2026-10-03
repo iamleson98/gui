@@ -11,22 +11,22 @@ import (
 
 // Exponential Backoff Strategies
 // Implements a concurrent primitive for question #58.
-type ExponentialBackoffStrategies struct {
+type Q58_ExponentialBackoffStrategies struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewExponentialBackoffStrategies creates a new instance.
-func NewExponentialBackoffStrategies() *ExponentialBackoffStrategies {
-        x := &ExponentialBackoffStrategies{notify: make(chan struct{}, 1)}
+// NewQ58_ExponentialBackoffStrategies creates a new instance.
+func NewQ58_ExponentialBackoffStrategies() *Q58_ExponentialBackoffStrategies {
+        x := &Q58_ExponentialBackoffStrategies{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ExponentialBackoffStrategies) Execute() {
+func (x *Q58_ExponentialBackoffStrategies) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ExponentialBackoffStrategies) Execute() {
 }
 
 // Result returns the current state.
-func (x *ExponentialBackoffStrategies) Result() int64 {
+func (x *Q58_ExponentialBackoffStrategies) Result() int64 {
         return x.state.Load()
 }

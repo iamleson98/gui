@@ -11,22 +11,22 @@ import (
 
 // Biasable Readers-Writer Lock
 // Implements a concurrent primitive for question #15.
-type BiasableReadersWriterLock struct {
+type Q15_BiasableReadersWriterLock struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewBiasableReadersWriterLock creates a new instance.
-func NewBiasableReadersWriterLock() *BiasableReadersWriterLock {
-        x := &BiasableReadersWriterLock{notify: make(chan struct{}, 1)}
+// NewQ15_BiasableReadersWriterLock creates a new instance.
+func NewQ15_BiasableReadersWriterLock() *Q15_BiasableReadersWriterLock {
+        x := &Q15_BiasableReadersWriterLock{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *BiasableReadersWriterLock) Execute() {
+func (x *Q15_BiasableReadersWriterLock) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *BiasableReadersWriterLock) Execute() {
 }
 
 // Result returns the current state.
-func (x *BiasableReadersWriterLock) Result() int64 {
+func (x *Q15_BiasableReadersWriterLock) Result() int64 {
         return x.state.Load()
 }

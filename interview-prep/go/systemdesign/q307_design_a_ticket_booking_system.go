@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Ticket Booking System
 // Implements a system design component for question #307.
-type DesignATicketBookingSystem struct {
+type Q307_DesignATicketBookingSystem struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignATicketBookingSystem creates a new system component.
-func NewDesignATicketBookingSystem() *DesignATicketBookingSystem {
-        return &DesignATicketBookingSystem{
+// NewQ307_DesignATicketBookingSystem creates a new system component.
+func NewQ307_DesignATicketBookingSystem() *Q307_DesignATicketBookingSystem {
+        return &Q307_DesignATicketBookingSystem{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignATicketBookingSystem) SetConfig(key, val string) {
+func (s *Q307_DesignATicketBookingSystem) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignATicketBookingSystem) GetConfig(key string) (string, bool) {
+func (s *Q307_DesignATicketBookingSystem) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignATicketBookingSystem) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignATicketBookingSystem) IncrementMetric(key string) {
+func (s *Q307_DesignATicketBookingSystem) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

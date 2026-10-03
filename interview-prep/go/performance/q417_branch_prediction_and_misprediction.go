@@ -11,20 +11,20 @@ import (
 
 // Branch Prediction and Misprediction
 // Implements a performance optimization for question #417.
-type BranchPredictionAndMisprediction struct {
+type Q417_BranchPredictionAndMisprediction struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewBranchPredictionAndMisprediction creates a new performance optimizer.
-func NewBranchPredictionAndMisprediction() *BranchPredictionAndMisprediction {
-        return &BranchPredictionAndMisprediction{cache: make(map[uint64]interface{})}
+// NewQ417_BranchPredictionAndMisprediction creates a new performance optimizer.
+func NewQ417_BranchPredictionAndMisprediction() *Q417_BranchPredictionAndMisprediction {
+        return &Q417_BranchPredictionAndMisprediction{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *BranchPredictionAndMisprediction) Get(key uint64) (interface{, bool) {
+func (p *Q417_BranchPredictionAndMisprediction) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *BranchPredictionAndMisprediction) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *BranchPredictionAndMisprediction) Set(key uint64, val interface{) {
+func (p *Q417_BranchPredictionAndMisprediction) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *BranchPredictionAndMisprediction) Stats() (int64, int64) {
+func (p *Q417_BranchPredictionAndMisprediction) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

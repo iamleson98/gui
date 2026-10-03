@@ -4,17 +4,16 @@
 // Description: Coordinate distributed XA transactions across resource managers with prepare/commit phases.
 package sql
 
-import "fmt"
 
 // Distributed Transactions (XA)
 // Implements a database design pattern for question #278.
 
-// DistributedTransactionsXa represents the database schema/concept.
-type DistributedTransactionsXa struct {
+// Q278_DistributedTransactionsXa represents the database schema/concept.
+type Q278_DistributedTransactionsXa struct {
         tables map[string][]string
 }
 
-// NewDistributedTransactionsXa initializes the schema.
-func NewDistributedTransactionsXa() *DistributedTransactionsXa {
-        return &DistributedTransactionsXa{tables: make(map[string][]string)}
+// NewQ278_DistributedTransactionsXa initializes the schema.
+func NewQ278_DistributedTransactionsXa() *Q278_DistributedTransactionsXa {
+        return &Q278_DistributedTransactionsXa{tables: make(map[string][]string)}
 }

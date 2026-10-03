@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Layer-4 Load Balancer
 // Implements a system design component for question #330.
-type DesignALayer4LoadBalancer struct {
+type Q330_DesignALayer4LoadBalancer struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignALayer4LoadBalancer creates a new system component.
-func NewDesignALayer4LoadBalancer() *DesignALayer4LoadBalancer {
-        return &DesignALayer4LoadBalancer{
+// NewQ330_DesignALayer4LoadBalancer creates a new system component.
+func NewQ330_DesignALayer4LoadBalancer() *Q330_DesignALayer4LoadBalancer {
+        return &Q330_DesignALayer4LoadBalancer{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignALayer4LoadBalancer) SetConfig(key, val string) {
+func (s *Q330_DesignALayer4LoadBalancer) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignALayer4LoadBalancer) GetConfig(key string) (string, bool) {
+func (s *Q330_DesignALayer4LoadBalancer) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignALayer4LoadBalancer) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignALayer4LoadBalancer) IncrementMetric(key string) {
+func (s *Q330_DesignALayer4LoadBalancer) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

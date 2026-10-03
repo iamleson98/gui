@@ -8,22 +8,22 @@ import "sync"
 
 // Quiescent-State-Based Reclamation
 // Implements a memory management technique for question #388.
-type QuiescentStateBasedReclamation struct {
+type Q388_QuiescentStateBasedReclamation struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewQuiescentStateBasedReclamation creates a memory manager with the given capacity.
-func NewQuiescentStateBasedReclamation(capacity int) *QuiescentStateBasedReclamation {
-        return &QuiescentStateBasedReclamation{
-                pool: make([]interface{}, 0, capacity),
+// NewQ388_QuiescentStateBasedReclamation creates a memory manager with the given capacity.
+func NewQ388_QuiescentStateBasedReclamation(capacity int) *Q388_QuiescentStateBasedReclamation {
+        return &Q388_QuiescentStateBasedReclamation{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *QuiescentStateBasedReclamation) Allocate() interface{ {
+func (m *Q388_QuiescentStateBasedReclamation) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *QuiescentStateBasedReclamation) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *QuiescentStateBasedReclamation) Release(obj interface{) {
+func (m *Q388_QuiescentStateBasedReclamation) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

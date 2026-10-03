@@ -4,17 +4,16 @@
 // Description: Handle multi-valued and join dependencies to reach 4NF and 5NF in complex schemas.
 package sql
 
-import "fmt"
 
 // 4NF and 5NF (MVD/JD)
 // Implements a database design pattern for question #223.
 
-// 4NfAnd5NfMvdJd represents the database schema/concept.
-type 4NfAnd5NfMvdJd struct {
+// Q223_4NfAnd5NfMvdJd represents the database schema/concept.
+type Q223_4NfAnd5NfMvdJd struct {
         tables map[string][]string
 }
 
-// New4NfAnd5NfMvdJd initializes the schema.
-func New4NfAnd5NfMvdJd() *4NfAnd5NfMvdJd {
-        return &4NfAnd5NfMvdJd{tables: make(map[string][]string)}
+// NewQ223_4NfAnd5NfMvdJd initializes the schema.
+func NewQ223_4NfAnd5NfMvdJd() *Q223_4NfAnd5NfMvdJd {
+        return &Q223_4NfAnd5NfMvdJd{tables: make(map[string][]string)}
 }

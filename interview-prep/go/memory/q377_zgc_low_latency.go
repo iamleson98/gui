@@ -8,22 +8,22 @@ import "sync"
 
 // ZGC (Low Latency)
 // Implements a memory management technique for question #377.
-type ZgcLowLatency struct {
+type Q377_ZgcLowLatency struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewZgcLowLatency creates a memory manager with the given capacity.
-func NewZgcLowLatency(capacity int) *ZgcLowLatency {
-        return &ZgcLowLatency{
-                pool: make([]interface{}, 0, capacity),
+// NewQ377_ZgcLowLatency creates a memory manager with the given capacity.
+func NewQ377_ZgcLowLatency(capacity int) *Q377_ZgcLowLatency {
+        return &Q377_ZgcLowLatency{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ZgcLowLatency) Allocate() interface{ {
+func (m *Q377_ZgcLowLatency) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ZgcLowLatency) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ZgcLowLatency) Release(obj interface{) {
+func (m *Q377_ZgcLowLatency) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

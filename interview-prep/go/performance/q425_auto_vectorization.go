@@ -11,20 +11,20 @@ import (
 
 // Auto-Vectorization
 // Implements a performance optimization for question #425.
-type AutoVectorization struct {
+type Q425_AutoVectorization struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewAutoVectorization creates a new performance optimizer.
-func NewAutoVectorization() *AutoVectorization {
-        return &AutoVectorization{cache: make(map[uint64]interface{})}
+// NewQ425_AutoVectorization creates a new performance optimizer.
+func NewQ425_AutoVectorization() *Q425_AutoVectorization {
+        return &Q425_AutoVectorization{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *AutoVectorization) Get(key uint64) (interface{, bool) {
+func (p *Q425_AutoVectorization) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *AutoVectorization) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *AutoVectorization) Set(key uint64, val interface{) {
+func (p *Q425_AutoVectorization) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *AutoVectorization) Stats() (int64, int64) {
+func (p *Q425_AutoVectorization) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

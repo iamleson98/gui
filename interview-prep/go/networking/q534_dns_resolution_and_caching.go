@@ -12,36 +12,36 @@ import (
 
 // DNS Resolution and Caching
 // Implements a networking concept for question #534.
-type DnsResolutionAndCaching struct {
+type Q534_DnsResolutionAndCaching struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewDnsResolutionAndCaching creates a new network handler.
-func NewDnsResolutionAndCaching(timeout time.Duration) *DnsResolutionAndCaching {
-        return &DnsResolutionAndCaching{
+// NewQ534_DnsResolutionAndCaching creates a new network handler.
+func NewQ534_DnsResolutionAndCaching(timeout time.Duration) *Q534_DnsResolutionAndCaching {
+        return &Q534_DnsResolutionAndCaching{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *DnsResolutionAndCaching) AddConnection(id string, conn net.Conn) {
+func (n *Q534_DnsResolutionAndCaching) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *DnsResolutionAndCaching) RemoveConnection(id string) {
+func (n *Q534_DnsResolutionAndCaching) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *DnsResolutionAndCaching) Send(id string, data []byte) error {
+func (n *Q534_DnsResolutionAndCaching) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

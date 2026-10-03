@@ -11,22 +11,22 @@ import (
 
 // Read-Copy-Update (RCU) Pattern
 // Implements a concurrent primitive for question #8.
-type ReadCopyUpdateRcuPattern struct {
+type Q8_ReadCopyUpdateRcuPattern struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewReadCopyUpdateRcuPattern creates a new instance.
-func NewReadCopyUpdateRcuPattern() *ReadCopyUpdateRcuPattern {
-        x := &ReadCopyUpdateRcuPattern{notify: make(chan struct{}, 1)}
+// NewQ8_ReadCopyUpdateRcuPattern creates a new instance.
+func NewQ8_ReadCopyUpdateRcuPattern() *Q8_ReadCopyUpdateRcuPattern {
+        x := &Q8_ReadCopyUpdateRcuPattern{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ReadCopyUpdateRcuPattern) Execute() {
+func (x *Q8_ReadCopyUpdateRcuPattern) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ReadCopyUpdateRcuPattern) Execute() {
 }
 
 // Result returns the current state.
-func (x *ReadCopyUpdateRcuPattern) Result() int64 {
+func (x *Q8_ReadCopyUpdateRcuPattern) Result() int64 {
         return x.state.Load()
 }

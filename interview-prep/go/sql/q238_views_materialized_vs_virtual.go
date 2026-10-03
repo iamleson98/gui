@@ -4,17 +4,16 @@
 // Description: Compare materialized and virtual views for query abstraction and refresh strategies.
 package sql
 
-import "fmt"
 
 // Views: Materialized vs Virtual
 // Implements a database design pattern for question #238.
 
-// ViewsMaterializedVsVirtual represents the database schema/concept.
-type ViewsMaterializedVsVirtual struct {
+// Q238_ViewsMaterializedVsVirtual represents the database schema/concept.
+type Q238_ViewsMaterializedVsVirtual struct {
         tables map[string][]string
 }
 
-// NewViewsMaterializedVsVirtual initializes the schema.
-func NewViewsMaterializedVsVirtual() *ViewsMaterializedVsVirtual {
-        return &ViewsMaterializedVsVirtual{tables: make(map[string][]string)}
+// NewQ238_ViewsMaterializedVsVirtual initializes the schema.
+func NewQ238_ViewsMaterializedVsVirtual() *Q238_ViewsMaterializedVsVirtual {
+        return &Q238_ViewsMaterializedVsVirtual{tables: make(map[string][]string)}
 }

@@ -4,17 +4,16 @@
 // Description: Use hash indexes for equality lookups and note their unsuitability for range queries.
 package sql
 
-import "fmt"
 
 // Hash Index
 // Implements a database design pattern for question #249.
 
-// HashIndex represents the database schema/concept.
-type HashIndex struct {
+// Q249_HashIndex represents the database schema/concept.
+type Q249_HashIndex struct {
         tables map[string][]string
 }
 
-// NewHashIndex initializes the schema.
-func NewHashIndex() *HashIndex {
-        return &HashIndex{tables: make(map[string][]string)}
+// NewQ249_HashIndex initializes the schema.
+func NewQ249_HashIndex() *Q249_HashIndex {
+        return &Q249_HashIndex{tables: make(map[string][]string)}
 }

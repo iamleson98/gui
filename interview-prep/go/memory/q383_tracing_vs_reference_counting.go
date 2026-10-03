@@ -8,22 +8,22 @@ import "sync"
 
 // Tracing vs Reference Counting
 // Implements a memory management technique for question #383.
-type TracingVsReferenceCounting struct {
+type Q383_TracingVsReferenceCounting struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewTracingVsReferenceCounting creates a memory manager with the given capacity.
-func NewTracingVsReferenceCounting(capacity int) *TracingVsReferenceCounting {
-        return &TracingVsReferenceCounting{
-                pool: make([]interface{}, 0, capacity),
+// NewQ383_TracingVsReferenceCounting creates a memory manager with the given capacity.
+func NewQ383_TracingVsReferenceCounting(capacity int) *Q383_TracingVsReferenceCounting {
+        return &Q383_TracingVsReferenceCounting{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *TracingVsReferenceCounting) Allocate() interface{ {
+func (m *Q383_TracingVsReferenceCounting) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *TracingVsReferenceCounting) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *TracingVsReferenceCounting) Release(obj interface{) {
+func (m *Q383_TracingVsReferenceCounting) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

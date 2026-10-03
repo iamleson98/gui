@@ -11,20 +11,20 @@ import (
 
 // Circuit Breakers for Performance
 // Implements a performance optimization for question #444.
-type CircuitBreakersForPerformance struct {
+type Q444_CircuitBreakersForPerformance struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCircuitBreakersForPerformance creates a new performance optimizer.
-func NewCircuitBreakersForPerformance() *CircuitBreakersForPerformance {
-        return &CircuitBreakersForPerformance{cache: make(map[uint64]interface{})}
+// NewQ444_CircuitBreakersForPerformance creates a new performance optimizer.
+func NewQ444_CircuitBreakersForPerformance() *Q444_CircuitBreakersForPerformance {
+        return &Q444_CircuitBreakersForPerformance{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CircuitBreakersForPerformance) Get(key uint64) (interface{, bool) {
+func (p *Q444_CircuitBreakersForPerformance) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CircuitBreakersForPerformance) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *CircuitBreakersForPerformance) Set(key uint64, val interface{) {
+func (p *Q444_CircuitBreakersForPerformance) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CircuitBreakersForPerformance) Stats() (int64, int64) {
+func (p *Q444_CircuitBreakersForPerformance) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

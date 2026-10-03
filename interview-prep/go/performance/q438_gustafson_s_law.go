@@ -11,20 +11,20 @@ import (
 
 // Gustafson's Law
 // Implements a performance optimization for question #438.
-type GustafsonSLaw struct {
+type Q438_GustafsonSLaw struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewGustafsonSLaw creates a new performance optimizer.
-func NewGustafsonSLaw() *GustafsonSLaw {
-        return &GustafsonSLaw{cache: make(map[uint64]interface{})}
+// NewQ438_GustafsonSLaw creates a new performance optimizer.
+func NewQ438_GustafsonSLaw() *Q438_GustafsonSLaw {
+        return &Q438_GustafsonSLaw{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *GustafsonSLaw) Get(key uint64) (interface{, bool) {
+func (p *Q438_GustafsonSLaw) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *GustafsonSLaw) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *GustafsonSLaw) Set(key uint64, val interface{) {
+func (p *Q438_GustafsonSLaw) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *GustafsonSLaw) Stats() (int64, int64) {
+func (p *Q438_GustafsonSLaw) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

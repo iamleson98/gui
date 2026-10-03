@@ -11,20 +11,20 @@ import (
 
 // Async I/O (epoll/io_uring)
 // Implements a performance optimization for question #445.
-type AsyncIOEpollIoUring struct {
+type Q445_AsyncIOEpollIoUring struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewAsyncIOEpollIoUring creates a new performance optimizer.
-func NewAsyncIOEpollIoUring() *AsyncIOEpollIoUring {
-        return &AsyncIOEpollIoUring{cache: make(map[uint64]interface{})}
+// NewQ445_AsyncIOEpollIoUring creates a new performance optimizer.
+func NewQ445_AsyncIOEpollIoUring() *Q445_AsyncIOEpollIoUring {
+        return &Q445_AsyncIOEpollIoUring{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *AsyncIOEpollIoUring) Get(key uint64) (interface{, bool) {
+func (p *Q445_AsyncIOEpollIoUring) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *AsyncIOEpollIoUring) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *AsyncIOEpollIoUring) Set(key uint64, val interface{) {
+func (p *Q445_AsyncIOEpollIoUring) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *AsyncIOEpollIoUring) Stats() (int64, int64) {
+func (p *Q445_AsyncIOEpollIoUring) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

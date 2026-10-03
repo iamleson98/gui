@@ -8,22 +8,22 @@ import "sync"
 
 // Write Barriers (SATB/INC)
 // Implements a memory management technique for question #381.
-type WriteBarriersSatbInc struct {
+type Q381_WriteBarriersSatbInc struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewWriteBarriersSatbInc creates a memory manager with the given capacity.
-func NewWriteBarriersSatbInc(capacity int) *WriteBarriersSatbInc {
-        return &WriteBarriersSatbInc{
-                pool: make([]interface{}, 0, capacity),
+// NewQ381_WriteBarriersSatbInc creates a memory manager with the given capacity.
+func NewQ381_WriteBarriersSatbInc(capacity int) *Q381_WriteBarriersSatbInc {
+        return &Q381_WriteBarriersSatbInc{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *WriteBarriersSatbInc) Allocate() interface{ {
+func (m *Q381_WriteBarriersSatbInc) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *WriteBarriersSatbInc) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *WriteBarriersSatbInc) Release(obj interface{) {
+func (m *Q381_WriteBarriersSatbInc) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

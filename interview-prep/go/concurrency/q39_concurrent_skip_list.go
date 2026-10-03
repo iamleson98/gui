@@ -11,22 +11,22 @@ import (
 
 // Concurrent Skip List
 // Implements a concurrent primitive for question #39.
-type ConcurrentSkipList struct {
+type Q39_ConcurrentSkipList struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewConcurrentSkipList creates a new instance.
-func NewConcurrentSkipList() *ConcurrentSkipList {
-        x := &ConcurrentSkipList{notify: make(chan struct{}, 1)}
+// NewQ39_ConcurrentSkipList creates a new instance.
+func NewQ39_ConcurrentSkipList() *Q39_ConcurrentSkipList {
+        x := &Q39_ConcurrentSkipList{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ConcurrentSkipList) Execute() {
+func (x *Q39_ConcurrentSkipList) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ConcurrentSkipList) Execute() {
 }
 
 // Result returns the current state.
-func (x *ConcurrentSkipList) Result() int64 {
+func (x *Q39_ConcurrentSkipList) Result() int64 {
         return x.state.Load()
 }

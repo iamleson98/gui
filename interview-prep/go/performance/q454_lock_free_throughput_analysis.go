@@ -11,20 +11,20 @@ import (
 
 // Lock-Free Throughput Analysis
 // Implements a performance optimization for question #454.
-type LockFreeThroughputAnalysis struct {
+type Q454_LockFreeThroughputAnalysis struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewLockFreeThroughputAnalysis creates a new performance optimizer.
-func NewLockFreeThroughputAnalysis() *LockFreeThroughputAnalysis {
-        return &LockFreeThroughputAnalysis{cache: make(map[uint64]interface{})}
+// NewQ454_LockFreeThroughputAnalysis creates a new performance optimizer.
+func NewQ454_LockFreeThroughputAnalysis() *Q454_LockFreeThroughputAnalysis {
+        return &Q454_LockFreeThroughputAnalysis{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *LockFreeThroughputAnalysis) Get(key uint64) (interface{, bool) {
+func (p *Q454_LockFreeThroughputAnalysis) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *LockFreeThroughputAnalysis) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *LockFreeThroughputAnalysis) Set(key uint64, val interface{) {
+func (p *Q454_LockFreeThroughputAnalysis) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *LockFreeThroughputAnalysis) Stats() (int64, int64) {
+func (p *Q454_LockFreeThroughputAnalysis) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

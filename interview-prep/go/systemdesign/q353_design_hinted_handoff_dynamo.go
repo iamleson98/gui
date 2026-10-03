@@ -8,29 +8,29 @@ import "sync"
 
 // Design Hinted Handoff (Dynamo)
 // Implements a system design component for question #353.
-type DesignHintedHandoffDynamo struct {
+type Q353_DesignHintedHandoffDynamo struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignHintedHandoffDynamo creates a new system component.
-func NewDesignHintedHandoffDynamo() *DesignHintedHandoffDynamo {
-        return &DesignHintedHandoffDynamo{
+// NewQ353_DesignHintedHandoffDynamo creates a new system component.
+func NewQ353_DesignHintedHandoffDynamo() *Q353_DesignHintedHandoffDynamo {
+        return &Q353_DesignHintedHandoffDynamo{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignHintedHandoffDynamo) SetConfig(key, val string) {
+func (s *Q353_DesignHintedHandoffDynamo) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignHintedHandoffDynamo) GetConfig(key string) (string, bool) {
+func (s *Q353_DesignHintedHandoffDynamo) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignHintedHandoffDynamo) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignHintedHandoffDynamo) IncrementMetric(key string) {
+func (s *Q353_DesignHintedHandoffDynamo) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

@@ -11,22 +11,22 @@ import (
 
 // Dining Philosophers
 // Implements a concurrent primitive for question #47.
-type DiningPhilosophers struct {
+type Q47_DiningPhilosophers struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewDiningPhilosophers creates a new instance.
-func NewDiningPhilosophers() *DiningPhilosophers {
-        x := &DiningPhilosophers{notify: make(chan struct{}, 1)}
+// NewQ47_DiningPhilosophers creates a new instance.
+func NewQ47_DiningPhilosophers() *Q47_DiningPhilosophers {
+        x := &Q47_DiningPhilosophers{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *DiningPhilosophers) Execute() {
+func (x *Q47_DiningPhilosophers) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *DiningPhilosophers) Execute() {
 }
 
 // Result returns the current state.
-func (x *DiningPhilosophers) Result() int64 {
+func (x *Q47_DiningPhilosophers) Result() int64 {
         return x.state.Load()
 }

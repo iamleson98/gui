@@ -11,22 +11,22 @@ import (
 
 // Epoch-Based Reclamation
 // Implements a concurrent primitive for question #10.
-type EpochBasedReclamation struct {
+type Q10_EpochBasedReclamation struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewEpochBasedReclamation creates a new instance.
-func NewEpochBasedReclamation() *EpochBasedReclamation {
-        x := &EpochBasedReclamation{notify: make(chan struct{}, 1)}
+// NewQ10_EpochBasedReclamation creates a new instance.
+func NewQ10_EpochBasedReclamation() *Q10_EpochBasedReclamation {
+        x := &Q10_EpochBasedReclamation{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *EpochBasedReclamation) Execute() {
+func (x *Q10_EpochBasedReclamation) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *EpochBasedReclamation) Execute() {
 }
 
 // Result returns the current state.
-func (x *EpochBasedReclamation) Result() int64 {
+func (x *Q10_EpochBasedReclamation) Result() int64 {
         return x.state.Load()
 }

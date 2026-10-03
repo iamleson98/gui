@@ -4,17 +4,16 @@
 // Description: Translate an ER diagram into a normalized relational schema with keys and cardinalities.
 package sql
 
-import "fmt"
 
 // Entity-Relationship Modeling
 // Implements a database design pattern for question #225.
 
-// EntityRelationshipModeling represents the database schema/concept.
-type EntityRelationshipModeling struct {
+// Q225_EntityRelationshipModeling represents the database schema/concept.
+type Q225_EntityRelationshipModeling struct {
         tables map[string][]string
 }
 
-// NewEntityRelationshipModeling initializes the schema.
-func NewEntityRelationshipModeling() *EntityRelationshipModeling {
-        return &EntityRelationshipModeling{tables: make(map[string][]string)}
+// NewQ225_EntityRelationshipModeling initializes the schema.
+func NewQ225_EntityRelationshipModeling() *Q225_EntityRelationshipModeling {
+        return &Q225_EntityRelationshipModeling{tables: make(map[string][]string)}
 }

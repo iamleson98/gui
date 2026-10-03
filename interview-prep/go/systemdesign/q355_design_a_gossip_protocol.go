@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Gossip Protocol
 // Implements a system design component for question #355.
-type DesignAGossipProtocol struct {
+type Q355_DesignAGossipProtocol struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAGossipProtocol creates a new system component.
-func NewDesignAGossipProtocol() *DesignAGossipProtocol {
-        return &DesignAGossipProtocol{
+// NewQ355_DesignAGossipProtocol creates a new system component.
+func NewQ355_DesignAGossipProtocol() *Q355_DesignAGossipProtocol {
+        return &Q355_DesignAGossipProtocol{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAGossipProtocol) SetConfig(key, val string) {
+func (s *Q355_DesignAGossipProtocol) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAGossipProtocol) GetConfig(key string) (string, bool) {
+func (s *Q355_DesignAGossipProtocol) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAGossipProtocol) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAGossipProtocol) IncrementMetric(key string) {
+func (s *Q355_DesignAGossipProtocol) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

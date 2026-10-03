@@ -4,17 +4,16 @@
 // Description: Detect dangerous read/write patterns to provide serializability over snapshot isolation.
 package sql
 
-import "fmt"
 
 // Serializable Snapshot Isolation (SSI)
 // Implements a database design pattern for question #270.
 
-// SerializableSnapshotIsolationSsi represents the database schema/concept.
-type SerializableSnapshotIsolationSsi struct {
+// Q270_SerializableSnapshotIsolationSsi represents the database schema/concept.
+type Q270_SerializableSnapshotIsolationSsi struct {
         tables map[string][]string
 }
 
-// NewSerializableSnapshotIsolationSsi initializes the schema.
-func NewSerializableSnapshotIsolationSsi() *SerializableSnapshotIsolationSsi {
-        return &SerializableSnapshotIsolationSsi{tables: make(map[string][]string)}
+// NewQ270_SerializableSnapshotIsolationSsi initializes the schema.
+func NewQ270_SerializableSnapshotIsolationSsi() *Q270_SerializableSnapshotIsolationSsi {
+        return &Q270_SerializableSnapshotIsolationSsi{tables: make(map[string][]string)}
 }

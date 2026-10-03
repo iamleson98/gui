@@ -11,22 +11,22 @@ import (
 
 // Producer-Consumer Bounded Buffer
 // Implements a concurrent primitive for question #46.
-type ProducerConsumerBoundedBuffer struct {
+type Q46_ProducerConsumerBoundedBuffer struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewProducerConsumerBoundedBuffer creates a new instance.
-func NewProducerConsumerBoundedBuffer() *ProducerConsumerBoundedBuffer {
-        x := &ProducerConsumerBoundedBuffer{notify: make(chan struct{}, 1)}
+// NewQ46_ProducerConsumerBoundedBuffer creates a new instance.
+func NewQ46_ProducerConsumerBoundedBuffer() *Q46_ProducerConsumerBoundedBuffer {
+        x := &Q46_ProducerConsumerBoundedBuffer{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *ProducerConsumerBoundedBuffer) Execute() {
+func (x *Q46_ProducerConsumerBoundedBuffer) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *ProducerConsumerBoundedBuffer) Execute() {
 }
 
 // Result returns the current state.
-func (x *ProducerConsumerBoundedBuffer) Result() int64 {
+func (x *Q46_ProducerConsumerBoundedBuffer) Result() int64 {
         return x.state.Load()
 }

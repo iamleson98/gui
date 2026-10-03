@@ -6,30 +6,30 @@ package datastructures
 
 // Euler Tour Tree
 // Implements a data structure for question #95.
-type EulerTourTree struct {
+type Q95_EulerTourTree struct {
         data map[int]int
         size int
 }
 
-// NewEulerTourTree creates a new instance.
-func NewEulerTourTree() *EulerTourTree {
-        return &EulerTourTree{data: make(map[int]int)}
+// NewQ95_EulerTourTree creates a new instance.
+func NewQ95_EulerTourTree() *Q95_EulerTourTree {
+        return &Q95_EulerTourTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *EulerTourTree) Insert(key, val int) {
+func (d *Q95_EulerTourTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *EulerTourTree) Search(key int) (int, bool) {
+func (d *Q95_EulerTourTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *EulerTourTree) Delete(key int) bool {
+func (d *Q95_EulerTourTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *EulerTourTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *EulerTourTree) Len() int { return d.size }
+func (d *Q95_EulerTourTree) Len() int { return d.size }

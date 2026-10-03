@@ -12,36 +12,36 @@ import (
 
 // Slow Start and Congestion Avoidance
 // Implements a networking concept for question #514.
-type SlowStartAndCongestionAvoidance struct {
+type Q514_SlowStartAndCongestionAvoidance struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewSlowStartAndCongestionAvoidance creates a new network handler.
-func NewSlowStartAndCongestionAvoidance(timeout time.Duration) *SlowStartAndCongestionAvoidance {
-        return &SlowStartAndCongestionAvoidance{
+// NewQ514_SlowStartAndCongestionAvoidance creates a new network handler.
+func NewQ514_SlowStartAndCongestionAvoidance(timeout time.Duration) *Q514_SlowStartAndCongestionAvoidance {
+        return &Q514_SlowStartAndCongestionAvoidance{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *SlowStartAndCongestionAvoidance) AddConnection(id string, conn net.Conn) {
+func (n *Q514_SlowStartAndCongestionAvoidance) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *SlowStartAndCongestionAvoidance) RemoveConnection(id string) {
+func (n *Q514_SlowStartAndCongestionAvoidance) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *SlowStartAndCongestionAvoidance) Send(id string, data []byte) error {
+func (n *Q514_SlowStartAndCongestionAvoidance) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

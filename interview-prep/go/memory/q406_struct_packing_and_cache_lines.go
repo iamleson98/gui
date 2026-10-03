@@ -8,22 +8,22 @@ import "sync"
 
 // Struct Packing and Cache Lines
 // Implements a memory management technique for question #406.
-type StructPackingAndCacheLines struct {
+type Q406_StructPackingAndCacheLines struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewStructPackingAndCacheLines creates a memory manager with the given capacity.
-func NewStructPackingAndCacheLines(capacity int) *StructPackingAndCacheLines {
-        return &StructPackingAndCacheLines{
-                pool: make([]interface{}, 0, capacity),
+// NewQ406_StructPackingAndCacheLines creates a memory manager with the given capacity.
+func NewQ406_StructPackingAndCacheLines(capacity int) *Q406_StructPackingAndCacheLines {
+        return &Q406_StructPackingAndCacheLines{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *StructPackingAndCacheLines) Allocate() interface{ {
+func (m *Q406_StructPackingAndCacheLines) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *StructPackingAndCacheLines) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *StructPackingAndCacheLines) Release(obj interface{) {
+func (m *Q406_StructPackingAndCacheLines) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

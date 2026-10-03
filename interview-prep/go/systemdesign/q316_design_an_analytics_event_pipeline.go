@@ -8,29 +8,29 @@ import "sync"
 
 // Design an Analytics/Event Pipeline
 // Implements a system design component for question #316.
-type DesignAnAnalyticsEventPipeline struct {
+type Q316_DesignAnAnalyticsEventPipeline struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAnAnalyticsEventPipeline creates a new system component.
-func NewDesignAnAnalyticsEventPipeline() *DesignAnAnalyticsEventPipeline {
-        return &DesignAnAnalyticsEventPipeline{
+// NewQ316_DesignAnAnalyticsEventPipeline creates a new system component.
+func NewQ316_DesignAnAnalyticsEventPipeline() *Q316_DesignAnAnalyticsEventPipeline {
+        return &Q316_DesignAnAnalyticsEventPipeline{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAnAnalyticsEventPipeline) SetConfig(key, val string) {
+func (s *Q316_DesignAnAnalyticsEventPipeline) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAnAnalyticsEventPipeline) GetConfig(key string) (string, bool) {
+func (s *Q316_DesignAnAnalyticsEventPipeline) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAnAnalyticsEventPipeline) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAnAnalyticsEventPipeline) IncrementMetric(key string) {
+func (s *Q316_DesignAnAnalyticsEventPipeline) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

@@ -4,17 +4,16 @@
 // Description: Distinguish clustered (index-organized) tables from non-clustered secondary indexes.
 package sql
 
-import "fmt"
 
 // Clustered vs Non-Clustered Index
 // Implements a database design pattern for question #258.
 
-// ClusteredVsNonClusteredIndex represents the database schema/concept.
-type ClusteredVsNonClusteredIndex struct {
+// Q258_ClusteredVsNonClusteredIndex represents the database schema/concept.
+type Q258_ClusteredVsNonClusteredIndex struct {
         tables map[string][]string
 }
 
-// NewClusteredVsNonClusteredIndex initializes the schema.
-func NewClusteredVsNonClusteredIndex() *ClusteredVsNonClusteredIndex {
-        return &ClusteredVsNonClusteredIndex{tables: make(map[string][]string)}
+// NewQ258_ClusteredVsNonClusteredIndex initializes the schema.
+func NewQ258_ClusteredVsNonClusteredIndex() *Q258_ClusteredVsNonClusteredIndex {
+        return &Q258_ClusteredVsNonClusteredIndex{tables: make(map[string][]string)}
 }

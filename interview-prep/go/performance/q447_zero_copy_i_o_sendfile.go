@@ -11,20 +11,20 @@ import (
 
 // Zero-Copy I/O (sendfile)
 // Implements a performance optimization for question #447.
-type ZeroCopyIOSendfile struct {
+type Q447_ZeroCopyIOSendfile struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewZeroCopyIOSendfile creates a new performance optimizer.
-func NewZeroCopyIOSendfile() *ZeroCopyIOSendfile {
-        return &ZeroCopyIOSendfile{cache: make(map[uint64]interface{})}
+// NewQ447_ZeroCopyIOSendfile creates a new performance optimizer.
+func NewQ447_ZeroCopyIOSendfile() *Q447_ZeroCopyIOSendfile {
+        return &Q447_ZeroCopyIOSendfile{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *ZeroCopyIOSendfile) Get(key uint64) (interface{, bool) {
+func (p *Q447_ZeroCopyIOSendfile) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *ZeroCopyIOSendfile) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *ZeroCopyIOSendfile) Set(key uint64, val interface{) {
+func (p *Q447_ZeroCopyIOSendfile) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *ZeroCopyIOSendfile) Stats() (int64, int64) {
+func (p *Q447_ZeroCopyIOSendfile) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

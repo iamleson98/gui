@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Workflow Engine
 // Implements a system design component for question #326.
-type DesignAWorkflowEngine struct {
+type Q326_DesignAWorkflowEngine struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAWorkflowEngine creates a new system component.
-func NewDesignAWorkflowEngine() *DesignAWorkflowEngine {
-        return &DesignAWorkflowEngine{
+// NewQ326_DesignAWorkflowEngine creates a new system component.
+func NewQ326_DesignAWorkflowEngine() *Q326_DesignAWorkflowEngine {
+        return &Q326_DesignAWorkflowEngine{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAWorkflowEngine) SetConfig(key, val string) {
+func (s *Q326_DesignAWorkflowEngine) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAWorkflowEngine) GetConfig(key string) (string, bool) {
+func (s *Q326_DesignAWorkflowEngine) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAWorkflowEngine) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAWorkflowEngine) IncrementMetric(key string) {
+func (s *Q326_DesignAWorkflowEngine) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

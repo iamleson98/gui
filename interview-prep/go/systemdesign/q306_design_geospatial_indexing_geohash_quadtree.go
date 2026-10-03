@@ -8,29 +8,29 @@ import "sync"
 
 // Design Geospatial Indexing (Geohash/Quadtree)
 // Implements a system design component for question #306.
-type DesignGeospatialIndexingGeohashQuadtree struct {
+type Q306_DesignGeospatialIndexingGeohashQuadtree struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignGeospatialIndexingGeohashQuadtree creates a new system component.
-func NewDesignGeospatialIndexingGeohashQuadtree() *DesignGeospatialIndexingGeohashQuadtree {
-        return &DesignGeospatialIndexingGeohashQuadtree{
+// NewQ306_DesignGeospatialIndexingGeohashQuadtree creates a new system component.
+func NewQ306_DesignGeospatialIndexingGeohashQuadtree() *Q306_DesignGeospatialIndexingGeohashQuadtree {
+        return &Q306_DesignGeospatialIndexingGeohashQuadtree{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignGeospatialIndexingGeohashQuadtree) SetConfig(key, val string) {
+func (s *Q306_DesignGeospatialIndexingGeohashQuadtree) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignGeospatialIndexingGeohashQuadtree) GetConfig(key string) (string, bool) {
+func (s *Q306_DesignGeospatialIndexingGeohashQuadtree) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignGeospatialIndexingGeohashQuadtree) GetConfig(key string) (string,
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignGeospatialIndexingGeohashQuadtree) IncrementMetric(key string) {
+func (s *Q306_DesignGeospatialIndexingGeohashQuadtree) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

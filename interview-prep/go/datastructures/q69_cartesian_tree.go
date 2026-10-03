@@ -6,30 +6,30 @@ package datastructures
 
 // Cartesian Tree
 // Implements a data structure for question #69.
-type CartesianTree struct {
+type Q69_CartesianTree struct {
         data map[int]int
         size int
 }
 
-// NewCartesianTree creates a new instance.
-func NewCartesianTree() *CartesianTree {
-        return &CartesianTree{data: make(map[int]int)}
+// NewQ69_CartesianTree creates a new instance.
+func NewQ69_CartesianTree() *Q69_CartesianTree {
+        return &Q69_CartesianTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *CartesianTree) Insert(key, val int) {
+func (d *Q69_CartesianTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *CartesianTree) Search(key int) (int, bool) {
+func (d *Q69_CartesianTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *CartesianTree) Delete(key int) bool {
+func (d *Q69_CartesianTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *CartesianTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *CartesianTree) Len() int { return d.size }
+func (d *Q69_CartesianTree) Len() int { return d.size }

@@ -11,20 +11,20 @@ import (
 
 // Load Testing (Throughput/Latency)
 // Implements a performance optimization for question #440.
-type LoadTestingThroughputLatency struct {
+type Q440_LoadTestingThroughputLatency struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewLoadTestingThroughputLatency creates a new performance optimizer.
-func NewLoadTestingThroughputLatency() *LoadTestingThroughputLatency {
-        return &LoadTestingThroughputLatency{cache: make(map[uint64]interface{})}
+// NewQ440_LoadTestingThroughputLatency creates a new performance optimizer.
+func NewQ440_LoadTestingThroughputLatency() *Q440_LoadTestingThroughputLatency {
+        return &Q440_LoadTestingThroughputLatency{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *LoadTestingThroughputLatency) Get(key uint64) (interface{, bool) {
+func (p *Q440_LoadTestingThroughputLatency) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *LoadTestingThroughputLatency) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *LoadTestingThroughputLatency) Set(key uint64, val interface{) {
+func (p *Q440_LoadTestingThroughputLatency) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *LoadTestingThroughputLatency) Stats() (int64, int64) {
+func (p *Q440_LoadTestingThroughputLatency) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

@@ -13,28 +13,28 @@ import (
 
 // XXE Prevention
 // Implements a security primitive for question #465.
-type XxePrevention struct {
+type Q465_XxePrevention struct {
         key []byte
 }
 
-// NewXxePrevention creates a new security handler with the given key.
-func NewXxePrevention(key []byte) *XxePrevention {
-        return &XxePrevention{key: key}
+// NewQ465_XxePrevention creates a new security handler with the given key.
+func NewQ465_XxePrevention(key []byte) *Q465_XxePrevention {
+        return &Q465_XxePrevention{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *XxePrevention) Hash(data []byte) string {
+func (s *Q465_XxePrevention) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *XxePrevention) Verify(a, b []byte) bool {
+func (s *Q465_XxePrevention) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *XxePrevention) HMAC(data []byte) []byte {
+func (s *Q465_XxePrevention) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

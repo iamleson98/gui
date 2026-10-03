@@ -6,30 +6,30 @@ package datastructures
 
 // Suffix Automaton
 // Implements a data structure for question #73.
-type SuffixAutomaton struct {
+type Q73_SuffixAutomaton struct {
         data map[int]int
         size int
 }
 
-// NewSuffixAutomaton creates a new instance.
-func NewSuffixAutomaton() *SuffixAutomaton {
-        return &SuffixAutomaton{data: make(map[int]int)}
+// NewQ73_SuffixAutomaton creates a new instance.
+func NewQ73_SuffixAutomaton() *Q73_SuffixAutomaton {
+        return &Q73_SuffixAutomaton{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *SuffixAutomaton) Insert(key, val int) {
+func (d *Q73_SuffixAutomaton) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *SuffixAutomaton) Search(key int) (int, bool) {
+func (d *Q73_SuffixAutomaton) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *SuffixAutomaton) Delete(key int) bool {
+func (d *Q73_SuffixAutomaton) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *SuffixAutomaton) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *SuffixAutomaton) Len() int { return d.size }
+func (d *Q73_SuffixAutomaton) Len() int { return d.size }

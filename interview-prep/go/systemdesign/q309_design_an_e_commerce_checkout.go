@@ -8,29 +8,29 @@ import "sync"
 
 // Design an E-Commerce Checkout
 // Implements a system design component for question #309.
-type DesignAnECommerceCheckout struct {
+type Q309_DesignAnECommerceCheckout struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAnECommerceCheckout creates a new system component.
-func NewDesignAnECommerceCheckout() *DesignAnECommerceCheckout {
-        return &DesignAnECommerceCheckout{
+// NewQ309_DesignAnECommerceCheckout creates a new system component.
+func NewQ309_DesignAnECommerceCheckout() *Q309_DesignAnECommerceCheckout {
+        return &Q309_DesignAnECommerceCheckout{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAnECommerceCheckout) SetConfig(key, val string) {
+func (s *Q309_DesignAnECommerceCheckout) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAnECommerceCheckout) GetConfig(key string) (string, bool) {
+func (s *Q309_DesignAnECommerceCheckout) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAnECommerceCheckout) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAnECommerceCheckout) IncrementMetric(key string) {
+func (s *Q309_DesignAnECommerceCheckout) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

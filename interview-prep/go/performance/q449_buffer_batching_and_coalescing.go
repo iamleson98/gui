@@ -11,20 +11,20 @@ import (
 
 // Buffer Batching and Coalescing
 // Implements a performance optimization for question #449.
-type BufferBatchingAndCoalescing struct {
+type Q449_BufferBatchingAndCoalescing struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewBufferBatchingAndCoalescing creates a new performance optimizer.
-func NewBufferBatchingAndCoalescing() *BufferBatchingAndCoalescing {
-        return &BufferBatchingAndCoalescing{cache: make(map[uint64]interface{})}
+// NewQ449_BufferBatchingAndCoalescing creates a new performance optimizer.
+func NewQ449_BufferBatchingAndCoalescing() *Q449_BufferBatchingAndCoalescing {
+        return &Q449_BufferBatchingAndCoalescing{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *BufferBatchingAndCoalescing) Get(key uint64) (interface{, bool) {
+func (p *Q449_BufferBatchingAndCoalescing) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *BufferBatchingAndCoalescing) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *BufferBatchingAndCoalescing) Set(key uint64, val interface{) {
+func (p *Q449_BufferBatchingAndCoalescing) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *BufferBatchingAndCoalescing) Stats() (int64, int64) {
+func (p *Q449_BufferBatchingAndCoalescing) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

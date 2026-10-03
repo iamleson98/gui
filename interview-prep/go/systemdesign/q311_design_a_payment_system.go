@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Payment System
 // Implements a system design component for question #311.
-type DesignAPaymentSystem struct {
+type Q311_DesignAPaymentSystem struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignAPaymentSystem creates a new system component.
-func NewDesignAPaymentSystem() *DesignAPaymentSystem {
-        return &DesignAPaymentSystem{
+// NewQ311_DesignAPaymentSystem creates a new system component.
+func NewQ311_DesignAPaymentSystem() *Q311_DesignAPaymentSystem {
+        return &Q311_DesignAPaymentSystem{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignAPaymentSystem) SetConfig(key, val string) {
+func (s *Q311_DesignAPaymentSystem) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignAPaymentSystem) GetConfig(key string) (string, bool) {
+func (s *Q311_DesignAPaymentSystem) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignAPaymentSystem) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignAPaymentSystem) IncrementMetric(key string) {
+func (s *Q311_DesignAPaymentSystem) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

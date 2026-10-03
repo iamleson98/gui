@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Rate Limiter (Token Bucket)
 // Implements a system design component for question #290.
-type DesignARateLimiterTokenBucket struct {
+type Q290_DesignARateLimiterTokenBucket struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignARateLimiterTokenBucket creates a new system component.
-func NewDesignARateLimiterTokenBucket() *DesignARateLimiterTokenBucket {
-        return &DesignARateLimiterTokenBucket{
+// NewQ290_DesignARateLimiterTokenBucket creates a new system component.
+func NewQ290_DesignARateLimiterTokenBucket() *Q290_DesignARateLimiterTokenBucket {
+        return &Q290_DesignARateLimiterTokenBucket{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignARateLimiterTokenBucket) SetConfig(key, val string) {
+func (s *Q290_DesignARateLimiterTokenBucket) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignARateLimiterTokenBucket) GetConfig(key string) (string, bool) {
+func (s *Q290_DesignARateLimiterTokenBucket) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignARateLimiterTokenBucket) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignARateLimiterTokenBucket) IncrementMetric(key string) {
+func (s *Q290_DesignARateLimiterTokenBucket) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

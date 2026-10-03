@@ -11,22 +11,22 @@ import (
 
 // Eventfd / Event Signaling
 // Implements a concurrent primitive for question #17.
-type EventfdEventSignaling struct {
+type Q17_EventfdEventSignaling struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewEventfdEventSignaling creates a new instance.
-func NewEventfdEventSignaling() *EventfdEventSignaling {
-        x := &EventfdEventSignaling{notify: make(chan struct{}, 1)}
+// NewQ17_EventfdEventSignaling creates a new instance.
+func NewQ17_EventfdEventSignaling() *Q17_EventfdEventSignaling {
+        x := &Q17_EventfdEventSignaling{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *EventfdEventSignaling) Execute() {
+func (x *Q17_EventfdEventSignaling) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *EventfdEventSignaling) Execute() {
 }
 
 // Result returns the current state.
-func (x *EventfdEventSignaling) Result() int64 {
+func (x *Q17_EventfdEventSignaling) Result() int64 {
         return x.state.Load()
 }

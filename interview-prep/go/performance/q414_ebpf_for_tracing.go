@@ -11,20 +11,20 @@ import (
 
 // eBPF for Tracing
 // Implements a performance optimization for question #414.
-type EbpfForTracing struct {
+type Q414_EbpfForTracing struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewEbpfForTracing creates a new performance optimizer.
-func NewEbpfForTracing() *EbpfForTracing {
-        return &EbpfForTracing{cache: make(map[uint64]interface{})}
+// NewQ414_EbpfForTracing creates a new performance optimizer.
+func NewQ414_EbpfForTracing() *Q414_EbpfForTracing {
+        return &Q414_EbpfForTracing{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *EbpfForTracing) Get(key uint64) (interface{, bool) {
+func (p *Q414_EbpfForTracing) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *EbpfForTracing) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *EbpfForTracing) Set(key uint64, val interface{) {
+func (p *Q414_EbpfForTracing) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *EbpfForTracing) Stats() (int64, int64) {
+func (p *Q414_EbpfForTracing) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

@@ -4,17 +4,16 @@
 // Description: Model long-running business transactions as a saga of compensating local actions.
 package sql
 
-import "fmt"
 
 // Sagas (Long-Running Transactions)
 // Implements a database design pattern for question #279.
 
-// SagasLongRunningTransactions represents the database schema/concept.
-type SagasLongRunningTransactions struct {
+// Q279_SagasLongRunningTransactions represents the database schema/concept.
+type Q279_SagasLongRunningTransactions struct {
         tables map[string][]string
 }
 
-// NewSagasLongRunningTransactions initializes the schema.
-func NewSagasLongRunningTransactions() *SagasLongRunningTransactions {
-        return &SagasLongRunningTransactions{tables: make(map[string][]string)}
+// NewQ279_SagasLongRunningTransactions initializes the schema.
+func NewQ279_SagasLongRunningTransactions() *Q279_SagasLongRunningTransactions {
+        return &Q279_SagasLongRunningTransactions{tables: make(map[string][]string)}
 }

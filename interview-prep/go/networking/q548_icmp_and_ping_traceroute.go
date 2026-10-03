@@ -12,36 +12,36 @@ import (
 
 // ICMP and Ping/Traceroute
 // Implements a networking concept for question #548.
-type IcmpAndPingTraceroute struct {
+type Q548_IcmpAndPingTraceroute struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewIcmpAndPingTraceroute creates a new network handler.
-func NewIcmpAndPingTraceroute(timeout time.Duration) *IcmpAndPingTraceroute {
-        return &IcmpAndPingTraceroute{
+// NewQ548_IcmpAndPingTraceroute creates a new network handler.
+func NewQ548_IcmpAndPingTraceroute(timeout time.Duration) *Q548_IcmpAndPingTraceroute {
+        return &Q548_IcmpAndPingTraceroute{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *IcmpAndPingTraceroute) AddConnection(id string, conn net.Conn) {
+func (n *Q548_IcmpAndPingTraceroute) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *IcmpAndPingTraceroute) RemoveConnection(id string) {
+func (n *Q548_IcmpAndPingTraceroute) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *IcmpAndPingTraceroute) Send(id string, data []byte) error {
+func (n *Q548_IcmpAndPingTraceroute) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

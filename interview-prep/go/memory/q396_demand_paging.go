@@ -8,22 +8,22 @@ import "sync"
 
 // Demand Paging
 // Implements a memory management technique for question #396.
-type DemandPaging struct {
+type Q396_DemandPaging struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewDemandPaging creates a memory manager with the given capacity.
-func NewDemandPaging(capacity int) *DemandPaging {
-        return &DemandPaging{
-                pool: make([]interface{}, 0, capacity),
+// NewQ396_DemandPaging creates a memory manager with the given capacity.
+func NewQ396_DemandPaging(capacity int) *Q396_DemandPaging {
+        return &Q396_DemandPaging{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *DemandPaging) Allocate() interface{ {
+func (m *Q396_DemandPaging) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *DemandPaging) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *DemandPaging) Release(obj interface{) {
+func (m *Q396_DemandPaging) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

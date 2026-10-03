@@ -6,30 +6,30 @@ package datastructures
 
 // Aho-Corasick Automaton
 // Implements a data structure for question #87.
-type AhoCorasickAutomaton struct {
+type Q87_AhoCorasickAutomaton struct {
         data map[int]int
         size int
 }
 
-// NewAhoCorasickAutomaton creates a new instance.
-func NewAhoCorasickAutomaton() *AhoCorasickAutomaton {
-        return &AhoCorasickAutomaton{data: make(map[int]int)}
+// NewQ87_AhoCorasickAutomaton creates a new instance.
+func NewQ87_AhoCorasickAutomaton() *Q87_AhoCorasickAutomaton {
+        return &Q87_AhoCorasickAutomaton{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *AhoCorasickAutomaton) Insert(key, val int) {
+func (d *Q87_AhoCorasickAutomaton) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *AhoCorasickAutomaton) Search(key int) (int, bool) {
+func (d *Q87_AhoCorasickAutomaton) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *AhoCorasickAutomaton) Delete(key int) bool {
+func (d *Q87_AhoCorasickAutomaton) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *AhoCorasickAutomaton) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *AhoCorasickAutomaton) Len() int { return d.size }
+func (d *Q87_AhoCorasickAutomaton) Len() int { return d.size }

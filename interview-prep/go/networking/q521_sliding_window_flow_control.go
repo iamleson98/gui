@@ -12,36 +12,36 @@ import (
 
 // Sliding Window Flow Control
 // Implements a networking concept for question #521.
-type SlidingWindowFlowControl struct {
+type Q521_SlidingWindowFlowControl struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewSlidingWindowFlowControl creates a new network handler.
-func NewSlidingWindowFlowControl(timeout time.Duration) *SlidingWindowFlowControl {
-        return &SlidingWindowFlowControl{
+// NewQ521_SlidingWindowFlowControl creates a new network handler.
+func NewQ521_SlidingWindowFlowControl(timeout time.Duration) *Q521_SlidingWindowFlowControl {
+        return &Q521_SlidingWindowFlowControl{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *SlidingWindowFlowControl) AddConnection(id string, conn net.Conn) {
+func (n *Q521_SlidingWindowFlowControl) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *SlidingWindowFlowControl) RemoveConnection(id string) {
+func (n *Q521_SlidingWindowFlowControl) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *SlidingWindowFlowControl) Send(id string, data []byte) error {
+func (n *Q521_SlidingWindowFlowControl) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

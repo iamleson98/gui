@@ -13,28 +13,28 @@ import (
 
 // Digital Signatures (EdDSA, ECDSA)
 // Implements a security primitive for question #485.
-type DigitalSignaturesEddsaEcdsa struct {
+type Q485_DigitalSignaturesEddsaEcdsa struct {
         key []byte
 }
 
-// NewDigitalSignaturesEddsaEcdsa creates a new security handler with the given key.
-func NewDigitalSignaturesEddsaEcdsa(key []byte) *DigitalSignaturesEddsaEcdsa {
-        return &DigitalSignaturesEddsaEcdsa{key: key}
+// NewQ485_DigitalSignaturesEddsaEcdsa creates a new security handler with the given key.
+func NewQ485_DigitalSignaturesEddsaEcdsa(key []byte) *Q485_DigitalSignaturesEddsaEcdsa {
+        return &Q485_DigitalSignaturesEddsaEcdsa{key: key}
 }
 
 // Hash computes a secure hash of the input.
-func (s *DigitalSignaturesEddsaEcdsa) Hash(data []byte) string {
+func (s *Q485_DigitalSignaturesEddsaEcdsa) Hash(data []byte) string {
         h := sha256.Sum256(data)
         return hex.EncodeToString(h[:])
 }
 
 // Verify performs a constant-time comparison.
-func (s *DigitalSignaturesEddsaEcdsa) Verify(a, b []byte) bool {
+func (s *Q485_DigitalSignaturesEddsaEcdsa) Verify(a, b []byte) bool {
         return subtle.ConstantTimeCompare(a, b) == 1
 }
 
 // HMAC computes an HMAC-SHA256 of the data.
-func (s *DigitalSignaturesEddsaEcdsa) HMAC(data []byte) []byte {
+func (s *Q485_DigitalSignaturesEddsaEcdsa) HMAC(data []byte) []byte {
         mac := hmac.New(sha256.New, s.key)
         mac.Write(data)
         return mac.Sum(nil)

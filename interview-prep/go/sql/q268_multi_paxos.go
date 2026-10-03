@@ -4,17 +4,16 @@
 // Description: Optimize Paxos to a steady-state leader batching many instances over a stable leader.
 package sql
 
-import "fmt"
 
 // Multi-Paxos
 // Implements a database design pattern for question #268.
 
-// MultiPaxos represents the database schema/concept.
-type MultiPaxos struct {
+// Q268_MultiPaxos represents the database schema/concept.
+type Q268_MultiPaxos struct {
         tables map[string][]string
 }
 
-// NewMultiPaxos initializes the schema.
-func NewMultiPaxos() *MultiPaxos {
-        return &MultiPaxos{tables: make(map[string][]string)}
+// NewQ268_MultiPaxos initializes the schema.
+func NewQ268_MultiPaxos() *Q268_MultiPaxos {
+        return &Q268_MultiPaxos{tables: make(map[string][]string)}
 }

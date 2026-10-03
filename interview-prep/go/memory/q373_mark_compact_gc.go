@@ -8,22 +8,22 @@ import "sync"
 
 // Mark-Compact GC
 // Implements a memory management technique for question #373.
-type MarkCompactGc struct {
+type Q373_MarkCompactGc struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMarkCompactGc creates a memory manager with the given capacity.
-func NewMarkCompactGc(capacity int) *MarkCompactGc {
-        return &MarkCompactGc{
-                pool: make([]interface{}, 0, capacity),
+// NewQ373_MarkCompactGc creates a memory manager with the given capacity.
+func NewQ373_MarkCompactGc(capacity int) *Q373_MarkCompactGc {
+        return &Q373_MarkCompactGc{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MarkCompactGc) Allocate() interface{ {
+func (m *Q373_MarkCompactGc) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MarkCompactGc) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MarkCompactGc) Release(obj interface{) {
+func (m *Q373_MarkCompactGc) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

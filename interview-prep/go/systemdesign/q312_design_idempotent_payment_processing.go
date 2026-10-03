@@ -8,29 +8,29 @@ import "sync"
 
 // Design Idempotent Payment Processing
 // Implements a system design component for question #312.
-type DesignIdempotentPaymentProcessing struct {
+type Q312_DesignIdempotentPaymentProcessing struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignIdempotentPaymentProcessing creates a new system component.
-func NewDesignIdempotentPaymentProcessing() *DesignIdempotentPaymentProcessing {
-        return &DesignIdempotentPaymentProcessing{
+// NewQ312_DesignIdempotentPaymentProcessing creates a new system component.
+func NewQ312_DesignIdempotentPaymentProcessing() *Q312_DesignIdempotentPaymentProcessing {
+        return &Q312_DesignIdempotentPaymentProcessing{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignIdempotentPaymentProcessing) SetConfig(key, val string) {
+func (s *Q312_DesignIdempotentPaymentProcessing) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignIdempotentPaymentProcessing) GetConfig(key string) (string, bool) {
+func (s *Q312_DesignIdempotentPaymentProcessing) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignIdempotentPaymentProcessing) GetConfig(key string) (string, bool)
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignIdempotentPaymentProcessing) IncrementMetric(key string) {
+func (s *Q312_DesignIdempotentPaymentProcessing) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

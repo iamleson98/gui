@@ -6,30 +6,30 @@ package datastructures
 
 // Finger Tree
 // Implements a data structure for question #112.
-type FingerTree struct {
+type Q112_FingerTree struct {
         data map[int]int
         size int
 }
 
-// NewFingerTree creates a new instance.
-func NewFingerTree() *FingerTree {
-        return &FingerTree{data: make(map[int]int)}
+// NewQ112_FingerTree creates a new instance.
+func NewQ112_FingerTree() *Q112_FingerTree {
+        return &Q112_FingerTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *FingerTree) Insert(key, val int) {
+func (d *Q112_FingerTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *FingerTree) Search(key int) (int, bool) {
+func (d *Q112_FingerTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *FingerTree) Delete(key int) bool {
+func (d *Q112_FingerTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *FingerTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *FingerTree) Len() int { return d.size }
+func (d *Q112_FingerTree) Len() int { return d.size }

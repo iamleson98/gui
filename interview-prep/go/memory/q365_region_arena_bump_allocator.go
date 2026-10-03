@@ -8,22 +8,22 @@ import "sync"
 
 // Region/Arena Bump Allocator
 // Implements a memory management technique for question #365.
-type RegionArenaBumpAllocator struct {
+type Q365_RegionArenaBumpAllocator struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewRegionArenaBumpAllocator creates a memory manager with the given capacity.
-func NewRegionArenaBumpAllocator(capacity int) *RegionArenaBumpAllocator {
-        return &RegionArenaBumpAllocator{
-                pool: make([]interface{}, 0, capacity),
+// NewQ365_RegionArenaBumpAllocator creates a memory manager with the given capacity.
+func NewQ365_RegionArenaBumpAllocator(capacity int) *Q365_RegionArenaBumpAllocator {
+        return &Q365_RegionArenaBumpAllocator{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *RegionArenaBumpAllocator) Allocate() interface{ {
+func (m *Q365_RegionArenaBumpAllocator) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *RegionArenaBumpAllocator) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *RegionArenaBumpAllocator) Release(obj interface{) {
+func (m *Q365_RegionArenaBumpAllocator) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

@@ -11,20 +11,20 @@ import (
 
 // CPU Profiling: Sampling vs Instrumentation
 // Implements a performance optimization for question #411.
-type CpuProfilingSamplingVsInstrumentation struct {
+type Q411_CpuProfilingSamplingVsInstrumentation struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCpuProfilingSamplingVsInstrumentation creates a new performance optimizer.
-func NewCpuProfilingSamplingVsInstrumentation() *CpuProfilingSamplingVsInstrumentation {
-        return &CpuProfilingSamplingVsInstrumentation{cache: make(map[uint64]interface{})}
+// NewQ411_CpuProfilingSamplingVsInstrumentation creates a new performance optimizer.
+func NewQ411_CpuProfilingSamplingVsInstrumentation() *Q411_CpuProfilingSamplingVsInstrumentation {
+        return &Q411_CpuProfilingSamplingVsInstrumentation{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CpuProfilingSamplingVsInstrumentation) Get(key uint64) (interface{, bool) {
+func (p *Q411_CpuProfilingSamplingVsInstrumentation) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CpuProfilingSamplingVsInstrumentation) Get(key uint64) (interface{, boo
 }
 
 // Set stores a value in the cache.
-func (p *CpuProfilingSamplingVsInstrumentation) Set(key uint64, val interface{) {
+func (p *Q411_CpuProfilingSamplingVsInstrumentation) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CpuProfilingSamplingVsInstrumentation) Stats() (int64, int64) {
+func (p *Q411_CpuProfilingSamplingVsInstrumentation) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

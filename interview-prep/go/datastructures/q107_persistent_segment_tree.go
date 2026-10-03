@@ -6,30 +6,30 @@ package datastructures
 
 // Persistent Segment Tree
 // Implements a data structure for question #107.
-type PersistentSegmentTree struct {
+type Q107_PersistentSegmentTree struct {
         data map[int]int
         size int
 }
 
-// NewPersistentSegmentTree creates a new instance.
-func NewPersistentSegmentTree() *PersistentSegmentTree {
-        return &PersistentSegmentTree{data: make(map[int]int)}
+// NewQ107_PersistentSegmentTree creates a new instance.
+func NewQ107_PersistentSegmentTree() *Q107_PersistentSegmentTree {
+        return &Q107_PersistentSegmentTree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *PersistentSegmentTree) Insert(key, val int) {
+func (d *Q107_PersistentSegmentTree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *PersistentSegmentTree) Search(key int) (int, bool) {
+func (d *Q107_PersistentSegmentTree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *PersistentSegmentTree) Delete(key int) bool {
+func (d *Q107_PersistentSegmentTree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *PersistentSegmentTree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *PersistentSegmentTree) Len() int { return d.size }
+func (d *Q107_PersistentSegmentTree) Len() int { return d.size }

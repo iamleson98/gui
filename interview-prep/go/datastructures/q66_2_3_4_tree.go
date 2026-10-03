@@ -6,30 +6,30 @@ package datastructures
 
 // 2-3-4 Tree
 // Implements a data structure for question #66.
-type 234Tree struct {
+type Q66_234Tree struct {
         data map[int]int
         size int
 }
 
-// New234Tree creates a new instance.
-func New234Tree() *234Tree {
-        return &234Tree{data: make(map[int]int)}
+// NewQ66_234Tree creates a new instance.
+func NewQ66_234Tree() *Q66_234Tree {
+        return &Q66_234Tree{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *234Tree) Insert(key, val int) {
+func (d *Q66_234Tree) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *234Tree) Search(key int) (int, bool) {
+func (d *Q66_234Tree) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *234Tree) Delete(key int) bool {
+func (d *Q66_234Tree) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *234Tree) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *234Tree) Len() int { return d.size }
+func (d *Q66_234Tree) Len() int { return d.size }

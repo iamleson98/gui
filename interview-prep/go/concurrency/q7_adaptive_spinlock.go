@@ -11,22 +11,22 @@ import (
 
 // Adaptive Spinlock
 // Implements a concurrent primitive for question #7.
-type AdaptiveSpinlock struct {
+type Q7_AdaptiveSpinlock struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewAdaptiveSpinlock creates a new instance.
-func NewAdaptiveSpinlock() *AdaptiveSpinlock {
-        x := &AdaptiveSpinlock{notify: make(chan struct{}, 1)}
+// NewQ7_AdaptiveSpinlock creates a new instance.
+func NewQ7_AdaptiveSpinlock() *Q7_AdaptiveSpinlock {
+        x := &Q7_AdaptiveSpinlock{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *AdaptiveSpinlock) Execute() {
+func (x *Q7_AdaptiveSpinlock) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *AdaptiveSpinlock) Execute() {
 }
 
 // Result returns the current state.
-func (x *AdaptiveSpinlock) Result() int64 {
+func (x *Q7_AdaptiveSpinlock) Result() int64 {
         return x.state.Load()
 }

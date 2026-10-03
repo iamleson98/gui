@@ -11,20 +11,20 @@ import (
 
 // Cache Hierarchy (L1/L2/L3)
 // Implements a performance optimization for question #420.
-type CacheHierarchyL1L2L3 struct {
+type Q420_CacheHierarchyL1L2L3 struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCacheHierarchyL1L2L3 creates a new performance optimizer.
-func NewCacheHierarchyL1L2L3() *CacheHierarchyL1L2L3 {
-        return &CacheHierarchyL1L2L3{cache: make(map[uint64]interface{})}
+// NewQ420_CacheHierarchyL1L2L3 creates a new performance optimizer.
+func NewQ420_CacheHierarchyL1L2L3() *Q420_CacheHierarchyL1L2L3 {
+        return &Q420_CacheHierarchyL1L2L3{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CacheHierarchyL1L2L3) Get(key uint64) (interface{, bool) {
+func (p *Q420_CacheHierarchyL1L2L3) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CacheHierarchyL1L2L3) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *CacheHierarchyL1L2L3) Set(key uint64, val interface{) {
+func (p *Q420_CacheHierarchyL1L2L3) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CacheHierarchyL1L2L3) Stats() (int64, int64) {
+func (p *Q420_CacheHierarchyL1L2L3) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

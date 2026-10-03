@@ -8,22 +8,22 @@ import "sync"
 
 // mmap and Virtual Address Space
 // Implements a memory management technique for question #394.
-type MmapAndVirtualAddressSpace struct {
+type Q394_MmapAndVirtualAddressSpace struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMmapAndVirtualAddressSpace creates a memory manager with the given capacity.
-func NewMmapAndVirtualAddressSpace(capacity int) *MmapAndVirtualAddressSpace {
-        return &MmapAndVirtualAddressSpace{
-                pool: make([]interface{}, 0, capacity),
+// NewQ394_MmapAndVirtualAddressSpace creates a memory manager with the given capacity.
+func NewQ394_MmapAndVirtualAddressSpace(capacity int) *Q394_MmapAndVirtualAddressSpace {
+        return &Q394_MmapAndVirtualAddressSpace{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MmapAndVirtualAddressSpace) Allocate() interface{ {
+func (m *Q394_MmapAndVirtualAddressSpace) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MmapAndVirtualAddressSpace) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MmapAndVirtualAddressSpace) Release(obj interface{) {
+func (m *Q394_MmapAndVirtualAddressSpace) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

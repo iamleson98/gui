@@ -4,17 +4,16 @@
 // Description: Model hierarchies and graph traversals with recursive CTEs using an anchor and a recursive member.
 package sql
 
-import "fmt"
 
 // Recursive CTEs
 // Implements a database design pattern for question #241.
 
-// RecursiveCtes represents the database schema/concept.
-type RecursiveCtes struct {
+// Q241_RecursiveCtes represents the database schema/concept.
+type Q241_RecursiveCtes struct {
         tables map[string][]string
 }
 
-// NewRecursiveCtes initializes the schema.
-func NewRecursiveCtes() *RecursiveCtes {
-        return &RecursiveCtes{tables: make(map[string][]string)}
+// NewQ241_RecursiveCtes initializes the schema.
+func NewQ241_RecursiveCtes() *Q241_RecursiveCtes {
+        return &Q241_RecursiveCtes{tables: make(map[string][]string)}
 }

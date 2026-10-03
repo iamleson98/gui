@@ -11,20 +11,20 @@ import (
 
 // Cache Lines and Prefetching
 // Implements a performance optimization for question #421.
-type CacheLinesAndPrefetching struct {
+type Q421_CacheLinesAndPrefetching struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewCacheLinesAndPrefetching creates a new performance optimizer.
-func NewCacheLinesAndPrefetching() *CacheLinesAndPrefetching {
-        return &CacheLinesAndPrefetching{cache: make(map[uint64]interface{})}
+// NewQ421_CacheLinesAndPrefetching creates a new performance optimizer.
+func NewQ421_CacheLinesAndPrefetching() *Q421_CacheLinesAndPrefetching {
+        return &Q421_CacheLinesAndPrefetching{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *CacheLinesAndPrefetching) Get(key uint64) (interface{, bool) {
+func (p *Q421_CacheLinesAndPrefetching) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *CacheLinesAndPrefetching) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *CacheLinesAndPrefetching) Set(key uint64, val interface{) {
+func (p *Q421_CacheLinesAndPrefetching) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *CacheLinesAndPrefetching) Stats() (int64, int64) {
+func (p *Q421_CacheLinesAndPrefetching) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

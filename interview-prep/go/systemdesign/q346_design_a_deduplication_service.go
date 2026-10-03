@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Deduplication Service
 // Implements a system design component for question #346.
-type DesignADeduplicationService struct {
+type Q346_DesignADeduplicationService struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignADeduplicationService creates a new system component.
-func NewDesignADeduplicationService() *DesignADeduplicationService {
-        return &DesignADeduplicationService{
+// NewQ346_DesignADeduplicationService creates a new system component.
+func NewQ346_DesignADeduplicationService() *Q346_DesignADeduplicationService {
+        return &Q346_DesignADeduplicationService{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignADeduplicationService) SetConfig(key, val string) {
+func (s *Q346_DesignADeduplicationService) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignADeduplicationService) GetConfig(key string) (string, bool) {
+func (s *Q346_DesignADeduplicationService) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignADeduplicationService) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignADeduplicationService) IncrementMetric(key string) {
+func (s *Q346_DesignADeduplicationService) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

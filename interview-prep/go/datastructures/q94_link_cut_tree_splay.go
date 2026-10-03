@@ -6,30 +6,30 @@ package datastructures
 
 // Link-Cut Tree (Splay)
 // Implements a data structure for question #94.
-type LinkCutTreeSplay struct {
+type Q94_LinkCutTreeSplay struct {
         data map[int]int
         size int
 }
 
-// NewLinkCutTreeSplay creates a new instance.
-func NewLinkCutTreeSplay() *LinkCutTreeSplay {
-        return &LinkCutTreeSplay{data: make(map[int]int)}
+// NewQ94_LinkCutTreeSplay creates a new instance.
+func NewQ94_LinkCutTreeSplay() *Q94_LinkCutTreeSplay {
+        return &Q94_LinkCutTreeSplay{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *LinkCutTreeSplay) Insert(key, val int) {
+func (d *Q94_LinkCutTreeSplay) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *LinkCutTreeSplay) Search(key int) (int, bool) {
+func (d *Q94_LinkCutTreeSplay) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *LinkCutTreeSplay) Delete(key int) bool {
+func (d *Q94_LinkCutTreeSplay) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *LinkCutTreeSplay) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *LinkCutTreeSplay) Len() int { return d.size }
+func (d *Q94_LinkCutTreeSplay) Len() int { return d.size }

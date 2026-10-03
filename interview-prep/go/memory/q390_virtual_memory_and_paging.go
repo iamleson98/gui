@@ -8,22 +8,22 @@ import "sync"
 
 // Virtual Memory and Paging
 // Implements a memory management technique for question #390.
-type VirtualMemoryAndPaging struct {
+type Q390_VirtualMemoryAndPaging struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewVirtualMemoryAndPaging creates a memory manager with the given capacity.
-func NewVirtualMemoryAndPaging(capacity int) *VirtualMemoryAndPaging {
-        return &VirtualMemoryAndPaging{
-                pool: make([]interface{}, 0, capacity),
+// NewQ390_VirtualMemoryAndPaging creates a memory manager with the given capacity.
+func NewQ390_VirtualMemoryAndPaging(capacity int) *Q390_VirtualMemoryAndPaging {
+        return &Q390_VirtualMemoryAndPaging{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *VirtualMemoryAndPaging) Allocate() interface{ {
+func (m *Q390_VirtualMemoryAndPaging) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *VirtualMemoryAndPaging) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *VirtualMemoryAndPaging) Release(obj interface{) {
+func (m *Q390_VirtualMemoryAndPaging) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

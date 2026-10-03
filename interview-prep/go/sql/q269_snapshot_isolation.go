@@ -4,17 +4,16 @@
 // Description: Provide snapshot isolation using transaction start timestamps and version chains to avoid read locks.
 package sql
 
-import "fmt"
 
 // Snapshot Isolation
 // Implements a database design pattern for question #269.
 
-// SnapshotIsolation represents the database schema/concept.
-type SnapshotIsolation struct {
+// Q269_SnapshotIsolation represents the database schema/concept.
+type Q269_SnapshotIsolation struct {
         tables map[string][]string
 }
 
-// NewSnapshotIsolation initializes the schema.
-func NewSnapshotIsolation() *SnapshotIsolation {
-        return &SnapshotIsolation{tables: make(map[string][]string)}
+// NewQ269_SnapshotIsolation initializes the schema.
+func NewQ269_SnapshotIsolation() *Q269_SnapshotIsolation {
+        return &Q269_SnapshotIsolation{tables: make(map[string][]string)}
 }

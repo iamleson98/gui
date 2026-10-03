@@ -6,30 +6,30 @@ package datastructures
 
 // RRB-Trees (Relaxed Radix Balanced)
 // Implements a data structure for question #127.
-type RrbTreesRelaxedRadixBalanced struct {
+type Q127_RrbTreesRelaxedRadixBalanced struct {
         data map[int]int
         size int
 }
 
-// NewRrbTreesRelaxedRadixBalanced creates a new instance.
-func NewRrbTreesRelaxedRadixBalanced() *RrbTreesRelaxedRadixBalanced {
-        return &RrbTreesRelaxedRadixBalanced{data: make(map[int]int)}
+// NewQ127_RrbTreesRelaxedRadixBalanced creates a new instance.
+func NewQ127_RrbTreesRelaxedRadixBalanced() *Q127_RrbTreesRelaxedRadixBalanced {
+        return &Q127_RrbTreesRelaxedRadixBalanced{data: make(map[int]int)}
 }
 
 // Insert adds an element.
-func (d *RrbTreesRelaxedRadixBalanced) Insert(key, val int) {
+func (d *Q127_RrbTreesRelaxedRadixBalanced) Insert(key, val int) {
         d.data[key] = val
         d.size++
 }
 
 // Search looks up an element.
-func (d *RrbTreesRelaxedRadixBalanced) Search(key int) (int, bool) {
+func (d *Q127_RrbTreesRelaxedRadixBalanced) Search(key int) (int, bool) {
         v, ok := d.data[key]
         return v, ok
 }
 
 // Delete removes an element.
-func (d *RrbTreesRelaxedRadixBalanced) Delete(key int) bool {
+func (d *Q127_RrbTreesRelaxedRadixBalanced) Delete(key int) bool {
         if _, ok := d.data[key]; ok {
                 delete(d.data, key)
                 d.size--
@@ -39,4 +39,4 @@ func (d *RrbTreesRelaxedRadixBalanced) Delete(key int) bool {
 }
 
 // Len returns the number of elements.
-func (d *RrbTreesRelaxedRadixBalanced) Len() int { return d.size }
+func (d *Q127_RrbTreesRelaxedRadixBalanced) Len() int { return d.size }

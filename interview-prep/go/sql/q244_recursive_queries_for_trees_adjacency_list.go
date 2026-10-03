@@ -4,17 +4,16 @@
 // Description: Traverse tree-structured adjacency data with recursive queries and termination guards.
 package sql
 
-import "fmt"
 
 // Recursive Queries for Trees (Adjacency List)
 // Implements a database design pattern for question #244.
 
-// RecursiveQueriesForTreesAdjacencyList represents the database schema/concept.
-type RecursiveQueriesForTreesAdjacencyList struct {
+// Q244_RecursiveQueriesForTreesAdjacencyList represents the database schema/concept.
+type Q244_RecursiveQueriesForTreesAdjacencyList struct {
         tables map[string][]string
 }
 
-// NewRecursiveQueriesForTreesAdjacencyList initializes the schema.
-func NewRecursiveQueriesForTreesAdjacencyList() *RecursiveQueriesForTreesAdjacencyList {
-        return &RecursiveQueriesForTreesAdjacencyList{tables: make(map[string][]string)}
+// NewQ244_RecursiveQueriesForTreesAdjacencyList initializes the schema.
+func NewQ244_RecursiveQueriesForTreesAdjacencyList() *Q244_RecursiveQueriesForTreesAdjacencyList {
+        return &Q244_RecursiveQueriesForTreesAdjacencyList{tables: make(map[string][]string)}
 }

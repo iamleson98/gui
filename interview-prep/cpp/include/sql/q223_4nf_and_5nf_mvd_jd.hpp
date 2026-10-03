@@ -14,7 +14,7 @@ namespace interview_prep {
 
 // 4NF and 5NF (MVD/JD)
 // Question ID: 223
-class 4NfAnd5NfMvdJd {
+class Q_4NfAnd5NfMvdJd {
 private:
     std::unordered_map<std::string, std::vector<std::string>> tables_;
 public:

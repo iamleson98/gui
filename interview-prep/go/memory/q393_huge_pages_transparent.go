@@ -8,22 +8,22 @@ import "sync"
 
 // Huge Pages (Transparent)
 // Implements a memory management technique for question #393.
-type HugePagesTransparent struct {
+type Q393_HugePagesTransparent struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewHugePagesTransparent creates a memory manager with the given capacity.
-func NewHugePagesTransparent(capacity int) *HugePagesTransparent {
-        return &HugePagesTransparent{
-                pool: make([]interface{}, 0, capacity),
+// NewQ393_HugePagesTransparent creates a memory manager with the given capacity.
+func NewQ393_HugePagesTransparent(capacity int) *Q393_HugePagesTransparent {
+        return &Q393_HugePagesTransparent{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *HugePagesTransparent) Allocate() interface{ {
+func (m *Q393_HugePagesTransparent) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *HugePagesTransparent) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *HugePagesTransparent) Release(obj interface{) {
+func (m *Q393_HugePagesTransparent) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

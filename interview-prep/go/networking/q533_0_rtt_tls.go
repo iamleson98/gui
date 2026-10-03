@@ -12,36 +12,36 @@ import (
 
 // 0-RTT TLS
 // Implements a networking concept for question #533.
-type 0RttTls struct {
+type Q533_0RttTls struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// New0RttTls creates a new network handler.
-func New0RttTls(timeout time.Duration) *0RttTls {
-        return &0RttTls{
+// NewQ533_0RttTls creates a new network handler.
+func NewQ533_0RttTls(timeout time.Duration) *Q533_0RttTls {
+        return &Q533_0RttTls{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *0RttTls) AddConnection(id string, conn net.Conn) {
+func (n *Q533_0RttTls) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *0RttTls) RemoveConnection(id string) {
+func (n *Q533_0RttTls) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *0RttTls) Send(id string, data []byte) error {
+func (n *Q533_0RttTls) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

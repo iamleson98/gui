@@ -8,22 +8,22 @@ import "sync"
 
 // NUMA Allocation Policies
 // Implements a memory management technique for question #409.
-type NumaAllocationPolicies struct {
+type Q409_NumaAllocationPolicies struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewNumaAllocationPolicies creates a memory manager with the given capacity.
-func NewNumaAllocationPolicies(capacity int) *NumaAllocationPolicies {
-        return &NumaAllocationPolicies{
-                pool: make([]interface{}, 0, capacity),
+// NewQ409_NumaAllocationPolicies creates a memory manager with the given capacity.
+func NewQ409_NumaAllocationPolicies(capacity int) *Q409_NumaAllocationPolicies {
+        return &Q409_NumaAllocationPolicies{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *NumaAllocationPolicies) Allocate() interface{ {
+func (m *Q409_NumaAllocationPolicies) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *NumaAllocationPolicies) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *NumaAllocationPolicies) Release(obj interface{) {
+func (m *Q409_NumaAllocationPolicies) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

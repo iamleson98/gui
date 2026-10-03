@@ -11,20 +11,20 @@ import (
 
 // Little's Law
 // Implements a performance optimization for question #441.
-type LittleSLaw struct {
+type Q441_LittleSLaw struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewLittleSLaw creates a new performance optimizer.
-func NewLittleSLaw() *LittleSLaw {
-        return &LittleSLaw{cache: make(map[uint64]interface{})}
+// NewQ441_LittleSLaw creates a new performance optimizer.
+func NewQ441_LittleSLaw() *Q441_LittleSLaw {
+        return &Q441_LittleSLaw{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *LittleSLaw) Get(key uint64) (interface{, bool) {
+func (p *Q441_LittleSLaw) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *LittleSLaw) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *LittleSLaw) Set(key uint64, val interface{) {
+func (p *Q441_LittleSLaw) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *LittleSLaw) Stats() (int64, int64) {
+func (p *Q441_LittleSLaw) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

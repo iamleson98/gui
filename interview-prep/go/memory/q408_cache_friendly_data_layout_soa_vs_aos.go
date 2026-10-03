@@ -8,22 +8,22 @@ import "sync"
 
 // Cache-Friendly Data Layout (SoA vs AoS)
 // Implements a memory management technique for question #408.
-type CacheFriendlyDataLayoutSoaVsAos struct {
+type Q408_CacheFriendlyDataLayoutSoaVsAos struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewCacheFriendlyDataLayoutSoaVsAos creates a memory manager with the given capacity.
-func NewCacheFriendlyDataLayoutSoaVsAos(capacity int) *CacheFriendlyDataLayoutSoaVsAos {
-        return &CacheFriendlyDataLayoutSoaVsAos{
-                pool: make([]interface{}, 0, capacity),
+// NewQ408_CacheFriendlyDataLayoutSoaVsAos creates a memory manager with the given capacity.
+func NewQ408_CacheFriendlyDataLayoutSoaVsAos(capacity int) *Q408_CacheFriendlyDataLayoutSoaVsAos {
+        return &Q408_CacheFriendlyDataLayoutSoaVsAos{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *CacheFriendlyDataLayoutSoaVsAos) Allocate() interface{ {
+func (m *Q408_CacheFriendlyDataLayoutSoaVsAos) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *CacheFriendlyDataLayoutSoaVsAos) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *CacheFriendlyDataLayoutSoaVsAos) Release(obj interface{) {
+func (m *Q408_CacheFriendlyDataLayoutSoaVsAos) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

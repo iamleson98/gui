@@ -8,22 +8,22 @@ import "sync"
 
 // Multi-Level Page Tables
 // Implements a memory management technique for question #391.
-type MultiLevelPageTables struct {
+type Q391_MultiLevelPageTables struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMultiLevelPageTables creates a memory manager with the given capacity.
-func NewMultiLevelPageTables(capacity int) *MultiLevelPageTables {
-        return &MultiLevelPageTables{
-                pool: make([]interface{}, 0, capacity),
+// NewQ391_MultiLevelPageTables creates a memory manager with the given capacity.
+func NewQ391_MultiLevelPageTables(capacity int) *Q391_MultiLevelPageTables {
+        return &Q391_MultiLevelPageTables{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MultiLevelPageTables) Allocate() interface{ {
+func (m *Q391_MultiLevelPageTables) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MultiLevelPageTables) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MultiLevelPageTables) Release(obj interface{) {
+func (m *Q391_MultiLevelPageTables) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

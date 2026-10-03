@@ -4,17 +4,16 @@
 // Description: Create partial indexes on a filtered subset to reduce size and speed common queries.
 package sql
 
-import "fmt"
 
 // Partial Index (WHERE Clause)
 // Implements a database design pattern for question #254.
 
-// PartialIndexWhereClause represents the database schema/concept.
-type PartialIndexWhereClause struct {
+// Q254_PartialIndexWhereClause represents the database schema/concept.
+type Q254_PartialIndexWhereClause struct {
         tables map[string][]string
 }
 
-// NewPartialIndexWhereClause initializes the schema.
-func NewPartialIndexWhereClause() *PartialIndexWhereClause {
-        return &PartialIndexWhereClause{tables: make(map[string][]string)}
+// NewQ254_PartialIndexWhereClause initializes the schema.
+func NewQ254_PartialIndexWhereClause() *Q254_PartialIndexWhereClause {
+        return &Q254_PartialIndexWhereClause{tables: make(map[string][]string)}
 }

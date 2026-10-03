@@ -14,7 +14,7 @@ namespace interview_prep {
 
 // 2-SAT (Implication Graph)
 // Question ID: 161
-class 2SatImplicationGraph {
+class Q_2SatImplicationGraph {
 public:
     std::vector<int> solve(std::vector<int> input) {
         std::sort(input.begin(), input.end());

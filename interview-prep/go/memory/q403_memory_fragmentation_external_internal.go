@@ -8,22 +8,22 @@ import "sync"
 
 // Memory Fragmentation (External/Internal)
 // Implements a memory management technique for question #403.
-type MemoryFragmentationExternalInternal struct {
+type Q403_MemoryFragmentationExternalInternal struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewMemoryFragmentationExternalInternal creates a memory manager with the given capacity.
-func NewMemoryFragmentationExternalInternal(capacity int) *MemoryFragmentationExternalInternal {
-        return &MemoryFragmentationExternalInternal{
-                pool: make([]interface{}, 0, capacity),
+// NewQ403_MemoryFragmentationExternalInternal creates a memory manager with the given capacity.
+func NewQ403_MemoryFragmentationExternalInternal(capacity int) *Q403_MemoryFragmentationExternalInternal {
+        return &Q403_MemoryFragmentationExternalInternal{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *MemoryFragmentationExternalInternal) Allocate() interface{ {
+func (m *Q403_MemoryFragmentationExternalInternal) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *MemoryFragmentationExternalInternal) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *MemoryFragmentationExternalInternal) Release(obj interface{) {
+func (m *Q403_MemoryFragmentationExternalInternal) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

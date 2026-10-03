@@ -12,36 +12,36 @@ import (
 
 // AMQP Message Protocol
 // Implements a networking concept for question #547.
-type AmqpMessageProtocol struct {
+type Q547_AmqpMessageProtocol struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewAmqpMessageProtocol creates a new network handler.
-func NewAmqpMessageProtocol(timeout time.Duration) *AmqpMessageProtocol {
-        return &AmqpMessageProtocol{
+// NewQ547_AmqpMessageProtocol creates a new network handler.
+func NewQ547_AmqpMessageProtocol(timeout time.Duration) *Q547_AmqpMessageProtocol {
+        return &Q547_AmqpMessageProtocol{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *AmqpMessageProtocol) AddConnection(id string, conn net.Conn) {
+func (n *Q547_AmqpMessageProtocol) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *AmqpMessageProtocol) RemoveConnection(id string) {
+func (n *Q547_AmqpMessageProtocol) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *AmqpMessageProtocol) Send(id string, data []byte) error {
+func (n *Q547_AmqpMessageProtocol) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

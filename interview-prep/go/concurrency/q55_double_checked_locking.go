@@ -11,22 +11,22 @@ import (
 
 // Double-Checked Locking
 // Implements a concurrent primitive for question #55.
-type DoubleCheckedLocking struct {
+type Q55_DoubleCheckedLocking struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewDoubleCheckedLocking creates a new instance.
-func NewDoubleCheckedLocking() *DoubleCheckedLocking {
-        x := &DoubleCheckedLocking{notify: make(chan struct{}, 1)}
+// NewQ55_DoubleCheckedLocking creates a new instance.
+func NewQ55_DoubleCheckedLocking() *Q55_DoubleCheckedLocking {
+        x := &Q55_DoubleCheckedLocking{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *DoubleCheckedLocking) Execute() {
+func (x *Q55_DoubleCheckedLocking) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *DoubleCheckedLocking) Execute() {
 }
 
 // Result returns the current state.
-func (x *DoubleCheckedLocking) Result() int64 {
+func (x *Q55_DoubleCheckedLocking) Result() int64 {
         return x.state.Load()
 }

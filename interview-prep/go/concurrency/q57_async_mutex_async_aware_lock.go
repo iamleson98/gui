@@ -11,22 +11,22 @@ import (
 
 // Async Mutex / Async-Aware Lock
 // Implements a concurrent primitive for question #57.
-type AsyncMutexAsyncAwareLock struct {
+type Q57_AsyncMutexAsyncAwareLock struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewAsyncMutexAsyncAwareLock creates a new instance.
-func NewAsyncMutexAsyncAwareLock() *AsyncMutexAsyncAwareLock {
-        x := &AsyncMutexAsyncAwareLock{notify: make(chan struct{}, 1)}
+// NewQ57_AsyncMutexAsyncAwareLock creates a new instance.
+func NewQ57_AsyncMutexAsyncAwareLock() *Q57_AsyncMutexAsyncAwareLock {
+        x := &Q57_AsyncMutexAsyncAwareLock{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *AsyncMutexAsyncAwareLock) Execute() {
+func (x *Q57_AsyncMutexAsyncAwareLock) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *AsyncMutexAsyncAwareLock) Execute() {
 }
 
 // Result returns the current state.
-func (x *AsyncMutexAsyncAwareLock) Result() int64 {
+func (x *Q57_AsyncMutexAsyncAwareLock) Result() int64 {
         return x.state.Load()
 }

@@ -8,22 +8,22 @@ import "sync"
 
 // Huge Page Table Walks
 // Implements a memory management technique for question #410.
-type HugePageTableWalks struct {
+type Q410_HugePageTableWalks struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewHugePageTableWalks creates a memory manager with the given capacity.
-func NewHugePageTableWalks(capacity int) *HugePageTableWalks {
-        return &HugePageTableWalks{
-                pool: make([]interface{}, 0, capacity),
+// NewQ410_HugePageTableWalks creates a memory manager with the given capacity.
+func NewQ410_HugePageTableWalks(capacity int) *Q410_HugePageTableWalks {
+        return &Q410_HugePageTableWalks{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *HugePageTableWalks) Allocate() interface{ {
+func (m *Q410_HugePageTableWalks) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *HugePageTableWalks) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *HugePageTableWalks) Release(obj interface{) {
+func (m *Q410_HugePageTableWalks) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

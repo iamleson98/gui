@@ -11,20 +11,20 @@ import (
 
 // io_uring vs epoll
 // Implements a performance optimization for question #446.
-type IoUringVsEpoll struct {
+type Q446_IoUringVsEpoll struct {
         mu      sync.Mutex
-        cache   map[uint64]interface{}
+        cache   map[uint64]any
         hits    atomic.Int64
         misses  atomic.Int64
 }
 
-// NewIoUringVsEpoll creates a new performance optimizer.
-func NewIoUringVsEpoll() *IoUringVsEpoll {
-        return &IoUringVsEpoll{cache: make(map[uint64]interface{})}
+// NewQ446_IoUringVsEpoll creates a new performance optimizer.
+func NewQ446_IoUringVsEpoll() *Q446_IoUringVsEpoll {
+        return &Q446_IoUringVsEpoll{cache: make(map[uint64]any)}
 }
 
 // Get retrieves a cached value or returns false.
-func (p *IoUringVsEpoll) Get(key uint64) (interface{, bool) {
+func (p *Q446_IoUringVsEpoll) Get(key uint64) (any, bool) {
         p.mu.Lock()
         v, ok := p.cache[key]
         p.mu.Unlock()
@@ -37,13 +37,13 @@ func (p *IoUringVsEpoll) Get(key uint64) (interface{, bool) {
 }
 
 // Set stores a value in the cache.
-func (p *IoUringVsEpoll) Set(key uint64, val interface{) {
+func (p *Q446_IoUringVsEpoll) Set(key uint64, val any) {
         p.mu.Lock()
         p.cache[key] = val
         p.mu.Unlock()
 }
 
 // Stats returns (hits, misses).
-func (p *IoUringVsEpoll) Stats() (int64, int64) {
+func (p *Q446_IoUringVsEpoll) Stats() (int64, int64) {
         return p.hits.Load(), p.misses.Load()
 }

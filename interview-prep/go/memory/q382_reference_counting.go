@@ -8,22 +8,22 @@ import "sync"
 
 // Reference Counting
 // Implements a memory management technique for question #382.
-type ReferenceCounting struct {
+type Q382_ReferenceCounting struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewReferenceCounting creates a memory manager with the given capacity.
-func NewReferenceCounting(capacity int) *ReferenceCounting {
-        return &ReferenceCounting{
-                pool: make([]interface{}, 0, capacity),
+// NewQ382_ReferenceCounting creates a memory manager with the given capacity.
+func NewQ382_ReferenceCounting(capacity int) *Q382_ReferenceCounting {
+        return &Q382_ReferenceCounting{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *ReferenceCounting) Allocate() interface{ {
+func (m *Q382_ReferenceCounting) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *ReferenceCounting) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *ReferenceCounting) Release(obj interface{) {
+func (m *Q382_ReferenceCounting) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

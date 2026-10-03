@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Log Aggregation System
 // Implements a system design component for question #318.
-type DesignALogAggregationSystem struct {
+type Q318_DesignALogAggregationSystem struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignALogAggregationSystem creates a new system component.
-func NewDesignALogAggregationSystem() *DesignALogAggregationSystem {
-        return &DesignALogAggregationSystem{
+// NewQ318_DesignALogAggregationSystem creates a new system component.
+func NewQ318_DesignALogAggregationSystem() *Q318_DesignALogAggregationSystem {
+        return &Q318_DesignALogAggregationSystem{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignALogAggregationSystem) SetConfig(key, val string) {
+func (s *Q318_DesignALogAggregationSystem) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignALogAggregationSystem) GetConfig(key string) (string, bool) {
+func (s *Q318_DesignALogAggregationSystem) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignALogAggregationSystem) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignALogAggregationSystem) IncrementMetric(key string) {
+func (s *Q318_DesignALogAggregationSystem) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

@@ -8,29 +8,29 @@ import "sync"
 
 // Design a Distributed Job Scheduler
 // Implements a system design component for question #319.
-type DesignADistributedJobScheduler struct {
+type Q319_DesignADistributedJobScheduler struct {
         mu      sync.RWMutex
         config  map[string]string
         metrics map[string]int64
 }
 
-// NewDesignADistributedJobScheduler creates a new system component.
-func NewDesignADistributedJobScheduler() *DesignADistributedJobScheduler {
-        return &DesignADistributedJobScheduler{
+// NewQ319_DesignADistributedJobScheduler creates a new system component.
+func NewQ319_DesignADistributedJobScheduler() *Q319_DesignADistributedJobScheduler {
+        return &Q319_DesignADistributedJobScheduler{
                 config:  make(map[string]string),
                 metrics: make(map[string]int64),
         }
 }
 
 // SetConfig updates a configuration value.
-func (s *DesignADistributedJobScheduler) SetConfig(key, val string) {
+func (s *Q319_DesignADistributedJobScheduler) SetConfig(key, val string) {
         s.mu.Lock()
         s.config[key] = val
         s.mu.Unlock()
 }
 
 // GetConfig reads a configuration value.
-func (s *DesignADistributedJobScheduler) GetConfig(key string) (string, bool) {
+func (s *Q319_DesignADistributedJobScheduler) GetConfig(key string) (string, bool) {
         s.mu.RLock()
         v, ok := s.config[key]
         s.mu.RUnlock()
@@ -38,7 +38,7 @@ func (s *DesignADistributedJobScheduler) GetConfig(key string) (string, bool) {
 }
 
 // IncrementMetric increments a metric counter.
-func (s *DesignADistributedJobScheduler) IncrementMetric(key string) {
+func (s *Q319_DesignADistributedJobScheduler) IncrementMetric(key string) {
         s.mu.Lock()
         s.metrics[key]++
         s.mu.Unlock()

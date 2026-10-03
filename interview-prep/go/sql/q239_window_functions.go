@@ -4,17 +4,16 @@
 // Description: Use RANK, DENSE_RANK, ROW_NUMBER, and framing clauses for analytic queries.
 package sql
 
-import "fmt"
 
 // Window Functions
 // Implements a database design pattern for question #239.
 
-// WindowFunctions represents the database schema/concept.
-type WindowFunctions struct {
+// Q239_WindowFunctions represents the database schema/concept.
+type Q239_WindowFunctions struct {
         tables map[string][]string
 }
 
-// NewWindowFunctions initializes the schema.
-func NewWindowFunctions() *WindowFunctions {
-        return &WindowFunctions{tables: make(map[string][]string)}
+// NewQ239_WindowFunctions initializes the schema.
+func NewQ239_WindowFunctions() *Q239_WindowFunctions {
+        return &Q239_WindowFunctions{tables: make(map[string][]string)}
 }

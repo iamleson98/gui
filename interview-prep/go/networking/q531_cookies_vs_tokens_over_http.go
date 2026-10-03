@@ -12,36 +12,36 @@ import (
 
 // Cookies vs Tokens over HTTP
 // Implements a networking concept for question #531.
-type CookiesVsTokensOverHttp struct {
+type Q531_CookiesVsTokensOverHttp struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewCookiesVsTokensOverHttp creates a new network handler.
-func NewCookiesVsTokensOverHttp(timeout time.Duration) *CookiesVsTokensOverHttp {
-        return &CookiesVsTokensOverHttp{
+// NewQ531_CookiesVsTokensOverHttp creates a new network handler.
+func NewQ531_CookiesVsTokensOverHttp(timeout time.Duration) *Q531_CookiesVsTokensOverHttp {
+        return &Q531_CookiesVsTokensOverHttp{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *CookiesVsTokensOverHttp) AddConnection(id string, conn net.Conn) {
+func (n *Q531_CookiesVsTokensOverHttp) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *CookiesVsTokensOverHttp) RemoveConnection(id string) {
+func (n *Q531_CookiesVsTokensOverHttp) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *CookiesVsTokensOverHttp) Send(id string, data []byte) error {
+func (n *Q531_CookiesVsTokensOverHttp) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

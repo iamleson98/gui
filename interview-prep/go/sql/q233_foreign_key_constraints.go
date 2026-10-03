@@ -4,17 +4,16 @@
 // Description: Enforce referential integrity with foreign keys and choose RESTRICT, CASCADE, and SET NULL actions.
 package sql
 
-import "fmt"
 
 // Foreign Key Constraints
 // Implements a database design pattern for question #233.
 
-// ForeignKeyConstraints represents the database schema/concept.
-type ForeignKeyConstraints struct {
+// Q233_ForeignKeyConstraints represents the database schema/concept.
+type Q233_ForeignKeyConstraints struct {
         tables map[string][]string
 }
 
-// NewForeignKeyConstraints initializes the schema.
-func NewForeignKeyConstraints() *ForeignKeyConstraints {
-        return &ForeignKeyConstraints{tables: make(map[string][]string)}
+// NewQ233_ForeignKeyConstraints initializes the schema.
+func NewQ233_ForeignKeyConstraints() *Q233_ForeignKeyConstraints {
+        return &Q233_ForeignKeyConstraints{tables: make(map[string][]string)}
 }

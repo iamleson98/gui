@@ -12,36 +12,36 @@ import (
 
 // UDP Reliability at Application Layer
 // Implements a networking concept for question #540.
-type UdpReliabilityAtApplicationLayer struct {
+type Q540_UdpReliabilityAtApplicationLayer struct {
         mu        sync.Mutex
         connections map[string]net.Conn
         timeout   time.Duration
 }
 
-// NewUdpReliabilityAtApplicationLayer creates a new network handler.
-func NewUdpReliabilityAtApplicationLayer(timeout time.Duration) *UdpReliabilityAtApplicationLayer {
-        return &UdpReliabilityAtApplicationLayer{
+// NewQ540_UdpReliabilityAtApplicationLayer creates a new network handler.
+func NewQ540_UdpReliabilityAtApplicationLayer(timeout time.Duration) *Q540_UdpReliabilityAtApplicationLayer {
+        return &Q540_UdpReliabilityAtApplicationLayer{
                 connections: make(map[string]net.Conn),
                 timeout:     timeout,
         }
 }
 
 // AddConnection registers a connection.
-func (n *UdpReliabilityAtApplicationLayer) AddConnection(id string, conn net.Conn) {
+func (n *Q540_UdpReliabilityAtApplicationLayer) AddConnection(id string, conn net.Conn) {
         n.mu.Lock()
         n.connections[id] = conn
         n.mu.Unlock()
 }
 
 // RemoveConnection removes a connection.
-func (n *UdpReliabilityAtApplicationLayer) RemoveConnection(id string) {
+func (n *Q540_UdpReliabilityAtApplicationLayer) RemoveConnection(id string) {
         n.mu.Lock()
         delete(n.connections, id)
         n.mu.Unlock()
 }
 
 // Send writes data to a connection.
-func (n *UdpReliabilityAtApplicationLayer) Send(id string, data []byte) error {
+func (n *Q540_UdpReliabilityAtApplicationLayer) Send(id string, data []byte) error {
         n.mu.Lock()
         conn, ok := n.connections[id]
         n.mu.Unlock()

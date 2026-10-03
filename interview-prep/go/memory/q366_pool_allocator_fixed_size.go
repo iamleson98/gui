@@ -8,22 +8,22 @@ import "sync"
 
 // Pool Allocator (Fixed-Size)
 // Implements a memory management technique for question #366.
-type PoolAllocatorFixedSize struct {
+type Q366_PoolAllocatorFixedSize struct {
         mu    sync.Mutex
-        pool  []interface{}
+        pool  []any
         size  int
 }
 
-// NewPoolAllocatorFixedSize creates a memory manager with the given capacity.
-func NewPoolAllocatorFixedSize(capacity int) *PoolAllocatorFixedSize {
-        return &PoolAllocatorFixedSize{
-                pool: make([]interface{}, 0, capacity),
+// NewQ366_PoolAllocatorFixedSize creates a memory manager with the given capacity.
+func NewQ366_PoolAllocatorFixedSize(capacity int) *Q366_PoolAllocatorFixedSize {
+        return &Q366_PoolAllocatorFixedSize{
+                pool: make([]any, 0, capacity),
                 size: 0,
         }
 }
 
 // Allocate returns an object from the pool or creates a new one.
-func (m *PoolAllocatorFixedSize) Allocate() interface{ {
+func (m *Q366_PoolAllocatorFixedSize) Allocate() any {
         m.mu.Lock()
         defer m.mu.Unlock()
         if m.size > 0 {
@@ -36,7 +36,7 @@ func (m *PoolAllocatorFixedSize) Allocate() interface{ {
 }
 
 // Release returns an object to the pool.
-func (m *PoolAllocatorFixedSize) Release(obj interface{) {
+func (m *Q366_PoolAllocatorFixedSize) Release(obj any) {
         m.mu.Lock()
         m.pool = append(m.pool, obj)
         m.size++

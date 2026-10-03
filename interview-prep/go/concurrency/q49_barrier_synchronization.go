@@ -11,22 +11,22 @@ import (
 
 // Barrier Synchronization
 // Implements a concurrent primitive for question #49.
-type BarrierSynchronization struct {
+type Q49_BarrierSynchronization struct {
         mu       sync.Mutex
         cond     *sync.Cond
         state    atomic.Int64
         notify   chan struct{}
 }
 
-// NewBarrierSynchronization creates a new instance.
-func NewBarrierSynchronization() *BarrierSynchronization {
-        x := &BarrierSynchronization{notify: make(chan struct{}, 1)}
+// NewQ49_BarrierSynchronization creates a new instance.
+func NewQ49_BarrierSynchronization() *Q49_BarrierSynchronization {
+        x := &Q49_BarrierSynchronization{notify: make(chan struct{}, 1)}
         x.cond = sync.NewCond(&x.mu)
         return x
 }
 
 // Execute performs the core operation for this question.
-func (x *BarrierSynchronization) Execute() {
+func (x *Q49_BarrierSynchronization) Execute() {
         // Acquire and release using the concurrent primitive
         x.mu.Lock()
         defer x.mu.Unlock()
@@ -35,6 +35,6 @@ func (x *BarrierSynchronization) Execute() {
 }
 
 // Result returns the current state.
-func (x *BarrierSynchronization) Result() int64 {
+func (x *Q49_BarrierSynchronization) Result() int64 {
         return x.state.Load()
 }

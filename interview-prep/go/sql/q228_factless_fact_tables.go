@@ -4,17 +4,16 @@
 // Description: Model many-to-many event coverage with factless fact tables capturing only keys.
 package sql
 
-import "fmt"
 
 // Factless Fact Tables
 // Implements a database design pattern for question #228.
 
-// FactlessFactTables represents the database schema/concept.
-type FactlessFactTables struct {
+// Q228_FactlessFactTables represents the database schema/concept.
+type Q228_FactlessFactTables struct {
         tables map[string][]string
 }
 
-// NewFactlessFactTables initializes the schema.
-func NewFactlessFactTables() *FactlessFactTables {
-        return &FactlessFactTables{tables: make(map[string][]string)}
+// NewQ228_FactlessFactTables initializes the schema.
+func NewQ228_FactlessFactTables() *Q228_FactlessFactTables {
+        return &Q228_FactlessFactTables{tables: make(map[string][]string)}
 }
