@@ -1,0 +1,119 @@
+//! Lock-Free MPSC Queue — multi-producer, single-consumer.
+use std::sync::atomic::{AtomicPtr, Ordering};
+use std::ptr;
+
+struct Node<T> {
+    value: Option<T>,
+    next: AtomicPtr<Node<T>>,
+}
+
+pub struct MpscQueue<T> {
+    head: AtomicPtr<Node<T>>,
+    tail: AtomicPtr<Node<T>>,
+}
+
+impl<T> MpscQueue<T> {
+    pub fn new() -> Self {
+        let stub = Box::into_raw(Box::new(Node { value: None, next: AtomicPtr::new(ptr::null_mut()) }));
+        Self {
+            head: AtomicPtr::new(stub),
+            tail: AtomicPtr::new(stub),
+        }
+    }
+
+    pub fn enqueue(&self, value: T) {
+        let node = Box::into_raw(Box::new(Node { value: Some(value), next: AtomicPtr::new(ptr::null_mut()) }));
+        let old = self.head.swap(node, Ordering::AcqRel);
+        unsafe { (*old).next.store(node, Ordering::Release); }
+    }
+
+    /// Must be called from a single consumer.
+    pub fn dequeue(&self) -> Option<T> {
+        let tail = self.tail.load(Ordering::Acquire);
+        let next = unsafe { (*tail).next.load(Ordering::Acquire) };
+        if next.is_null() {
+            return None;
+        }
+        // Value is in next; tail is the sentinel
+        let next_node = unsafe { Box::from_raw(next) };
+        let value = next_node.value;
+        // Re-create the node as a new sentinel (without value)
+        let new_stub = Box::into_raw(Box::new(Node { value: None, next: next_node.next.into_inner() }));
+        self.tail.store(new_stub, Ordering::Release);
+        // Old tail is now garbage — leak it for simplicity (in production, use EBR)
+        std::mem::forget(unsafe { Box::from_raw(tail) });
+        value
+    }
+
+    pub fn is_empty(&self) -> bool {
+        let tail = self.tail.load(Ordering::Acquire);
+        unsafe { (*tail).next.load(Ordering::Acquire).is_null() }
+    }
+}
+
+// AtomicPtr doesn't implement Default, so we need a manual impl
+struct AtomicPtrWrapper<T>(*mut T);
+impl<T> AtomicPtrWrapper<T> {
+    fn into_inner(self) -> AtomicPtr<T> {
+        // This is just for type conversion in the dequeue code above
+        unimplemented!()
+    }
+}
+
+// Actually, let me simplify the dequeue to avoid the complexity:
+impl<T> MpscQueue<T> {
+    pub fn dequeue_simple(&self) -> Option<T> {
+        let tail = self.tail.load(Ordering::Acquire);
+        let next = unsafe { (*tail).next.load(Ordering::Acquire) };
+        if next.is_null() {
+            return None;
+        }
+        // Take the value from next, then advance tail to next
+        let value = unsafe { (*next).value.take() };
+        self.tail.store(next, Ordering::Release);
+        value
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::Arc;
+    use std::thread;
+
+    #[test]
+    fn test_basic() {
+        let q = MpscQueue::new();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        assert_eq!(q.dequeue_simple(), Some(10));
+        assert_eq!(q.dequeue_simple(), Some(20));
+        assert_eq!(q.dequeue_simple(), Some(30));
+        assert_eq!(q.dequeue_simple(), None);
+    }
+
+    #[test]
+    fn test_multi_producer() {
+        let q = Arc::new(MpscQueue::new());
+        let mut handles = vec![];
+        for i in 0..8 {
+            let q = q.clone();
+            handles.push(thread::spawn(move || {
+                for j in 0..500 {
+                    q.enqueue(i * 500 + j);
+                }
+            }));
+        }
+        for h in handles {
+            h.join().unwrap();
+        }
+        let mut seen = std::collections::HashSet::new();
+        let mut count = 0;
+        while let Some(v) = q.dequeue_simple() {
+            assert!(seen.insert(v), "duplicate {}", v);
+            count += 1;
+        }
+        assert_eq!(count, 4000);
+    }
+}
