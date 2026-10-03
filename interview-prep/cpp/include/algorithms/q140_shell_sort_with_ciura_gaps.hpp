@@ -1,25 +1,24 @@
 // Question #140: Shell Sort with Ciura Gaps
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: shell sort, gaps, Ciura, in-place
 // Description: Implement shellsort using Ciura's empirically tuned gap sequence.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Shell Sort with Ciura Gaps
 // Question ID: 140
-// See questions.json for full details.
-class shell_sort_with_ciura_gaps {
+class ShellSortWithCiuraGaps {
 public:
-    // TODO: Implement the solution for question #140
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

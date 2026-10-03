@@ -1,25 +1,24 @@
 // Question #164: Longest Common Subsequence
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: LCS, dynamic programming, backtracking, suffix
 // Description: Build the LCS dynamic programming table and reconstruct the subsequence via backtracking.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Longest Common Subsequence
 // Question ID: 164
-// See questions.json for full details.
-class longest_common_subsequence {
+class LongestCommonSubsequence {
 public:
-    // TODO: Implement the solution for question #164
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

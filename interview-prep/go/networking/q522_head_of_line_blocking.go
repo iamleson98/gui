@@ -1,15 +1,54 @@
 // Question #522: Head-of-Line Blocking
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: HoL blocking, TCP, QUIC, stream multiplexing
 // Description: Explain TCP head-of-line blocking and how QUIC addresses it.
-//
-// TODO: Implement this solution.
 package networking
 
+import (
+        "net"
+        "sync"
+        "time"
+)
+
 // Head-of-Line Blocking
-// Question ID: 522
-func head_of_line_blocking_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a networking concept for question #522.
+type HeadOfLineBlocking struct {
+        mu        sync.Mutex
+        connections map[string]net.Conn
+        timeout   time.Duration
+}
+
+// NewHeadOfLineBlocking creates a new network handler.
+func NewHeadOfLineBlocking(timeout time.Duration) *HeadOfLineBlocking {
+        return &HeadOfLineBlocking{
+                connections: make(map[string]net.Conn),
+                timeout:     timeout,
+        }
+}
+
+// AddConnection registers a connection.
+func (n *HeadOfLineBlocking) AddConnection(id string, conn net.Conn) {
+        n.mu.Lock()
+        n.connections[id] = conn
+        n.mu.Unlock()
+}
+
+// RemoveConnection removes a connection.
+func (n *HeadOfLineBlocking) RemoveConnection(id string) {
+        n.mu.Lock()
+        delete(n.connections, id)
+        n.mu.Unlock()
+}
+
+// Send writes data to a connection.
+func (n *HeadOfLineBlocking) Send(id string, data []byte) error {
+        n.mu.Lock()
+        conn, ok := n.connections[id]
+        n.mu.Unlock()
+        if !ok {
+                return nil
+        }
+        conn.SetWriteDeadline(time.Now().Add(n.timeout))
+        _, err := conn.Write(data)
+        return err
 }

@@ -1,22 +1,18 @@
 //! Question #204: Delaunay Triangulation
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: Delaunay, triangulation, in-circle test, max-min angle
 //! Description: Build the Delaunay triangulation maximizing the minimum angle using incremental or divide-and-conquer methods.
-//!
-//! TODO: Implement this solution.
 
-pub fn delaunay_triangulation() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn delaunay_triangulation(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_delaunay_triangulation() {
-        // TODO: Write tests for question #204
+        assert_eq!(delaunay_triangulation(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

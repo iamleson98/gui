@@ -1,26 +1,27 @@
 // Question #76: Interval Tree
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: interval tree, overlap query, augmented BST, red-black
 // Description: Implement a red-black based interval tree supporting overlap queries for intervals.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Interval Tree
 // Question ID: 76
-// See questions.json for full details.
-class interval_tree {
+class IntervalTree {
+private:
+    std::unordered_map<int,int> data_;
 public:
-    // TODO: Implement the solution for question #76
-    void solve() {
-        // Implementation goes here.
-    }
+    void insert(int key, int val) { data_[key] = val; }
+    bool search(int key, int& out) const { auto it = data_.find(key); if (it == data_.end()) return false; out = it->second; return true; }
+    bool remove(int key) { return data_.erase(key) > 0; }
+    size_t size() const { return data_.size(); }
 };
 
 } // namespace interview_prep

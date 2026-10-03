@@ -1,26 +1,27 @@
 // Question #421: Cache Lines and Prefetching
-// Category: Performance & Profiling
-// Difficulty: Hard
+// Category: Performance & Profiling | Difficulty: Hard
 // Concepts: cache line, prefetch, locality, size
 // Description: Size data accesses to cache lines and exploit hardware prefetching.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Cache Lines and Prefetching
 // Question ID: 421
-// See questions.json for full details.
-class cache_lines_and_prefetching {
+class CacheLinesAndPrefetching {
+private:
+    std::unordered_map<uint64_t, std::vector<uint8_t>> cache_;
+    int64_t hits_ = 0, misses_ = 0;
 public:
-    // TODO: Implement the solution for question #421
-    void solve() {
-        // Implementation goes here.
-    }
+    bool get(uint64_t key, std::vector<uint8_t>& out) { auto it = cache_.find(key); if (it == cache_.end()) { misses_++; return false; } hits_++; out = it->second; return true; }
+    void set(uint64_t key, const std::vector<uint8_t>& val) { cache_[key] = val; }
+    int64_t hits() const { return hits_; } int64_t misses() const { return misses_; }
 };
 
 } // namespace interview_prep

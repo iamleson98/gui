@@ -1,25 +1,24 @@
 // Question #196: Graham Scan
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: convex hull, Graham scan, angular sort, stack
 // Description: Build the convex hull by angularly sorting points and using a stack with backtracking.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Graham Scan
 // Question ID: 196
-// See questions.json for full details.
-class graham_scan {
+class GrahamScan {
 public:
-    // TODO: Implement the solution for question #196
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

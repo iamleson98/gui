@@ -1,15 +1,20 @@
 // Question #256: Index-Only Scans and Visibility Map
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: index-only scan, visibility map, vacuum, heap fetch
 // Description: Explain how visibility maps enable index-only scans and the cost of vacuuming to maintain them.
-//
-// TODO: Implement this solution.
 package sql
 
+import "fmt"
+
 // Index-Only Scans and Visibility Map
-// Question ID: 256
-func index_only_scans_and_visibility_map_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a database design pattern for question #256.
+
+// IndexOnlyScansAndVisibilityMap represents the database schema/concept.
+type IndexOnlyScansAndVisibilityMap struct {
+        tables map[string][]string
+}
+
+// NewIndexOnlyScansAndVisibilityMap initializes the schema.
+func NewIndexOnlyScansAndVisibilityMap() *IndexOnlyScansAndVisibilityMap {
+        return &IndexOnlyScansAndVisibilityMap{tables: make(map[string][]string)}
 }

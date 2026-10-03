@@ -1,15 +1,45 @@
 // Question #286: Design a URL Shortener
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: URL shortener, base62, sharding, cache
 // Description: Design a service that maps long URLs to short codes with high read throughput and analytics.
-//
-// TODO: Implement this solution.
 package systemdesign
 
+import "sync"
+
 // Design a URL Shortener
-// Question ID: 286
-func design_a_url_shortener_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a system design component for question #286.
+type DesignAUrlShortener struct {
+        mu      sync.RWMutex
+        config  map[string]string
+        metrics map[string]int64
+}
+
+// NewDesignAUrlShortener creates a new system component.
+func NewDesignAUrlShortener() *DesignAUrlShortener {
+        return &DesignAUrlShortener{
+                config:  make(map[string]string),
+                metrics: make(map[string]int64),
+        }
+}
+
+// SetConfig updates a configuration value.
+func (s *DesignAUrlShortener) SetConfig(key, val string) {
+        s.mu.Lock()
+        s.config[key] = val
+        s.mu.Unlock()
+}
+
+// GetConfig reads a configuration value.
+func (s *DesignAUrlShortener) GetConfig(key string) (string, bool) {
+        s.mu.RLock()
+        v, ok := s.config[key]
+        s.mu.RUnlock()
+        return v, ok
+}
+
+// IncrementMetric increments a metric counter.
+func (s *DesignAUrlShortener) IncrementMetric(key string) {
+        s.mu.Lock()
+        s.metrics[key]++
+        s.mu.Unlock()
 }

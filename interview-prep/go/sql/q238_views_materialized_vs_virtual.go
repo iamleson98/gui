@@ -1,15 +1,20 @@
 // Question #238: Views: Materialized vs Virtual
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: views, materialized, refresh, abstraction
 // Description: Compare materialized and virtual views for query abstraction and refresh strategies.
-//
-// TODO: Implement this solution.
 package sql
 
+import "fmt"
+
 // Views: Materialized vs Virtual
-// Question ID: 238
-func views_materialized_vs_virtual_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a database design pattern for question #238.
+
+// ViewsMaterializedVsVirtual represents the database schema/concept.
+type ViewsMaterializedVsVirtual struct {
+        tables map[string][]string
+}
+
+// NewViewsMaterializedVsVirtual initializes the schema.
+func NewViewsMaterializedVsVirtual() *ViewsMaterializedVsVirtual {
+        return &ViewsMaterializedVsVirtual{tables: make(map[string][]string)}
 }

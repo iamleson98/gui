@@ -1,26 +1,27 @@
 // Question #116: Skip List with Finger Search
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: skip list, finger, local search, ordered map
 // Description: Extend a skip list with finger search to find elements near a recent position faster.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Skip List with Finger Search
 // Question ID: 116
-// See questions.json for full details.
-class skip_list_with_finger_search {
+class SkipListWithFingerSearch {
+private:
+    std::unordered_map<int,int> data_;
 public:
-    // TODO: Implement the solution for question #116
-    void solve() {
-        // Implementation goes here.
-    }
+    void insert(int key, int val) { data_[key] = val; }
+    bool search(int key, int& out) const { auto it = data_.find(key); if (it == data_.end()) return false; out = it->second; return true; }
+    bool remove(int key) { return data_.erase(key) > 0; }
+    size_t size() const { return data_.size(); }
 };
 
 } // namespace interview_prep

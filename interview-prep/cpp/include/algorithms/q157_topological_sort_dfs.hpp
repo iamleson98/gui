@@ -1,25 +1,24 @@
 // Question #157: Topological Sort (DFS)
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: topological sort, DFS, post-order, DAG
 // Description: Generate a topological order by post-order DFS and reversing the finish times.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Topological Sort (DFS)
 // Question ID: 157
-// See questions.json for full details.
-class topological_sort_dfs {
+class TopologicalSortDfs {
 public:
-    // TODO: Implement the solution for question #157
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

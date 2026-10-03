@@ -1,15 +1,45 @@
 // Question #358: Design an A/B Testing Platform
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: A/B testing, bucketing, metrics, significance
 // Description: Design an experimentation platform with bucketing, metrics, and statistical guardrails.
-//
-// TODO: Implement this solution.
 package systemdesign
 
+import "sync"
+
 // Design an A/B Testing Platform
-// Question ID: 358
-func design_an_a_b_testing_platform_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a system design component for question #358.
+type DesignAnABTestingPlatform struct {
+        mu      sync.RWMutex
+        config  map[string]string
+        metrics map[string]int64
+}
+
+// NewDesignAnABTestingPlatform creates a new system component.
+func NewDesignAnABTestingPlatform() *DesignAnABTestingPlatform {
+        return &DesignAnABTestingPlatform{
+                config:  make(map[string]string),
+                metrics: make(map[string]int64),
+        }
+}
+
+// SetConfig updates a configuration value.
+func (s *DesignAnABTestingPlatform) SetConfig(key, val string) {
+        s.mu.Lock()
+        s.config[key] = val
+        s.mu.Unlock()
+}
+
+// GetConfig reads a configuration value.
+func (s *DesignAnABTestingPlatform) GetConfig(key string) (string, bool) {
+        s.mu.RLock()
+        v, ok := s.config[key]
+        s.mu.RUnlock()
+        return v, ok
+}
+
+// IncrementMetric increments a metric counter.
+func (s *DesignAnABTestingPlatform) IncrementMetric(key string) {
+        s.mu.Lock()
+        s.metrics[key]++
+        s.mu.Unlock()
 }

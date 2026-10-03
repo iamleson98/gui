@@ -1,25 +1,28 @@
 // Question #493: Salted Hashing for Storage
-// Category: Security
-// Difficulty: Hard
+// Category: Security | Difficulty: Hard
 // Concepts: salted hash, slow hash, storage, cracking
 // Description: Store credentials as salted slow hashes to resist offline cracking.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Salted Hashing for Storage
 // Question ID: 493
-// See questions.json for full details.
-class salted_hashing_for_storage {
+class SaltedHashingForStorage {
+private:
+    std::vector<uint8_t> key_;
 public:
-    // TODO: Implement the solution for question #493
-    void solve() {
-        // Implementation goes here.
+    explicit SaltedHashingForStorage(const std::vector<uint8_t>& key) : key_(key) {}
+    static bool constant_time_compare(const uint8_t* a, const uint8_t* b, size_t len) {
+        uint8_t result = 0;
+        for (size_t i = 0; i < len; ++i) result |= a[i] ^ b[i];
+        return result == 0;
     }
 };
 

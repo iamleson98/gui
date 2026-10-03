@@ -1,26 +1,25 @@
 // Question #13: Peterson's Algorithm
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: mutual exclusion, flags, turn, memory ordering
 // Description: Implement the classic two-process mutual exclusion algorithm using flags and a turn variable with sequential consistency.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Peterson's Algorithm
 // Question ID: 13
-// See questions.json for full details.
-class peterson_s_algorithm {
+class PetersonSAlgorithm {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #13
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

@@ -1,26 +1,27 @@
 // Question #358: Design an A/B Testing Platform
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: A/B testing, bucketing, metrics, significance
 // Description: Design an experimentation platform with bucketing, metrics, and statistical guardrails.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Design an A/B Testing Platform
 // Question ID: 358
-// See questions.json for full details.
-class design_an_a_b_testing_platform {
+class DesignAnABTestingPlatform {
+private:
+    std::unordered_map<std::string, std::string> config_;
+    std::unordered_map<std::string, int64_t> metrics_;
 public:
-    // TODO: Implement the solution for question #358
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_config(const std::string& key, const std::string& val) { config_[key] = val; }
+    std::string get_config(const std::string& key) const { auto it = config_.find(key); return it == config_.end() ? "" : it->second; }
+    void increment_metric(const std::string& key) { metrics_[key]++; }
 };
 
 } // namespace interview_prep

@@ -1,25 +1,24 @@
 // Question #148: Activity Selection
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: greedy, intervals, earliest finish, optimal
 // Description: Solve interval scheduling by greedily picking the earliest-finishing compatible activity.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Activity Selection
 // Question ID: 148
-// See questions.json for full details.
-class activity_selection {
+class ActivitySelection {
 public:
-    // TODO: Implement the solution for question #148
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

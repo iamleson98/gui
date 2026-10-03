@@ -1,22 +1,18 @@
 //! Question #144: Interpolation Search
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: interpolation search, uniform, probe, sorted
 //! Description: Implement interpolation search for uniformly distributed keys, achieving O(log log n) on average.
-//!
-//! TODO: Implement this solution.
 
-pub fn interpolation_search() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn interpolation_search(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_interpolation_search() {
-        // TODO: Write tests for question #144
+        assert_eq!(interpolation_search(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

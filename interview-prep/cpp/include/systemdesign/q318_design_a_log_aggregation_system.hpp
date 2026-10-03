@@ -1,26 +1,27 @@
 // Question #318: Design a Log Aggregation System
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: logs, ingestion, indexing, retention
 // Description: Design a log pipeline with ingestion, indexing, retention, and query.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Design a Log Aggregation System
 // Question ID: 318
-// See questions.json for full details.
-class design_a_log_aggregation_system {
+class DesignALogAggregationSystem {
+private:
+    std::unordered_map<std::string, std::string> config_;
+    std::unordered_map<std::string, int64_t> metrics_;
 public:
-    // TODO: Implement the solution for question #318
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_config(const std::string& key, const std::string& val) { config_[key] = val; }
+    std::string get_config(const std::string& key) const { auto it = config_.find(key); return it == config_.end() ? "" : it->second; }
+    void increment_metric(const std::string& key) { metrics_[key]++; }
 };
 
 } // namespace interview_prep

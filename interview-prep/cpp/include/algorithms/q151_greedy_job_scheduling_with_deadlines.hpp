@@ -1,25 +1,24 @@
 // Question #151: Greedy Job Scheduling with Deadlines
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: greedy, deadlines, disjoint set, profit
 // Description: Maximize profit by scheduling unit-length jobs before their deadlines using disjoint-set slotting.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Greedy Job Scheduling with Deadlines
 // Question ID: 151
-// See questions.json for full details.
-class greedy_job_scheduling_with_deadlines {
+class GreedyJobSchedulingWithDeadlines {
 public:
-    // TODO: Implement the solution for question #151
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

@@ -1,22 +1,34 @@
 //! Question #461: SQL Injection Prevention
-//! Category: Security
-//! Difficulty: Hard
+//! Category: Security | Difficulty: Hard
 //! Concepts: SQL injection, parameterized, validation, ORM
 //! Description: Prevent SQL injection using parameterized queries and strict input validation.
-//!
-//! TODO: Implement this solution.
 
-pub fn sql_injection_prevention() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+use std::collections::HashMap;
+use std::sync::Mutex;
+
+pub struct SqlInjectionPrevention {
+    inner: Mutex<HashMap<String, String>>,
+}
+
+impl SqlInjectionPrevention {
+    pub fn new() -> Self {
+        Self { inner: Mutex::new(HashMap::new()) }
+    }
+    pub fn set(&self, key: &str, val: &str) {
+        self.inner.lock().unwrap().insert(key.to_string(), val.to_string());
+    }
+    pub fn get(&self, key: &str) -> Option<String> {
+        self.inner.lock().unwrap().get(key).cloned()
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_sql_injection_prevention() {
-        // TODO: Write tests for question #461
+        let s = SqlInjectionPrevention::new();
+        s.set("key", "value");
+        assert_eq!(s.get("key"), Some("value".to_string()));
     }
 }

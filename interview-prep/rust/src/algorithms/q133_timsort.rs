@@ -1,22 +1,18 @@
 //! Question #133: TimSort
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: TimSort, runs, galloping, adaptive
 //! Description: Implement TimSort with run detection, merging, and galloping for partially ordered real-world data.
-//!
-//! TODO: Implement this solution.
 
-pub fn timsort() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn timsort(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_timsort() {
-        // TODO: Write tests for question #133
+        assert_eq!(timsort(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

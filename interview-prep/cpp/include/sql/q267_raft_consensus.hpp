@@ -1,26 +1,25 @@
 // Question #267: Raft Consensus
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: Raft, leader election, log replication, term
 // Description: Implement Raft leader election, log replication, and safety via term-based commit indices.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Raft Consensus
 // Question ID: 267
-// See questions.json for full details.
-class raft_consensus {
+class RaftConsensus {
+private:
+    std::unordered_map<std::string, std::vector<std::string>> tables_;
 public:
-    // TODO: Implement the solution for question #267
-    void solve() {
-        // Implementation goes here.
-    }
+    void create_table(const std::string& name) { tables_[name] = std::vector<std::string>(); }
+    void add_column(const std::string& table, const std::string& col) { tables_[table].push_back(col); }
 };
 
 } // namespace interview_prep

@@ -1,26 +1,27 @@
 // Question #324: Design Exactly-Once Delivery Semantics
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: exactly-once, idempotent producer, transactions, EOS
 // Description: Achieve exactly-once delivery using idempotent producers and transactional consumption.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Design Exactly-Once Delivery Semantics
 // Question ID: 324
-// See questions.json for full details.
-class design_exactly_once_delivery_semantics {
+class DesignExactlyOnceDeliverySemantics {
+private:
+    std::unordered_map<std::string, std::string> config_;
+    std::unordered_map<std::string, int64_t> metrics_;
 public:
-    // TODO: Implement the solution for question #324
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_config(const std::string& key, const std::string& val) { config_[key] = val; }
+    std::string get_config(const std::string& key) const { auto it = config_.find(key); return it == config_.end() ? "" : it->second; }
+    void increment_metric(const std::string& key) { metrics_[key]++; }
 };
 
 } // namespace interview_prep

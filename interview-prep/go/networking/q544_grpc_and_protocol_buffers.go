@@ -1,15 +1,54 @@
 // Question #544: gRPC and Protocol Buffers
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: gRPC, protobuf, HTTP/2, streaming
 // Description: Design gRPC services with protobuf IDL, streaming, and HTTP/2 transport.
-//
-// TODO: Implement this solution.
 package networking
 
+import (
+        "net"
+        "sync"
+        "time"
+)
+
 // gRPC and Protocol Buffers
-// Question ID: 544
-func grpc_and_protocol_buffers_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a networking concept for question #544.
+type GrpcAndProtocolBuffers struct {
+        mu        sync.Mutex
+        connections map[string]net.Conn
+        timeout   time.Duration
+}
+
+// NewGrpcAndProtocolBuffers creates a new network handler.
+func NewGrpcAndProtocolBuffers(timeout time.Duration) *GrpcAndProtocolBuffers {
+        return &GrpcAndProtocolBuffers{
+                connections: make(map[string]net.Conn),
+                timeout:     timeout,
+        }
+}
+
+// AddConnection registers a connection.
+func (n *GrpcAndProtocolBuffers) AddConnection(id string, conn net.Conn) {
+        n.mu.Lock()
+        n.connections[id] = conn
+        n.mu.Unlock()
+}
+
+// RemoveConnection removes a connection.
+func (n *GrpcAndProtocolBuffers) RemoveConnection(id string) {
+        n.mu.Lock()
+        delete(n.connections, id)
+        n.mu.Unlock()
+}
+
+// Send writes data to a connection.
+func (n *GrpcAndProtocolBuffers) Send(id string, data []byte) error {
+        n.mu.Lock()
+        conn, ok := n.connections[id]
+        n.mu.Unlock()
+        if !ok {
+                return nil
+        }
+        conn.SetWriteDeadline(time.Now().Add(n.timeout))
+        _, err := conn.Write(data)
+        return err
 }

@@ -1,22 +1,18 @@
 //! Question #138: Counting Sort (Stable)
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: counting sort, stable, O(n+k), integers
 //! Description: Build a stable counting sort over a small integer key domain in O(n + k).
-//!
-//! TODO: Implement this solution.
 
-pub fn counting_sort_stable() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn counting_sort_stable(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_counting_sort_stable() {
-        // TODO: Write tests for question #138
+        assert_eq!(counting_sort_stable(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

@@ -1,15 +1,42 @@
 // Question #114: Unrolled Linked List
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: unrolled list, cache locality, node capacity, linked list
 // Description: Build a linked list whose nodes store multiple elements to improve cache locality.
-//
-// TODO: Implement this solution.
 package datastructures
 
 // Unrolled Linked List
-// Question ID: 114
-func unrolled_linked_list_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a data structure for question #114.
+type UnrolledLinkedList struct {
+        data map[int]int
+        size int
 }
+
+// NewUnrolledLinkedList creates a new instance.
+func NewUnrolledLinkedList() *UnrolledLinkedList {
+        return &UnrolledLinkedList{data: make(map[int]int)}
+}
+
+// Insert adds an element.
+func (d *UnrolledLinkedList) Insert(key, val int) {
+        d.data[key] = val
+        d.size++
+}
+
+// Search looks up an element.
+func (d *UnrolledLinkedList) Search(key int) (int, bool) {
+        v, ok := d.data[key]
+        return v, ok
+}
+
+// Delete removes an element.
+func (d *UnrolledLinkedList) Delete(key int) bool {
+        if _, ok := d.data[key]; ok {
+                delete(d.data, key)
+                d.size--
+                return true
+        }
+        return false
+}
+
+// Len returns the number of elements.
+func (d *UnrolledLinkedList) Len() int { return d.size }

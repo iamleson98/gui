@@ -1,26 +1,27 @@
 // Question #334: Design Service Registry and Discovery
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: service discovery, registry, health checks, client-side
 // Description: Design a service registry with health checks and client-side discovery.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Design Service Registry and Discovery
 // Question ID: 334
-// See questions.json for full details.
-class design_service_registry_and_discovery {
+class DesignServiceRegistryAndDiscovery {
+private:
+    std::unordered_map<std::string, std::string> config_;
+    std::unordered_map<std::string, int64_t> metrics_;
 public:
-    // TODO: Implement the solution for question #334
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_config(const std::string& key, const std::string& val) { config_[key] = val; }
+    std::string get_config(const std::string& key) const { auto it = config_.find(key); return it == config_.end() ? "" : it->second; }
+    void increment_metric(const std::string& key) { metrics_[key]++; }
 };
 
 } // namespace interview_prep

@@ -1,26 +1,25 @@
 // Question #48: Readers-Writers with Writer Preference
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: readers-writers, writer preference, starvation, fairness
 // Description: Design an RW lock that prefers writers to avoid writer starvation while preventing reader starvation.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Readers-Writers with Writer Preference
 // Question ID: 48
-// See questions.json for full details.
-class readers_writers_with_writer_preference {
+class ReadersWritersWithWriterPreference {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #48
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

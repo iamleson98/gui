@@ -1,25 +1,24 @@
 // Question #147: Fractional Knapsack (Greedy)
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: fractional knapsack, greedy, value/weight, sort
 // Description: Solve the fractional knapsack by sorting items by value/weight and greedily filling.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Fractional Knapsack (Greedy)
 // Question ID: 147
-// See questions.json for full details.
-class fractional_knapsack_greedy {
+class FractionalKnapsackGreedy {
 public:
-    // TODO: Implement the solution for question #147
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

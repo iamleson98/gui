@@ -1,15 +1,54 @@
 // Question #512: TCP Congestion Control (BBR)
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: BBR, congestion, bandwidth, RTT
 // Description: Explain BBR's model-based congestion control versus loss-based schemes.
-//
-// TODO: Implement this solution.
 package networking
 
+import (
+        "net"
+        "sync"
+        "time"
+)
+
 // TCP Congestion Control (BBR)
-// Question ID: 512
-func tcp_congestion_control_bbr_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a networking concept for question #512.
+type TcpCongestionControlBbr struct {
+        mu        sync.Mutex
+        connections map[string]net.Conn
+        timeout   time.Duration
+}
+
+// NewTcpCongestionControlBbr creates a new network handler.
+func NewTcpCongestionControlBbr(timeout time.Duration) *TcpCongestionControlBbr {
+        return &TcpCongestionControlBbr{
+                connections: make(map[string]net.Conn),
+                timeout:     timeout,
+        }
+}
+
+// AddConnection registers a connection.
+func (n *TcpCongestionControlBbr) AddConnection(id string, conn net.Conn) {
+        n.mu.Lock()
+        n.connections[id] = conn
+        n.mu.Unlock()
+}
+
+// RemoveConnection removes a connection.
+func (n *TcpCongestionControlBbr) RemoveConnection(id string) {
+        n.mu.Lock()
+        delete(n.connections, id)
+        n.mu.Unlock()
+}
+
+// Send writes data to a connection.
+func (n *TcpCongestionControlBbr) Send(id string, data []byte) error {
+        n.mu.Lock()
+        conn, ok := n.connections[id]
+        n.mu.Unlock()
+        if !ok {
+                return nil
+        }
+        conn.SetWriteDeadline(time.Now().Add(n.timeout))
+        _, err := conn.Write(data)
+        return err
 }

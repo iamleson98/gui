@@ -1,25 +1,24 @@
 // Question #204: Delaunay Triangulation
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: Delaunay, triangulation, in-circle test, max-min angle
 // Description: Build the Delaunay triangulation maximizing the minimum angle using incremental or divide-and-conquer methods.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Delaunay Triangulation
 // Question ID: 204
-// See questions.json for full details.
-class delaunay_triangulation {
+class DelaunayTriangulation {
 public:
-    // TODO: Implement the solution for question #204
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

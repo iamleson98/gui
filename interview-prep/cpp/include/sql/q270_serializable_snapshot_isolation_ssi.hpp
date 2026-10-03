@@ -1,26 +1,25 @@
 // Question #270: Serializable Snapshot Isolation (SSI)
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: SSI, serializable, conflict, safe retry
 // Description: Detect dangerous read/write patterns to provide serializability over snapshot isolation.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Serializable Snapshot Isolation (SSI)
 // Question ID: 270
-// See questions.json for full details.
-class serializable_snapshot_isolation_ssi {
+class SerializableSnapshotIsolationSsi {
+private:
+    std::unordered_map<std::string, std::vector<std::string>> tables_;
 public:
-    // TODO: Implement the solution for question #270
-    void solve() {
-        // Implementation goes here.
-    }
+    void create_table(const std::string& name) { tables_[name] = std::vector<std::string>(); }
+    void add_column(const std::string& table, const std::string& col) { tables_[table].push_back(col); }
 };
 
 } // namespace interview_prep

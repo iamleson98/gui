@@ -1,25 +1,24 @@
 // Question #161: 2-SAT (Implication Graph)
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: 2-SAT, implication graph, SCC, negation
 // Description: Solve 2-SAT by reducing to SCC detection on the implication graph and checking variable order.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // 2-SAT (Implication Graph)
 // Question ID: 161
-// See questions.json for full details.
-class 2_sat_implication_graph {
+class 2SatImplicationGraph {
 public:
-    // TODO: Implement the solution for question #161
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

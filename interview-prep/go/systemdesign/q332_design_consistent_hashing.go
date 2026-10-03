@@ -1,15 +1,45 @@
 // Question #332: Design Consistent Hashing
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: consistent hashing, virtual nodes, ring, reshuffle
 // Description: Implement consistent hashing with virtual nodes for balanced, low-reshuffle distribution.
-//
-// TODO: Implement this solution.
 package systemdesign
 
+import "sync"
+
 // Design Consistent Hashing
-// Question ID: 332
-func design_consistent_hashing_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a system design component for question #332.
+type DesignConsistentHashing struct {
+        mu      sync.RWMutex
+        config  map[string]string
+        metrics map[string]int64
+}
+
+// NewDesignConsistentHashing creates a new system component.
+func NewDesignConsistentHashing() *DesignConsistentHashing {
+        return &DesignConsistentHashing{
+                config:  make(map[string]string),
+                metrics: make(map[string]int64),
+        }
+}
+
+// SetConfig updates a configuration value.
+func (s *DesignConsistentHashing) SetConfig(key, val string) {
+        s.mu.Lock()
+        s.config[key] = val
+        s.mu.Unlock()
+}
+
+// GetConfig reads a configuration value.
+func (s *DesignConsistentHashing) GetConfig(key string) (string, bool) {
+        s.mu.RLock()
+        v, ok := s.config[key]
+        s.mu.RUnlock()
+        return v, ok
+}
+
+// IncrementMetric increments a metric counter.
+func (s *DesignConsistentHashing) IncrementMetric(key string) {
+        s.mu.Lock()
+        s.metrics[key]++
+        s.mu.Unlock()
 }

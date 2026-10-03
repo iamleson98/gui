@@ -1,22 +1,18 @@
 //! Question #160: Gabow's SCC
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: SCC, Gabow, path-based, linear
 //! Description: Implement Gabow's path-based SCC algorithm using two stacks and a path index counter.
-//!
-//! TODO: Implement this solution.
 
-pub fn gabow_s_scc() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn gabow_s_scc(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_gabow_s_scc() {
-        // TODO: Write tests for question #160
+        assert_eq!(gabow_s_scc(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

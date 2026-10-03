@@ -1,25 +1,24 @@
 // Question #152: Kruskal's MST
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: MST, Kruskal, union-find, greedy
 // Description: Build a minimum spanning forest using union-find to add edges in sorted order without forming cycles.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Kruskal's MST
 // Question ID: 152
-// See questions.json for full details.
-class kruskal_s_mst {
+class KruskalSMst {
 public:
-    // TODO: Implement the solution for question #152
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

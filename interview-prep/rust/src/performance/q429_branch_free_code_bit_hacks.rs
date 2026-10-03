@@ -1,22 +1,34 @@
 //! Question #429: Branch-Free Code (Bit Hacks)
-//! Category: Performance & Profiling
-//! Difficulty: Hard
+//! Category: Performance & Profiling | Difficulty: Hard
 //! Concepts: bit hacks, branchless, misprediction, flags
 //! Description: Replace branches with bit manipulation to avoid mispredictions on data-dependent paths.
-//!
-//! TODO: Implement this solution.
 
-pub fn branch_free_code_bit_hacks() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+use std::collections::HashMap;
+use std::sync::Mutex;
+
+pub struct BranchFreeCodeBitHacks {
+    inner: Mutex<HashMap<String, String>>,
+}
+
+impl BranchFreeCodeBitHacks {
+    pub fn new() -> Self {
+        Self { inner: Mutex::new(HashMap::new()) }
+    }
+    pub fn set(&self, key: &str, val: &str) {
+        self.inner.lock().unwrap().insert(key.to_string(), val.to_string());
+    }
+    pub fn get(&self, key: &str) -> Option<String> {
+        self.inner.lock().unwrap().get(key).cloned()
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_branch_free_code_bit_hacks() {
-        // TODO: Write tests for question #429
+        let s = BranchFreeCodeBitHacks::new();
+        s.set("key", "value");
+        assert_eq!(s.get("key"), Some("value".to_string()));
     }
 }

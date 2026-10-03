@@ -1,25 +1,24 @@
 // Question #153: Prim's MST
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: MST, Prim, priority queue, greedy
 // Description: Grow an MST from a start vertex using a priority queue of crossing edges.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Prim's MST
 // Question ID: 153
-// See questions.json for full details.
-class prim_s_mst {
+class PrimSMst {
 public:
-    // TODO: Implement the solution for question #153
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

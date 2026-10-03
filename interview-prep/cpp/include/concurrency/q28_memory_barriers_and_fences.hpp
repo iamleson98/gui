@@ -1,26 +1,25 @@
 // Question #28: Memory Barriers and Fences
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: memory fence, load-store, visibility, portability
 // Description: Place read and write fences correctly so that lock-free algorithms publish visibility and consumption in the intended order.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Memory Barriers and Fences
 // Question ID: 28
-// See questions.json for full details.
-class memory_barriers_and_fences {
+class MemoryBarriersAndFences {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #28
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

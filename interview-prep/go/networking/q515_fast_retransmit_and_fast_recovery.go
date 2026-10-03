@@ -1,15 +1,54 @@
 // Question #515: Fast Retransmit and Fast Recovery
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: fast retransmit, fast recovery, dup ACK, loss
 // Description: Recover from packet loss without timing out using duplicate ACKs.
-//
-// TODO: Implement this solution.
 package networking
 
+import (
+        "net"
+        "sync"
+        "time"
+)
+
 // Fast Retransmit and Fast Recovery
-// Question ID: 515
-func fast_retransmit_and_fast_recovery_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a networking concept for question #515.
+type FastRetransmitAndFastRecovery struct {
+        mu        sync.Mutex
+        connections map[string]net.Conn
+        timeout   time.Duration
+}
+
+// NewFastRetransmitAndFastRecovery creates a new network handler.
+func NewFastRetransmitAndFastRecovery(timeout time.Duration) *FastRetransmitAndFastRecovery {
+        return &FastRetransmitAndFastRecovery{
+                connections: make(map[string]net.Conn),
+                timeout:     timeout,
+        }
+}
+
+// AddConnection registers a connection.
+func (n *FastRetransmitAndFastRecovery) AddConnection(id string, conn net.Conn) {
+        n.mu.Lock()
+        n.connections[id] = conn
+        n.mu.Unlock()
+}
+
+// RemoveConnection removes a connection.
+func (n *FastRetransmitAndFastRecovery) RemoveConnection(id string) {
+        n.mu.Lock()
+        delete(n.connections, id)
+        n.mu.Unlock()
+}
+
+// Send writes data to a connection.
+func (n *FastRetransmitAndFastRecovery) Send(id string, data []byte) error {
+        n.mu.Lock()
+        conn, ok := n.connections[id]
+        n.mu.Unlock()
+        if !ok {
+                return nil
+        }
+        conn.SetWriteDeadline(time.Now().Add(n.timeout))
+        _, err := conn.Write(data)
+        return err
 }

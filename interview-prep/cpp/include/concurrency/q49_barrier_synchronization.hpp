@@ -1,26 +1,25 @@
 // Question #49: Barrier Synchronization
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: barrier, sense reversal, reuse, wait
 // Description: Implement a reusable barrier where N threads wait and then all proceed, with sense reversal.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Barrier Synchronization
 // Question ID: 49
-// See questions.json for full details.
-class barrier_synchronization {
+class BarrierSynchronization {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #49
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

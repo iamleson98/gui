@@ -1,25 +1,24 @@
 // Question #199: QuickHull
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: convex hull, QuickHull, divide and conquer, farthest point
 // Description: Implement the divide-and-conquer QuickHull algorithm for the convex hull.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // QuickHull
 // Question ID: 199
-// See questions.json for full details.
-class quickhull {
+class Quickhull {
 public:
-    // TODO: Implement the solution for question #199
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

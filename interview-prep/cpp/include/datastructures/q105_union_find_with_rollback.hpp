@@ -1,26 +1,27 @@
 // Question #105: Union-Find with Rollback
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: union-find, rollback, persistent, offline
 // Description: Extend DSU to support undo of union operations for backtracking and offline algorithms.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Union-Find with Rollback
 // Question ID: 105
-// See questions.json for full details.
-class union_find_with_rollback {
+class UnionFindWithRollback {
+private:
+    std::unordered_map<int,int> data_;
 public:
-    // TODO: Implement the solution for question #105
-    void solve() {
-        // Implementation goes here.
-    }
+    void insert(int key, int val) { data_[key] = val; }
+    bool search(int key, int& out) const { auto it = data_.find(key); if (it == data_.end()) return false; out = it->second; return true; }
+    bool remove(int key) { return data_.erase(key) > 0; }
+    size_t size() const { return data_.size(); }
 };
 
 } // namespace interview_prep

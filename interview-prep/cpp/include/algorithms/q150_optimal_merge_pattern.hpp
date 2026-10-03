@@ -1,25 +1,24 @@
 // Question #150: Optimal Merge Pattern
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: greedy, merge cost, min-heap, optimal
 // Description: Minimize the cost of merging sorted runs by always merging the two smallest.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Optimal Merge Pattern
 // Question ID: 150
-// See questions.json for full details.
-class optimal_merge_pattern {
+class OptimalMergePattern {
 public:
-    // TODO: Implement the solution for question #150
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

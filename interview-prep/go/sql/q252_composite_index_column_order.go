@@ -1,15 +1,20 @@
 // Question #252: Composite Index Column Order
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: composite index, column order, selectivity, range
 // Description: Design composite indexes with column order matching equality, sort, and range predicates.
-//
-// TODO: Implement this solution.
 package sql
 
+import "fmt"
+
 // Composite Index Column Order
-// Question ID: 252
-func composite_index_column_order_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a database design pattern for question #252.
+
+// CompositeIndexColumnOrder represents the database schema/concept.
+type CompositeIndexColumnOrder struct {
+        tables map[string][]string
+}
+
+// NewCompositeIndexColumnOrder initializes the schema.
+func NewCompositeIndexColumnOrder() *CompositeIndexColumnOrder {
+        return &CompositeIndexColumnOrder{tables: make(map[string][]string)}
 }

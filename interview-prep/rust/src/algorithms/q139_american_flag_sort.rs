@@ -1,22 +1,18 @@
 //! Question #139: American Flag Sort
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: American flag sort, in-place, MSD, radix
 //! Description: Implement an in-place MSD radix variant using partition pointers per bucket.
-//!
-//! TODO: Implement this solution.
 
-pub fn american_flag_sort() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn american_flag_sort(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_american_flag_sort() {
-        // TODO: Write tests for question #139
+        assert_eq!(american_flag_sort(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

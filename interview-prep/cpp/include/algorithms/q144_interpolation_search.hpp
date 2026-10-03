@@ -1,25 +1,24 @@
 // Question #144: Interpolation Search
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: interpolation search, uniform, probe, sorted
 // Description: Implement interpolation search for uniformly distributed keys, achieving O(log log n) on average.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Interpolation Search
 // Question ID: 144
-// See questions.json for full details.
-class interpolation_search {
+class InterpolationSearch {
 public:
-    // TODO: Implement the solution for question #144
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

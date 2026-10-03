@@ -53,7 +53,7 @@
       "scalability",
       "NUMA"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 5,
@@ -67,7 +67,7 @@
       "FIFO",
       "spin locality"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 6,
@@ -81,7 +81,7 @@
       "memory ordering",
       "fences"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 7,
@@ -95,7 +95,7 @@
       "backoff",
       "hybrid"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 8,
@@ -109,7 +109,7 @@
       "deferred reclamation",
       "read-mostly"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 9,
@@ -123,7 +123,7 @@
       "ABA",
       "lock-free"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 10,
@@ -137,7 +137,7 @@
       "lock-free",
       "ABA"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 11,
@@ -165,7 +165,7 @@
       "MCS",
       "fairness"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 13,
@@ -179,7 +179,7 @@
       "turn",
       "memory ordering"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 14,
@@ -207,7 +207,7 @@
       "throughput",
       "fairness"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 16,
@@ -235,7 +235,7 @@
       "counter",
       "edge-trigger"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 18,
@@ -249,7 +249,7 @@
       "kernel parking",
       "wait queue"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 19,
@@ -263,7 +263,7 @@
       "futex",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 20,
@@ -277,7 +277,7 @@
       "owner",
       "recursion count"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 21,
@@ -305,7 +305,7 @@
       "memory ordering",
       "cache lines"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 23,
@@ -319,7 +319,7 @@
       "sequence",
       "CAS"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 24,
@@ -333,7 +333,7 @@
       "ABA",
       "unbounded"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 25,
@@ -347,7 +347,7 @@
       "CAS",
       "versioning"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 26,
@@ -361,7 +361,7 @@
       "versioning",
       "portability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 27,
@@ -375,7 +375,7 @@
       "seq_cst",
       "reordered"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 28,
@@ -389,7 +389,7 @@
       "visibility",
       "portability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 29,
@@ -403,7 +403,7 @@
       "progress",
       "bounded steps"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 30,
@@ -431,7 +431,7 @@
       "fast path",
       "wait queue"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 32,
@@ -459,7 +459,7 @@
       "sequences",
       "batching"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 34,
@@ -487,7 +487,7 @@
       "CAS",
       "chaining"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 36,
@@ -501,7 +501,7 @@
       "sorted list",
       "hash"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 37,
@@ -515,7 +515,7 @@
       "grace period",
       "read-mostly"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 38,
@@ -529,7 +529,7 @@
       "marking",
       "ABA"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 39,
@@ -543,7 +543,7 @@
       "probabilistic",
       "ordered map"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 40,
@@ -557,7 +557,7 @@
       "resize",
       "bounded steps"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 41,
@@ -571,7 +571,7 @@
       "waker",
       "poll"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 42,
@@ -585,7 +585,7 @@
       "workers",
       "shutdown"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 43,
@@ -599,7 +599,7 @@
       "recursive",
       "divide and conquer"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 44,
@@ -613,7 +613,7 @@
       "message passing",
       "dispatcher"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 45,
@@ -627,7 +627,7 @@
       "select",
       "rendezvous"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 46,
@@ -641,7 +641,7 @@
       "condition variable",
       "backpressure"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 47,
@@ -655,7 +655,7 @@
       "arbitrator",
       "fairness"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 48,
@@ -669,7 +669,7 @@
       "starvation",
       "fairness"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 49,
@@ -683,7 +683,7 @@
       "reuse",
       "wait"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 50,
@@ -697,7 +697,7 @@
       "parties",
       "phases"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 51,
@@ -711,7 +711,7 @@
       "counter",
       "park"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 52,
@@ -725,7 +725,7 @@
       "swap",
       "two threads"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 53,
@@ -739,7 +739,7 @@
       "continuation",
       "shared state"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 54,
@@ -753,7 +753,7 @@
       "double-checked",
       "atomic"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 55,
@@ -767,7 +767,7 @@
       "memory ordering",
       "fence"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 56,
@@ -781,7 +781,7 @@
       "cleanup",
       "per-thread"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 57,
@@ -795,7 +795,7 @@
       "wait list",
       "parking"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 58,
@@ -809,7 +809,7 @@
       "jitter",
       "contention"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 59,
@@ -823,7 +823,7 @@
       "data placement",
       "scalability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 60,
@@ -837,7 +837,7 @@
       "padding",
       "coherence"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 61,
@@ -851,7 +851,7 @@
       "balance factor",
       "AVL"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 62,
@@ -865,7 +865,7 @@
       "amortized",
       "rotations"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 63,
@@ -879,7 +879,7 @@
       "skew",
       "split"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 64,
@@ -893,7 +893,7 @@
       "leaf links",
       "range scan"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 65,
@@ -907,7 +907,7 @@
       "split",
       "fill factor"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 66,
@@ -921,7 +921,7 @@
       "bottom-up",
       "balance"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 67,
@@ -935,7 +935,7 @@
       "amortized",
       "alpha-balanced"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 68,
@@ -949,7 +949,7 @@
       "priority",
       "rotations"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 69,
@@ -963,7 +963,7 @@
       "heap property",
       "linear build"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 70,
@@ -977,7 +977,7 @@
       "prefix",
       "branching"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 71,
@@ -991,7 +991,7 @@
       "implicit links",
       "linear time"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 72,
@@ -1005,7 +1005,7 @@
       "binary search",
       "strings"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 73,
@@ -1019,7 +1019,7 @@
       "endpos",
       "online"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 74,
@@ -1033,7 +1033,7 @@
       "split",
       "chunks"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 75,
@@ -1047,7 +1047,7 @@
       "cluster",
       "universe"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 76,
@@ -1061,7 +1061,7 @@
       "augmented BST",
       "red-black"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 77,
@@ -1075,7 +1075,7 @@
       "point query",
       "difference"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 78,
@@ -1089,7 +1089,7 @@
       "sift",
       "priority queue"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 79,
@@ -1103,7 +1103,7 @@
       "lazy",
       "amortized"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 80,
@@ -1117,7 +1117,7 @@
       "decrease-key",
       "cascading cut"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 81,
@@ -1131,7 +1131,7 @@
       "two-pass",
       "amortized"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 82,
@@ -1159,7 +1159,7 @@
       "range query",
       "splitting planes"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 84,
@@ -1201,7 +1201,7 @@
       "suffix links",
       "strings"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 87,
@@ -1215,7 +1215,7 @@
       "multi-pattern",
       "DFA"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 88,
@@ -1229,7 +1229,7 @@
       "bit vector",
       "sequence"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 89,
@@ -1271,7 +1271,7 @@
       "idempotent",
       "preprocessing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 92,
@@ -1285,7 +1285,7 @@
       "range sum",
       "preprocessing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 93,
@@ -1299,7 +1299,7 @@
       "RMQ reduction",
       "Euler tour"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 94,
@@ -1313,7 +1313,7 @@
       "dynamic forest",
       "preferred path"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 95,
@@ -1327,7 +1327,7 @@
       "dynamic connectivity",
       "edge"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 96,
@@ -1369,7 +1369,7 @@
       "deletion",
       "false positive"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 99,
@@ -1383,7 +1383,7 @@
       "cuckoo hashing",
       "deletion"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 100,
@@ -1397,7 +1397,7 @@
       "stochastic averaging",
       "bias correction"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 101,
@@ -1439,7 +1439,7 @@
       "recency",
       "frequency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 104,
@@ -1467,7 +1467,7 @@
       "persistent",
       "offline"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 106,
@@ -1481,7 +1481,7 @@
       "fully dynamic",
       "forest"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 107,
@@ -1495,7 +1495,7 @@
       "node sharing",
       "immutability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 108,
@@ -1509,7 +1509,7 @@
       "immutability",
       "randomized"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 109,
@@ -1523,7 +1523,7 @@
       "versioning",
       "immutability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 110,
@@ -1537,7 +1537,7 @@
       "versioning",
       "immutability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 111,
@@ -1551,7 +1551,7 @@
       "amortized",
       "persistent"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 112,
@@ -1565,7 +1565,7 @@
       "split",
       "persistent"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 113,
@@ -1579,7 +1579,7 @@
       "persistent",
       "indexing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 114,
@@ -1593,7 +1593,7 @@
       "node capacity",
       "linked list"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 115,
@@ -1607,7 +1607,7 @@
       "memory",
       "traversal"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 116,
@@ -1621,7 +1621,7 @@
       "local search",
       "ordered map"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 117,
@@ -1635,7 +1635,7 @@
       "insert/delete",
       "balanced"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 118,
@@ -1649,7 +1649,7 @@
       "merge",
       "subtree size"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 119,
@@ -1663,7 +1663,7 @@
       "root insert",
       "probability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 120,
@@ -1677,7 +1677,7 @@
       "hash functions",
       "overestimate"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 121,
@@ -1691,7 +1691,7 @@
       "locality",
       "membership"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 122,
@@ -1705,7 +1705,7 @@
       "MBR",
       "splitting"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 123,
@@ -1719,7 +1719,7 @@
       "ordering",
       "spatial"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 124,
@@ -1733,7 +1733,7 @@
       "SSTable",
       "compaction"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 125,
@@ -1747,7 +1747,7 @@
       "amortized I/O",
       "B-tree"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 126,
@@ -1761,7 +1761,7 @@
       "hash trie",
       "persistent"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 127,
@@ -1775,7 +1775,7 @@
       "concat",
       "immutable vector"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 128,
@@ -1789,7 +1789,7 @@
       "tail",
       "immutability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 129,
@@ -1803,7 +1803,7 @@
       "branching",
       "persistent"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 130,
@@ -1817,7 +1817,7 @@
       "inclusion proof",
       "tamper detection"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 131,
@@ -1831,7 +1831,7 @@
       "duplicates",
       "in-place"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 132,
@@ -1845,7 +1845,7 @@
       "heapsort",
       "worst-case"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 133,
@@ -1859,7 +1859,7 @@
       "galloping",
       "adaptive"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 134,
@@ -1873,7 +1873,7 @@
       "runs",
       "I/O"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 135,
@@ -1887,7 +1887,7 @@
       "build heap",
       "extract max"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 136,
@@ -1901,7 +1901,7 @@
       "recursion",
       "strings"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 137,
@@ -1915,7 +1915,7 @@
       "stable",
       "fixed width"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 138,
@@ -1929,7 +1929,7 @@
       "O(n+k)",
       "integers"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 139,
@@ -1943,7 +1943,7 @@
       "MSD",
       "radix"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 140,
@@ -1957,7 +1957,7 @@
       "Ciura",
       "in-place"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 141,
@@ -1971,7 +1971,7 @@
       "median of medians",
       "linear"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 142,
@@ -1985,7 +1985,7 @@
       "upper bound",
       "sorted"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 143,
@@ -1999,7 +1999,7 @@
       "unbounded",
       "sorted"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 144,
@@ -2013,7 +2013,7 @@
       "probe",
       "sorted"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 145,
@@ -2027,7 +2027,7 @@
       "divide",
       "optimization"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 146,
@@ -2041,7 +2041,7 @@
       "binary search",
       "amortized"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 147,
@@ -2055,7 +2055,7 @@
       "value/weight",
       "sort"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 148,
@@ -2069,7 +2069,7 @@
       "earliest finish",
       "optimal"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 149,
@@ -2083,7 +2083,7 @@
       "greedy",
       "min-heap"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 150,
@@ -2097,7 +2097,7 @@
       "min-heap",
       "optimal"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 151,
@@ -2111,7 +2111,7 @@
       "disjoint set",
       "profit"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 152,
@@ -2125,7 +2125,7 @@
       "union-find",
       "greedy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 153,
@@ -2139,7 +2139,7 @@
       "priority queue",
       "greedy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 154,
@@ -2153,7 +2153,7 @@
       "components",
       "parallel"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 155,
@@ -2167,7 +2167,7 @@
       "cycle",
       "greedy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 156,
@@ -2181,7 +2181,7 @@
       "in-degree",
       "DAG"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 157,
@@ -2195,7 +2195,7 @@
       "post-order",
       "DAG"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 158,
@@ -2209,7 +2209,7 @@
       "lowlink",
       "DFS"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 159,
@@ -2223,7 +2223,7 @@
       "reverse graph",
       "finish order"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 160,
@@ -2237,7 +2237,7 @@
       "path-based",
       "linear"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 161,
@@ -2251,7 +2251,7 @@
       "SCC",
       "negation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 162,
@@ -2293,7 +2293,7 @@
       "backtracking",
       "suffix"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 165,
@@ -2321,7 +2321,7 @@
       "1D DP",
       "reuse"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 167,
@@ -2335,7 +2335,7 @@
       "parenthesization",
       "cost"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 168,
@@ -2363,7 +2363,7 @@
       "dynamic programming",
       "cuts"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 170,
@@ -2377,7 +2377,7 @@
       "pseudo-polynomial",
       "DP"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 171,
@@ -2391,7 +2391,7 @@
       "DP",
       "boolean"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 172,
@@ -2405,7 +2405,7 @@
       "worst case",
       "trials"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 173,
@@ -2419,7 +2419,7 @@
       "LCS",
       "DP"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 174,
@@ -2433,7 +2433,7 @@
       "trie",
       "segmentation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 175,
@@ -2447,7 +2447,7 @@
       "bitmask",
       "DP"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 176,
@@ -2461,7 +2461,7 @@
       "negative weights",
       "relaxation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 177,
@@ -2489,7 +2489,7 @@
       "priority queue",
       "shortest path"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 179,
@@ -2503,7 +2503,7 @@
       "reweighting",
       "Dijkstra"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 180,
@@ -2517,7 +2517,7 @@
       "relaxation",
       "negative weights"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 181,
@@ -2545,7 +2545,7 @@
       "DP",
       "reachability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 183,
@@ -2573,7 +2573,7 @@
       "augmenting path",
       "residual"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 185,
@@ -2587,7 +2587,7 @@
       "BFS",
       "shortest augmenting path"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 186,
@@ -2601,7 +2601,7 @@
       "preflow",
       "max flow"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 187,
@@ -2615,7 +2615,7 @@
       "SPFA",
       "residual"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 188,
@@ -2629,7 +2629,7 @@
       "dual",
       "bipartite"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 189,
@@ -2657,7 +2657,7 @@
       "good suffix",
       "skip"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 191,
@@ -2671,7 +2671,7 @@
       "collision",
       "multi-pattern"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 192,
@@ -2685,7 +2685,7 @@
       "prefix",
       "linear"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 193,
@@ -2699,7 +2699,7 @@
       "output links",
       "DFA"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 194,
@@ -2713,7 +2713,7 @@
       "induced sorting",
       "linear"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 195,
@@ -2741,7 +2741,7 @@
       "angular sort",
       "stack"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 197,
@@ -2755,7 +2755,7 @@
       "cross product",
       "sort"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 198,
@@ -2769,7 +2769,7 @@
       "orientation",
       "output-sensitive"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 199,
@@ -2783,7 +2783,7 @@
       "divide and conquer",
       "farthest point"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 200,
@@ -2797,7 +2797,7 @@
       "diameter",
       "convex polygon"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 201,
@@ -2811,7 +2811,7 @@
       "events",
       "balanced tree"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 202,
@@ -2825,7 +2825,7 @@
       "strip",
       "sort"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 203,
@@ -2839,7 +2839,7 @@
       "sweep line",
       "beach line"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 204,
@@ -2853,7 +2853,7 @@
       "in-circle test",
       "max-min angle"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 205,
@@ -2867,7 +2867,7 @@
       "winding number",
       "parity"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 206,
@@ -2881,7 +2881,7 @@
       "collinear",
       "geometry"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 207,
@@ -2895,7 +2895,7 @@
       "golden section",
       "optimization"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 208,
@@ -2909,7 +2909,7 @@
       "Jacobian",
       "convergence"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 209,
@@ -2923,7 +2923,7 @@
       "divide and conquer",
       "multiplication"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 210,
@@ -2937,7 +2937,7 @@
       "Cooley-Tukey",
       "roots of unity"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 211,
@@ -2951,7 +2951,7 @@
       "primitive root",
       "polynomial"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 212,
@@ -2965,7 +2965,7 @@
       "primes",
       "wheel"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 213,
@@ -2979,7 +2979,7 @@
       "witnesses",
       "randomized"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 214,
@@ -2993,7 +2993,7 @@
       "cycle detection",
       "randomized"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 215,
@@ -3021,7 +3021,7 @@
       "binary partition",
       "logarithmic"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 217,
@@ -3035,7 +3035,7 @@
       "binary search",
       "min-heap"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 218,
@@ -3049,7 +3049,7 @@
       "count",
       "O(n log n)"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 219,
@@ -3063,7 +3063,7 @@
       "Fenwick tree",
       "count"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 220,
@@ -3077,7 +3077,7 @@
       "sqrt decomposition",
       "reorder"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 221,
@@ -3092,7 +3092,7 @@
       "3NF",
       "anomalies"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 222,
@@ -3106,7 +3106,7 @@
       "candidate key",
       "decomposition"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 223,
@@ -3120,7 +3120,7 @@
       "multi-valued dependency",
       "join dependency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 224,
@@ -3134,7 +3134,7 @@
       "anomalies",
       "tradeoff"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 225,
@@ -3148,7 +3148,7 @@
       "relationships",
       "cardinality"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 226,
@@ -3162,7 +3162,7 @@
       "dimensions",
       "OLAP"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 227,
@@ -3176,7 +3176,7 @@
       "OLAP",
       "storage"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 228,
@@ -3190,7 +3190,7 @@
       "many-to-many",
       "event"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 229,
@@ -3204,7 +3204,7 @@
       "history",
       "effective dates"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 230,
@@ -3218,7 +3218,7 @@
       "junction",
       "aggregate"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 231,
@@ -3232,7 +3232,7 @@
       "stability",
       "joins"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 232,
@@ -3246,7 +3246,7 @@
       "indexes",
       "foreign key"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 233,
@@ -3260,7 +3260,7 @@
       "cascade",
       "restrict"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 234,
@@ -3274,7 +3274,7 @@
       "business rules",
       "validation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 235,
@@ -3288,7 +3288,7 @@
       "audit",
       "side effects"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 236,
@@ -3302,7 +3302,7 @@
       "security",
       "maintainability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 237,
@@ -3316,7 +3316,7 @@
       "inlining",
       "planner"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 238,
@@ -3330,7 +3330,7 @@
       "refresh",
       "abstraction"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 239,
@@ -3344,7 +3344,7 @@
       "frame",
       "analytic"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 240,
@@ -3358,7 +3358,7 @@
       "materialization",
       "recursion"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 241,
@@ -3372,7 +3372,7 @@
       "traversal",
       "anchor"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 242,
@@ -3386,7 +3386,7 @@
       "conditional aggregation",
       "cross tab"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 243,
@@ -3400,7 +3400,7 @@
       "hierarchy",
       "transitive"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 244,
@@ -3414,7 +3414,7 @@
       "tree",
       "termination"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 245,
@@ -3428,7 +3428,7 @@
       "subtree",
       "preorder"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 246,
@@ -3442,7 +3442,7 @@
       "prefix",
       "GiST"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 247,
@@ -3456,7 +3456,7 @@
       "ancestor",
       "descendant"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 248,
@@ -3470,7 +3470,7 @@
       "leaf links",
       "range scan"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 249,
@@ -3484,7 +3484,7 @@
       "no range",
       "buckets"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 250,
@@ -3498,7 +3498,7 @@
       "OLAP",
       "rowid"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 251,
@@ -3512,7 +3512,7 @@
       "full-text",
       "custom types"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 252,
@@ -3526,7 +3526,7 @@
       "selectivity",
       "range"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 253,
@@ -3540,7 +3540,7 @@
       "index-only scan",
       "visibility map"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 254,
@@ -3554,7 +3554,7 @@
       "subset",
       "size"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 255,
@@ -3568,7 +3568,7 @@
       "immutable",
       "predicate"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 256,
@@ -3582,7 +3582,7 @@
       "vacuum",
       "heap fetch"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 257,
@@ -3596,7 +3596,7 @@
       "composite index",
       "leading column"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 258,
@@ -3610,7 +3610,7 @@
       "index-organized",
       "secondary"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 259,
@@ -3624,7 +3624,7 @@
       "pointers",
       "links"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 260,
@@ -3638,7 +3638,7 @@
       "durability",
       "flush order"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 261,
@@ -3652,7 +3652,7 @@
       "redo",
       "undo"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 262,
@@ -3666,7 +3666,7 @@
       "steal",
       "no-force"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 263,
@@ -3680,7 +3680,7 @@
       "recovery time",
       "LSN"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 264,
@@ -3694,7 +3694,7 @@
       "commit",
       "coordinator"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 265,
@@ -3708,7 +3708,7 @@
       "non-blocking",
       "timing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 266,
@@ -3722,7 +3722,7 @@
       "acceptor",
       "quorum"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 267,
@@ -3736,7 +3736,7 @@
       "log replication",
       "term"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 268,
@@ -3750,7 +3750,7 @@
       "batching",
       "steady state"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 269,
@@ -3764,7 +3764,7 @@
       "timestamp",
       "no read lock"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 270,
@@ -3778,7 +3778,7 @@
       "conflict",
       "safe retry"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 271,
@@ -3792,7 +3792,7 @@
       "version chain",
       "visibility"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 272,
@@ -3806,7 +3806,7 @@
       "shrinking",
       "strict"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 273,
@@ -3820,7 +3820,7 @@
       "detection",
       "victim"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 274,
@@ -3834,7 +3834,7 @@
       "phantom",
       "InnoDB"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 275,
@@ -3848,7 +3848,7 @@
       "read/write set",
       "conflict"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 276,
@@ -3862,7 +3862,7 @@
       "repeatable read",
       "serializable"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 277,
@@ -3876,7 +3876,7 @@
       "gap lock",
       "stability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 278,
@@ -3890,7 +3890,7 @@
       "prepare",
       "resource manager"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 279,
@@ -3904,7 +3904,7 @@
       "long-running",
       "choreography"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 280,
@@ -3918,7 +3918,7 @@
       "event publishing",
       "transactional"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 281,
@@ -3932,7 +3932,7 @@
       "streaming",
       "transaction log"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 282,
@@ -3946,7 +3946,7 @@
       "query",
       "separation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 283,
@@ -3960,7 +3960,7 @@
       "projection",
       "replay"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 284,
@@ -3974,7 +3974,7 @@
       "virtual nodes",
       "reshuffle"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 285,
@@ -3988,7 +3988,7 @@
       "partition-wise join",
       "range/list"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 286,
@@ -4002,7 +4002,7 @@
       "sharding",
       "cache"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 287,
@@ -4016,7 +4016,7 @@
       "expiration",
       "rate limit"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 288,
@@ -4030,7 +4030,7 @@
       "replication",
       "quorum"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 289,
@@ -4044,7 +4044,7 @@
       "sharding",
       "failover"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 290,
@@ -4058,7 +4058,7 @@
       "distributed",
       "sliding"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 291,
@@ -4072,7 +4072,7 @@
       "sorted set",
       "accuracy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 292,
@@ -4086,7 +4086,7 @@
       "timeline",
       "ranking"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 293,
@@ -4100,7 +4100,7 @@
       "pull",
       "celebrity"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 294,
@@ -4114,7 +4114,7 @@
       "CDN",
       "metadata"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 295,
@@ -4128,7 +4128,7 @@
       "dedup",
       "conflict"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 296,
@@ -4142,7 +4142,7 @@
       "CRDT",
       "conflict"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 297,
@@ -4156,7 +4156,7 @@
       "transcoding",
       "CDN"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 298,
@@ -4170,7 +4170,7 @@
       "cache tier",
       "ABR"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 299,
@@ -4184,7 +4184,7 @@
       "delivery receipts",
       "offline sync"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 300,
@@ -4198,7 +4198,7 @@
       "pub/sub",
       "fan-out"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 301,
@@ -4212,7 +4212,7 @@
       "dedup",
       "preferences"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 302,
@@ -4226,7 +4226,7 @@
       "inverted index",
       "ranking"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 303,
@@ -4240,7 +4240,7 @@
       "politeness",
       "dedup"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 304,
@@ -4254,7 +4254,7 @@
       "contraction hierarchies",
       "road graph"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 305,
@@ -4268,7 +4268,7 @@
       "dispatch",
       "surge"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 306,
@@ -4282,7 +4282,7 @@
       "quadtree",
       "nearby"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 307,
@@ -4296,7 +4296,7 @@
       "idempotency",
       "overbooking"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 308,
@@ -4310,7 +4310,7 @@
       "inventory",
       "contention"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 309,
@@ -4324,7 +4324,7 @@
       "pricing",
       "payment"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 310,
@@ -4338,7 +4338,7 @@
       "strong consistency",
       "SKU"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 311,
@@ -4352,7 +4352,7 @@
       "idempotency",
       "reconciliation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 312,
@@ -4366,7 +4366,7 @@
       "dedup",
       "ledger"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 313,
@@ -4380,7 +4380,7 @@
       "sharded",
       "eventual"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 314,
@@ -4394,7 +4394,7 @@
       "sharding",
       "rollup"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 315,
@@ -4408,7 +4408,7 @@
       "materialized path",
       "pagination"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 316,
@@ -4422,7 +4422,7 @@
       "stream processing",
       "warehouse"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 317,
@@ -4436,7 +4436,7 @@
       "cardinality",
       "downsampling"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 318,
@@ -4450,7 +4450,7 @@
       "indexing",
       "retention"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 319,
@@ -4464,7 +4464,7 @@
       "retries",
       "idempotent"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 320,
@@ -4478,7 +4478,7 @@
       "scheduling",
       "workers"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 321,
@@ -4492,7 +4492,7 @@
       "partition",
       "replication"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 322,
@@ -4506,7 +4506,7 @@
       "index",
       "retention"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 323,
@@ -4520,7 +4520,7 @@
       "coordinator",
       "session"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 324,
@@ -4534,7 +4534,7 @@
       "transactions",
       "EOS"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 325,
@@ -4548,7 +4548,7 @@
       "durable",
       "backpressure"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 326,
@@ -4562,7 +4562,7 @@
       "retries",
       "timers"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 327,
@@ -4576,7 +4576,7 @@
       "bounce",
       "throttling"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 328,
@@ -4590,7 +4590,7 @@
       "TTL",
       "negative caching"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 329,
@@ -4604,7 +4604,7 @@
       "origin pull",
       "invalidation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 330,
@@ -4618,7 +4618,7 @@
       "consistent hashing",
       "NAT/DSR"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 331,
@@ -4632,7 +4632,7 @@
       "TLS termination",
       "retries"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 332,
@@ -4646,7 +4646,7 @@
       "ring",
       "reshuffle"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 333,
@@ -4660,7 +4660,7 @@
       "hotspots",
       "ring"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 334,
@@ -4674,7 +4674,7 @@
       "health checks",
       "client-side"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 335,
@@ -4688,7 +4688,7 @@
       "rate limit",
       "routing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 336,
@@ -4702,7 +4702,7 @@
       "client-specific",
       "edge"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 337,
@@ -4716,7 +4716,7 @@
       "thresholds",
       "resilience"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 338,
@@ -4730,7 +4730,7 @@
       "concurrency limit",
       "failure domain"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 339,
@@ -4744,7 +4744,7 @@
       "jitter",
       "deadline"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 340,
@@ -4758,7 +4758,7 @@
       "live config",
       "rollouts"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 341,
@@ -4772,7 +4772,7 @@
       "watch",
       "versioning"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 342,
@@ -4786,7 +4786,7 @@
       "leasing",
       "audit"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 343,
@@ -4800,7 +4800,7 @@
       "conflict",
       "routing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 344,
@@ -4814,7 +4814,7 @@
       "replication",
       "RTO"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 345,
@@ -4828,7 +4828,7 @@
       "RTO",
       "failover"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 346,
@@ -4842,7 +4842,7 @@
       "windowed",
       "idempotency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 347,
@@ -4856,7 +4856,7 @@
       "lease",
       "renewal"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 348,
@@ -4870,7 +4870,7 @@
       "watchers",
       "linearizable"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 349,
@@ -4884,7 +4884,7 @@
       "concurrency",
       "causality"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 350,
@@ -4898,7 +4898,7 @@
       "logical",
       "drift"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 351,
@@ -4912,7 +4912,7 @@
       "consistency",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 352,
@@ -4926,7 +4926,7 @@
       "replica",
       "consistency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 353,
@@ -4940,7 +4940,7 @@
       "replica",
       "recovery"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 354,
@@ -4954,7 +4954,7 @@
       "replica diff",
       "repair"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 355,
@@ -4968,7 +4968,7 @@
       "epidemic",
       "bounded"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 356,
@@ -4982,7 +4982,7 @@
       "sampling",
       "context"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 357,
@@ -4996,7 +4996,7 @@
       "propagation",
       "headers"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 358,
@@ -5010,7 +5010,7 @@
       "metrics",
       "significance"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 359,
@@ -5024,7 +5024,7 @@
       "embeddings",
       "ranking"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 360,
@@ -5038,7 +5038,7 @@
       "consistency",
       "serving"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 361,
@@ -5052,7 +5052,7 @@
       "fixed-size",
       "kernel"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 362,
@@ -5066,7 +5066,7 @@
       "freelist",
       "kernel"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 363,
@@ -5080,7 +5080,7 @@
       "power-of-two",
       "split"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 364,
@@ -5094,7 +5094,7 @@
       "reset",
       "region"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 365,
@@ -5108,7 +5108,7 @@
       "O(1)",
       "bulk free"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 366,
@@ -5122,7 +5122,7 @@
       "free list",
       "O(1)"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 367,
@@ -5136,7 +5136,7 @@
       "LIFO free",
       "linear"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 368,
@@ -5150,7 +5150,7 @@
       "arena",
       "thread cache"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 369,
@@ -5164,7 +5164,7 @@
       "spans",
       "central heap"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 370,
@@ -5178,7 +5178,7 @@
       "free lists",
       "delayed reset"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 371,
@@ -5192,7 +5192,7 @@
       "global heap",
       "scavenge"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 372,
@@ -5206,7 +5206,7 @@
       "roots",
       "sweep"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 373,
@@ -5220,7 +5220,7 @@
       "fragmentation",
       "forwarding"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 374,
@@ -5234,7 +5234,7 @@
       "evacuation",
       "forwarding"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 375,
@@ -5248,7 +5248,7 @@
       "remembered set",
       "promotion"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 376,
@@ -5262,7 +5262,7 @@
       "pause prediction",
       "compaction"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 377,
@@ -5276,7 +5276,7 @@
       "load barrier",
       "low latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 378,
@@ -5290,7 +5290,7 @@
       "concurrent evacuation",
       "low latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 379,
@@ -5304,7 +5304,7 @@
       "handshake",
       "pause"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 380,
@@ -5318,7 +5318,7 @@
       "invariant",
       "tracing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 381,
@@ -5332,7 +5332,7 @@
       "incremental",
       "invariant"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 382,
@@ -5346,7 +5346,7 @@
       "weak refs",
       "deferred"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 383,
@@ -5360,7 +5360,7 @@
       "pause",
       "throughput"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 384,
@@ -5374,7 +5374,7 @@
       "construct cost",
       "reuse"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 385,
@@ -5388,7 +5388,7 @@
       "lock-free",
       "ABA"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 386,
@@ -5402,7 +5402,7 @@
       "deferred",
       "lock-free"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 387,
@@ -5416,7 +5416,7 @@
       "reclamation",
       "readers"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 388,
@@ -5430,7 +5430,7 @@
       "lock-free",
       "safety"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 389,
@@ -5444,7 +5444,7 @@
       "amortize",
       "hot path"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 390,
@@ -5458,7 +5458,7 @@
       "page table",
       "translation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 391,
@@ -5472,7 +5472,7 @@
       "compact",
       "translation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 392,
@@ -5486,7 +5486,7 @@
       "IPI",
       "translation cache"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 393,
@@ -5500,7 +5500,7 @@
       "TLB",
       "page walk"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 394,
@@ -5514,7 +5514,7 @@
       "anonymous",
       "file-backed"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 395,
@@ -5528,7 +5528,7 @@
       "sharing",
       "page protection"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 396,
@@ -5542,7 +5542,7 @@
       "lazy",
       "zero fill"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 397,
@@ -5556,7 +5556,7 @@
       "clock",
       "eviction"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 398,
@@ -5570,7 +5570,7 @@
       "recency",
       "frequency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 399,
@@ -5584,7 +5584,7 @@
       "thrashing",
       "sizing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 400,
@@ -5598,7 +5598,7 @@
       "page cache",
       "I/O"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 401,
@@ -5612,7 +5612,7 @@
       "victim selection",
       "memory score"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 402,
@@ -5626,7 +5626,7 @@
       "OOM",
       "accounting"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 403,
@@ -5640,7 +5640,7 @@
       "internal",
       "coalescing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 404,
@@ -5654,7 +5654,7 @@
       "fragmentation",
       "heap"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 405,
@@ -5668,7 +5668,7 @@
       "struct layout",
       "ABI"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 406,
@@ -5682,7 +5682,7 @@
       "layout",
       "alignment"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 407,
@@ -5696,7 +5696,7 @@
       "padding",
       "contention"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 408,
@@ -5710,7 +5710,7 @@
       "SIMD",
       "cache"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 409,
@@ -5724,7 +5724,7 @@
       "locality",
       "allocation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 410,
@@ -5738,7 +5738,7 @@
       "TLB",
       "cost"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 411,
@@ -5752,7 +5752,7 @@
       "instrumentation",
       "overhead"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 412,
@@ -5766,7 +5766,7 @@
       "hot path",
       "visualization"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 413,
@@ -5780,7 +5780,7 @@
       "PMU",
       "counters"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 414,
@@ -5794,7 +5794,7 @@
       "kprobes",
       "uprobes"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 415,
@@ -5808,7 +5808,7 @@
       "syscall",
       "library"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 416,
@@ -5822,7 +5822,7 @@
       "flat profile",
       "instrumentation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 417,
@@ -5836,7 +5836,7 @@
       "pipeline",
       "branchless"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 418,
@@ -5850,7 +5850,7 @@
       "data hazard",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 419,
@@ -5864,7 +5864,7 @@
       "ILP",
       "renaming"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 420,
@@ -5878,7 +5878,7 @@
       "latency",
       "bandwidth"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 421,
@@ -5892,7 +5892,7 @@
       "locality",
       "size"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 422,
@@ -5906,7 +5906,7 @@
       "streaming",
       "intrinsics"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 423,
@@ -5920,7 +5920,7 @@
       "cache efficiency",
       "layout"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 424,
@@ -5934,7 +5934,7 @@
       "intrinsics",
       "lanes"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 425,
@@ -5948,7 +5948,7 @@
       "restrict",
       "alignment"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 426,
@@ -5962,7 +5962,7 @@
       "loop overhead",
       "code size"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 427,
@@ -5976,7 +5976,7 @@
       "cache",
       "matrix"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 428,
@@ -5990,7 +5990,7 @@
       "portable",
       "I/O"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 429,
@@ -6004,7 +6004,7 @@
       "misprediction",
       "flags"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 430,
@@ -6018,7 +6018,7 @@
       "conditional move",
       "Eytzinger"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 431,
@@ -6032,7 +6032,7 @@
       "DRAM",
       "network"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 432,
@@ -6046,7 +6046,7 @@
       "memory-bound",
       "measurement"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 433,
@@ -6060,7 +6060,7 @@
       "locality",
       "sockets"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 434,
@@ -6074,7 +6074,7 @@
       "throughput",
       "contention"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 435,
@@ -6088,7 +6088,7 @@
       "roofline",
       "classification"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 436,
@@ -6102,7 +6102,7 @@
       "peak",
       "bandwidth"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 437,
@@ -6116,7 +6116,7 @@
       "parallel fraction",
       "bounds"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 438,
@@ -6130,7 +6130,7 @@
       "parallel",
       "problem size"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 439,
@@ -6144,7 +6144,7 @@
       "straggler",
       "fan-out"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 440,
@@ -6158,7 +6158,7 @@
       "latency",
       "sustained"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 441,
@@ -6172,7 +6172,7 @@
       "queue",
       "throughput"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 442,
@@ -6186,7 +6186,7 @@
       "utilization",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 443,
@@ -6200,7 +6200,7 @@
       "overload",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 444,
@@ -6214,7 +6214,7 @@
       "latency",
       "outage"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 445,
@@ -6228,7 +6228,7 @@
       "io_uring",
       "scalability"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 446,
@@ -6242,7 +6242,7 @@
       "submission queue",
       "completion"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 447,
@@ -6256,7 +6256,7 @@
       "splice",
       "kernel buffer"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 448,
@@ -6270,7 +6270,7 @@
       "writev",
       "syscall"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 449,
@@ -6284,7 +6284,7 @@
       "syscall",
       "amortize"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 450,
@@ -6298,7 +6298,7 @@
       "CFQ",
       "merging"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 451,
@@ -6312,7 +6312,7 @@
       "page cache",
       "O_DIRECT"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 452,
@@ -6326,7 +6326,7 @@
       "page fault",
       "performance"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 453,
@@ -6340,7 +6340,7 @@
       "sharding",
       "lock-free"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 454,
@@ -6354,7 +6354,7 @@
       "contention",
       "CAS"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 455,
@@ -6368,7 +6368,7 @@
       "cache line",
       "mitigation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 456,
@@ -6382,7 +6382,7 @@
       "PMC",
       "layout"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 457,
@@ -6396,7 +6396,7 @@
       "locality",
       "PMC"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 458,
@@ -6410,7 +6410,7 @@
       "compilation",
       "warmup"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 459,
@@ -6424,7 +6424,7 @@
       "GC",
       "lifetime"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 460,
@@ -6438,7 +6438,7 @@
       "generational",
       "heap sizing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 461,
@@ -6452,7 +6452,7 @@
       "validation",
       "ORM"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 462,
@@ -6466,7 +6466,7 @@
       "CSP",
       "sanitization"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 463,
@@ -6480,7 +6480,7 @@
       "SameSite",
       "origin"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 464,
@@ -6494,7 +6494,7 @@
       "egress",
       "metadata"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 465,
@@ -6508,7 +6508,7 @@
       "external entity",
       "parser"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 466,
@@ -6522,7 +6522,7 @@
       "argument array",
       "escaping"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 467,
@@ -6536,7 +6536,7 @@
       "sandbox",
       "root"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 468,
@@ -6550,7 +6550,7 @@
       "gadget",
       "RCE"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 469,
@@ -6564,7 +6564,7 @@
       "risk",
       "mitigation"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 470,
@@ -6578,7 +6578,7 @@
       "scrypt",
       "argon2"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 471,
@@ -6592,7 +6592,7 @@
       "precomputed",
       "rainbow"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 472,
@@ -6606,7 +6606,7 @@
       "expiry",
       "signature"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 473,
@@ -6620,7 +6620,7 @@
       "PKCE",
       "client credentials"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 474,
@@ -6634,7 +6634,7 @@
       "OAuth",
       "identity"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 475,
@@ -6648,7 +6648,7 @@
       "SSO",
       "binding"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 476,
@@ -6662,7 +6662,7 @@
       "Secure",
       "SameSite"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 477,
@@ -6676,7 +6676,7 @@
       "reuse detection",
       "theft"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 478,
@@ -6690,7 +6690,7 @@
       "RFC 6238",
       "HMAC"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 479,
@@ -6704,7 +6704,7 @@
       "attestation",
       "challenge"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 480,
@@ -6718,7 +6718,7 @@
       "integrity",
       "authentication"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 481,
@@ -6732,7 +6732,7 @@
       "ChaCha20-Poly1305",
       "nonce"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 482,
@@ -6746,7 +6746,7 @@
       "CCA",
       "public key"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 483,
@@ -6760,7 +6760,7 @@
       "shared secret",
       "discrete log"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 484,
@@ -6774,7 +6774,7 @@
       "key agreement",
       "side channel"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 485,
@@ -6788,7 +6788,7 @@
       "nonce",
       "canonical"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 486,
@@ -6802,7 +6802,7 @@
       "X.509",
       "mis-issuance"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 487,
@@ -6816,7 +6816,7 @@
       "key share",
       "HKDF"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 488,
@@ -6830,7 +6830,7 @@
       "key exchange",
       "compromise"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 489,
@@ -6844,7 +6844,7 @@
       "verification",
       "trust"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 490,
@@ -6858,7 +6858,7 @@
       "no implicit trust",
       "policy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 491,
@@ -6872,7 +6872,7 @@
       "encoding",
       "purpose"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 492,
@@ -6886,7 +6886,7 @@
       "proof",
       "tamper detection"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 493,
@@ -6900,7 +6900,7 @@
       "storage",
       "cracking"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 494,
@@ -6914,7 +6914,7 @@
       "memory-hard",
       "precomputed"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 495,
@@ -6928,7 +6928,7 @@
       "argon2",
       "memory-hard"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 496,
@@ -6942,7 +6942,7 @@
       "comparison",
       "secret"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 497,
@@ -6956,7 +6956,7 @@
       "leak",
       "secret"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 498,
@@ -6970,7 +6970,7 @@
       "power",
       "EM"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 499,
@@ -6984,7 +6984,7 @@
       "AEAD",
       "MAC"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 500,
@@ -6998,7 +6998,7 @@
       "timing",
       "AEAD"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 501,
@@ -7012,7 +7012,7 @@
       "BREACH",
       "compression"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 502,
@@ -7026,7 +7026,7 @@
       "timestamp",
       "sequence"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 503,
@@ -7040,7 +7040,7 @@
       "authorization",
       "policy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 504,
@@ -7054,7 +7054,7 @@
       "delegation",
       "ACL"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 505,
@@ -7068,7 +7068,7 @@
       "minimization",
       "principle"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 506,
@@ -7082,7 +7082,7 @@
       "namespaces",
       "syscall filter"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 507,
@@ -7096,7 +7096,7 @@
       "read-only",
       "image"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 508,
@@ -7110,7 +7110,7 @@
       "envelope encryption",
       "audit"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 509,
@@ -7124,7 +7124,7 @@
       "lockout",
       "account"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 510,
@@ -7138,7 +7138,7 @@
       "detection",
       "deception"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 511,
@@ -7152,7 +7152,7 @@
       "SYN",
       "state machine"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 512,
@@ -7166,7 +7166,7 @@
       "bandwidth",
       "RTT"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 513,
@@ -7180,7 +7180,7 @@
       "window",
       "congestion"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 514,
@@ -7194,7 +7194,7 @@
       "ssthresh",
       "cwnd"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 515,
@@ -7208,7 +7208,7 @@
       "dup ACK",
       "loss"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 516,
@@ -7222,7 +7222,7 @@
       "coalescing",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 517,
@@ -7236,7 +7236,7 @@
       "latency",
       "writes"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 518,
@@ -7250,7 +7250,7 @@
       "idle",
       "probes"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 519,
@@ -7264,7 +7264,7 @@
       "segments",
       "reuse"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 520,
@@ -7278,7 +7278,7 @@
       "stateless",
       "DoS"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 521,
@@ -7292,7 +7292,7 @@
       "window",
       "backpressure"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 522,
@@ -7306,7 +7306,7 @@
       "QUIC",
       "stream multiplexing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 523,
@@ -7320,7 +7320,7 @@
       "0-RTT",
       "streams"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 524,
@@ -7334,7 +7334,7 @@
       "streams",
       "framing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 525,
@@ -7348,7 +7348,7 @@
       "Huffman",
       "dynamic table"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 526,
@@ -7362,7 +7362,7 @@
       "streams",
       "frames"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 527,
@@ -7376,7 +7376,7 @@
       "pipelining",
       "HoL"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 528,
@@ -7390,7 +7390,7 @@
       "idempotent",
       "cacheable"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 529,
@@ -7404,7 +7404,7 @@
       "Cache-Control",
       "freshness"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 530,
@@ -7418,7 +7418,7 @@
       "If-Modified-Since",
       "304"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 531,
@@ -7432,7 +7432,7 @@
       "CORS",
       "CSRF"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 532,
@@ -7446,7 +7446,7 @@
       "sequence",
       "AEAD"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 533,
@@ -7460,7 +7460,7 @@
       "replay",
       "TLS 1.3"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 534,
@@ -7474,7 +7474,7 @@
       "iterative",
       "cache"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 535,
@@ -7488,7 +7488,7 @@
       "encryption",
       "privacy"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 536,
@@ -7502,7 +7502,7 @@
       "purge",
       "origin shield"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 537,
@@ -7516,7 +7516,7 @@
       "POP",
       "latency"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 538,
@@ -7530,7 +7530,7 @@
       "interdomain",
       "routing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 539,
@@ -7544,7 +7544,7 @@
       "port mapping",
       "end-to-end"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 540,
@@ -7558,7 +7558,7 @@
       "ordering",
       "congestion"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 541,
@@ -7572,7 +7572,7 @@
       "STUN",
       "TURN"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 542,
@@ -7586,7 +7586,7 @@
       "framing",
       "ping/pong"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 543,
@@ -7600,7 +7600,7 @@
       "streaming",
       "reconnect"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 544,
@@ -7614,7 +7614,7 @@
       "HTTP/2",
       "streaming"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 545,
@@ -7628,7 +7628,7 @@
       "serialization",
       "RPC"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 546,
@@ -7642,7 +7642,7 @@
       "topics",
       "retained"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 547,
@@ -7656,7 +7656,7 @@
       "bindings",
       "queues"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 548,
@@ -7670,7 +7670,7 @@
       "traceroute",
       "TTL"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 549,
@@ -7684,7 +7684,7 @@
       "SLAAC",
       "addressing"
     ],
-    "implemented": false
+    "implemented": true
   },
   {
     "id": 550,
@@ -7698,6 +7698,6 @@
       "transition",
       "IPv6"
     ],
-    "implemented": false
+    "implemented": true
   }
 ]

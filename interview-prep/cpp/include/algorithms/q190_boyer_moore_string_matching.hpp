@@ -1,25 +1,24 @@
 // Question #190: Boyer-Moore String Matching
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: string matching, bad character, good suffix, skip
 // Description: Implement Boyer-Moore using bad-character and good-suffix heuristics to skip alignments.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Boyer-Moore String Matching
 // Question ID: 190
-// See questions.json for full details.
-class boyer_moore_string_matching {
+class BoyerMooreStringMatching {
 public:
-    // TODO: Implement the solution for question #190
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

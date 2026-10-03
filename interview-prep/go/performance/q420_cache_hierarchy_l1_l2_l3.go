@@ -1,15 +1,49 @@
 // Question #420: Cache Hierarchy (L1/L2/L3)
-// Category: Performance & Profiling
-// Difficulty: Hard
+// Category: Performance & Profiling | Difficulty: Hard
 // Concepts: cache, L1/L2/L3, latency, bandwidth
 // Description: Model the L1/L2/L3 cache hierarchy and quantify latency and bandwidth at each level.
-//
-// TODO: Implement this solution.
 package performance
 
+import (
+        "sync"
+        "sync/atomic"
+)
+
 // Cache Hierarchy (L1/L2/L3)
-// Question ID: 420
-func cache_hierarchy_l1_l2_l3_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a performance optimization for question #420.
+type CacheHierarchyL1L2L3 struct {
+        mu      sync.Mutex
+        cache   map[uint64]interface{}
+        hits    atomic.Int64
+        misses  atomic.Int64
+}
+
+// NewCacheHierarchyL1L2L3 creates a new performance optimizer.
+func NewCacheHierarchyL1L2L3() *CacheHierarchyL1L2L3 {
+        return &CacheHierarchyL1L2L3{cache: make(map[uint64]interface{})}
+}
+
+// Get retrieves a cached value or returns false.
+func (p *CacheHierarchyL1L2L3) Get(key uint64) (interface{, bool) {
+        p.mu.Lock()
+        v, ok := p.cache[key]
+        p.mu.Unlock()
+        if ok {
+                p.hits.Add(1)
+        } else {
+                p.misses.Add(1)
+        }
+        return v, ok
+}
+
+// Set stores a value in the cache.
+func (p *CacheHierarchyL1L2L3) Set(key uint64, val interface{) {
+        p.mu.Lock()
+        p.cache[key] = val
+        p.mu.Unlock()
+}
+
+// Stats returns (hits, misses).
+func (p *CacheHierarchyL1L2L3) Stats() (int64, int64) {
+        return p.hits.Load(), p.misses.Load()
 }

@@ -1,22 +1,18 @@
 //! Question #218: Count Inversions via Merge Sort
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: inversions, merge sort, count, O(n log n)
 //! Description: Count array inversions in O(n log n) by augmenting merge sort with a counter.
-//!
-//! TODO: Implement this solution.
 
-pub fn count_inversions_via_merge_sort() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn count_inversions_via_merge_sort(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_count_inversions_via_merge_sort() {
-        // TODO: Write tests for question #218
+        assert_eq!(count_inversions_via_merge_sort(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

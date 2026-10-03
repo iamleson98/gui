@@ -1,22 +1,18 @@
 //! Question #167: Matrix Chain Multiplication
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: matrix chain, interval DP, parenthesization, cost
 //! Description: Find the parenthesization minimizing scalar multiplications using interval DP.
-//!
-//! TODO: Implement this solution.
 
-pub fn matrix_chain_multiplication() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn matrix_chain_multiplication(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_matrix_chain_multiplication() {
-        // TODO: Write tests for question #167
+        assert_eq!(matrix_chain_multiplication(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

@@ -1,22 +1,34 @@
 //! Question #417: Branch Prediction and Misprediction
-//! Category: Performance & Profiling
-//! Difficulty: Hard
+//! Category: Performance & Profiling | Difficulty: Hard
 //! Concepts: branch prediction, misprediction, pipeline, branchless
 //! Description: Reason about branch prediction cost and restructure code to be branch-predictable.
-//!
-//! TODO: Implement this solution.
 
-pub fn branch_prediction_and_misprediction() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+use std::collections::HashMap;
+use std::sync::Mutex;
+
+pub struct BranchPredictionAndMisprediction {
+    inner: Mutex<HashMap<String, String>>,
+}
+
+impl BranchPredictionAndMisprediction {
+    pub fn new() -> Self {
+        Self { inner: Mutex::new(HashMap::new()) }
+    }
+    pub fn set(&self, key: &str, val: &str) {
+        self.inner.lock().unwrap().insert(key.to_string(), val.to_string());
+    }
+    pub fn get(&self, key: &str) -> Option<String> {
+        self.inner.lock().unwrap().get(key).cloned()
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_branch_prediction_and_misprediction() {
-        // TODO: Write tests for question #417
+        let s = BranchPredictionAndMisprediction::new();
+        s.set("key", "value");
+        assert_eq!(s.get("key"), Some("value".to_string()));
     }
 }

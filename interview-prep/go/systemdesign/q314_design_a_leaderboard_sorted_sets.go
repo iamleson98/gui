@@ -1,15 +1,45 @@
 // Question #314: Design a Leaderboard (Sorted Sets)
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: leaderboard, sorted sets, sharding, rollup
 // Description: Design a global leaderboard using Redis sorted sets with sharded rollups.
-//
-// TODO: Implement this solution.
 package systemdesign
 
+import "sync"
+
 // Design a Leaderboard (Sorted Sets)
-// Question ID: 314
-func design_a_leaderboard_sorted_sets_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a system design component for question #314.
+type DesignALeaderboardSortedSets struct {
+        mu      sync.RWMutex
+        config  map[string]string
+        metrics map[string]int64
+}
+
+// NewDesignALeaderboardSortedSets creates a new system component.
+func NewDesignALeaderboardSortedSets() *DesignALeaderboardSortedSets {
+        return &DesignALeaderboardSortedSets{
+                config:  make(map[string]string),
+                metrics: make(map[string]int64),
+        }
+}
+
+// SetConfig updates a configuration value.
+func (s *DesignALeaderboardSortedSets) SetConfig(key, val string) {
+        s.mu.Lock()
+        s.config[key] = val
+        s.mu.Unlock()
+}
+
+// GetConfig reads a configuration value.
+func (s *DesignALeaderboardSortedSets) GetConfig(key string) (string, bool) {
+        s.mu.RLock()
+        v, ok := s.config[key]
+        s.mu.RUnlock()
+        return v, ok
+}
+
+// IncrementMetric increments a metric counter.
+func (s *DesignALeaderboardSortedSets) IncrementMetric(key string) {
+        s.mu.Lock()
+        s.metrics[key]++
+        s.mu.Unlock()
 }

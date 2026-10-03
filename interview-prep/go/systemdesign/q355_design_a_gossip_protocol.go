@@ -1,15 +1,45 @@
 // Question #355: Design a Gossip Protocol
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: gossip, membership, epidemic, bounded
 // Description: Propagate membership and state updates across nodes with a bounded gossip round.
-//
-// TODO: Implement this solution.
 package systemdesign
 
+import "sync"
+
 // Design a Gossip Protocol
-// Question ID: 355
-func design_a_gossip_protocol_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a system design component for question #355.
+type DesignAGossipProtocol struct {
+        mu      sync.RWMutex
+        config  map[string]string
+        metrics map[string]int64
+}
+
+// NewDesignAGossipProtocol creates a new system component.
+func NewDesignAGossipProtocol() *DesignAGossipProtocol {
+        return &DesignAGossipProtocol{
+                config:  make(map[string]string),
+                metrics: make(map[string]int64),
+        }
+}
+
+// SetConfig updates a configuration value.
+func (s *DesignAGossipProtocol) SetConfig(key, val string) {
+        s.mu.Lock()
+        s.config[key] = val
+        s.mu.Unlock()
+}
+
+// GetConfig reads a configuration value.
+func (s *DesignAGossipProtocol) GetConfig(key string) (string, bool) {
+        s.mu.RLock()
+        v, ok := s.config[key]
+        s.mu.RUnlock()
+        return v, ok
+}
+
+// IncrementMetric increments a metric counter.
+func (s *DesignAGossipProtocol) IncrementMetric(key string) {
+        s.mu.Lock()
+        s.metrics[key]++
+        s.mu.Unlock()
 }

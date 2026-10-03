@@ -1,26 +1,27 @@
 // Question #338: Design a Bulkhead Pattern
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: bulkhead, isolation, concurrency limit, failure domain
 // Description: Isolate failure domains with bulkheads limiting concurrency per dependency.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Design a Bulkhead Pattern
 // Question ID: 338
-// See questions.json for full details.
-class design_a_bulkhead_pattern {
+class DesignABulkheadPattern {
+private:
+    std::unordered_map<std::string, std::string> config_;
+    std::unordered_map<std::string, int64_t> metrics_;
 public:
-    // TODO: Implement the solution for question #338
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_config(const std::string& key, const std::string& val) { config_[key] = val; }
+    std::string get_config(const std::string& key) const { auto it = config_.find(key); return it == config_.end() ? "" : it->second; }
+    void increment_metric(const std::string& key) { metrics_[key]++; }
 };
 
 } // namespace interview_prep

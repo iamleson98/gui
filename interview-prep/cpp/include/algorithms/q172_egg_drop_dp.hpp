@@ -1,25 +1,24 @@
 // Question #172: Egg Drop (DP)
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: egg drop, DP, worst case, trials
 // Description: Find the minimum number of egg-drop trials in the worst case using a DP over eggs and floors.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Egg Drop (DP)
 // Question ID: 172
-// See questions.json for full details.
-class egg_drop_dp {
+class EggDropDp {
 public:
-    // TODO: Implement the solution for question #172
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

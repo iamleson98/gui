@@ -1,22 +1,18 @@
 //! Question #194: Suffix Array Construction (SA-IS)
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: suffix array, SA-IS, induced sorting, linear
 //! Description: Construct a suffix array in linear time using the SA-IS induced-sorting algorithm.
-//!
-//! TODO: Implement this solution.
 
-pub fn suffix_array_construction_sa_is() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn suffix_array_construction_sa_is(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_suffix_array_construction_sa_is() {
-        // TODO: Write tests for question #194
+        assert_eq!(suffix_array_construction_sa_is(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

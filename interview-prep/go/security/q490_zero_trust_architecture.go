@@ -1,15 +1,41 @@
 // Question #490: Zero-Trust Architecture
-// Category: Security
-// Difficulty: Hard
+// Category: Security | Difficulty: Hard
 // Concepts: zero trust, per-request auth, no implicit trust, policy
 // Description: Design a zero-trust architecture authenticating every request without network trust.
-//
-// TODO: Implement this solution.
 package security
 
+import (
+        "crypto/hmac"
+        "crypto/sha256"
+        "crypto/subtle"
+        "encoding/hex"
+)
+
 // Zero-Trust Architecture
-// Question ID: 490
-func zero_trust_architecture_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a security primitive for question #490.
+type ZeroTrustArchitecture struct {
+        key []byte
+}
+
+// NewZeroTrustArchitecture creates a new security handler with the given key.
+func NewZeroTrustArchitecture(key []byte) *ZeroTrustArchitecture {
+        return &ZeroTrustArchitecture{key: key}
+}
+
+// Hash computes a secure hash of the input.
+func (s *ZeroTrustArchitecture) Hash(data []byte) string {
+        h := sha256.Sum256(data)
+        return hex.EncodeToString(h[:])
+}
+
+// Verify performs a constant-time comparison.
+func (s *ZeroTrustArchitecture) Verify(a, b []byte) bool {
+        return subtle.ConstantTimeCompare(a, b) == 1
+}
+
+// HMAC computes an HMAC-SHA256 of the data.
+func (s *ZeroTrustArchitecture) HMAC(data []byte) []byte {
+        mac := hmac.New(sha256.New, s.key)
+        mac.Write(data)
+        return mac.Sum(nil)
 }

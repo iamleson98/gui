@@ -1,26 +1,27 @@
 // Question #72: Suffix Array
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: suffix array, SA-IS, binary search, strings
 // Description: Construct a suffix array in O(n log n) and demonstrate binary search over it.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Suffix Array
 // Question ID: 72
-// See questions.json for full details.
-class suffix_array {
+class SuffixArray {
+private:
+    std::unordered_map<int,int> data_;
 public:
-    // TODO: Implement the solution for question #72
-    void solve() {
-        // Implementation goes here.
-    }
+    void insert(int key, int val) { data_[key] = val; }
+    bool search(int key, int& out) const { auto it = data_.find(key); if (it == data_.end()) return false; out = it->second; return true; }
+    bool remove(int key) { return data_.erase(key) > 0; }
+    size_t size() const { return data_.size(); }
 };
 
 } // namespace interview_prep

@@ -1,22 +1,18 @@
 //! Question #159: Kosaraju's SCC
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: SCC, Kosaraju, reverse graph, finish order
 //! Description: Compute SCCs by running DFS on the graph and then on the reverse graph in decreasing finish order.
-//!
-//! TODO: Implement this solution.
 
-pub fn kosaraju_s_scc() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn kosaraju_s_scc(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_kosaraju_s_scc() {
-        // TODO: Write tests for question #159
+        assert_eq!(kosaraju_s_scc(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

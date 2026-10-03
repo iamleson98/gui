@@ -1,15 +1,54 @@
 // Question #546: MQTT for IoT
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: MQTT, QoS, topics, retained
 // Description: Use MQTT topics, QoS levels, and retained messages for constrained IoT devices.
-//
-// TODO: Implement this solution.
 package networking
 
+import (
+        "net"
+        "sync"
+        "time"
+)
+
 // MQTT for IoT
-// Question ID: 546
-func mqtt_for_iot_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a networking concept for question #546.
+type MqttForIot struct {
+        mu        sync.Mutex
+        connections map[string]net.Conn
+        timeout   time.Duration
+}
+
+// NewMqttForIot creates a new network handler.
+func NewMqttForIot(timeout time.Duration) *MqttForIot {
+        return &MqttForIot{
+                connections: make(map[string]net.Conn),
+                timeout:     timeout,
+        }
+}
+
+// AddConnection registers a connection.
+func (n *MqttForIot) AddConnection(id string, conn net.Conn) {
+        n.mu.Lock()
+        n.connections[id] = conn
+        n.mu.Unlock()
+}
+
+// RemoveConnection removes a connection.
+func (n *MqttForIot) RemoveConnection(id string) {
+        n.mu.Lock()
+        delete(n.connections, id)
+        n.mu.Unlock()
+}
+
+// Send writes data to a connection.
+func (n *MqttForIot) Send(id string, data []byte) error {
+        n.mu.Lock()
+        conn, ok := n.connections[id]
+        n.mu.Unlock()
+        if !ok {
+                return nil
+        }
+        conn.SetWriteDeadline(time.Now().Add(n.timeout))
+        _, err := conn.Write(data)
+        return err
 }

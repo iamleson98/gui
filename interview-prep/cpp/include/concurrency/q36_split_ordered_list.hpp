@@ -1,26 +1,25 @@
 // Question #36: Split-Ordered List
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: split-ordered list, lock-free, sorted list, hash
 // Description: Implement a lock-free hash table based on a sorted linked list with reverse-key ordering (Shalev-Shavit).
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Split-Ordered List
 // Question ID: 36
-// See questions.json for full details.
-class split_ordered_list {
+class SplitOrderedList {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #36
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

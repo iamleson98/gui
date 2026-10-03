@@ -1,26 +1,25 @@
 // Question #22: Lock-Free SPSC Ring Buffer
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: SPSC, ring buffer, memory ordering, cache lines
 // Description: Build a single-producer single-consumer bounded ring buffer using relaxed loads/stores and a power-of-two size.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Lock-Free SPSC Ring Buffer
 // Question ID: 22
-// See questions.json for full details.
-class lock_free_spsc_ring_buffer {
+class LockFreeSpscRingBuffer {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #22
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

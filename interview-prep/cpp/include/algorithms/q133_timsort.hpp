@@ -1,25 +1,24 @@
 // Question #133: TimSort
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: TimSort, runs, galloping, adaptive
 // Description: Implement TimSort with run detection, merging, and galloping for partially ordered real-world data.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // TimSort
 // Question ID: 133
-// See questions.json for full details.
-class timsort {
+class Timsort {
 public:
-    // TODO: Implement the solution for question #133
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

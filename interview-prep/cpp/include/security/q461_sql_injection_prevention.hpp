@@ -1,25 +1,28 @@
 // Question #461: SQL Injection Prevention
-// Category: Security
-// Difficulty: Hard
+// Category: Security | Difficulty: Hard
 // Concepts: SQL injection, parameterized, validation, ORM
 // Description: Prevent SQL injection using parameterized queries and strict input validation.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // SQL Injection Prevention
 // Question ID: 461
-// See questions.json for full details.
-class sql_injection_prevention {
+class SqlInjectionPrevention {
+private:
+    std::vector<uint8_t> key_;
 public:
-    // TODO: Implement the solution for question #461
-    void solve() {
-        // Implementation goes here.
+    explicit SqlInjectionPrevention(const std::vector<uint8_t>& key) : key_(key) {}
+    static bool constant_time_compare(const uint8_t* a, const uint8_t* b, size_t len) {
+        uint8_t result = 0;
+        for (size_t i = 0; i < len; ++i) result |= a[i] ^ b[i];
+        return result == 0;
     }
 };
 

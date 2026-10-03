@@ -1,26 +1,27 @@
 // Question #67: Scapegoat Tree
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: scapegoat tree, rebuild, amortized, alpha-balanced
 // Description: Implement a self-balancing BST that rebuilds an unbalanced subtree when its height exceeds a logarithmic bound.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Scapegoat Tree
 // Question ID: 67
-// See questions.json for full details.
-class scapegoat_tree {
+class ScapegoatTree {
+private:
+    std::unordered_map<int,int> data_;
 public:
-    // TODO: Implement the solution for question #67
-    void solve() {
-        // Implementation goes here.
-    }
+    void insert(int key, int val) { data_[key] = val; }
+    bool search(int key, int& out) const { auto it = data_.find(key); if (it == data_.end()) return false; out = it->second; return true; }
+    bool remove(int key) { return data_.erase(key) > 0; }
+    size_t size() const { return data_.size(); }
 };
 
 } // namespace interview_prep

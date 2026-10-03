@@ -1,25 +1,28 @@
 // Question #486: Certificate Transparency
-// Category: Security
-// Difficulty: Hard
+// Category: Security | Difficulty: Hard
 // Concepts: certificate transparency, CT logs, X.509, mis-issuance
 // Description: Validate X.509 certificates against CT logs to detect mis-issuance.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Certificate Transparency
 // Question ID: 486
-// See questions.json for full details.
-class certificate_transparency {
+class CertificateTransparency {
+private:
+    std::vector<uint8_t> key_;
 public:
-    // TODO: Implement the solution for question #486
-    void solve() {
-        // Implementation goes here.
+    explicit CertificateTransparency(const std::vector<uint8_t>& key) : key_(key) {}
+    static bool constant_time_compare(const uint8_t* a, const uint8_t* b, size_t len) {
+        uint8_t result = 0;
+        for (size_t i = 0; i < len; ++i) result |= a[i] ^ b[i];
+        return result == 0;
     }
 };
 

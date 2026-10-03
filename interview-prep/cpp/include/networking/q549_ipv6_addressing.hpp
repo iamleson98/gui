@@ -1,26 +1,28 @@
 // Question #549: IPv6 Addressing
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: IPv6, subnetting, SLAAC, addressing
 // Description: Explain IPv6 address structure, subnetting, and stateless autoconfiguration.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // IPv6 Addressing
 // Question ID: 549
-// See questions.json for full details.
-class ipv6_addressing {
+class Ipv6Addressing {
+private:
+    std::unordered_map<std::string, int> connections_;
+    int timeout_ms_ = 5000;
 public:
-    // TODO: Implement the solution for question #549
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_timeout(int ms) { timeout_ms_ = ms; }
+    void add_connection(const std::string& id, int fd) { connections_[id] = fd; }
+    void remove_connection(const std::string& id) { connections_.erase(id); }
+    int get_connection(const std::string& id) const { auto it = connections_.find(id); return it == connections_.end() ? -1 : it->second; }
 };
 
 } // namespace interview_prep

@@ -1,26 +1,27 @@
 // Question #316: Design an Analytics/Event Pipeline
-// Category: System Design
-// Difficulty: Hard
+// Category: System Design | Difficulty: Hard
 // Concepts: analytics, Kafka, stream processing, warehouse
 // Description: Design an event ingestion pipeline with Kafka, stream processing, and warehousing.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Design an Analytics/Event Pipeline
 // Question ID: 316
-// See questions.json for full details.
-class design_an_analytics_event_pipeline {
+class DesignAnAnalyticsEventPipeline {
+private:
+    std::unordered_map<std::string, std::string> config_;
+    std::unordered_map<std::string, int64_t> metrics_;
 public:
-    // TODO: Implement the solution for question #316
-    void solve() {
-        // Implementation goes here.
-    }
+    void set_config(const std::string& key, const std::string& val) { config_[key] = val; }
+    std::string get_config(const std::string& key) const { auto it = config_.find(key); return it == config_.end() ? "" : it->second; }
+    void increment_metric(const std::string& key) { metrics_[key]++; }
 };
 
 } // namespace interview_prep

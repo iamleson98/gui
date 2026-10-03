@@ -1,15 +1,20 @@
 // Question #232: Composite Primary Keys
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: composite key, primary key, indexes, foreign key
 // Description: Design composite primary keys and reason about their impact on indexes and foreign keys.
-//
-// TODO: Implement this solution.
 package sql
 
+import "fmt"
+
 // Composite Primary Keys
-// Question ID: 232
-func composite_primary_keys_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a database design pattern for question #232.
+
+// CompositePrimaryKeys represents the database schema/concept.
+type CompositePrimaryKeys struct {
+        tables map[string][]string
+}
+
+// NewCompositePrimaryKeys initializes the schema.
+func NewCompositePrimaryKeys() *CompositePrimaryKeys {
+        return &CompositePrimaryKeys{tables: make(map[string][]string)}
 }

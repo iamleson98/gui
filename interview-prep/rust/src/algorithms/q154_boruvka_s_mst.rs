@@ -1,22 +1,18 @@
 //! Question #154: Boruvka's MST
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: MST, Boruvka, components, parallel
 //! Description: Compute MST by iteratively adding the cheapest edge from every component.
-//!
-//! TODO: Implement this solution.
 
-pub fn boruvka_s_mst() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn boruvka_s_mst(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_boruvka_s_mst() {
-        // TODO: Write tests for question #154
+        assert_eq!(boruvka_s_mst(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

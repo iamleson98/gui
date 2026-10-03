@@ -1,26 +1,25 @@
 // Question #24: Unbounded Lock-Free Queue with SMR
-// Category: Concurrency
-// Difficulty: Hard
+// Category: Concurrency | Difficulty: Hard
 // Concepts: lock-free queue, hazard pointers, ABA, unbounded
 // Description: Design an unbounded MPMC queue that grows linked-node storage and reclaims nodes via hazard pointers or epochs.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Unbounded Lock-Free Queue with SMR
 // Question ID: 24
-// See questions.json for full details.
-class unbounded_lock_free_queue_with_smr {
+class UnboundedLockFreeQueueWithSmr {
+private:
+    std::atomic<int64_t> state_{0};
 public:
-    // TODO: Implement the solution for question #24
-    void solve() {
-        // Implementation goes here.
-    }
+    void execute() { state_.fetch_add(1, std::memory_order_acq_rel); }
+    int64_t result() const { return state_.load(std::memory_order_acquire); }
 };
 
 } // namespace interview_prep

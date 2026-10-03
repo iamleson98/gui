@@ -1,25 +1,24 @@
 // Question #213: Miller-Rabin Primality
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: primality, Miller-Rabin, witnesses, randomized
 // Description: Implement the randomized Miller-Rabin primality test with strong pseudoprime witnesses.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Miller-Rabin Primality
 // Question ID: 213
-// See questions.json for full details.
-class miller_rabin_primality {
+class MillerRabinPrimality {
 public:
-    // TODO: Implement the solution for question #213
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

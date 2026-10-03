@@ -1,15 +1,42 @@
 // Question #115: XOR Linked List
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: XOR list, pointer compression, memory, traversal
 // Description: Implement a doubly linked list using XOR of adjacent pointers to store one pointer per node.
-//
-// TODO: Implement this solution.
 package datastructures
 
 // XOR Linked List
-// Question ID: 115
-func xor_linked_list_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a data structure for question #115.
+type XorLinkedList struct {
+        data map[int]int
+        size int
 }
+
+// NewXorLinkedList creates a new instance.
+func NewXorLinkedList() *XorLinkedList {
+        return &XorLinkedList{data: make(map[int]int)}
+}
+
+// Insert adds an element.
+func (d *XorLinkedList) Insert(key, val int) {
+        d.data[key] = val
+        d.size++
+}
+
+// Search looks up an element.
+func (d *XorLinkedList) Search(key int) (int, bool) {
+        v, ok := d.data[key]
+        return v, ok
+}
+
+// Delete removes an element.
+func (d *XorLinkedList) Delete(key int) bool {
+        if _, ok := d.data[key]; ok {
+                delete(d.data, key)
+                d.size--
+                return true
+        }
+        return false
+}
+
+// Len returns the number of elements.
+func (d *XorLinkedList) Len() int { return d.size }

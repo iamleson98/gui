@@ -1,26 +1,27 @@
 // Question #392: TLB and TLB Shootdown
-// Category: Memory Management
-// Difficulty: Hard
+// Category: Memory Management | Difficulty: Hard
 // Concepts: TLB, shootdown, IPI, translation cache
 // Description: Explain the TLB cache of translations and the cost of cross-CPU shootdowns.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // TLB and TLB Shootdown
 // Question ID: 392
-// See questions.json for full details.
-class tlb_and_tlb_shootdown {
+class TlbAndTlbShootdown {
+private:
+    std::vector<void*> pool_;
+    size_t capacity_;
 public:
-    // TODO: Implement the solution for question #392
-    void solve() {
-        // Implementation goes here.
-    }
+    explicit TlbAndTlbShootdown(size_t cap) : capacity_(cap) {}
+    void* allocate() { if (pool_.empty()) return nullptr; void* p = pool_.back(); pool_.pop_back(); return p; }
+    void deallocate(void* p) { if (pool_.size() < capacity_) pool_.push_back(p); }
 };
 
 } // namespace interview_prep

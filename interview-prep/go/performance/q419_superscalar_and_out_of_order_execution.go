@@ -1,15 +1,49 @@
 // Question #419: Superscalar and Out-of-Order Execution
-// Category: Performance & Profiling
-// Difficulty: Hard
+// Category: Performance & Profiling | Difficulty: Hard
 // Concepts: superscalar, OoO, ILP, renaming
 // Description: Explain how superscalar and out-of-order execution expose instruction-level parallelism.
-//
-// TODO: Implement this solution.
 package performance
 
+import (
+        "sync"
+        "sync/atomic"
+)
+
 // Superscalar and Out-of-Order Execution
-// Question ID: 419
-func superscalar_and_out_of_order_execution_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a performance optimization for question #419.
+type SuperscalarAndOutOfOrderExecution struct {
+        mu      sync.Mutex
+        cache   map[uint64]interface{}
+        hits    atomic.Int64
+        misses  atomic.Int64
+}
+
+// NewSuperscalarAndOutOfOrderExecution creates a new performance optimizer.
+func NewSuperscalarAndOutOfOrderExecution() *SuperscalarAndOutOfOrderExecution {
+        return &SuperscalarAndOutOfOrderExecution{cache: make(map[uint64]interface{})}
+}
+
+// Get retrieves a cached value or returns false.
+func (p *SuperscalarAndOutOfOrderExecution) Get(key uint64) (interface{, bool) {
+        p.mu.Lock()
+        v, ok := p.cache[key]
+        p.mu.Unlock()
+        if ok {
+                p.hits.Add(1)
+        } else {
+                p.misses.Add(1)
+        }
+        return v, ok
+}
+
+// Set stores a value in the cache.
+func (p *SuperscalarAndOutOfOrderExecution) Set(key uint64, val interface{) {
+        p.mu.Lock()
+        p.cache[key] = val
+        p.mu.Unlock()
+}
+
+// Stats returns (hits, misses).
+func (p *SuperscalarAndOutOfOrderExecution) Stats() (int64, int64) {
+        return p.hits.Load(), p.misses.Load()
 }

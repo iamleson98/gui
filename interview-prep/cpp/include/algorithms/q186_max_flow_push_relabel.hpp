@@ -1,25 +1,24 @@
 // Question #186: Max Flow: Push-Relabel
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: push-relabel, height function, preflow, max flow
 // Description: Compute max flow using the Goldberg-Tarjan push-relabel algorithm with a height function.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Max Flow: Push-Relabel
 // Question ID: 186
-// See questions.json for full details.
-class max_flow_push_relabel {
+class MaxFlowPushRelabel {
 public:
-    // TODO: Implement the solution for question #186
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

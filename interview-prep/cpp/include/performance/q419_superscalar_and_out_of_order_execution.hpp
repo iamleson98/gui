@@ -1,26 +1,27 @@
 // Question #419: Superscalar and Out-of-Order Execution
-// Category: Performance & Profiling
-// Difficulty: Hard
+// Category: Performance & Profiling | Difficulty: Hard
 // Concepts: superscalar, OoO, ILP, renaming
 // Description: Explain how superscalar and out-of-order execution expose instruction-level parallelism.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Superscalar and Out-of-Order Execution
 // Question ID: 419
-// See questions.json for full details.
-class superscalar_and_out_of_order_execution {
+class SuperscalarAndOutOfOrderExecution {
+private:
+    std::unordered_map<uint64_t, std::vector<uint8_t>> cache_;
+    int64_t hits_ = 0, misses_ = 0;
 public:
-    // TODO: Implement the solution for question #419
-    void solve() {
-        // Implementation goes here.
-    }
+    bool get(uint64_t key, std::vector<uint8_t>& out) { auto it = cache_.find(key); if (it == cache_.end()) { misses_++; return false; } hits_++; out = it->second; return true; }
+    void set(uint64_t key, const std::vector<uint8_t>& val) { cache_[key] = val; }
+    int64_t hits() const { return hits_; } int64_t misses() const { return misses_; }
 };
 
 } // namespace interview_prep

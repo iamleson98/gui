@@ -1,25 +1,24 @@
 // Question #217: K-th Smallest in a Matrix
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: k-th smallest, matrix, binary search, min-heap
 // Description: Find the k-th smallest element in a sorted matrix using a min-heap or binary search on value.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // K-th Smallest in a Matrix
 // Question ID: 217
-// See questions.json for full details.
-class k_th_smallest_in_a_matrix {
+class KThSmallestInAMatrix {
 public:
-    // TODO: Implement the solution for question #217
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

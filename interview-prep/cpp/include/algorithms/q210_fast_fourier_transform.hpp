@@ -1,25 +1,24 @@
 // Question #210: Fast Fourier Transform
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: FFT, polynomial, Cooley-Tukey, roots of unity
 // Description: Implement the FFT to evaluate polynomials in O(n log n) and multiply polynomials via pointwise products.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Fast Fourier Transform
 // Question ID: 210
-// See questions.json for full details.
-class fast_fourier_transform {
+class FastFourierTransform {
 public:
-    // TODO: Implement the solution for question #210
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

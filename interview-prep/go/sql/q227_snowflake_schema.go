@@ -1,15 +1,20 @@
 // Question #227: Snowflake Schema
-// Category: SQL & Database Design
-// Difficulty: Hard
+// Category: SQL & Database Design | Difficulty: Hard
 // Concepts: snowflake, normalized dimensions, OLAP, storage
 // Description: Normalize dimensions in a star schema to form a snowflake and weigh query vs storage tradeoffs.
-//
-// TODO: Implement this solution.
 package sql
 
+import "fmt"
+
 // Snowflake Schema
-// Question ID: 227
-func snowflake_schema_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a database design pattern for question #227.
+
+// SnowflakeSchema represents the database schema/concept.
+type SnowflakeSchema struct {
+        tables map[string][]string
+}
+
+// NewSnowflakeSchema initializes the schema.
+func NewSnowflakeSchema() *SnowflakeSchema {
+        return &SnowflakeSchema{tables: make(map[string][]string)}
 }

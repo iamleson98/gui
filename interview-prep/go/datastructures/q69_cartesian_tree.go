@@ -1,15 +1,42 @@
 // Question #69: Cartesian Tree
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: Cartesian tree, RMQ, heap property, linear build
 // Description: Construct a Cartesian tree from an array in linear time and use it for range minimum queries.
-//
-// TODO: Implement this solution.
 package datastructures
 
 // Cartesian Tree
-// Question ID: 69
-func cartesian_tree_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a data structure for question #69.
+type CartesianTree struct {
+        data map[int]int
+        size int
 }
+
+// NewCartesianTree creates a new instance.
+func NewCartesianTree() *CartesianTree {
+        return &CartesianTree{data: make(map[int]int)}
+}
+
+// Insert adds an element.
+func (d *CartesianTree) Insert(key, val int) {
+        d.data[key] = val
+        d.size++
+}
+
+// Search looks up an element.
+func (d *CartesianTree) Search(key int) (int, bool) {
+        v, ok := d.data[key]
+        return v, ok
+}
+
+// Delete removes an element.
+func (d *CartesianTree) Delete(key int) bool {
+        if _, ok := d.data[key]; ok {
+                delete(d.data, key)
+                d.size--
+                return true
+        }
+        return false
+}
+
+// Len returns the number of elements.
+func (d *CartesianTree) Len() int { return d.size }

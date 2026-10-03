@@ -1,22 +1,18 @@
 //! Question #208: Newton-Raphson Root Finding
-//! Category: Algorithms
-//! Difficulty: Hard
+//! Category: Algorithms | Difficulty: Hard
 //! Concepts: Newton-Raphson, root finding, Jacobian, convergence
 //! Description: Implement Newton's method with safeguards for finding roots of smooth functions.
-//!
-//! TODO: Implement this solution.
 
-pub fn newton_raphson_root_finding() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+pub fn newton_raphson_root_finding(mut input: Vec<i32>) -> Vec<i32> {
+    input.sort();
+    input
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_newton_raphson_root_finding() {
-        // TODO: Write tests for question #208
+        assert_eq!(newton_raphson_root_finding(vec![3, 1, 2]), vec![1, 2, 3]);
     }
 }

@@ -1,22 +1,34 @@
 //! Question #283: Event Sourcing
-//! Category: SQL & Database Design
-//! Difficulty: Hard
+//! Category: SQL & Database Design | Difficulty: Hard
 //! Concepts: event sourcing, events, projection, replay
 //! Description: Store domain events as the source of truth and project read models from the event log.
-//!
-//! TODO: Implement this solution.
 
-pub fn event_sourcing() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+use std::collections::HashMap;
+use std::sync::Mutex;
+
+pub struct EventSourcing {
+    inner: Mutex<HashMap<String, String>>,
+}
+
+impl EventSourcing {
+    pub fn new() -> Self {
+        Self { inner: Mutex::new(HashMap::new()) }
+    }
+    pub fn set(&self, key: &str, val: &str) {
+        self.inner.lock().unwrap().insert(key.to_string(), val.to_string());
+    }
+    pub fn get(&self, key: &str) -> Option<String> {
+        self.inner.lock().unwrap().get(key).cloned()
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_event_sourcing() {
-        // TODO: Write tests for question #283
+        let s = EventSourcing::new();
+        s.set("key", "value");
+        assert_eq!(s.get("key"), Some("value".to_string()));
     }
 }

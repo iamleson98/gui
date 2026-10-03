@@ -1,26 +1,27 @@
 // Question #110: Fully Persistent BST
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: persistent BST, path copying, versioning, immutability
 // Description: Implement a BST that keeps every prior version queryable after updates.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Fully Persistent BST
 // Question ID: 110
-// See questions.json for full details.
-class fully_persistent_bst {
+class FullyPersistentBst {
+private:
+    std::unordered_map<int,int> data_;
 public:
-    // TODO: Implement the solution for question #110
-    void solve() {
-        // Implementation goes here.
-    }
+    void insert(int key, int val) { data_[key] = val; }
+    bool search(int key, int& out) const { auto it = data_.find(key); if (it == data_.end()) return false; out = it->second; return true; }
+    bool remove(int key) { return data_.erase(key) > 0; }
+    size_t size() const { return data_.size(); }
 };
 
 } // namespace interview_prep

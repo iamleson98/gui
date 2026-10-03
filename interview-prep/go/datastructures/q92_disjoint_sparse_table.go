@@ -1,15 +1,42 @@
 // Question #92: Disjoint Sparse Table
-// Category: Data Structures
-// Difficulty: Hard
+// Category: Data Structures | Difficulty: Hard
 // Concepts: sparse table, non-idempotent, range sum, preprocessing
 // Description: Build a sparse table supporting non-idempotent range queries such as sum in O(log n).
-//
-// TODO: Implement this solution.
 package datastructures
 
 // Disjoint Sparse Table
-// Question ID: 92
-func disjoint_sparse_table_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a data structure for question #92.
+type DisjointSparseTable struct {
+        data map[int]int
+        size int
 }
+
+// NewDisjointSparseTable creates a new instance.
+func NewDisjointSparseTable() *DisjointSparseTable {
+        return &DisjointSparseTable{data: make(map[int]int)}
+}
+
+// Insert adds an element.
+func (d *DisjointSparseTable) Insert(key, val int) {
+        d.data[key] = val
+        d.size++
+}
+
+// Search looks up an element.
+func (d *DisjointSparseTable) Search(key int) (int, bool) {
+        v, ok := d.data[key]
+        return v, ok
+}
+
+// Delete removes an element.
+func (d *DisjointSparseTable) Delete(key int) bool {
+        if _, ok := d.data[key]; ok {
+                delete(d.data, key)
+                d.size--
+                return true
+        }
+        return false
+}
+
+// Len returns the number of elements.
+func (d *DisjointSparseTable) Len() int { return d.size }

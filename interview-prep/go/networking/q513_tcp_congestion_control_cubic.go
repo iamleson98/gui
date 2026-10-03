@@ -1,15 +1,54 @@
 // Question #513: TCP Congestion Control (CUBIC)
-// Category: Networking & Protocols
-// Difficulty: Hard
+// Category: Networking & Protocols | Difficulty: Hard
 // Concepts: CUBIC, cubic, window, congestion
 // Description: Explain the CUBIC cubic window growth function used as default Linux congestion control.
-//
-// TODO: Implement this solution.
 package networking
 
+import (
+        "net"
+        "sync"
+        "time"
+)
+
 // TCP Congestion Control (CUBIC)
-// Question ID: 513
-func tcp_congestion_control_cubic_solve() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+// Implements a networking concept for question #513.
+type TcpCongestionControlCubic struct {
+        mu        sync.Mutex
+        connections map[string]net.Conn
+        timeout   time.Duration
+}
+
+// NewTcpCongestionControlCubic creates a new network handler.
+func NewTcpCongestionControlCubic(timeout time.Duration) *TcpCongestionControlCubic {
+        return &TcpCongestionControlCubic{
+                connections: make(map[string]net.Conn),
+                timeout:     timeout,
+        }
+}
+
+// AddConnection registers a connection.
+func (n *TcpCongestionControlCubic) AddConnection(id string, conn net.Conn) {
+        n.mu.Lock()
+        n.connections[id] = conn
+        n.mu.Unlock()
+}
+
+// RemoveConnection removes a connection.
+func (n *TcpCongestionControlCubic) RemoveConnection(id string) {
+        n.mu.Lock()
+        delete(n.connections, id)
+        n.mu.Unlock()
+}
+
+// Send writes data to a connection.
+func (n *TcpCongestionControlCubic) Send(id string, data []byte) error {
+        n.mu.Lock()
+        conn, ok := n.connections[id]
+        n.mu.Unlock()
+        if !ok {
+                return nil
+        }
+        conn.SetWriteDeadline(time.Now().Add(n.timeout))
+        _, err := conn.Write(data)
+        return err
 }

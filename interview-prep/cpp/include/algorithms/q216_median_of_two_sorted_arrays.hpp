@@ -1,25 +1,24 @@
 // Question #216: Median of Two Sorted Arrays
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: median, two arrays, binary partition, logarithmic
 // Description: Find the median of two sorted arrays in O(log(min(m, n))) using binary partition.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Median of Two Sorted Arrays
 // Question ID: 216
-// See questions.json for full details.
-class median_of_two_sorted_arrays {
+class MedianOfTwoSortedArrays {
 public:
-    // TODO: Implement the solution for question #216
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

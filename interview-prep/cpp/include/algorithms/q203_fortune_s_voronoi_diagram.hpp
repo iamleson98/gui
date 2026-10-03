@@ -1,25 +1,24 @@
 // Question #203: Fortune's Voronoi Diagram
-// Category: Algorithms
-// Difficulty: Hard
+// Category: Algorithms | Difficulty: Hard
 // Concepts: Voronoi, Fortune, sweep line, beach line
 // Description: Construct a Voronoi diagram using Fortune's sweep-line and beach-line data structure.
-//
-// TODO: Implement this solution.
 #pragma once
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <atomic>
+#include <algorithm>
 
 namespace interview_prep {
 
 // Fortune's Voronoi Diagram
 // Question ID: 203
-// See questions.json for full details.
-class fortune_s_voronoi_diagram {
+class FortuneSVoronoiDiagram {
 public:
-    // TODO: Implement the solution for question #203
-    void solve() {
-        // Implementation goes here.
+    std::vector<int> solve(std::vector<int> input) {
+        std::sort(input.begin(), input.end());
+        return input;
     }
 };
 

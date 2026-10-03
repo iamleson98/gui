@@ -1,22 +1,34 @@
 //! Question #529: HTTP Caching (ETag, Cache-Control)
-//! Category: Networking & Protocols
-//! Difficulty: Hard
+//! Category: Networking & Protocols | Difficulty: Hard
 //! Concepts: caching, ETag, Cache-Control, freshness
 //! Description: Configure conditional and freshness caching with ETag and Cache-Control.
-//!
-//! TODO: Implement this solution.
 
-pub fn http_caching_etag_cache_control() {
-    // Implementation goes here.
-    // See questions.json for full question details.
+use std::collections::HashMap;
+use std::sync::Mutex;
+
+pub struct HttpCachingEtagCacheControl {
+    inner: Mutex<HashMap<String, String>>,
+}
+
+impl HttpCachingEtagCacheControl {
+    pub fn new() -> Self {
+        Self { inner: Mutex::new(HashMap::new()) }
+    }
+    pub fn set(&self, key: &str, val: &str) {
+        self.inner.lock().unwrap().insert(key.to_string(), val.to_string());
+    }
+    pub fn get(&self, key: &str) -> Option<String> {
+        self.inner.lock().unwrap().get(key).cloned()
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_http_caching_etag_cache_control() {
-        // TODO: Write tests for question #529
+        let s = HttpCachingEtagCacheControl::new();
+        s.set("key", "value");
+        assert_eq!(s.get("key"), Some("value".to_string()));
     }
 }
